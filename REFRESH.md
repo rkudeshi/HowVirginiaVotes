@@ -1,5 +1,22 @@
 # VA Vote data refresh
 
+## Recovered historical daily data
+`dist/vpap-history.json` supplements missing locality/election histories. The app
+merges it with `region.json` without replacing existing histories. Fairfax is
+explicitly excluded. Do not delete this supplemental file during future refreshes.
+Saved chart literals are in `sources/vpap/`; regenerate with `python import_vpap.py`.
+The importer validates daily in-person + mail totals against the cumulative chart,
+preserves zero days, and retains headline totals separately when they differ.
+Unreturned applications are final snapshots only, never invented daily observations.
+Registration uses the existing November 1 registration series, not a denominator
+inferred from rounded turnout rates. Source metadata stays in the saved files;
+do not add source labels or attribution to the voting-data display.
+
+After validation, commit data and any display changes to `main` in
+`rkudeshi/HowVirginiaVotes`. `.github/workflows/pages.yml` automatically validates
+and publishes `dist` on every push to `main`. Verify the workflow succeeds and the
+live GitHub Pages site shows the new data. Do not publish to ChatGPT Sites.
+
 ## Public update status
 Successful changed-data imports automatically append retrieval timestamps and source
 details to `dist/status.json` through `status_log.py`. Publish that file with every

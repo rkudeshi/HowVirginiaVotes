@@ -2,6 +2,28 @@
 import json
 from pathlib import Path
 r=Path(__file__).resolve().parent/'dist';d=json.loads((r/'region.json').read_text())
+supplement=json.loads((r/'vpap-history.json').read_text())
+for locality,years in supplement['localities'].items():
+ assert locality!='fairfax-county', 'Fairfax must retain its official history'
+ for year,record in years.items():
+  assert record['id']==locality
+  assert all(l['id']!=locality for l in d['elections'][year]['localities']), 'Supplement must fill a gap'
+  cumulative={'early':0,'mail':0,'total':0}
+  from datetime import date,timedelta
+  previous=None
+  for row in record['history']:
+   current=date.fromisoformat(row['date'])
+   assert previous is None or current==previous+timedelta(days=1)
+   previous=current
+   assert row['daily']['early']+row['daily']['mail']==row['daily']['total']
+   for key in cumulative:
+    assert row['daily'][key]>=0
+    cumulative[key]+=row['daily'][key]
+    assert cumulative[key]==row[key]
+  assert cumulative==record['vpap']['dailySum']
+  for key in cumulative:
+   assert record['vpap']['headline'][key]-cumulative[key]==record['vpap']['headlineMinusDailySum'][key]
+  d['elections'][year]['localities'].append(record)
 for y,e in d['elections'].items():
  for l in e['localities']:
   h=l['history'];assert [v['date'] for v in h]==sorted(set(v['date'] for v in h)),(y,l['id'])
