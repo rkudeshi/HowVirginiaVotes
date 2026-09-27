@@ -1,0 +1,6 @@
+{
+  "url": "https://www2.census.gov/geo/tiger/GENZ2024/kml/cb_2024_us_county_500k.zip",
+  "vintage": "2024",
+  "scale": "1:500,000",
+  "method": "Shoreline-clipped cartographic county boundaries; Virginia only. Land area used for registered-voter density comparisons."
+}

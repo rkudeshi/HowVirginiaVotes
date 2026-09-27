@@ -66,4 +66,8 @@ if __name__=='__main__':
     (S/'audit.json').write_text(json.dumps(audit,indent=2))
     (D/'map-manifest.json').write_text(json.dumps(manifest,separators=(',',':')))
     assert len(boundaries)==133,('Missing boundaries',len(boundaries))
-    (D/'regional.geojson').write_text(json.dumps({'type':'FeatureCollection','features':boundaries},separators=(',',':')))
+    # Keep the shoreline-clipped overview and land areas used by community comparisons.
+    # Rebuild that layer separately with build_overview_map.py.
+    overview=D/'regional.geojson'
+    if not overview.exists():
+        overview.write_text(json.dumps({'type':'FeatureCollection','features':boundaries},separators=(',',':')))

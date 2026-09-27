@@ -54,5 +54,12 @@
     "message": "Added weather across all 133 localities for every tracked election; aligned daily chart dates, trimmed empty endpoints, enlarged historical comparisons, and enabled clean URLs. Added 2020 history for ten more localities; remaining historical imports are pending.",
     "through": null,
     "url": null
+  },
+  {
+    "at": "2026-09-27T08:33:19.303308+00:00",
+    "source": "Historical import and website update",
+    "message": "Completed November 2020 daily histories for all 133 localities, preserving Fairfax. Added comparison timeline and ballot-type filters, regional and locality-size/density summaries, and shoreline-corrected overview map.",
+    "through": null,
+    "url": null
   }
 ]

@@ -4,7 +4,7 @@
 Use clean routes such as `/2022/loudoun-county/`. The publishing workflow runs
 `python build_routes.py` to generate entry pages for every supported route;
 keep `<base href="/">` in the shared HTML so deep-link assets resolve correctly.
-Existing hash links are upgraded automatically. Do not commit generated route copies.
+Use clean path URLs. Do not commit generated route copies.
 Daily-chart ticks use the exact same noon-UTC date positions as the columns.
 Trim only leading/trailing days without daily ballot activity; preserve interior
 zero days and negative reporting corrections. Comparison charts use a taller view.
@@ -131,3 +131,18 @@ counts or treat an incomplete set of site hours as a complete calendar for the
 projection model. Verified textual schedules are shown separately when a full
 calendar has not been reconstructed. Election-relative forecasts remain available
 from DPW histories without unverified site-hours assumptions.
+
+## Homepage comparisons and overview boundaries
+The overview uses Census 2024 shoreline-clipped cartographic county boundaries,
+not precinct unions that include offshore water. Rebuild with
+`python build_overview_map.py path/to/cb_2024_us_county_500k.zip`.
+Preserve `landSqMiles` in all 133 overview features. Community-density and size
+groups use fixed 2026 registration counts, so membership does not change when
+switching elections. Regional rates divide summed ballots by summed registration;
+never average locality percentages. Pace comparisons match each locality at the
+same election-relative day and disclose incomplete matched coverage.
+Historical comparison filters apply to both axes, lines, and detail values.
+The Through today view caps the selected election at its latest report and clips
+all years to that election-relative day. In-person and mail filters remain distinct.
+November 2020 now covers all 133 localities, preserving the existing Fairfax data.
+November 2021 and 2022 statewide recovery remains pending beyond Loudoun/Fairfax.
