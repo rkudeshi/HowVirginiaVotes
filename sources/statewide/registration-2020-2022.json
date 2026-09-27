@@ -1,0 +1,1604 @@
+{
+  "2020": {
+    "Accomack County": {
+      "registered": 24624,
+      "active": 23754
+    },
+    "Albemarle County": {
+      "registered": 81681,
+      "active": 78541
+    },
+    "Alleghany County": {
+      "registered": 10961,
+      "active": 10760
+    },
+    "Amelia County": {
+      "registered": 9835,
+      "active": 9681
+    },
+    "Amherst County": {
+      "registered": 22245,
+      "active": 21671
+    },
+    "Appomattox County": {
+      "registered": 11704,
+      "active": 11513
+    },
+    "Arlington County": {
+      "registered": 178428,
+      "active": 166415
+    },
+    "Augusta County": {
+      "registered": 52752,
+      "active": 51861
+    },
+    "Bath County": {
+      "registered": 3307,
+      "active": 3227
+    },
+    "Bedford County": {
+      "registered": 60667,
+      "active": 59505
+    },
+    "Bland County": {
+      "registered": 4570,
+      "active": 4408
+    },
+    "Botetourt County": {
+      "registered": 25677,
+      "active": 25239
+    },
+    "Brunswick County": {
+      "registered": 10944,
+      "active": 10722
+    },
+    "Buchanan County": {
+      "registered": 15268,
+      "active": 14919
+    },
+    "Buckingham County": {
+      "registered": 10752,
+      "active": 10561
+    },
+    "Campbell County": {
+      "registered": 39877,
+      "active": 38915
+    },
+    "Caroline County": {
+      "registered": 21744,
+      "active": 21180
+    },
+    "Carroll County": {
+      "registered": 20701,
+      "active": 20227
+    },
+    "Charles City County": {
+      "registered": 5651,
+      "active": 5528
+    },
+    "Charlotte County": {
+      "registered": 8393,
+      "active": 8201
+    },
+    "Chesterfield County": {
+      "registered": 259263,
+      "active": 252158
+    },
+    "Clarke County": {
+      "registered": 11688,
+      "active": 11342
+    },
+    "Craig County": {
+      "registered": 3971,
+      "active": 3890
+    },
+    "Culpeper County": {
+      "registered": 35121,
+      "active": 34324
+    },
+    "Cumberland County": {
+      "registered": 7198,
+      "active": 7034
+    },
+    "Dickenson County": {
+      "registered": 10277,
+      "active": 10035
+    },
+    "Dinwiddie County": {
+      "registered": 20182,
+      "active": 19710
+    },
+    "Essex County": {
+      "registered": 8106,
+      "active": 7728
+    },
+    "Fairfax County": {
+      "registered": 787189,
+      "active": 761658
+    },
+    "Fauquier County": {
+      "registered": 54373,
+      "active": 53053
+    },
+    "Floyd County": {
+      "registered": 11544,
+      "active": 11387
+    },
+    "Fluvanna County": {
+      "registered": 19840,
+      "active": 19464
+    },
+    "Franklin County": {
+      "registered": 38483,
+      "active": 37735
+    },
+    "Frederick County": {
+      "registered": 64274,
+      "active": 62126
+    },
+    "Giles County": {
+      "registered": 11985,
+      "active": 11662
+    },
+    "Gloucester County": {
+      "registered": 28978,
+      "active": 28360
+    },
+    "Goochland County": {
+      "registered": 19961,
+      "active": 19682
+    },
+    "Grayson County": {
+      "registered": 10766,
+      "active": 10506
+    },
+    "Greene County": {
+      "registered": 14395,
+      "active": 13853
+    },
+    "Greensville County": {
+      "registered": 6407,
+      "active": 6263
+    },
+    "Halifax County": {
+      "registered": 24588,
+      "active": 23999
+    },
+    "Hanover County": {
+      "registered": 84139,
+      "active": 82896
+    },
+    "Henrico County": {
+      "registered": 236939,
+      "active": 230842
+    },
+    "Henry County": {
+      "registered": 36083,
+      "active": 35249
+    },
+    "Highland County": {
+      "registered": 1851,
+      "active": 1834
+    },
+    "Isle Of Wight County": {
+      "registered": 29968,
+      "active": 29311
+    },
+    "James City County": {
+      "registered": 61519,
+      "active": 59894
+    },
+    "King And Queen County": {
+      "registered": 5255,
+      "active": 5150
+    },
+    "King George County": {
+      "registered": 18567,
+      "active": 17986
+    },
+    "King William County": {
+      "registered": 13233,
+      "active": 12993
+    },
+    "Lancaster County": {
+      "registered": 8936,
+      "active": 8818
+    },
+    "Lee County": {
+      "registered": 15441,
+      "active": 14817
+    },
+    "Loudoun County": {
+      "registered": 282264,
+      "active": 274111
+    },
+    "Louisa County": {
+      "registered": 27290,
+      "active": 26813
+    },
+    "Lunenburg County": {
+      "registered": 8063,
+      "active": 7880
+    },
+    "Madison County": {
+      "registered": 9962,
+      "active": 9802
+    },
+    "Mathews County": {
+      "registered": 7191,
+      "active": 7081
+    },
+    "Mecklenburg County": {
+      "registered": 22334,
+      "active": 21806
+    },
+    "Middlesex County": {
+      "registered": 8457,
+      "active": 8330
+    },
+    "Montgomery County": {
+      "registered": 62922,
+      "active": 59293
+    },
+    "Nelson County": {
+      "registered": 11646,
+      "active": 11437
+    },
+    "New Kent County": {
+      "registered": 17467,
+      "active": 17165
+    },
+    "Northampton County": {
+      "registered": 9479,
+      "active": 9276
+    },
+    "Northumberland County": {
+      "registered": 9929,
+      "active": 9711
+    },
+    "Nottoway County": {
+      "registered": 9464,
+      "active": 9283
+    },
+    "Orange County": {
+      "registered": 26753,
+      "active": 26181
+    },
+    "Page County": {
+      "registered": 16648,
+      "active": 16309
+    },
+    "Patrick County": {
+      "registered": 12667,
+      "active": 12374
+    },
+    "Pittsylvania County": {
+      "registered": 44812,
+      "active": 43837
+    },
+    "Powhatan County": {
+      "registered": 23159,
+      "active": 22830
+    },
+    "Prince Edward County": {
+      "registered": 13390,
+      "active": 12973
+    },
+    "Prince George County": {
+      "registered": 24268,
+      "active": 23356
+    },
+    "Prince William County": {
+      "registered": 306787,
+      "active": 296118
+    },
+    "Pulaski County": {
+      "registered": 23147,
+      "active": 22669
+    },
+    "Rappahannock County": {
+      "registered": 6078,
+      "active": 5962
+    },
+    "Richmond County": {
+      "registered": 5506,
+      "active": 5412
+    },
+    "Roanoke County": {
+      "registered": 72199,
+      "active": 70470
+    },
+    "Rockbridge County": {
+      "registered": 15706,
+      "active": 15381
+    },
+    "Rockingham County": {
+      "registered": 54715,
+      "active": 53641
+    },
+    "Russell County": {
+      "registered": 18975,
+      "active": 18575
+    },
+    "Scott County": {
+      "registered": 15741,
+      "active": 15312
+    },
+    "Shenandoah County": {
+      "registered": 30997,
+      "active": 30287
+    },
+    "Smyth County": {
+      "registered": 19782,
+      "active": 19373
+    },
+    "Southampton County": {
+      "registered": 12855,
+      "active": 12510
+    },
+    "Spotsylvania County": {
+      "registered": 99198,
+      "active": 96320
+    },
+    "Stafford County": {
+      "registered": 105712,
+      "active": 102265
+    },
+    "Surry County": {
+      "registered": 5598,
+      "active": 5466
+    },
+    "Sussex County": {
+      "registered": 7027,
+      "active": 6895
+    },
+    "Tazewell County": {
+      "registered": 28368,
+      "active": 25768
+    },
+    "Warren County": {
+      "registered": 28726,
+      "active": 27947
+    },
+    "Washington County": {
+      "registered": 38392,
+      "active": 37486
+    },
+    "Westmoreland County": {
+      "registered": 13423,
+      "active": 13043
+    },
+    "Wise County": {
+      "registered": 24124,
+      "active": 23534
+    },
+    "Wythe County": {
+      "registered": 20308,
+      "active": 19807
+    },
+    "York County": {
+      "registered": 49034,
+      "active": 47494
+    },
+    "Alexandria City": {
+      "registered": 112736,
+      "active": 104859
+    },
+    "Bristol City": {
+      "registered": 11714,
+      "active": 11231
+    },
+    "Buena Vista City": {
+      "registered": 4263,
+      "active": 4082
+    },
+    "Charlottesville City": {
+      "registered": 34964,
+      "active": 33095
+    },
+    "Chesapeake City": {
+      "registered": 171496,
+      "active": 164083
+    },
+    "Colonial Heights City": {
+      "registered": 12755,
+      "active": 12353
+    },
+    "Covington City": {
+      "registered": 3753,
+      "active": 3653
+    },
+    "Danville City": {
+      "registered": 28397,
+      "active": 27487
+    },
+    "Emporia City": {
+      "registered": 3873,
+      "active": 3715
+    },
+    "Fairfax City": {
+      "registered": 17373,
+      "active": 16818
+    },
+    "Falls Church City": {
+      "registered": 11126,
+      "active": 10654
+    },
+    "Franklin City": {
+      "registered": 5722,
+      "active": 5541
+    },
+    "Fredericksburg City": {
+      "registered": 18549,
+      "active": 17508
+    },
+    "Galax City": {
+      "registered": 3879,
+      "active": 3756
+    },
+    "Hampton City": {
+      "registered": 99384,
+      "active": 94632
+    },
+    "Harrisonburg City": {
+      "registered": 26080,
+      "active": 23987
+    },
+    "Hopewell City": {
+      "registered": 15218,
+      "active": 14537
+    },
+    "Lexington City": {
+      "registered": 4222,
+      "active": 3988
+    },
+    "Lynchburg City": {
+      "registered": 55671,
+      "active": 52700
+    },
+    "Manassas City": {
+      "registered": 23490,
+      "active": 22331
+    },
+    "Manassas Park City": {
+      "registered": 8768,
+      "active": 8400
+    },
+    "Martinsville City": {
+      "registered": 8880,
+      "active": 8592
+    },
+    "Newport News City": {
+      "registered": 123230,
+      "active": 115714
+    },
+    "Norfolk City": {
+      "registered": 136595,
+      "active": 127922
+    },
+    "Norton City": {
+      "registered": 2473,
+      "active": 2397
+    },
+    "Petersburg City": {
+      "registered": 22948,
+      "active": 22058
+    },
+    "Poquoson City": {
+      "registered": 9477,
+      "active": 9272
+    },
+    "Portsmouth City": {
+      "registered": 66368,
+      "active": 64011
+    },
+    "Radford City": {
+      "registered": 9713,
+      "active": 8889
+    },
+    "Richmond City": {
+      "registered": 159075,
+      "active": 151312
+    },
+    "Roanoke City": {
+      "registered": 64437,
+      "active": 61902
+    },
+    "Salem City": {
+      "registered": 17667,
+      "active": 17203
+    },
+    "Staunton City": {
+      "registered": 17591,
+      "active": 17023
+    },
+    "Suffolk City": {
+      "registered": 67517,
+      "active": 64973
+    },
+    "Virginia Beach City": {
+      "registered": 322938,
+      "active": 307724
+    },
+    "Waynesboro City": {
+      "registered": 14652,
+      "active": 14213
+    },
+    "Williamsburg City": {
+      "registered": 10265,
+      "active": 9719
+    },
+    "Winchester City": {
+      "registered": 17594,
+      "active": 16737
+    }
+  },
+  "2021": {
+    "Accomack County": {
+      "registered": 24674,
+      "active": 23631
+    },
+    "Albemarle County": {
+      "registered": 81738,
+      "active": 77246
+    },
+    "Alleghany County": {
+      "registered": 11017,
+      "active": 10718
+    },
+    "Amelia County": {
+      "registered": 9914,
+      "active": 9649
+    },
+    "Amherst County": {
+      "registered": 22346,
+      "active": 21609
+    },
+    "Appomattox County": {
+      "registered": 11884,
+      "active": 11559
+    },
+    "Arlington County": {
+      "registered": 169647,
+      "active": 154781
+    },
+    "Augusta County": {
+      "registered": 53592,
+      "active": 52174
+    },
+    "Bath County": {
+      "registered": 3286,
+      "active": 3163
+    },
+    "Bedford County": {
+      "registered": 61447,
+      "active": 59568
+    },
+    "Bland County": {
+      "registered": 4500,
+      "active": 4298
+    },
+    "Botetourt County": {
+      "registered": 25823,
+      "active": 25137
+    },
+    "Brunswick County": {
+      "registered": 10943,
+      "active": 10672
+    },
+    "Buchanan County": {
+      "registered": 14935,
+      "active": 14493
+    },
+    "Buckingham County": {
+      "registered": 10836,
+      "active": 10540
+    },
+    "Campbell County": {
+      "registered": 40145,
+      "active": 38598
+    },
+    "Caroline County": {
+      "registered": 22199,
+      "active": 21368
+    },
+    "Carroll County": {
+      "registered": 20675,
+      "active": 20215
+    },
+    "Charles City County": {
+      "registered": 5652,
+      "active": 5512
+    },
+    "Charlotte County": {
+      "registered": 8337,
+      "active": 8128
+    },
+    "Chesterfield County": {
+      "registered": 261305,
+      "active": 248872
+    },
+    "Clarke County": {
+      "registered": 11714,
+      "active": 11287
+    },
+    "Craig County": {
+      "registered": 3961,
+      "active": 3840
+    },
+    "Culpeper County": {
+      "registered": 35531,
+      "active": 34305
+    },
+    "Cumberland County": {
+      "registered": 7222,
+      "active": 6993
+    },
+    "Dickenson County": {
+      "registered": 10145,
+      "active": 9689
+    },
+    "Dinwiddie County": {
+      "registered": 20349,
+      "active": 19561
+    },
+    "Essex County": {
+      "registered": 8035,
+      "active": 7778
+    },
+    "Fairfax County": {
+      "registered": 774473,
+      "active": 733888
+    },
+    "Fauquier County": {
+      "registered": 54713,
+      "active": 51996
+    },
+    "Floyd County": {
+      "registered": 11616,
+      "active": 11247
+    },
+    "Fluvanna County": {
+      "registered": 20282,
+      "active": 19657
+    },
+    "Franklin County": {
+      "registered": 39057,
+      "active": 37974
+    },
+    "Frederick County": {
+      "registered": 65097,
+      "active": 62278
+    },
+    "Giles County": {
+      "registered": 11951,
+      "active": 11606
+    },
+    "Gloucester County": {
+      "registered": 29279,
+      "active": 28322
+    },
+    "Goochland County": {
+      "registered": 20477,
+      "active": 19925
+    },
+    "Grayson County": {
+      "registered": 10716,
+      "active": 10423
+    },
+    "Greene County": {
+      "registered": 14394,
+      "active": 13984
+    },
+    "Greensville County": {
+      "registered": 6373,
+      "active": 6173
+    },
+    "Halifax County": {
+      "registered": 24549,
+      "active": 23960
+    },
+    "Hanover County": {
+      "registered": 84866,
+      "active": 82772
+    },
+    "Henrico County": {
+      "registered": 236229,
+      "active": 226822
+    },
+    "Henry County": {
+      "registered": 35976,
+      "active": 34985
+    },
+    "Highland County": {
+      "registered": 1880,
+      "active": 1855
+    },
+    "Isle Of Wight County": {
+      "registered": 30142,
+      "active": 29101
+    },
+    "James City County": {
+      "registered": 61961,
+      "active": 59329
+    },
+    "King And Queen County": {
+      "registered": 5300,
+      "active": 5151
+    },
+    "King George County": {
+      "registered": 18880,
+      "active": 18125
+    },
+    "King William County": {
+      "registered": 13502,
+      "active": 13082
+    },
+    "Lancaster County": {
+      "registered": 9041,
+      "active": 8786
+    },
+    "Lee County": {
+      "registered": 15225,
+      "active": 14722
+    },
+    "Loudoun County": {
+      "registered": 282319,
+      "active": 269435
+    },
+    "Louisa County": {
+      "registered": 28177,
+      "active": 27391
+    },
+    "Lunenburg County": {
+      "registered": 8008,
+      "active": 7763
+    },
+    "Madison County": {
+      "registered": 10137,
+      "active": 9863
+    },
+    "Mathews County": {
+      "registered": 7210,
+      "active": 6918
+    },
+    "Mecklenburg County": {
+      "registered": 22482,
+      "active": 21740
+    },
+    "Middlesex County": {
+      "registered": 8604,
+      "active": 8362
+    },
+    "Montgomery County": {
+      "registered": 60935,
+      "active": 56715
+    },
+    "Nelson County": {
+      "registered": 11773,
+      "active": 11465
+    },
+    "New Kent County": {
+      "registered": 18029,
+      "active": 17613
+    },
+    "Northampton County": {
+      "registered": 9551,
+      "active": 9016
+    },
+    "Northumberland County": {
+      "registered": 10057,
+      "active": 9716
+    },
+    "Nottoway County": {
+      "registered": 9520,
+      "active": 9231
+    },
+    "Orange County": {
+      "registered": 27262,
+      "active": 26347
+    },
+    "Page County": {
+      "registered": 16760,
+      "active": 16352
+    },
+    "Patrick County": {
+      "registered": 12618,
+      "active": 12337
+    },
+    "Pittsylvania County": {
+      "registered": 44726,
+      "active": 43404
+    },
+    "Powhatan County": {
+      "registered": 23491,
+      "active": 22950
+    },
+    "Prince Edward County": {
+      "registered": 13286,
+      "active": 12744
+    },
+    "Prince George County": {
+      "registered": 24216,
+      "active": 22358
+    },
+    "Prince William County": {
+      "registered": 305073,
+      "active": 288339
+    },
+    "Pulaski County": {
+      "registered": 23342,
+      "active": 22754
+    },
+    "Rappahannock County": {
+      "registered": 6148,
+      "active": 5966
+    },
+    "Richmond County": {
+      "registered": 5604,
+      "active": 5427
+    },
+    "Roanoke County": {
+      "registered": 71905,
+      "active": 68594
+    },
+    "Rockbridge County": {
+      "registered": 15780,
+      "active": 15374
+    },
+    "Rockingham County": {
+      "registered": 55257,
+      "active": 53761
+    },
+    "Russell County": {
+      "registered": 18961,
+      "active": 18517
+    },
+    "Scott County": {
+      "registered": 15687,
+      "active": 15323
+    },
+    "Shenandoah County": {
+      "registered": 31490,
+      "active": 30452
+    },
+    "Smyth County": {
+      "registered": 19795,
+      "active": 19347
+    },
+    "Southampton County": {
+      "registered": 12909,
+      "active": 12478
+    },
+    "Spotsylvania County": {
+      "registered": 100962,
+      "active": 96563
+    },
+    "Stafford County": {
+      "registered": 106423,
+      "active": 100628
+    },
+    "Surry County": {
+      "registered": 5578,
+      "active": 5406
+    },
+    "Sussex County": {
+      "registered": 7052,
+      "active": 6848
+    },
+    "Tazewell County": {
+      "registered": 27633,
+      "active": 25649
+    },
+    "Warren County": {
+      "registered": 29305,
+      "active": 28058
+    },
+    "Washington County": {
+      "registered": 38516,
+      "active": 37349
+    },
+    "Westmoreland County": {
+      "registered": 13628,
+      "active": 13123
+    },
+    "Wise County": {
+      "registered": 24134,
+      "active": 23331
+    },
+    "Wythe County": {
+      "registered": 20493,
+      "active": 19958
+    },
+    "York County": {
+      "registered": 49092,
+      "active": 46737
+    },
+    "Alexandria City": {
+      "registered": 107326,
+      "active": 96302
+    },
+    "Bristol City": {
+      "registered": 11806,
+      "active": 10946
+    },
+    "Buena Vista City": {
+      "registered": 4311,
+      "active": 4015
+    },
+    "Charlottesville City": {
+      "registered": 33549,
+      "active": 30845
+    },
+    "Chesapeake City": {
+      "registered": 171317,
+      "active": 160932
+    },
+    "Colonial Heights City": {
+      "registered": 12690,
+      "active": 12072
+    },
+    "Covington City": {
+      "registered": 3786,
+      "active": 3655
+    },
+    "Danville City": {
+      "registered": 28416,
+      "active": 27192
+    },
+    "Emporia City": {
+      "registered": 3919,
+      "active": 3725
+    },
+    "Fairfax City": {
+      "registered": 17181,
+      "active": 16389
+    },
+    "Falls Church City": {
+      "registered": 10838,
+      "active": 10068
+    },
+    "Franklin City": {
+      "registered": 5767,
+      "active": 5488
+    },
+    "Fredericksburg City": {
+      "registered": 18455,
+      "active": 17150
+    },
+    "Galax City": {
+      "registered": 3932,
+      "active": 3764
+    },
+    "Hampton City": {
+      "registered": 98591,
+      "active": 89966
+    },
+    "Harrisonburg City": {
+      "registered": 25983,
+      "active": 23806
+    },
+    "Hopewell City": {
+      "registered": 15326,
+      "active": 14392
+    },
+    "Lexington City": {
+      "registered": 4133,
+      "active": 3774
+    },
+    "Lynchburg City": {
+      "registered": 54693,
+      "active": 48908
+    },
+    "Manassas City": {
+      "registered": 23032,
+      "active": 21659
+    },
+    "Manassas Park City": {
+      "registered": 8678,
+      "active": 8076
+    },
+    "Martinsville City": {
+      "registered": 8843,
+      "active": 8350
+    },
+    "Newport News City": {
+      "registered": 121543,
+      "active": 112009
+    },
+    "Norfolk City": {
+      "registered": 136623,
+      "active": 125408
+    },
+    "Norton City": {
+      "registered": 2522,
+      "active": 2417
+    },
+    "Petersburg City": {
+      "registered": 23167,
+      "active": 21708
+    },
+    "Poquoson City": {
+      "registered": 9495,
+      "active": 9156
+    },
+    "Portsmouth City": {
+      "registered": 66696,
+      "active": 63083
+    },
+    "Radford City": {
+      "registered": 9383,
+      "active": 8450
+    },
+    "Richmond City": {
+      "registered": 157061,
+      "active": 142460
+    },
+    "Roanoke City": {
+      "registered": 64374,
+      "active": 60627
+    },
+    "Salem City": {
+      "registered": 17587,
+      "active": 16700
+    },
+    "Staunton City": {
+      "registered": 17575,
+      "active": 16733
+    },
+    "Suffolk City": {
+      "registered": 68255,
+      "active": 64690
+    },
+    "Virginia Beach City": {
+      "registered": 320372,
+      "active": 298849
+    },
+    "Waynesboro City": {
+      "registered": 14817,
+      "active": 14012
+    },
+    "Williamsburg City": {
+      "registered": 9925,
+      "active": 9101
+    },
+    "Winchester City": {
+      "registered": 17643,
+      "active": 16368
+    }
+  },
+  "2022": {
+    "Accomack County": {
+      "registered": 25279,
+      "active": 24050
+    },
+    "Albemarle County": {
+      "registered": 84066,
+      "active": 78865
+    },
+    "Alleghany County": {
+      "registered": 11044,
+      "active": 10383
+    },
+    "Amelia County": {
+      "registered": 10121,
+      "active": 9835
+    },
+    "Amherst County": {
+      "registered": 22756,
+      "active": 21908
+    },
+    "Appomattox County": {
+      "registered": 12142,
+      "active": 11761
+    },
+    "Arlington County": {
+      "registered": 175478,
+      "active": 157160
+    },
+    "Augusta County": {
+      "registered": 54551,
+      "active": 52878
+    },
+    "Bath County": {
+      "registered": 3354,
+      "active": 3218
+    },
+    "Bedford County": {
+      "registered": 62850,
+      "active": 60581
+    },
+    "Bland County": {
+      "registered": 4574,
+      "active": 4324
+    },
+    "Botetourt County": {
+      "registered": 26176,
+      "active": 25495
+    },
+    "Brunswick County": {
+      "registered": 11029,
+      "active": 10705
+    },
+    "Buchanan County": {
+      "registered": 14837,
+      "active": 14327
+    },
+    "Buckingham County": {
+      "registered": 11018,
+      "active": 10673
+    },
+    "Campbell County": {
+      "registered": 40950,
+      "active": 39110
+    },
+    "Caroline County": {
+      "registered": 22686,
+      "active": 21777
+    },
+    "Carroll County": {
+      "registered": 21073,
+      "active": 20498
+    },
+    "Charles City County": {
+      "registered": 5737,
+      "active": 5585
+    },
+    "Charlotte County": {
+      "registered": 8421,
+      "active": 8137
+    },
+    "Chesterfield County": {
+      "registered": 268231,
+      "active": 253843
+    },
+    "Clarke County": {
+      "registered": 12187,
+      "active": 11648
+    },
+    "Craig County": {
+      "registered": 3964,
+      "active": 3829
+    },
+    "Culpeper County": {
+      "registered": 36845,
+      "active": 35285
+    },
+    "Cumberland County": {
+      "registered": 7354,
+      "active": 7130
+    },
+    "Dickenson County": {
+      "registered": 10138,
+      "active": 9677
+    },
+    "Dinwiddie County": {
+      "registered": 20757,
+      "active": 19925
+    },
+    "Essex County": {
+      "registered": 8253,
+      "active": 7970
+    },
+    "Fairfax County": {
+      "registered": 781695,
+      "active": 736099
+    },
+    "Fauquier County": {
+      "registered": 56010,
+      "active": 52929
+    },
+    "Floyd County": {
+      "registered": 11811,
+      "active": 11410
+    },
+    "Fluvanna County": {
+      "registered": 20892,
+      "active": 20160
+    },
+    "Franklin County": {
+      "registered": 39816,
+      "active": 38549
+    },
+    "Frederick County": {
+      "registered": 67269,
+      "active": 63841
+    },
+    "Giles County": {
+      "registered": 12075,
+      "active": 11685
+    },
+    "Gloucester County": {
+      "registered": 30118,
+      "active": 28967
+    },
+    "Goochland County": {
+      "registered": 21254,
+      "active": 20533
+    },
+    "Grayson County": {
+      "registered": 10880,
+      "active": 10534
+    },
+    "Greene County": {
+      "registered": 14824,
+      "active": 14332
+    },
+    "Greensville County": {
+      "registered": 6427,
+      "active": 6190
+    },
+    "Halifax County": {
+      "registered": 24956,
+      "active": 24130
+    },
+    "Hanover County": {
+      "registered": 86675,
+      "active": 84155
+    },
+    "Henrico County": {
+      "registered": 240307,
+      "active": 229178
+    },
+    "Henry County": {
+      "registered": 36340,
+      "active": 34988
+    },
+    "Highland County": {
+      "registered": 1898,
+      "active": 1823
+    },
+    "Isle Of Wight County": {
+      "registered": 31004,
+      "active": 29758
+    },
+    "James City County": {
+      "registered": 63864,
+      "active": 60635
+    },
+    "King And Queen County": {
+      "registered": 5366,
+      "active": 5200
+    },
+    "King George County": {
+      "registered": 19551,
+      "active": 18329
+    },
+    "King William County": {
+      "registered": 13886,
+      "active": 13443
+    },
+    "Lancaster County": {
+      "registered": 9239,
+      "active": 8932
+    },
+    "Lee County": {
+      "registered": 15578,
+      "active": 15002
+    },
+    "Loudoun County": {
+      "registered": 290916,
+      "active": 274437
+    },
+    "Louisa County": {
+      "registered": 29403,
+      "active": 28477
+    },
+    "Lunenburg County": {
+      "registered": 8085,
+      "active": 7812
+    },
+    "Madison County": {
+      "registered": 10333,
+      "active": 10008
+    },
+    "Mathews County": {
+      "registered": 7360,
+      "active": 7081
+    },
+    "Mecklenburg County": {
+      "registered": 22959,
+      "active": 22127
+    },
+    "Middlesex County": {
+      "registered": 8707,
+      "active": 8441
+    },
+    "Montgomery County": {
+      "registered": 61373,
+      "active": 56611
+    },
+    "Nelson County": {
+      "registered": 11888,
+      "active": 11501
+    },
+    "New Kent County": {
+      "registered": 18819,
+      "active": 18285
+    },
+    "Northampton County": {
+      "registered": 9836,
+      "active": 9270
+    },
+    "Northumberland County": {
+      "registered": 10426,
+      "active": 10043
+    },
+    "Nottoway County": {
+      "registered": 9624,
+      "active": 9278
+    },
+    "Orange County": {
+      "registered": 28319,
+      "active": 27192
+    },
+    "Page County": {
+      "registered": 17094,
+      "active": 16568
+    },
+    "Patrick County": {
+      "registered": 12830,
+      "active": 12499
+    },
+    "Pittsylvania County": {
+      "registered": 45147,
+      "active": 43664
+    },
+    "Powhatan County": {
+      "registered": 24123,
+      "active": 23467
+    },
+    "Prince Edward County": {
+      "registered": 13468,
+      "active": 12841
+    },
+    "Prince George County": {
+      "registered": 24812,
+      "active": 22682
+    },
+    "Prince William County": {
+      "registered": 315828,
+      "active": 295029
+    },
+    "Pulaski County": {
+      "registered": 23719,
+      "active": 23002
+    },
+    "Rappahannock County": {
+      "registered": 6200,
+      "active": 6000
+    },
+    "Richmond County": {
+      "registered": 5640,
+      "active": 5453
+    },
+    "Roanoke County": {
+      "registered": 72982,
+      "active": 69289
+    },
+    "Rockbridge County": {
+      "registered": 16188,
+      "active": 15672
+    },
+    "Rockingham County": {
+      "registered": 56429,
+      "active": 54475
+    },
+    "Russell County": {
+      "registered": 19135,
+      "active": 18613
+    },
+    "Scott County": {
+      "registered": 16014,
+      "active": 15574
+    },
+    "Shenandoah County": {
+      "registered": 32092,
+      "active": 30796
+    },
+    "Smyth County": {
+      "registered": 20098,
+      "active": 19505
+    },
+    "Southampton County": {
+      "registered": 13167,
+      "active": 12692
+    },
+    "Spotsylvania County": {
+      "registered": 104785,
+      "active": 99540
+    },
+    "Stafford County": {
+      "registered": 110371,
+      "active": 103012
+    },
+    "Surry County": {
+      "registered": 5673,
+      "active": 5476
+    },
+    "Sussex County": {
+      "registered": 7134,
+      "active": 6883
+    },
+    "Tazewell County": {
+      "registered": 28083,
+      "active": 25845
+    },
+    "Warren County": {
+      "registered": 30236,
+      "active": 28721
+    },
+    "Washington County": {
+      "registered": 39285,
+      "active": 37959
+    },
+    "Westmoreland County": {
+      "registered": 14158,
+      "active": 13559
+    },
+    "Wise County": {
+      "registered": 24619,
+      "active": 23716
+    },
+    "Wythe County": {
+      "registered": 20832,
+      "active": 20185
+    },
+    "York County": {
+      "registered": 50523,
+      "active": 47551
+    },
+    "Alexandria City": {
+      "registered": 111834,
+      "active": 98307
+    },
+    "Bristol City": {
+      "registered": 12260,
+      "active": 10979
+    },
+    "Buena Vista City": {
+      "registered": 4421,
+      "active": 4080
+    },
+    "Charlottesville City": {
+      "registered": 34069,
+      "active": 30835
+    },
+    "Chesapeake City": {
+      "registered": 176373,
+      "active": 164019
+    },
+    "Colonial Heights City": {
+      "registered": 12970,
+      "active": 12274
+    },
+    "Covington City": {
+      "registered": 3871,
+      "active": 3694
+    },
+    "Danville City": {
+      "registered": 28647,
+      "active": 26896
+    },
+    "Emporia City": {
+      "registered": 4008,
+      "active": 3771
+    },
+    "Fairfax City": {
+      "registered": 17685,
+      "active": 16466
+    },
+    "Falls Church City": {
+      "registered": 11112,
+      "active": 10231
+    },
+    "Franklin City": {
+      "registered": 5912,
+      "active": 5605
+    },
+    "Fredericksburg City": {
+      "registered": 19298,
+      "active": 17705
+    },
+    "Galax City": {
+      "registered": 4058,
+      "active": 3828
+    },
+    "Hampton City": {
+      "registered": 100518,
+      "active": 90603
+    },
+    "Harrisonburg City": {
+      "registered": 26150,
+      "active": 23618
+    },
+    "Hopewell City": {
+      "registered": 15698,
+      "active": 14609
+    },
+    "Lexington City": {
+      "registered": 4203,
+      "active": 3818
+    },
+    "Lynchburg City": {
+      "registered": 55858,
+      "active": 49388
+    },
+    "Manassas City": {
+      "registered": 23630,
+      "active": 21955
+    },
+    "Manassas Park City": {
+      "registered": 8975,
+      "active": 8241
+    },
+    "Martinsville City": {
+      "registered": 9025,
+      "active": 8499
+    },
+    "Newport News City": {
+      "registered": 124569,
+      "active": 113192
+    },
+    "Norfolk City": {
+      "registered": 140574,
+      "active": 127783
+    },
+    "Norton City": {
+      "registered": 2587,
+      "active": 2457
+    },
+    "Petersburg City": {
+      "registered": 23612,
+      "active": 21832
+    },
+    "Poquoson City": {
+      "registered": 9603,
+      "active": 9199
+    },
+    "Portsmouth City": {
+      "registered": 68193,
+      "active": 63239
+    },
+    "Radford City": {
+      "registered": 9520,
+      "active": 8537
+    },
+    "Richmond City": {
+      "registered": 160833,
+      "active": 144968
+    },
+    "Roanoke City": {
+      "registered": 65769,
+      "active": 61321
+    },
+    "Salem City": {
+      "registered": 17852,
+      "active": 16852
+    },
+    "Staunton City": {
+      "registered": 18185,
+      "active": 17160
+    },
+    "Suffolk City": {
+      "registered": 70730,
+      "active": 66432
+    },
+    "Virginia Beach City": {
+      "registered": 329365,
+      "active": 303726
+    },
+    "Waynesboro City": {
+      "registered": 15421,
+      "active": 14459
+    },
+    "Williamsburg City": {
+      "registered": 10223,
+      "active": 8901
+    },
+    "Winchester City": {
+      "registered": 18187,
+      "active": 16629
+    }
+  }
+}

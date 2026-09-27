@@ -1,6 +1,6826 @@
 {
   "schemaVersion": 1,
   "localities": {
+    "accomack-county": {
+      "2020": {
+        "id": "accomack-county",
+        "name": "Accomack County",
+        "registered": 24624,
+        "active": 23754,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-accomack-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 212,
+            "mail": 0,
+            "total": 212,
+            "daily": {
+              "early": 212,
+              "mail": 0,
+              "total": 212
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 212,
+            "mail": 0,
+            "total": 212,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 212,
+            "mail": 0,
+            "total": 212,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 404,
+            "mail": 0,
+            "total": 404,
+            "daily": {
+              "early": 192,
+              "mail": 0,
+              "total": 192
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 653,
+            "mail": 23,
+            "total": 676,
+            "daily": {
+              "early": 249,
+              "mail": 23,
+              "total": 272
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 835,
+            "mail": 94,
+            "total": 929,
+            "daily": {
+              "early": 182,
+              "mail": 71,
+              "total": 253
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 1006,
+            "mail": 201,
+            "total": 1207,
+            "daily": {
+              "early": 171,
+              "mail": 107,
+              "total": 278
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 1212,
+            "mail": 306,
+            "total": 1518,
+            "daily": {
+              "early": 206,
+              "mail": 105,
+              "total": 311
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 1212,
+            "mail": 306,
+            "total": 1518,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 1212,
+            "mail": 306,
+            "total": 1518,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 1368,
+            "mail": 392,
+            "total": 1760,
+            "daily": {
+              "early": 156,
+              "mail": 86,
+              "total": 242
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 1517,
+            "mail": 512,
+            "total": 2029,
+            "daily": {
+              "early": 149,
+              "mail": 120,
+              "total": 269
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 1657,
+            "mail": 606,
+            "total": 2263,
+            "daily": {
+              "early": 140,
+              "mail": 94,
+              "total": 234
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 1791,
+            "mail": 686,
+            "total": 2477,
+            "daily": {
+              "early": 134,
+              "mail": 80,
+              "total": 214
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 1972,
+            "mail": 748,
+            "total": 2720,
+            "daily": {
+              "early": 181,
+              "mail": 62,
+              "total": 243
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 1972,
+            "mail": 748,
+            "total": 2720,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 1972,
+            "mail": 748,
+            "total": 2720,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 2133,
+            "mail": 871,
+            "total": 3004,
+            "daily": {
+              "early": 161,
+              "mail": 123,
+              "total": 284
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 2277,
+            "mail": 904,
+            "total": 3181,
+            "daily": {
+              "early": 144,
+              "mail": 33,
+              "total": 177
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 2446,
+            "mail": 967,
+            "total": 3413,
+            "daily": {
+              "early": 169,
+              "mail": 63,
+              "total": 232
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 2596,
+            "mail": 1013,
+            "total": 3609,
+            "daily": {
+              "early": 150,
+              "mail": 46,
+              "total": 196
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 2764,
+            "mail": 1060,
+            "total": 3824,
+            "daily": {
+              "early": 168,
+              "mail": 47,
+              "total": 215
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 2764,
+            "mail": 1060,
+            "total": 3824,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 2764,
+            "mail": 1060,
+            "total": 3824,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 2764,
+            "mail": 1091,
+            "total": 3855,
+            "daily": {
+              "early": 0,
+              "mail": 31,
+              "total": 31
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 2939,
+            "mail": 1091,
+            "total": 4030,
+            "daily": {
+              "early": 175,
+              "mail": 0,
+              "total": 175
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 3206,
+            "mail": 1184,
+            "total": 4390,
+            "daily": {
+              "early": 267,
+              "mail": 93,
+              "total": 360
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 3398,
+            "mail": 1285,
+            "total": 4683,
+            "daily": {
+              "early": 192,
+              "mail": 101,
+              "total": 293
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 3571,
+            "mail": 1363,
+            "total": 4934,
+            "daily": {
+              "early": 173,
+              "mail": 78,
+              "total": 251
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 3571,
+            "mail": 1363,
+            "total": 4934,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 3571,
+            "mail": 1395,
+            "total": 4966,
+            "daily": {
+              "early": 0,
+              "mail": 32,
+              "total": 32
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 3756,
+            "mail": 1471,
+            "total": 5227,
+            "daily": {
+              "early": 185,
+              "mail": 76,
+              "total": 261
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 3917,
+            "mail": 1488,
+            "total": 5405,
+            "daily": {
+              "early": 161,
+              "mail": 17,
+              "total": 178
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 4099,
+            "mail": 1557,
+            "total": 5656,
+            "daily": {
+              "early": 182,
+              "mail": 69,
+              "total": 251
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 4293,
+            "mail": 1594,
+            "total": 5887,
+            "daily": {
+              "early": 194,
+              "mail": 37,
+              "total": 231
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 4553,
+            "mail": 1641,
+            "total": 6194,
+            "daily": {
+              "early": 260,
+              "mail": 47,
+              "total": 307
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 4719,
+            "mail": 1676,
+            "total": 6395,
+            "daily": {
+              "early": 166,
+              "mail": 35,
+              "total": 201
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 4719,
+            "mail": 1676,
+            "total": 6395,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 5005,
+            "mail": 1745,
+            "total": 6750,
+            "daily": {
+              "early": 286,
+              "mail": 69,
+              "total": 355
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 5318,
+            "mail": 1754,
+            "total": 7072,
+            "daily": {
+              "early": 313,
+              "mail": 9,
+              "total": 322
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 5609,
+            "mail": 1816,
+            "total": 7425,
+            "daily": {
+              "early": 291,
+              "mail": 62,
+              "total": 353
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 5906,
+            "mail": 1869,
+            "total": 7775,
+            "daily": {
+              "early": 297,
+              "mail": 53,
+              "total": 350
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 6317,
+            "mail": 1920,
+            "total": 8237,
+            "daily": {
+              "early": 411,
+              "mail": 51,
+              "total": 462
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 6686,
+            "mail": 1948,
+            "total": 8634,
+            "daily": {
+              "early": 369,
+              "mail": 28,
+              "total": 397
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 6686,
+            "mail": 1948,
+            "total": 8634,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 6686,
+            "mail": 1982,
+            "total": 8668,
+            "daily": {
+              "early": 0,
+              "mail": 34,
+              "total": 34
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 6686,
+            "mail": 2045,
+            "total": 8731,
+            "daily": {
+              "early": 0,
+              "mail": 63,
+              "total": 63
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 6686,
+            "mail": 2057,
+            "total": 8743,
+            "daily": {
+              "early": 0,
+              "mail": 12,
+              "total": 12
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 6686,
+            "mail": 2064,
+            "total": 8750,
+            "daily": {
+              "early": 0,
+              "mail": 7,
+              "total": 7
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 6686,
+            "mail": 2065,
+            "total": 8751,
+            "daily": {
+              "early": 0,
+              "mail": 1,
+              "total": 1
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 6686,
+            "mail": 2065,
+            "total": 8751,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 6686,
+            "mail": 2065,
+            "total": 8751,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 6686,
+            "mail": 2067,
+            "total": 8753,
+            "mailApplicationsNotReturned": 274
+          },
+          "dailySum": {
+            "early": 6686,
+            "mail": 2065,
+            "total": 8751
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 2,
+            "total": 2
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Accomack County",
+              "per1000": 355.47,
+              "display": "355.5"
+            },
+            {
+              "area": "Northern Neck / Middle Peninsula",
+              "per1000": 430.49,
+              "display": "430.5"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 1557
+          },
+          "sourceSnapshot": "sources/vpap/accomack-county-2020.json"
+        }
+      }
+    },
+    "albemarle-county": {
+      "2020": {
+        "id": "albemarle-county",
+        "name": "Albemarle County",
+        "registered": 81681,
+        "active": 78541,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-albemarle-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 580,
+            "mail": 0,
+            "total": 580,
+            "daily": {
+              "early": 580,
+              "mail": 0,
+              "total": 580
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 580,
+            "mail": 0,
+            "total": 580,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 584,
+            "mail": 0,
+            "total": 584,
+            "daily": {
+              "early": 4,
+              "mail": 0,
+              "total": 4
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 1179,
+            "mail": 138,
+            "total": 1317,
+            "daily": {
+              "early": 595,
+              "mail": 138,
+              "total": 733
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 1984,
+            "mail": 564,
+            "total": 2548,
+            "daily": {
+              "early": 805,
+              "mail": 426,
+              "total": 1231
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 2678,
+            "mail": 1062,
+            "total": 3740,
+            "daily": {
+              "early": 694,
+              "mail": 498,
+              "total": 1192
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 3540,
+            "mail": 1062,
+            "total": 4602,
+            "daily": {
+              "early": 862,
+              "mail": 0,
+              "total": 862
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 4500,
+            "mail": 2718,
+            "total": 7218,
+            "daily": {
+              "early": 960,
+              "mail": 1656,
+              "total": 2616
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 4500,
+            "mail": 2718,
+            "total": 7218,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 4500,
+            "mail": 2718,
+            "total": 7218,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 5081,
+            "mail": 3811,
+            "total": 8892,
+            "daily": {
+              "early": 581,
+              "mail": 1093,
+              "total": 1674
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 5753,
+            "mail": 5789,
+            "total": 11542,
+            "daily": {
+              "early": 672,
+              "mail": 1978,
+              "total": 2650
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 6469,
+            "mail": 6071,
+            "total": 12540,
+            "daily": {
+              "early": 716,
+              "mail": 282,
+              "total": 998
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 7229,
+            "mail": 6713,
+            "total": 13942,
+            "daily": {
+              "early": 760,
+              "mail": 642,
+              "total": 1402
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 8071,
+            "mail": 7414,
+            "total": 15485,
+            "daily": {
+              "early": 842,
+              "mail": 701,
+              "total": 1543
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 8071,
+            "mail": 7746,
+            "total": 15817,
+            "daily": {
+              "early": 0,
+              "mail": 332,
+              "total": 332
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 8071,
+            "mail": 7746,
+            "total": 15817,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 8645,
+            "mail": 8084,
+            "total": 16729,
+            "daily": {
+              "early": 574,
+              "mail": 338,
+              "total": 912
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 9287,
+            "mail": 8809,
+            "total": 18096,
+            "daily": {
+              "early": 642,
+              "mail": 725,
+              "total": 1367
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 9866,
+            "mail": 8999,
+            "total": 18865,
+            "daily": {
+              "early": 579,
+              "mail": 190,
+              "total": 769
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 10610,
+            "mail": 9526,
+            "total": 20136,
+            "daily": {
+              "early": 744,
+              "mail": 527,
+              "total": 1271
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 11382,
+            "mail": 10260,
+            "total": 21642,
+            "daily": {
+              "early": 772,
+              "mail": 734,
+              "total": 1506
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 11382,
+            "mail": 10301,
+            "total": 21683,
+            "daily": {
+              "early": 0,
+              "mail": 41,
+              "total": 41
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 11382,
+            "mail": 10301,
+            "total": 21683,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 11993,
+            "mail": 10520,
+            "total": 22513,
+            "daily": {
+              "early": 611,
+              "mail": 219,
+              "total": 830
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 12446,
+            "mail": 10761,
+            "total": 23207,
+            "daily": {
+              "early": 453,
+              "mail": 241,
+              "total": 694
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 13099,
+            "mail": 11513,
+            "total": 24612,
+            "daily": {
+              "early": 653,
+              "mail": 752,
+              "total": 1405
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 13862,
+            "mail": 11743,
+            "total": 25605,
+            "daily": {
+              "early": 763,
+              "mail": 230,
+              "total": 993
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 14683,
+            "mail": 12270,
+            "total": 26953,
+            "daily": {
+              "early": 821,
+              "mail": 527,
+              "total": 1348
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 14683,
+            "mail": 12270,
+            "total": 26953,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 14683,
+            "mail": 12342,
+            "total": 27025,
+            "daily": {
+              "early": 0,
+              "mail": 72,
+              "total": 72
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 15398,
+            "mail": 12789,
+            "total": 28187,
+            "daily": {
+              "early": 715,
+              "mail": 447,
+              "total": 1162
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 16103,
+            "mail": 13406,
+            "total": 29509,
+            "daily": {
+              "early": 705,
+              "mail": 617,
+              "total": 1322
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 16753,
+            "mail": 13625,
+            "total": 30378,
+            "daily": {
+              "early": 650,
+              "mail": 219,
+              "total": 869
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 17608,
+            "mail": 13999,
+            "total": 31607,
+            "daily": {
+              "early": 855,
+              "mail": 374,
+              "total": 1229
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 18470,
+            "mail": 14355,
+            "total": 32825,
+            "daily": {
+              "early": 862,
+              "mail": 356,
+              "total": 1218
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 19059,
+            "mail": 14565,
+            "total": 33624,
+            "daily": {
+              "early": 589,
+              "mail": 210,
+              "total": 799
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 19059,
+            "mail": 14565,
+            "total": 33624,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 19959,
+            "mail": 14928,
+            "total": 34887,
+            "daily": {
+              "early": 900,
+              "mail": 363,
+              "total": 1263
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 20983,
+            "mail": 15452,
+            "total": 36435,
+            "daily": {
+              "early": 1024,
+              "mail": 524,
+              "total": 1548
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 21975,
+            "mail": 15803,
+            "total": 37778,
+            "daily": {
+              "early": 992,
+              "mail": 351,
+              "total": 1343
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 23150,
+            "mail": 16009,
+            "total": 39159,
+            "daily": {
+              "early": 1175,
+              "mail": 206,
+              "total": 1381
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 24430,
+            "mail": 16438,
+            "total": 40868,
+            "daily": {
+              "early": 1280,
+              "mail": 429,
+              "total": 1709
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 25390,
+            "mail": 16784,
+            "total": 42174,
+            "daily": {
+              "early": 960,
+              "mail": 346,
+              "total": 1306
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 25390,
+            "mail": 16784,
+            "total": 42174,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 25390,
+            "mail": 16922,
+            "total": 42312,
+            "daily": {
+              "early": 0,
+              "mail": 138,
+              "total": 138
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 25390,
+            "mail": 17439,
+            "total": 42829,
+            "daily": {
+              "early": 0,
+              "mail": 517,
+              "total": 517
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 25390,
+            "mail": 17678,
+            "total": 43068,
+            "daily": {
+              "early": 0,
+              "mail": 239,
+              "total": 239
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 25390,
+            "mail": 17854,
+            "total": 43244,
+            "daily": {
+              "early": 0,
+              "mail": 176,
+              "total": 176
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 25390,
+            "mail": 17926,
+            "total": 43316,
+            "daily": {
+              "early": 0,
+              "mail": 72,
+              "total": 72
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 25390,
+            "mail": 17926,
+            "total": 43316,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 25390,
+            "mail": 17926,
+            "total": 43316,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 25390,
+            "mail": 17926,
+            "total": 43316,
+            "mailApplicationsNotReturned": 1525
+          },
+          "dailySum": {
+            "early": 25390,
+            "mail": 17926,
+            "total": 43316
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 0,
+            "total": 0
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Albemarle County",
+              "per1000": 530.31,
+              "display": "530.3"
+            },
+            {
+              "area": "Piedmont",
+              "per1000": 466.72,
+              "display": "466.7"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 7317
+          },
+          "sourceSnapshot": "sources/vpap/albemarle-county-2020.json"
+        }
+      }
+    },
+    "alexandria-city": {
+      "2020": {
+        "id": "alexandria-city",
+        "name": "Alexandria City",
+        "registered": 112736,
+        "active": 104859,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-alexandria-city-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 1047,
+            "mail": 0,
+            "total": 1047,
+            "daily": {
+              "early": 1047,
+              "mail": 0,
+              "total": 1047
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 1047,
+            "mail": 0,
+            "total": 1047,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 1047,
+            "mail": 0,
+            "total": 1047,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 1872,
+            "mail": 43,
+            "total": 1915,
+            "daily": {
+              "early": 825,
+              "mail": 43,
+              "total": 868
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 2725,
+            "mail": 379,
+            "total": 3104,
+            "daily": {
+              "early": 853,
+              "mail": 336,
+              "total": 1189
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 3568,
+            "mail": 1964,
+            "total": 5532,
+            "daily": {
+              "early": 843,
+              "mail": 1585,
+              "total": 2428
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 4412,
+            "mail": 2333,
+            "total": 6745,
+            "daily": {
+              "early": 844,
+              "mail": 369,
+              "total": 1213
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 5497,
+            "mail": 3826,
+            "total": 9323,
+            "daily": {
+              "early": 1085,
+              "mail": 1493,
+              "total": 2578
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 5497,
+            "mail": 3937,
+            "total": 9434,
+            "daily": {
+              "early": 0,
+              "mail": 111,
+              "total": 111
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 5497,
+            "mail": 4007,
+            "total": 9504,
+            "daily": {
+              "early": 0,
+              "mail": 70,
+              "total": 70
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 6396,
+            "mail": 6331,
+            "total": 12727,
+            "daily": {
+              "early": 899,
+              "mail": 2324,
+              "total": 3223
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 7133,
+            "mail": 7076,
+            "total": 14209,
+            "daily": {
+              "early": 737,
+              "mail": 745,
+              "total": 1482
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 7901,
+            "mail": 8502,
+            "total": 16403,
+            "daily": {
+              "early": 768,
+              "mail": 1426,
+              "total": 2194
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 8604,
+            "mail": 9461,
+            "total": 18065,
+            "daily": {
+              "early": 703,
+              "mail": 959,
+              "total": 1662
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 9599,
+            "mail": 10297,
+            "total": 19896,
+            "daily": {
+              "early": 995,
+              "mail": 836,
+              "total": 1831
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 10259,
+            "mail": 11178,
+            "total": 21437,
+            "daily": {
+              "early": 660,
+              "mail": 881,
+              "total": 1541
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 10259,
+            "mail": 11532,
+            "total": 21791,
+            "daily": {
+              "early": 0,
+              "mail": 354,
+              "total": 354
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 10973,
+            "mail": 12405,
+            "total": 23378,
+            "daily": {
+              "early": 714,
+              "mail": 873,
+              "total": 1587
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 11606,
+            "mail": 12770,
+            "total": 24376,
+            "daily": {
+              "early": 633,
+              "mail": 365,
+              "total": 998
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 12253,
+            "mail": 13638,
+            "total": 25891,
+            "daily": {
+              "early": 647,
+              "mail": 868,
+              "total": 1515
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 12853,
+            "mail": 14403,
+            "total": 27256,
+            "daily": {
+              "early": 600,
+              "mail": 765,
+              "total": 1365
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 13811,
+            "mail": 15066,
+            "total": 28877,
+            "daily": {
+              "early": 958,
+              "mail": 663,
+              "total": 1621
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 14464,
+            "mail": 15826,
+            "total": 30290,
+            "daily": {
+              "early": 653,
+              "mail": 760,
+              "total": 1413
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 14464,
+            "mail": 16087,
+            "total": 30551,
+            "daily": {
+              "early": 0,
+              "mail": 261,
+              "total": 261
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 15045,
+            "mail": 16189,
+            "total": 31234,
+            "daily": {
+              "early": 581,
+              "mail": 102,
+              "total": 683
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 15727,
+            "mail": 17296,
+            "total": 33023,
+            "daily": {
+              "early": 682,
+              "mail": 1107,
+              "total": 1789
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 16358,
+            "mail": 17538,
+            "total": 33896,
+            "daily": {
+              "early": 631,
+              "mail": 242,
+              "total": 873
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 16995,
+            "mail": 18387,
+            "total": 35382,
+            "daily": {
+              "early": 637,
+              "mail": 849,
+              "total": 1486
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 17896,
+            "mail": 19107,
+            "total": 37003,
+            "daily": {
+              "early": 901,
+              "mail": 720,
+              "total": 1621
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 18563,
+            "mail": 19703,
+            "total": 38266,
+            "daily": {
+              "early": 667,
+              "mail": 596,
+              "total": 1263
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 18563,
+            "mail": 19921,
+            "total": 38484,
+            "daily": {
+              "early": 0,
+              "mail": 218,
+              "total": 218
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 19270,
+            "mail": 20602,
+            "total": 39872,
+            "daily": {
+              "early": 707,
+              "mail": 681,
+              "total": 1388
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 19909,
+            "mail": 20901,
+            "total": 40810,
+            "daily": {
+              "early": 639,
+              "mail": 299,
+              "total": 938
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 20589,
+            "mail": 21394,
+            "total": 41983,
+            "daily": {
+              "early": 680,
+              "mail": 493,
+              "total": 1173
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 21223,
+            "mail": 22138,
+            "total": 43361,
+            "daily": {
+              "early": 634,
+              "mail": 744,
+              "total": 1378
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 22950,
+            "mail": 22670,
+            "total": 45620,
+            "daily": {
+              "early": 1727,
+              "mail": 532,
+              "total": 2259
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 25362,
+            "mail": 23525,
+            "total": 48887,
+            "daily": {
+              "early": 2412,
+              "mail": 855,
+              "total": 3267
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 25362,
+            "mail": 23707,
+            "total": 49069,
+            "daily": {
+              "early": 0,
+              "mail": 182,
+              "total": 182
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 27148,
+            "mail": 24440,
+            "total": 51588,
+            "daily": {
+              "early": 1786,
+              "mail": 733,
+              "total": 2519
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 29027,
+            "mail": 24812,
+            "total": 53839,
+            "daily": {
+              "early": 1879,
+              "mail": 372,
+              "total": 2251
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 30883,
+            "mail": 25546,
+            "total": 56429,
+            "daily": {
+              "early": 1856,
+              "mail": 734,
+              "total": 2590
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 32265,
+            "mail": 26156,
+            "total": 58421,
+            "daily": {
+              "early": 1382,
+              "mail": 610,
+              "total": 1992
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 34198,
+            "mail": 26686,
+            "total": 60884,
+            "daily": {
+              "early": 1933,
+              "mail": 530,
+              "total": 2463
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 36531,
+            "mail": 27517,
+            "total": 64048,
+            "daily": {
+              "early": 2333,
+              "mail": 831,
+              "total": 3164
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 36531,
+            "mail": 27721,
+            "total": 64252,
+            "daily": {
+              "early": 0,
+              "mail": 204,
+              "total": 204
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 36531,
+            "mail": 28271,
+            "total": 64802,
+            "daily": {
+              "early": 0,
+              "mail": 550,
+              "total": 550
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 36531,
+            "mail": 29321,
+            "total": 65852,
+            "daily": {
+              "early": 0,
+              "mail": 1050,
+              "total": 1050
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 36531,
+            "mail": 29378,
+            "total": 65909,
+            "daily": {
+              "early": 0,
+              "mail": 57,
+              "total": 57
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 36531,
+            "mail": 29505,
+            "total": 66036,
+            "daily": {
+              "early": 0,
+              "mail": 127,
+              "total": 127
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 36531,
+            "mail": 29526,
+            "total": 66057,
+            "daily": {
+              "early": 0,
+              "mail": 21,
+              "total": 21
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 36531,
+            "mail": 29526,
+            "total": 66057,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 36531,
+            "mail": 29526,
+            "total": 66057,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 36531,
+            "mail": 29614,
+            "total": 66145,
+            "mailApplicationsNotReturned": 2148
+          },
+          "dailySum": {
+            "early": 36531,
+            "mail": 29526,
+            "total": 66057
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 88,
+            "total": 88
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Alexandria City",
+              "per1000": 586.72,
+              "display": "586.7"
+            },
+            {
+              "area": "Northern Virginia",
+              "per1000": 548.26,
+              "display": "548.3"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 20332
+          },
+          "sourceSnapshot": "sources/vpap/alexandria-city-2020.json"
+        }
+      }
+    },
+    "alleghany-county": {
+      "2020": {
+        "id": "alleghany-county",
+        "name": "Alleghany County",
+        "registered": 10961,
+        "active": 10760,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-alleghany-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 29,
+            "mail": 0,
+            "total": 29,
+            "daily": {
+              "early": 29,
+              "mail": 0,
+              "total": 29
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 29,
+            "mail": 0,
+            "total": 29,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 29,
+            "mail": 0,
+            "total": 29,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 65,
+            "mail": 13,
+            "total": 78,
+            "daily": {
+              "early": 36,
+              "mail": 13,
+              "total": 49
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 94,
+            "mail": 41,
+            "total": 135,
+            "daily": {
+              "early": 29,
+              "mail": 28,
+              "total": 57
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 113,
+            "mail": 100,
+            "total": 213,
+            "daily": {
+              "early": 19,
+              "mail": 59,
+              "total": 78
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 151,
+            "mail": 117,
+            "total": 268,
+            "daily": {
+              "early": 38,
+              "mail": 17,
+              "total": 55
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 184,
+            "mail": 164,
+            "total": 348,
+            "daily": {
+              "early": 33,
+              "mail": 47,
+              "total": 80
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 184,
+            "mail": 164,
+            "total": 348,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 184,
+            "mail": 197,
+            "total": 381,
+            "daily": {
+              "early": 0,
+              "mail": 33,
+              "total": 33
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 211,
+            "mail": 241,
+            "total": 452,
+            "daily": {
+              "early": 27,
+              "mail": 44,
+              "total": 71
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 234,
+            "mail": 263,
+            "total": 497,
+            "daily": {
+              "early": 23,
+              "mail": 22,
+              "total": 45
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 257,
+            "mail": 295,
+            "total": 552,
+            "daily": {
+              "early": 23,
+              "mail": 32,
+              "total": 55
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 281,
+            "mail": 313,
+            "total": 594,
+            "daily": {
+              "early": 24,
+              "mail": 18,
+              "total": 42
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 308,
+            "mail": 350,
+            "total": 658,
+            "daily": {
+              "early": 27,
+              "mail": 37,
+              "total": 64
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 308,
+            "mail": 350,
+            "total": 658,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 308,
+            "mail": 350,
+            "total": 658,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 336,
+            "mail": 404,
+            "total": 740,
+            "daily": {
+              "early": 28,
+              "mail": 54,
+              "total": 82
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 351,
+            "mail": 412,
+            "total": 763,
+            "daily": {
+              "early": 15,
+              "mail": 8,
+              "total": 23
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 393,
+            "mail": 440,
+            "total": 833,
+            "daily": {
+              "early": 42,
+              "mail": 28,
+              "total": 70
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 419,
+            "mail": 440,
+            "total": 859,
+            "daily": {
+              "early": 26,
+              "mail": 0,
+              "total": 26
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 461,
+            "mail": 476,
+            "total": 937,
+            "daily": {
+              "early": 42,
+              "mail": 36,
+              "total": 78
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 461,
+            "mail": 479,
+            "total": 940,
+            "daily": {
+              "early": 0,
+              "mail": 3,
+              "total": 3
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 461,
+            "mail": 479,
+            "total": 940,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 461,
+            "mail": 479,
+            "total": 940,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 468,
+            "mail": 522,
+            "total": 990,
+            "daily": {
+              "early": 7,
+              "mail": 43,
+              "total": 50
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 528,
+            "mail": 523,
+            "total": 1051,
+            "daily": {
+              "early": 60,
+              "mail": 1,
+              "total": 61
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 591,
+            "mail": 568,
+            "total": 1159,
+            "daily": {
+              "early": 63,
+              "mail": 45,
+              "total": 108
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 647,
+            "mail": 584,
+            "total": 1231,
+            "daily": {
+              "early": 56,
+              "mail": 16,
+              "total": 72
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 647,
+            "mail": 584,
+            "total": 1231,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 647,
+            "mail": 591,
+            "total": 1238,
+            "daily": {
+              "early": 0,
+              "mail": 7,
+              "total": 7
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 708,
+            "mail": 592,
+            "total": 1300,
+            "daily": {
+              "early": 61,
+              "mail": 1,
+              "total": 62
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 744,
+            "mail": 615,
+            "total": 1359,
+            "daily": {
+              "early": 36,
+              "mail": 23,
+              "total": 59
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 825,
+            "mail": 642,
+            "total": 1467,
+            "daily": {
+              "early": 81,
+              "mail": 27,
+              "total": 108
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 905,
+            "mail": 664,
+            "total": 1569,
+            "daily": {
+              "early": 80,
+              "mail": 22,
+              "total": 102
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 1010,
+            "mail": 676,
+            "total": 1686,
+            "daily": {
+              "early": 105,
+              "mail": 12,
+              "total": 117
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 1048,
+            "mail": 680,
+            "total": 1728,
+            "daily": {
+              "early": 38,
+              "mail": 4,
+              "total": 42
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 1048,
+            "mail": 680,
+            "total": 1728,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 1170,
+            "mail": 712,
+            "total": 1882,
+            "daily": {
+              "early": 122,
+              "mail": 32,
+              "total": 154
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 1266,
+            "mail": 716,
+            "total": 1982,
+            "daily": {
+              "early": 96,
+              "mail": 4,
+              "total": 100
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 1284,
+            "mail": 721,
+            "total": 2005,
+            "daily": {
+              "early": 18,
+              "mail": 5,
+              "total": 23
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 1420,
+            "mail": 763,
+            "total": 2183,
+            "daily": {
+              "early": 136,
+              "mail": 42,
+              "total": 178
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 1647,
+            "mail": 799,
+            "total": 2446,
+            "daily": {
+              "early": 227,
+              "mail": 36,
+              "total": 263
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 1843,
+            "mail": 802,
+            "total": 2645,
+            "daily": {
+              "early": 196,
+              "mail": 3,
+              "total": 199
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 1843,
+            "mail": 802,
+            "total": 2645,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 1843,
+            "mail": 824,
+            "total": 2667,
+            "daily": {
+              "early": 0,
+              "mail": 22,
+              "total": 22
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 1843,
+            "mail": 861,
+            "total": 2704,
+            "daily": {
+              "early": 0,
+              "mail": 37,
+              "total": 37
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 1844,
+            "mail": 861,
+            "total": 2705,
+            "daily": {
+              "early": 1,
+              "mail": 0,
+              "total": 1
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 1844,
+            "mail": 861,
+            "total": 2705,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 1844,
+            "mail": 870,
+            "total": 2714,
+            "daily": {
+              "early": 0,
+              "mail": 9,
+              "total": 9
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 1844,
+            "mail": 870,
+            "total": 2714,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 1844,
+            "mail": 870,
+            "total": 2714,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 1844,
+            "mail": 870,
+            "total": 2714,
+            "mailApplicationsNotReturned": 152
+          },
+          "dailySum": {
+            "early": 1844,
+            "mail": 870,
+            "total": 2714
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 0,
+            "total": 0
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Alleghany County",
+              "per1000": 247.61,
+              "display": "247.6"
+            },
+            {
+              "area": "Valley of Virginia",
+              "per1000": 422.6,
+              "display": "422.6"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 568
+          },
+          "sourceSnapshot": "sources/vpap/alleghany-county-2020.json"
+        }
+      }
+    },
+    "amelia-county": {
+      "2020": {
+        "id": "amelia-county",
+        "name": "Amelia County",
+        "registered": 9835,
+        "active": 9681,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-amelia-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 90,
+            "mail": 0,
+            "total": 90,
+            "daily": {
+              "early": 90,
+              "mail": 0,
+              "total": 90
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 91,
+            "mail": 0,
+            "total": 91,
+            "daily": {
+              "early": 1,
+              "mail": 0,
+              "total": 1
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 91,
+            "mail": 0,
+            "total": 91,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 165,
+            "mail": 0,
+            "total": 165,
+            "daily": {
+              "early": 74,
+              "mail": 0,
+              "total": 74
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 242,
+            "mail": 0,
+            "total": 242,
+            "daily": {
+              "early": 77,
+              "mail": 0,
+              "total": 77
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 329,
+            "mail": 5,
+            "total": 334,
+            "daily": {
+              "early": 87,
+              "mail": 5,
+              "total": 92
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 396,
+            "mail": 7,
+            "total": 403,
+            "daily": {
+              "early": 67,
+              "mail": 2,
+              "total": 69
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 479,
+            "mail": 76,
+            "total": 555,
+            "daily": {
+              "early": 83,
+              "mail": 69,
+              "total": 152
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 523,
+            "mail": 112,
+            "total": 635,
+            "daily": {
+              "early": 44,
+              "mail": 36,
+              "total": 80
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 523,
+            "mail": 126,
+            "total": 649,
+            "daily": {
+              "early": 0,
+              "mail": 14,
+              "total": 14
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 614,
+            "mail": 157,
+            "total": 771,
+            "daily": {
+              "early": 91,
+              "mail": 31,
+              "total": 122
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 684,
+            "mail": 162,
+            "total": 846,
+            "daily": {
+              "early": 70,
+              "mail": 5,
+              "total": 75
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 769,
+            "mail": 181,
+            "total": 950,
+            "daily": {
+              "early": 85,
+              "mail": 19,
+              "total": 104
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 836,
+            "mail": 197,
+            "total": 1033,
+            "daily": {
+              "early": 67,
+              "mail": 16,
+              "total": 83
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 898,
+            "mail": 197,
+            "total": 1095,
+            "daily": {
+              "early": 62,
+              "mail": 0,
+              "total": 62
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 933,
+            "mail": 256,
+            "total": 1189,
+            "daily": {
+              "early": 35,
+              "mail": 59,
+              "total": 94
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 933,
+            "mail": 256,
+            "total": 1189,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 1007,
+            "mail": 264,
+            "total": 1271,
+            "daily": {
+              "early": 74,
+              "mail": 8,
+              "total": 82
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 1064,
+            "mail": 267,
+            "total": 1331,
+            "daily": {
+              "early": 57,
+              "mail": 3,
+              "total": 60
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 1121,
+            "mail": 340,
+            "total": 1461,
+            "daily": {
+              "early": 57,
+              "mail": 73,
+              "total": 130
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 1180,
+            "mail": 360,
+            "total": 1540,
+            "daily": {
+              "early": 59,
+              "mail": 20,
+              "total": 79
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 1263,
+            "mail": 363,
+            "total": 1626,
+            "daily": {
+              "early": 83,
+              "mail": 3,
+              "total": 86
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 1312,
+            "mail": 374,
+            "total": 1686,
+            "daily": {
+              "early": 49,
+              "mail": 11,
+              "total": 60
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 1312,
+            "mail": 374,
+            "total": 1686,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 1312,
+            "mail": 376,
+            "total": 1688,
+            "daily": {
+              "early": 0,
+              "mail": 2,
+              "total": 2
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 1330,
+            "mail": 399,
+            "total": 1729,
+            "daily": {
+              "early": 18,
+              "mail": 23,
+              "total": 41
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 1430,
+            "mail": 450,
+            "total": 1880,
+            "daily": {
+              "early": 100,
+              "mail": 51,
+              "total": 151
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 1520,
+            "mail": 450,
+            "total": 1970,
+            "daily": {
+              "early": 90,
+              "mail": 0,
+              "total": 90
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 1646,
+            "mail": 475,
+            "total": 2121,
+            "daily": {
+              "early": 126,
+              "mail": 25,
+              "total": 151
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 1720,
+            "mail": 508,
+            "total": 2228,
+            "daily": {
+              "early": 74,
+              "mail": 33,
+              "total": 107
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 1720,
+            "mail": 508,
+            "total": 2228,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 1833,
+            "mail": 528,
+            "total": 2361,
+            "daily": {
+              "early": 113,
+              "mail": 20,
+              "total": 133
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 1939,
+            "mail": 528,
+            "total": 2467,
+            "daily": {
+              "early": 106,
+              "mail": 0,
+              "total": 106
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 2033,
+            "mail": 567,
+            "total": 2600,
+            "daily": {
+              "early": 94,
+              "mail": 39,
+              "total": 133
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 2134,
+            "mail": 575,
+            "total": 2709,
+            "daily": {
+              "early": 101,
+              "mail": 8,
+              "total": 109
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 2293,
+            "mail": 589,
+            "total": 2882,
+            "daily": {
+              "early": 159,
+              "mail": 14,
+              "total": 173
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 2413,
+            "mail": 620,
+            "total": 3033,
+            "daily": {
+              "early": 120,
+              "mail": 31,
+              "total": 151
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 2413,
+            "mail": 622,
+            "total": 3035,
+            "daily": {
+              "early": 0,
+              "mail": 2,
+              "total": 2
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 2582,
+            "mail": 635,
+            "total": 3217,
+            "daily": {
+              "early": 169,
+              "mail": 13,
+              "total": 182
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 2743,
+            "mail": 639,
+            "total": 3382,
+            "daily": {
+              "early": 161,
+              "mail": 4,
+              "total": 165
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 2896,
+            "mail": 648,
+            "total": 3544,
+            "daily": {
+              "early": 153,
+              "mail": 9,
+              "total": 162
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 3098,
+            "mail": 659,
+            "total": 3757,
+            "daily": {
+              "early": 202,
+              "mail": 11,
+              "total": 213
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 3372,
+            "mail": 667,
+            "total": 4039,
+            "daily": {
+              "early": 274,
+              "mail": 8,
+              "total": 282
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 3610,
+            "mail": 678,
+            "total": 4288,
+            "daily": {
+              "early": 238,
+              "mail": 11,
+              "total": 249
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 3610,
+            "mail": 678,
+            "total": 4288,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 3610,
+            "mail": 690,
+            "total": 4300,
+            "daily": {
+              "early": 0,
+              "mail": 12,
+              "total": 12
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 3611,
+            "mail": 733,
+            "total": 4344,
+            "daily": {
+              "early": 1,
+              "mail": 43,
+              "total": 44
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 3611,
+            "mail": 739,
+            "total": 4350,
+            "daily": {
+              "early": 0,
+              "mail": 6,
+              "total": 6
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 3611,
+            "mail": 740,
+            "total": 4351,
+            "daily": {
+              "early": 0,
+              "mail": 1,
+              "total": 1
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 3611,
+            "mail": 740,
+            "total": 4351,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 3611,
+            "mail": 740,
+            "total": 4351,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 3611,
+            "mail": 740,
+            "total": 4351,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 3611,
+            "mail": 740,
+            "total": 4351,
+            "mailApplicationsNotReturned": 142
+          },
+          "dailySum": {
+            "early": 3611,
+            "mail": 740,
+            "total": 4351
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 0,
+            "total": 0
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Amelia County",
+              "per1000": 442.4,
+              "display": "442.4"
+            },
+            {
+              "area": "Southside Virginia",
+              "per1000": 381.48,
+              "display": "381.5"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 839
+          },
+          "sourceSnapshot": "sources/vpap/amelia-county-2020.json"
+        }
+      }
+    },
+    "amherst-county": {
+      "2020": {
+        "id": "amherst-county",
+        "name": "Amherst County",
+        "registered": 22245,
+        "active": 21671,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-amherst-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 129,
+            "mail": 1,
+            "total": 130,
+            "daily": {
+              "early": 129,
+              "mail": 1,
+              "total": 130
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 129,
+            "mail": 1,
+            "total": 130,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 129,
+            "mail": 1,
+            "total": 130,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 225,
+            "mail": 8,
+            "total": 233,
+            "daily": {
+              "early": 96,
+              "mail": 7,
+              "total": 103
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 334,
+            "mail": 35,
+            "total": 369,
+            "daily": {
+              "early": 109,
+              "mail": 27,
+              "total": 136
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 430,
+            "mail": 88,
+            "total": 518,
+            "daily": {
+              "early": 96,
+              "mail": 53,
+              "total": 149
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 526,
+            "mail": 104,
+            "total": 630,
+            "daily": {
+              "early": 96,
+              "mail": 16,
+              "total": 112
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 658,
+            "mail": 251,
+            "total": 909,
+            "daily": {
+              "early": 132,
+              "mail": 147,
+              "total": 279
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 658,
+            "mail": 251,
+            "total": 909,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 658,
+            "mail": 251,
+            "total": 909,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 777,
+            "mail": 528,
+            "total": 1305,
+            "daily": {
+              "early": 119,
+              "mail": 277,
+              "total": 396
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 883,
+            "mail": 594,
+            "total": 1477,
+            "daily": {
+              "early": 106,
+              "mail": 66,
+              "total": 172
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 995,
+            "mail": 737,
+            "total": 1732,
+            "daily": {
+              "early": 112,
+              "mail": 143,
+              "total": 255
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 1110,
+            "mail": 834,
+            "total": 1944,
+            "daily": {
+              "early": 115,
+              "mail": 97,
+              "total": 212
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 1227,
+            "mail": 889,
+            "total": 2116,
+            "daily": {
+              "early": 117,
+              "mail": 55,
+              "total": 172
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 1227,
+            "mail": 889,
+            "total": 2116,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 1227,
+            "mail": 889,
+            "total": 2116,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 1323,
+            "mail": 1033,
+            "total": 2356,
+            "daily": {
+              "early": 96,
+              "mail": 144,
+              "total": 240
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 1451,
+            "mail": 1059,
+            "total": 2510,
+            "daily": {
+              "early": 128,
+              "mail": 26,
+              "total": 154
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 1566,
+            "mail": 1067,
+            "total": 2633,
+            "daily": {
+              "early": 115,
+              "mail": 8,
+              "total": 123
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 1683,
+            "mail": 1083,
+            "total": 2766,
+            "daily": {
+              "early": 117,
+              "mail": 16,
+              "total": 133
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 1837,
+            "mail": 1202,
+            "total": 3039,
+            "daily": {
+              "early": 154,
+              "mail": 119,
+              "total": 273
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 1837,
+            "mail": 1202,
+            "total": 3039,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 1837,
+            "mail": 1202,
+            "total": 3039,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 1837,
+            "mail": 1202,
+            "total": 3039,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 2061,
+            "mail": 1383,
+            "total": 3444,
+            "daily": {
+              "early": 224,
+              "mail": 181,
+              "total": 405
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 2240,
+            "mail": 1393,
+            "total": 3633,
+            "daily": {
+              "early": 179,
+              "mail": 10,
+              "total": 189
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 2390,
+            "mail": 1418,
+            "total": 3808,
+            "daily": {
+              "early": 150,
+              "mail": 25,
+              "total": 175
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 2592,
+            "mail": 1542,
+            "total": 4134,
+            "daily": {
+              "early": 202,
+              "mail": 124,
+              "total": 326
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 2592,
+            "mail": 1630,
+            "total": 4222,
+            "daily": {
+              "early": 0,
+              "mail": 88,
+              "total": 88
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 2592,
+            "mail": 1630,
+            "total": 4222,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 2779,
+            "mail": 1687,
+            "total": 4466,
+            "daily": {
+              "early": 187,
+              "mail": 57,
+              "total": 244
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 2977,
+            "mail": 1706,
+            "total": 4683,
+            "daily": {
+              "early": 198,
+              "mail": 19,
+              "total": 217
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 3183,
+            "mail": 1721,
+            "total": 4904,
+            "daily": {
+              "early": 206,
+              "mail": 15,
+              "total": 221
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 3353,
+            "mail": 1813,
+            "total": 5166,
+            "daily": {
+              "early": 170,
+              "mail": 92,
+              "total": 262
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 3643,
+            "mail": 1840,
+            "total": 5483,
+            "daily": {
+              "early": 290,
+              "mail": 27,
+              "total": 317
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 3843,
+            "mail": 1875,
+            "total": 5718,
+            "daily": {
+              "early": 200,
+              "mail": 35,
+              "total": 235
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 3843,
+            "mail": 1875,
+            "total": 5718,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 4171,
+            "mail": 1921,
+            "total": 6092,
+            "daily": {
+              "early": 328,
+              "mail": 46,
+              "total": 374
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 4453,
+            "mail": 1958,
+            "total": 6411,
+            "daily": {
+              "early": 282,
+              "mail": 37,
+              "total": 319
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 4828,
+            "mail": 2018,
+            "total": 6846,
+            "daily": {
+              "early": 375,
+              "mail": 60,
+              "total": 435
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 5197,
+            "mail": 2075,
+            "total": 7272,
+            "daily": {
+              "early": 369,
+              "mail": 57,
+              "total": 426
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 5783,
+            "mail": 2122,
+            "total": 7905,
+            "daily": {
+              "early": 586,
+              "mail": 47,
+              "total": 633
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 6316,
+            "mail": 2148,
+            "total": 8464,
+            "daily": {
+              "early": 533,
+              "mail": 26,
+              "total": 559
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 6316,
+            "mail": 2148,
+            "total": 8464,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 6316,
+            "mail": 2176,
+            "total": 8492,
+            "daily": {
+              "early": 0,
+              "mail": 28,
+              "total": 28
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 6316,
+            "mail": 2253,
+            "total": 8569,
+            "daily": {
+              "early": 0,
+              "mail": 77,
+              "total": 77
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 6328,
+            "mail": 2253,
+            "total": 8581,
+            "daily": {
+              "early": 12,
+              "mail": 0,
+              "total": 12
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 6328,
+            "mail": 2253,
+            "total": 8581,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 6328,
+            "mail": 2253,
+            "total": 8581,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 6328,
+            "mail": 2253,
+            "total": 8581,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 6328,
+            "mail": 2253,
+            "total": 8581,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 6328,
+            "mail": 2253,
+            "total": 8581,
+            "mailApplicationsNotReturned": 287
+          },
+          "dailySum": {
+            "early": 6328,
+            "mail": 2253,
+            "total": 8581
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 0,
+            "total": 0
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Amherst County",
+              "per1000": 385.75,
+              "display": "385.8"
+            },
+            {
+              "area": "Piedmont",
+              "per1000": 466.72,
+              "display": "466.7"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 1251
+          },
+          "sourceSnapshot": "sources/vpap/amherst-county-2020.json"
+        }
+      }
+    },
+    "appomattox-county": {
+      "2020": {
+        "id": "appomattox-county",
+        "name": "Appomattox County",
+        "registered": 11704,
+        "active": 11513,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-appomattox-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 96,
+            "mail": 0,
+            "total": 96,
+            "daily": {
+              "early": 96,
+              "mail": 0,
+              "total": 96
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 96,
+            "mail": 0,
+            "total": 96,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 96,
+            "mail": 0,
+            "total": 96,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 173,
+            "mail": 1,
+            "total": 174,
+            "daily": {
+              "early": 77,
+              "mail": 1,
+              "total": 78
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 244,
+            "mail": 13,
+            "total": 257,
+            "daily": {
+              "early": 71,
+              "mail": 12,
+              "total": 83
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 316,
+            "mail": 23,
+            "total": 339,
+            "daily": {
+              "early": 72,
+              "mail": 10,
+              "total": 82
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 366,
+            "mail": 71,
+            "total": 437,
+            "daily": {
+              "early": 50,
+              "mail": 48,
+              "total": 98
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 453,
+            "mail": 102,
+            "total": 555,
+            "daily": {
+              "early": 87,
+              "mail": 31,
+              "total": 118
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 453,
+            "mail": 102,
+            "total": 555,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 453,
+            "mail": 102,
+            "total": 555,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 505,
+            "mail": 181,
+            "total": 686,
+            "daily": {
+              "early": 52,
+              "mail": 79,
+              "total": 131
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 565,
+            "mail": 202,
+            "total": 767,
+            "daily": {
+              "early": 60,
+              "mail": 21,
+              "total": 81
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 648,
+            "mail": 227,
+            "total": 875,
+            "daily": {
+              "early": 83,
+              "mail": 25,
+              "total": 108
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 718,
+            "mail": 266,
+            "total": 984,
+            "daily": {
+              "early": 70,
+              "mail": 39,
+              "total": 109
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 793,
+            "mail": 283,
+            "total": 1076,
+            "daily": {
+              "early": 75,
+              "mail": 17,
+              "total": 92
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 793,
+            "mail": 283,
+            "total": 1076,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 793,
+            "mail": 283,
+            "total": 1076,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 864,
+            "mail": 325,
+            "total": 1189,
+            "daily": {
+              "early": 71,
+              "mail": 42,
+              "total": 113
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 945,
+            "mail": 342,
+            "total": 1287,
+            "daily": {
+              "early": 81,
+              "mail": 17,
+              "total": 98
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 1028,
+            "mail": 367,
+            "total": 1395,
+            "daily": {
+              "early": 83,
+              "mail": 25,
+              "total": 108
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 1106,
+            "mail": 375,
+            "total": 1481,
+            "daily": {
+              "early": 78,
+              "mail": 8,
+              "total": 86
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 1218,
+            "mail": 415,
+            "total": 1633,
+            "daily": {
+              "early": 112,
+              "mail": 40,
+              "total": 152
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 1218,
+            "mail": 415,
+            "total": 1633,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 1218,
+            "mail": 415,
+            "total": 1633,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 1218,
+            "mail": 415,
+            "total": 1633,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 1255,
+            "mail": 462,
+            "total": 1717,
+            "daily": {
+              "early": 37,
+              "mail": 47,
+              "total": 84
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 1422,
+            "mail": 468,
+            "total": 1890,
+            "daily": {
+              "early": 167,
+              "mail": 6,
+              "total": 173
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 1538,
+            "mail": 494,
+            "total": 2032,
+            "daily": {
+              "early": 116,
+              "mail": 26,
+              "total": 142
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 1676,
+            "mail": 516,
+            "total": 2192,
+            "daily": {
+              "early": 138,
+              "mail": 22,
+              "total": 160
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 1676,
+            "mail": 516,
+            "total": 2192,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 1676,
+            "mail": 516,
+            "total": 2192,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 1798,
+            "mail": 541,
+            "total": 2339,
+            "daily": {
+              "early": 122,
+              "mail": 25,
+              "total": 147
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 1941,
+            "mail": 558,
+            "total": 2499,
+            "daily": {
+              "early": 143,
+              "mail": 17,
+              "total": 160
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 2051,
+            "mail": 566,
+            "total": 2617,
+            "daily": {
+              "early": 110,
+              "mail": 8,
+              "total": 118
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 2158,
+            "mail": 594,
+            "total": 2752,
+            "daily": {
+              "early": 107,
+              "mail": 28,
+              "total": 135
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 2303,
+            "mail": 605,
+            "total": 2908,
+            "daily": {
+              "early": 145,
+              "mail": 11,
+              "total": 156
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 2421,
+            "mail": 617,
+            "total": 3038,
+            "daily": {
+              "early": 118,
+              "mail": 12,
+              "total": 130
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 2421,
+            "mail": 617,
+            "total": 3038,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 2589,
+            "mail": 633,
+            "total": 3222,
+            "daily": {
+              "early": 168,
+              "mail": 16,
+              "total": 184
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 2775,
+            "mail": 647,
+            "total": 3422,
+            "daily": {
+              "early": 186,
+              "mail": 14,
+              "total": 200
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 3013,
+            "mail": 673,
+            "total": 3686,
+            "daily": {
+              "early": 238,
+              "mail": 26,
+              "total": 264
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 3232,
+            "mail": 693,
+            "total": 3925,
+            "daily": {
+              "early": 219,
+              "mail": 20,
+              "total": 239
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 3543,
+            "mail": 717,
+            "total": 4260,
+            "daily": {
+              "early": 311,
+              "mail": 24,
+              "total": 335
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 3835,
+            "mail": 733,
+            "total": 4568,
+            "daily": {
+              "early": 292,
+              "mail": 16,
+              "total": 308
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 3835,
+            "mail": 733,
+            "total": 4568,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 3835,
+            "mail": 743,
+            "total": 4578,
+            "daily": {
+              "early": 0,
+              "mail": 10,
+              "total": 10
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 3842,
+            "mail": 771,
+            "total": 4613,
+            "daily": {
+              "early": 7,
+              "mail": 28,
+              "total": 35
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 3842,
+            "mail": 771,
+            "total": 4613,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 3843,
+            "mail": 774,
+            "total": 4617,
+            "daily": {
+              "early": 1,
+              "mail": 3,
+              "total": 4
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 3843,
+            "mail": 778,
+            "total": 4621,
+            "daily": {
+              "early": 0,
+              "mail": 4,
+              "total": 4
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 3843,
+            "mail": 778,
+            "total": 4621,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 3843,
+            "mail": 778,
+            "total": 4621,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 3843,
+            "mail": 779,
+            "total": 4622,
+            "mailApplicationsNotReturned": 124
+          },
+          "dailySum": {
+            "early": 3843,
+            "mail": 778,
+            "total": 4621
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 1,
+            "total": 1
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Appomattox County",
+              "per1000": 394.91,
+              "display": "394.9"
+            },
+            {
+              "area": "Southside Virginia",
+              "per1000": 381.48,
+              "display": "381.5"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 536
+          },
+          "sourceSnapshot": "sources/vpap/appomattox-county-2020.json"
+        }
+      }
+    },
+    "arlington-county": {
+      "2020": {
+        "id": "arlington-county",
+        "name": "Arlington County",
+        "registered": 178428,
+        "active": 166415,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-arlington-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 1489,
+            "mail": 2,
+            "total": 1491,
+            "daily": {
+              "early": 1489,
+              "mail": 2,
+              "total": 1491
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 1489,
+            "mail": 2,
+            "total": 1491,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 1489,
+            "mail": 2,
+            "total": 1491,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 2651,
+            "mail": 1014,
+            "total": 3665,
+            "daily": {
+              "early": 1162,
+              "mail": 1012,
+              "total": 2174
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 3835,
+            "mail": 1041,
+            "total": 4876,
+            "daily": {
+              "early": 1184,
+              "mail": 27,
+              "total": 1211
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 4961,
+            "mail": 1064,
+            "total": 6025,
+            "daily": {
+              "early": 1126,
+              "mail": 23,
+              "total": 1149
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 6154,
+            "mail": 2424,
+            "total": 8578,
+            "daily": {
+              "early": 1193,
+              "mail": 1360,
+              "total": 2553
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 7728,
+            "mail": 2440,
+            "total": 10168,
+            "daily": {
+              "early": 1574,
+              "mail": 16,
+              "total": 1590
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 7728,
+            "mail": 4653,
+            "total": 12381,
+            "daily": {
+              "early": 0,
+              "mail": 2213,
+              "total": 2213
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 7728,
+            "mail": 4653,
+            "total": 12381,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 9131,
+            "mail": 5454,
+            "total": 14585,
+            "daily": {
+              "early": 1403,
+              "mail": 801,
+              "total": 2204
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 10199,
+            "mail": 9406,
+            "total": 19605,
+            "daily": {
+              "early": 1068,
+              "mail": 3952,
+              "total": 5020
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 11321,
+            "mail": 9475,
+            "total": 20796,
+            "daily": {
+              "early": 1122,
+              "mail": 69,
+              "total": 1191
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 12444,
+            "mail": 12192,
+            "total": 24636,
+            "daily": {
+              "early": 1123,
+              "mail": 2717,
+              "total": 3840
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 14019,
+            "mail": 12222,
+            "total": 26241,
+            "daily": {
+              "early": 1575,
+              "mail": 30,
+              "total": 1605
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 14022,
+            "mail": 13528,
+            "total": 27550,
+            "daily": {
+              "early": 3,
+              "mail": 1306,
+              "total": 1309
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 14022,
+            "mail": 14293,
+            "total": 28315,
+            "daily": {
+              "early": 0,
+              "mail": 765,
+              "total": 765
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 15165,
+            "mail": 16683,
+            "total": 31848,
+            "daily": {
+              "early": 1143,
+              "mail": 2390,
+              "total": 3533
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 16224,
+            "mail": 18412,
+            "total": 34636,
+            "daily": {
+              "early": 1059,
+              "mail": 1729,
+              "total": 2788
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 17369,
+            "mail": 18490,
+            "total": 35859,
+            "daily": {
+              "early": 1145,
+              "mail": 78,
+              "total": 1223
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 18364,
+            "mail": 20209,
+            "total": 38573,
+            "daily": {
+              "early": 995,
+              "mail": 1719,
+              "total": 2714
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 20063,
+            "mail": 21267,
+            "total": 41330,
+            "daily": {
+              "early": 1699,
+              "mail": 1058,
+              "total": 2757
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 20063,
+            "mail": 22395,
+            "total": 42458,
+            "daily": {
+              "early": 0,
+              "mail": 1128,
+              "total": 1128
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 20063,
+            "mail": 22395,
+            "total": 42458,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 20899,
+            "mail": 24372,
+            "total": 45271,
+            "daily": {
+              "early": 836,
+              "mail": 1977,
+              "total": 2813
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 21898,
+            "mail": 24644,
+            "total": 46542,
+            "daily": {
+              "early": 999,
+              "mail": 272,
+              "total": 1271
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 22877,
+            "mail": 24892,
+            "total": 47769,
+            "daily": {
+              "early": 979,
+              "mail": 248,
+              "total": 1227
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 23892,
+            "mail": 26361,
+            "total": 50253,
+            "daily": {
+              "early": 1015,
+              "mail": 1469,
+              "total": 2484
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 25197,
+            "mail": 26517,
+            "total": 51714,
+            "daily": {
+              "early": 1305,
+              "mail": 156,
+              "total": 1461
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 28898,
+            "mail": 29895,
+            "total": 58793,
+            "daily": {
+              "early": 3701,
+              "mail": 3378,
+              "total": 7079
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 28898,
+            "mail": 29895,
+            "total": 58793,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 31630,
+            "mail": 30654,
+            "total": 62284,
+            "daily": {
+              "early": 2732,
+              "mail": 759,
+              "total": 3491
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 34133,
+            "mail": 32886,
+            "total": 67019,
+            "daily": {
+              "early": 2503,
+              "mail": 2232,
+              "total": 4735
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 36403,
+            "mail": 34657,
+            "total": 71060,
+            "daily": {
+              "early": 2270,
+              "mail": 1771,
+              "total": 4041
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 38456,
+            "mail": 34778,
+            "total": 73234,
+            "daily": {
+              "early": 2053,
+              "mail": 121,
+              "total": 2174
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 41057,
+            "mail": 36362,
+            "total": 77419,
+            "daily": {
+              "early": 2601,
+              "mail": 1584,
+              "total": 4185
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 43174,
+            "mail": 37471,
+            "total": 80645,
+            "daily": {
+              "early": 2117,
+              "mail": 1109,
+              "total": 3226
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 43174,
+            "mail": 37471,
+            "total": 80645,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 45712,
+            "mail": 39928,
+            "total": 85640,
+            "daily": {
+              "early": 2538,
+              "mail": 2457,
+              "total": 4995
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 48336,
+            "mail": 40706,
+            "total": 89042,
+            "daily": {
+              "early": 2624,
+              "mail": 778,
+              "total": 3402
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 51252,
+            "mail": 42079,
+            "total": 93331,
+            "daily": {
+              "early": 2916,
+              "mail": 1373,
+              "total": 4289
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 53805,
+            "mail": 42977,
+            "total": 96782,
+            "daily": {
+              "early": 2553,
+              "mail": 898,
+              "total": 3451
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 57359,
+            "mail": 43885,
+            "total": 101244,
+            "daily": {
+              "early": 3554,
+              "mail": 908,
+              "total": 4462
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 59952,
+            "mail": 45313,
+            "total": 105265,
+            "daily": {
+              "early": 2593,
+              "mail": 1428,
+              "total": 4021
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 59952,
+            "mail": 45324,
+            "total": 105276,
+            "daily": {
+              "early": 0,
+              "mail": 11,
+              "total": 11
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 59955,
+            "mail": 45920,
+            "total": 105875,
+            "daily": {
+              "early": 3,
+              "mail": 596,
+              "total": 599
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 59974,
+            "mail": 48214,
+            "total": 108188,
+            "daily": {
+              "early": 19,
+              "mail": 2294,
+              "total": 2313
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 59983,
+            "mail": 48273,
+            "total": 108256,
+            "daily": {
+              "early": 9,
+              "mail": 59,
+              "total": 68
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 59986,
+            "mail": 48295,
+            "total": 108281,
+            "daily": {
+              "early": 3,
+              "mail": 22,
+              "total": 25
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 59986,
+            "mail": 48317,
+            "total": 108303,
+            "daily": {
+              "early": 0,
+              "mail": 22,
+              "total": 22
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 59986,
+            "mail": 48317,
+            "total": 108303,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 59986,
+            "mail": 48317,
+            "total": 108303,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 59986,
+            "mail": 48317,
+            "total": 108303,
+            "mailApplicationsNotReturned": 2929
+          },
+          "dailySum": {
+            "early": 59986,
+            "mail": 48317,
+            "total": 108303
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 0,
+            "total": 0
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Arlington County",
+              "per1000": 606.98,
+              "display": "607.0"
+            },
+            {
+              "area": "Northern Virginia",
+              "per1000": 548.26,
+              "display": "548.3"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 38399
+          },
+          "sourceSnapshot": "sources/vpap/arlington-county-2020.json"
+        }
+      }
+    },
+    "augusta-county": {
+      "2020": {
+        "id": "augusta-county",
+        "name": "Augusta County",
+        "registered": 52752,
+        "active": 51861,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-augusta-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 313,
+            "mail": 0,
+            "total": 313,
+            "daily": {
+              "early": 313,
+              "mail": 0,
+              "total": 313
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 313,
+            "mail": 0,
+            "total": 313,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 313,
+            "mail": 0,
+            "total": 313,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 658,
+            "mail": 7,
+            "total": 665,
+            "daily": {
+              "early": 345,
+              "mail": 7,
+              "total": 352
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 986,
+            "mail": 33,
+            "total": 1019,
+            "daily": {
+              "early": 328,
+              "mail": 26,
+              "total": 354
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 1302,
+            "mail": 88,
+            "total": 1390,
+            "daily": {
+              "early": 316,
+              "mail": 55,
+              "total": 371
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 1663,
+            "mail": 121,
+            "total": 1784,
+            "daily": {
+              "early": 361,
+              "mail": 33,
+              "total": 394
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 2080,
+            "mail": 356,
+            "total": 2436,
+            "daily": {
+              "early": 417,
+              "mail": 235,
+              "total": 652
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 2080,
+            "mail": 356,
+            "total": 2436,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 2080,
+            "mail": 356,
+            "total": 2436,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 2419,
+            "mail": 641,
+            "total": 3060,
+            "daily": {
+              "early": 339,
+              "mail": 285,
+              "total": 624
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 2759,
+            "mail": 747,
+            "total": 3506,
+            "daily": {
+              "early": 340,
+              "mail": 106,
+              "total": 446
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 3136,
+            "mail": 875,
+            "total": 4011,
+            "daily": {
+              "early": 377,
+              "mail": 128,
+              "total": 505
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 3478,
+            "mail": 1068,
+            "total": 4546,
+            "daily": {
+              "early": 342,
+              "mail": 193,
+              "total": 535
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 3855,
+            "mail": 1176,
+            "total": 5031,
+            "daily": {
+              "early": 377,
+              "mail": 108,
+              "total": 485
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 3855,
+            "mail": 1177,
+            "total": 5032,
+            "daily": {
+              "early": 0,
+              "mail": 1,
+              "total": 1
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 3855,
+            "mail": 1177,
+            "total": 5032,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 4198,
+            "mail": 1602,
+            "total": 5800,
+            "daily": {
+              "early": 343,
+              "mail": 425,
+              "total": 768
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 4563,
+            "mail": 1620,
+            "total": 6183,
+            "daily": {
+              "early": 365,
+              "mail": 18,
+              "total": 383
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 4909,
+            "mail": 1863,
+            "total": 6772,
+            "daily": {
+              "early": 346,
+              "mail": 243,
+              "total": 589
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 5281,
+            "mail": 1995,
+            "total": 7276,
+            "daily": {
+              "early": 372,
+              "mail": 132,
+              "total": 504
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 5746,
+            "mail": 2208,
+            "total": 7954,
+            "daily": {
+              "early": 465,
+              "mail": 213,
+              "total": 678
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 5746,
+            "mail": 2253,
+            "total": 7999,
+            "daily": {
+              "early": 0,
+              "mail": 45,
+              "total": 45
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 5746,
+            "mail": 2253,
+            "total": 7999,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 6109,
+            "mail": 2309,
+            "total": 8418,
+            "daily": {
+              "early": 363,
+              "mail": 56,
+              "total": 419
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 6263,
+            "mail": 2506,
+            "total": 8769,
+            "daily": {
+              "early": 154,
+              "mail": 197,
+              "total": 351
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 6810,
+            "mail": 2551,
+            "total": 9361,
+            "daily": {
+              "early": 547,
+              "mail": 45,
+              "total": 592
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 7319,
+            "mail": 2588,
+            "total": 9907,
+            "daily": {
+              "early": 509,
+              "mail": 37,
+              "total": 546
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 7948,
+            "mail": 2777,
+            "total": 10725,
+            "daily": {
+              "early": 629,
+              "mail": 189,
+              "total": 818
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 7948,
+            "mail": 2777,
+            "total": 10725,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 7948,
+            "mail": 2777,
+            "total": 10725,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 8505,
+            "mail": 2967,
+            "total": 11472,
+            "daily": {
+              "early": 557,
+              "mail": 190,
+              "total": 747
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 9059,
+            "mail": 3069,
+            "total": 12128,
+            "daily": {
+              "early": 554,
+              "mail": 102,
+              "total": 656
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 9679,
+            "mail": 3190,
+            "total": 12869,
+            "daily": {
+              "early": 620,
+              "mail": 121,
+              "total": 741
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 10183,
+            "mail": 3420,
+            "total": 13603,
+            "daily": {
+              "early": 504,
+              "mail": 230,
+              "total": 734
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 10861,
+            "mail": 3471,
+            "total": 14332,
+            "daily": {
+              "early": 678,
+              "mail": 51,
+              "total": 729
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 11252,
+            "mail": 3478,
+            "total": 14730,
+            "daily": {
+              "early": 391,
+              "mail": 7,
+              "total": 398
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 11252,
+            "mail": 3478,
+            "total": 14730,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 12054,
+            "mail": 3720,
+            "total": 15774,
+            "daily": {
+              "early": 802,
+              "mail": 242,
+              "total": 1044
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 12816,
+            "mail": 3776,
+            "total": 16592,
+            "daily": {
+              "early": 762,
+              "mail": 56,
+              "total": 818
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 13631,
+            "mail": 3902,
+            "total": 17533,
+            "daily": {
+              "early": 815,
+              "mail": 126,
+              "total": 941
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 14566,
+            "mail": 4089,
+            "total": 18655,
+            "daily": {
+              "early": 935,
+              "mail": 187,
+              "total": 1122
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 15609,
+            "mail": 4283,
+            "total": 19892,
+            "daily": {
+              "early": 1043,
+              "mail": 194,
+              "total": 1237
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 16443,
+            "mail": 4295,
+            "total": 20738,
+            "daily": {
+              "early": 834,
+              "mail": 12,
+              "total": 846
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 16443,
+            "mail": 4295,
+            "total": 20738,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 16443,
+            "mail": 4443,
+            "total": 20886,
+            "daily": {
+              "early": 0,
+              "mail": 148,
+              "total": 148
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 16443,
+            "mail": 4662,
+            "total": 21105,
+            "daily": {
+              "early": 0,
+              "mail": 219,
+              "total": 219
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 16443,
+            "mail": 4665,
+            "total": 21108,
+            "daily": {
+              "early": 0,
+              "mail": 3,
+              "total": 3
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 16443,
+            "mail": 4672,
+            "total": 21115,
+            "daily": {
+              "early": 0,
+              "mail": 7,
+              "total": 7
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 16443,
+            "mail": 4675,
+            "total": 21118,
+            "daily": {
+              "early": 0,
+              "mail": 3,
+              "total": 3
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 16443,
+            "mail": 4675,
+            "total": 21118,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 16443,
+            "mail": 4675,
+            "total": 21118,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 16443,
+            "mail": 4675,
+            "total": 21118,
+            "mailApplicationsNotReturned": 688
+          },
+          "dailySum": {
+            "early": 16443,
+            "mail": 4675,
+            "total": 21118
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 0,
+            "total": 0
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Augusta County",
+              "per1000": 400.33,
+              "display": "400.3"
+            },
+            {
+              "area": "Valley of Virginia",
+              "per1000": 422.6,
+              "display": "422.6"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 2739
+          },
+          "sourceSnapshot": "sources/vpap/augusta-county-2020.json"
+        }
+      }
+    },
+    "bath-county": {
+      "2020": {
+        "id": "bath-county",
+        "name": "Bath County",
+        "registered": 3307,
+        "active": 3227,
+        "registrationDate": "2020-11-01",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
+        "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-bath-county-va/",
+        "sourceLabel": "VPAP daily chart",
+        "history": [
+          {
+            "date": "2020-09-18",
+            "early": 23,
+            "mail": 0,
+            "total": 23,
+            "daily": {
+              "early": 23,
+              "mail": 0,
+              "total": 23
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-19",
+            "early": 23,
+            "mail": 0,
+            "total": 23,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-20",
+            "early": 23,
+            "mail": 0,
+            "total": 23,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-21",
+            "early": 38,
+            "mail": 0,
+            "total": 38,
+            "daily": {
+              "early": 15,
+              "mail": 0,
+              "total": 15
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-22",
+            "early": 55,
+            "mail": 24,
+            "total": 79,
+            "daily": {
+              "early": 17,
+              "mail": 24,
+              "total": 41
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-23",
+            "early": 61,
+            "mail": 32,
+            "total": 93,
+            "daily": {
+              "early": 6,
+              "mail": 8,
+              "total": 14
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-24",
+            "early": 70,
+            "mail": 43,
+            "total": 113,
+            "daily": {
+              "early": 9,
+              "mail": 11,
+              "total": 20
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-25",
+            "early": 84,
+            "mail": 51,
+            "total": 135,
+            "daily": {
+              "early": 14,
+              "mail": 8,
+              "total": 22
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-26",
+            "early": 84,
+            "mail": 51,
+            "total": 135,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-27",
+            "early": 84,
+            "mail": 51,
+            "total": 135,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-28",
+            "early": 99,
+            "mail": 63,
+            "total": 162,
+            "daily": {
+              "early": 15,
+              "mail": 12,
+              "total": 27
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-29",
+            "early": 110,
+            "mail": 64,
+            "total": 174,
+            "daily": {
+              "early": 11,
+              "mail": 1,
+              "total": 12
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-09-30",
+            "early": 122,
+            "mail": 71,
+            "total": 193,
+            "daily": {
+              "early": 12,
+              "mail": 7,
+              "total": 19
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-01",
+            "early": 132,
+            "mail": 73,
+            "total": 205,
+            "daily": {
+              "early": 10,
+              "mail": 2,
+              "total": 12
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-02",
+            "early": 139,
+            "mail": 78,
+            "total": 217,
+            "daily": {
+              "early": 7,
+              "mail": 5,
+              "total": 12
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-03",
+            "early": 139,
+            "mail": 78,
+            "total": 217,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-04",
+            "early": 139,
+            "mail": 78,
+            "total": 217,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-05",
+            "early": 147,
+            "mail": 86,
+            "total": 233,
+            "daily": {
+              "early": 8,
+              "mail": 8,
+              "total": 16
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-06",
+            "early": 162,
+            "mail": 95,
+            "total": 257,
+            "daily": {
+              "early": 15,
+              "mail": 9,
+              "total": 24
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-07",
+            "early": 173,
+            "mail": 102,
+            "total": 275,
+            "daily": {
+              "early": 11,
+              "mail": 7,
+              "total": 18
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-08",
+            "early": 184,
+            "mail": 110,
+            "total": 294,
+            "daily": {
+              "early": 11,
+              "mail": 8,
+              "total": 19
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-09",
+            "early": 194,
+            "mail": 118,
+            "total": 312,
+            "daily": {
+              "early": 10,
+              "mail": 8,
+              "total": 18
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-10",
+            "early": 194,
+            "mail": 118,
+            "total": 312,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-11",
+            "early": 194,
+            "mail": 118,
+            "total": 312,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-12",
+            "early": 194,
+            "mail": 118,
+            "total": 312,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-13",
+            "early": 205,
+            "mail": 137,
+            "total": 342,
+            "daily": {
+              "early": 11,
+              "mail": 19,
+              "total": 30
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-14",
+            "early": 222,
+            "mail": 141,
+            "total": 363,
+            "daily": {
+              "early": 17,
+              "mail": 4,
+              "total": 21
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-15",
+            "early": 238,
+            "mail": 156,
+            "total": 394,
+            "daily": {
+              "early": 16,
+              "mail": 15,
+              "total": 31
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-16",
+            "early": 255,
+            "mail": 160,
+            "total": 415,
+            "daily": {
+              "early": 17,
+              "mail": 4,
+              "total": 21
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-17",
+            "early": 255,
+            "mail": 160,
+            "total": 415,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-18",
+            "early": 255,
+            "mail": 160,
+            "total": 415,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-19",
+            "early": 271,
+            "mail": 178,
+            "total": 449,
+            "daily": {
+              "early": 16,
+              "mail": 18,
+              "total": 34
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-20",
+            "early": 281,
+            "mail": 179,
+            "total": 460,
+            "daily": {
+              "early": 10,
+              "mail": 1,
+              "total": 11
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-21",
+            "early": 292,
+            "mail": 180,
+            "total": 472,
+            "daily": {
+              "early": 11,
+              "mail": 1,
+              "total": 12
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-22",
+            "early": 304,
+            "mail": 187,
+            "total": 491,
+            "daily": {
+              "early": 12,
+              "mail": 7,
+              "total": 19
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-23",
+            "early": 327,
+            "mail": 192,
+            "total": 519,
+            "daily": {
+              "early": 23,
+              "mail": 5,
+              "total": 28
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-24",
+            "early": 335,
+            "mail": 194,
+            "total": 529,
+            "daily": {
+              "early": 8,
+              "mail": 2,
+              "total": 10
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-25",
+            "early": 335,
+            "mail": 194,
+            "total": 529,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-26",
+            "early": 353,
+            "mail": 203,
+            "total": 556,
+            "daily": {
+              "early": 18,
+              "mail": 9,
+              "total": 27
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-27",
+            "early": 378,
+            "mail": 205,
+            "total": 583,
+            "daily": {
+              "early": 25,
+              "mail": 2,
+              "total": 27
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-28",
+            "early": 417,
+            "mail": 210,
+            "total": 627,
+            "daily": {
+              "early": 39,
+              "mail": 5,
+              "total": 44
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-29",
+            "early": 439,
+            "mail": 217,
+            "total": 656,
+            "daily": {
+              "early": 22,
+              "mail": 7,
+              "total": 29
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-30",
+            "early": 490,
+            "mail": 221,
+            "total": 711,
+            "daily": {
+              "early": 51,
+              "mail": 4,
+              "total": 55
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-10-31",
+            "early": 520,
+            "mail": 225,
+            "total": 745,
+            "daily": {
+              "early": 30,
+              "mail": 4,
+              "total": 34
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-01",
+            "early": 520,
+            "mail": 225,
+            "total": 745,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-02",
+            "early": 520,
+            "mail": 230,
+            "total": 750,
+            "daily": {
+              "early": 0,
+              "mail": 5,
+              "total": 5
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-03",
+            "early": 520,
+            "mail": 240,
+            "total": 760,
+            "daily": {
+              "early": 0,
+              "mail": 10,
+              "total": 10
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-04",
+            "early": 520,
+            "mail": 241,
+            "total": 761,
+            "daily": {
+              "early": 0,
+              "mail": 1,
+              "total": 1
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-05",
+            "early": 520,
+            "mail": 242,
+            "total": 762,
+            "daily": {
+              "early": 0,
+              "mail": 1,
+              "total": 1
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-06",
+            "early": 520,
+            "mail": 243,
+            "total": 763,
+            "daily": {
+              "early": 0,
+              "mail": 1,
+              "total": 1
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-07",
+            "early": 520,
+            "mail": 243,
+            "total": 763,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          },
+          {
+            "date": "2020-11-08",
+            "early": 520,
+            "mail": 243,
+            "total": 763,
+            "daily": {
+              "early": 0,
+              "mail": 0,
+              "total": 0
+            },
+            "outstanding": null
+          }
+        ],
+        "vpap": {
+          "retrievedAt": "2026-09-27",
+          "asOf": "2020-11-08",
+          "upstreamSource": "Virginia Department of Elections",
+          "dailyDateMeaning": "Dates as labeled by VPAP; not independently verified activity dates.",
+          "headline": {
+            "early": 520,
+            "mail": 243,
+            "total": 763,
+            "mailApplicationsNotReturned": 42
+          },
+          "dailySum": {
+            "early": 520,
+            "mail": 243,
+            "total": 763
+          },
+          "headlineMinusDailySum": {
+            "early": 0,
+            "mail": 0,
+            "total": 0
+          },
+          "earlyVotesPer1000Registered": [
+            {
+              "area": "Bath County",
+              "per1000": 230.72,
+              "display": "230.7"
+            },
+            {
+              "area": "Valley of Virginia",
+              "per1000": 422.6,
+              "display": "422.6"
+            },
+            {
+              "area": "Virginia",
+              "per1000": 474.1,
+              "display": "474.1"
+            }
+          ],
+          "previousComparableElection": {
+            "date": "2016-11-08",
+            "total": 211
+          },
+          "sourceSnapshot": "sources/vpap/bath-county-2020.json"
+        }
+      }
+    },
     "loudoun-county": {
       "2020": {
         "id": "loudoun-county",
@@ -8,7 +6828,7 @@
         "registered": 283684,
         "active": 274962,
         "registrationDate": "2020-11-01",
-        "registrationSource": "https://github.com/rkudeshi/novavote/blob/main/data/registration.json",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2020/10/Daily_Registrant_Count_By_Locality_2020_11_01_054008.csv",
         "source": "https://www.vpap.org/elections/early-voting/2020-november-general-election/locality-loudoun-county-va/",
         "sourceLabel": "VPAP daily chart",
         "history": [
@@ -688,7 +7508,7 @@
         "registered": 285043,
         "active": 270268,
         "registrationDate": "2021-11-01",
-        "registrationSource": "https://github.com/rkudeshi/novavote/blob/main/data/registration.json",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2021/10/reg-stats-oct-2021-csv/Daily_Registrant_Count_By_Locality_2021_11_01_054522.csv",
         "source": "https://www.vpap.org/elections/early-voting/2021-november-general-election/locality-loudoun-county-va/",
         "sourceLabel": "VPAP daily chart",
         "history": [
@@ -1368,7 +8188,7 @@
         "registered": 287891,
         "active": 274171,
         "registrationDate": "2022-11-01",
-        "registrationSource": "https://github.com/rkudeshi/novavote/blob/main/data/registration.json",
+        "registrationSource": "https://www.elections.virginia.gov/media/registration-statistics/2022/10/oct-2022-csvs/Daily_Registrant_Count_By_Locality_2022_11_01_053048.csv",
         "source": "https://www.vpap.org/elections/early-voting/2022-november-general-election/locality-loudoun-county-va/",
         "sourceLabel": "VPAP daily chart",
         "history": [

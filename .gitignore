@@ -3,3 +3,8 @@ __pycache__/
 
 # Sites deployment archives
 novavote-site.tar.gz
+
+# Generated clean routes and resumable weather download cache
+/dist/20*/
+/dist/status/
+/sources/weather-batches/

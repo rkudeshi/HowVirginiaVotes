@@ -1,5 +1,19 @@
 # VA Vote data refresh
 
+## URLs, charts, and weather
+Use clean routes such as `/2022/loudoun-county/`. The publishing workflow runs
+`python build_routes.py` to generate entry pages for every supported route;
+keep `<base href="/">` in the shared HTML so deep-link assets resolve correctly.
+Existing hash links are upgraded automatically. Do not commit generated route copies.
+Daily-chart ticks use the exact same noon-UTC date positions as the columns.
+Trim only leading/trailing days without daily ballot activity; preserve interior
+zero days and negative reporting corrections. Comparison charts use a taller view.
+Run `python refresh_weather.py` after importing ballot data. It resumes cached
+downloads and respects rate limits. Commit `dist/weather/*.json` and its manifest.
+Weather keys use complete locality IDs: Richmond City and Richmond County, for
+example, must not share observations. Daily high/low temperature, precipitation,
+snow, wind, and weather code are saved in local time for each tracked election.
+
 ## Recovered historical daily data
 `dist/vpap-history.json` supplements missing locality/election histories. The app
 merges it with `region.json` without replacing existing histories. Fairfax is

@@ -25,9 +25,15 @@ for locality,years in supplement['localities'].items():
    assert record['vpap']['headline'][key]-cumulative[key]==record['vpap']['headlineMinusDailySum'][key]
   d['elections'][year]['localities'].append(record)
 for y,e in d['elections'].items():
+ weather=json.loads((r/f'weather/{y}.json').read_text())
+ assert len(weather)==133,(y,'weather locality coverage')
  for l in e['localities']:
   h=l['history'];assert [v['date'] for v in h]==sorted(set(v['date'] for v in h)),(y,l['id'])
-  for v in h:assert v['total']==v['early']+v['mail'],(y,l['id'],v['date'])
+  for v in h:
+   assert v['total']==v['early']+v['mail'],(y,l['id'],v['date'])
+   w=weather[f'{l["id"]}-{y}-general'][v['date']]
+   assert all(w.get(k) is not None for k in ['tempMax','tempMin','precip','code'])
+   assert w['tempMax']>=w['tempMin'] and w['precip']>=0
 for id,ys in d.get('siteReports',{}).items():
  for y,o in ys.items():
   assert o['source'] and o['siteKeys']

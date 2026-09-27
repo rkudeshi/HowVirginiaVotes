@@ -47,5 +47,12 @@
     "message": "Added daily in-person and mail counts for Loudoun County in the November 2020, 2021, and 2022 elections. Fairfax County figures are unchanged.",
     "through": null,
     "url": null
+  },
+  {
+    "at": "2026-09-27T08:08:55.853677+00:00",
+    "source": "Website update",
+    "message": "Added weather across all 133 localities for every tracked election; aligned daily chart dates, trimmed empty endpoints, enlarged historical comparisons, and enabled clean URLs. Added 2020 history for ten more localities; remaining historical imports are pending.",
+    "through": null,
+    "url": null
   }
 ]

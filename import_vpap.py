@@ -65,13 +65,17 @@ def parse_snapshot(snapshot, election_date, registration):
 def main():
     region = json.loads((ROOT / 'dist/region.json').read_text())
     registration = json.loads((ROOT / 'sources/imported/data/registration.json').read_text())['elections']
+    statewide_registration = json.loads((ROOT / 'sources/statewide/registration-2020-2022.json').read_text())
     result = {'schemaVersion': 1, 'localities': {}}
     for path in sorted((ROOT / 'sources/vpap').glob('*.json')):
         snapshot = json.loads(path.read_text())
         year, locality = snapshot['year'], snapshot['localityId']
         election = region['elections'][year]
         assert not any(l['id'] == locality for l in election['localities']), 'Existing history must not be replaced'
-        parsed = parse_snapshot(snapshot, election['electionDate'], registration[election['electionDate']][snapshot['localityName']])
+        registrants = registration[election['electionDate']].get(snapshot['localityName']) or statewide_registration[year][snapshot['localityName']]
+        parsed = parse_snapshot(snapshot, election['electionDate'], registrants)
+        parsed['registrationSource'] = (ROOT / f'sources/statewide/registration{year}-source.txt').read_text().strip()
+        parsed['vpap']['sourceSnapshot'] = str(path.relative_to(ROOT))
         result['localities'].setdefault(locality, {})[year] = parsed
         print(year, locality, len(parsed['history']), 'days;', parsed['vpap']['dailySum'], 'headline difference:', parsed['vpap']['headlineMinusDailySum'])
     (ROOT / 'dist/vpap-history.json').write_text(json.dumps(result, indent=2) + '\n')
