@@ -1,0 +1,24 @@
+{
+  "election": "2026",
+  "locality": "arlington-county",
+  "source": "https://vote.arlingtonva.gov/Elections/Results-Data",
+  "retrievedAt": "2026-09-22T10:28:44-04:00",
+  "reportDate": "2026-09-22",
+  "activityThrough": "2026-09-21",
+  "early": 1257,
+  "mail": 0,
+  "issued": 15673,
+  "outstanding": 15673,
+  "sitesDaily": [
+    {
+      "date": "2026-09-18",
+      "early": 808,
+      "sites": {"courthouse": 808, "langston_brown": 0, "walter_reed": 0}
+    },
+    {
+      "date": "2026-09-21",
+      "early": 449,
+      "sites": {"courthouse": 449, "langston_brown": 0, "walter_reed": 0}
+    }
+  ]
+}

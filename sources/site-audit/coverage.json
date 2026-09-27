@@ -1,0 +1,1053 @@
+{
+  "checked": "2026-09-23",
+  "jurisdictions": [
+    {
+      "id": "fairfax-county",
+      "url": "https://www.fairfaxcounty.gov/elections/",
+      "status": "Available, authoritative PDF",
+      "notes": "September 22 county PDF remains authoritative, covering activity through September 21: 16,397 total early ballots, including 6,379 early in person and 10,018 vote-by-mail returns. The PDF also supplies site-level counts and mail-return details."
+    },
+    {
+      "id": "arlington-county",
+      "url": "https://vote.arlingtonva.gov/Elections/Results-Data",
+      "status": "DPW aggregates; site feed when satellites open",
+      "notes": "DPW aggregate report dated September 22, covering activity through September 21: 1,257 early in person and 0 vote-by-mail returns. Dashboard checks are deferred until satellite sites open."
+    },
+    {
+      "id": "loudoun-county",
+      "url": "https://www.loudoun.gov/5564/Loudoun-Elections-Dashboard",
+      "status": "DPW aggregates; site feed when satellites open",
+      "notes": "DPW supplies countywide aggregates. The official ArcGIS dashboard is retained for per-site turnout and will be checked while Loudoun satellite sites are open; preserved snapshots remain available."
+    },
+    {
+      "id": "alexandria-city",
+      "url": "https://www.alexandriava.gov/elections/election-dashboard-november-3-2026",
+      "status": "DPW aggregates; site feed when satellites open",
+      "notes": "DPW aggregate report dated September 22, covering activity through September 21: 1,078 early in person and 76 vote-by-mail returns. Dashboard checks are deferred until satellite sites open."
+    },
+    {
+      "id": "prince-william-county",
+      "url": "https://www.pwcvotes.org/",
+      "status": "DPW aggregates; site feed when satellites open",
+      "notes": "DPW aggregate report dated September 22, covering activity through September 21: 1,720 early in person and 100 vote-by-mail returns. The official dashboard will be checked only for per-site turnout while satellite sites are open."
+    },
+    {
+      "id": "fairfax-city",
+      "url": "https://www.fairfaxva.gov/Government/Elections",
+      "status": "DPW aggregates",
+      "notes": "DPW aggregate report dated September 22, covering activity through September 21: 230 early in person and 8 vote-by-mail returns. No satellite site dashboard is needed."
+    },
+    {
+      "id": "falls-church-city",
+      "url": "https://www.fallschurchva.gov/135/Voter-Registration-Elections",
+      "status": "DPW aggregates",
+      "notes": "DPW aggregate report dated September 22, covering activity through September 21: 227 early in person and 69 vote-by-mail returns. No satellite site dashboard is needed."
+    },
+    {
+      "id": "manassas-city",
+      "url": "https://www.manassasva.gov/voter_registration_and_elections/index.php",
+      "status": "DPW aggregates",
+      "notes": "DPW aggregate report dated September 22, covering activity through September 21: 351 early in person and 26 vote-by-mail returns. No satellite site dashboard is needed."
+    },
+    {
+      "id": "manassas-park-city",
+      "url": "https://www.manassasparkva.gov/departments/registrar_of_voters/index.php",
+      "status": "DPW aggregates",
+      "notes": "DPW aggregate report dated September 22, covering activity through September 21: 72 early in person and 16 vote-by-mail returns. No satellite site dashboard is needed."
+    },
+    {
+      "id": "accomack-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=15b7e141-2d1d-44c2-a50a-aae021bc9b7d",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "albemarle-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b28c7d59-123a-4a81-9926-db24b0bbb7c3",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "alleghany-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a2846a72-482e-499c-b7bb-bacfee627155",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "amelia-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=292c305b-876b-4bee-bab3-c29103069fe5",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "amherst-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2a6adc62-dd4c-4e9b-8ef8-ebfaff2207ba",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "appomattox-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=48644056-329a-4653-a804-4ecddbd2fdd3",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "augusta-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f5041ad4-134b-4fba-a137-544380e5eb91",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "bath-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=eea2a156-c74b-4352-b031-51a135e44ee5",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "bedford-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=520c6151-e44a-4252-86d6-e248a889a6fb",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "bland-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=eb0c11ec-97bd-49c8-bcfe-206db251caab",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "botetourt-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=651b455f-b23f-49d0-a498-93c2bb904e17",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "bristol-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=93d29757-38c4-4a88-8c8b-2dde66e6d1e8",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "brunswick-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=5e3d1733-5d21-4311-b867-d2b458252ffa",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "buchanan-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c10c905c-6373-405e-beca-61e69d92076d",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "buckingham-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=84e19b92-72f9-4d3d-93c2-d836d39a2292",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "buena-vista-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b5eba4ce-4f19-4b1f-9b18-0cbbfd5ed98e",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "campbell-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a6daa62a-14fe-4cf4-b5b6-2085209519fe",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "caroline-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=827e8f7f-be33-4bbf-ae12-25bd31e265d7",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "carroll-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=fe5fb01e-74c3-49be-8212-0f3a4a99c903",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "charles-city-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f30e5c2f-34dc-4b94-8093-49571d2b0036",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "charlotte-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=4c0182d5-64ed-4978-8a8a-2c43da22f063",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "charlottesville-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=d4abd5f6-7488-4075-9098-c0a27dde28d6",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "chesapeake-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a146d001-b9e2-4047-b035-e34b2c3ac216",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 5,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "chesterfield-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=992c4f7b-0ad4-4875-a4ad-e8ee198b5a79",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 5,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "clarke-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b821c3e8-c73b-4e0a-95c5-917b58887f93",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "colonial-heights-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b32e1214-47fe-4776-aa21-d233ddcd7a2d",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "covington-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=8caf638a-3b4d-4077-9b74-30dbb938f4f5",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "craig-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=3b179b51-1181-4aa4-87a4-deeda9bfee51",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "culpeper-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1267efcd-e8ae-484c-b5c9-515a04188ad2",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "cumberland-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=556dba0d-90c6-466d-a8e9-2862d5d29d1a",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "danville-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=5857ab85-aae9-4324-9692-5097d2c65c91",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "dickenson-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=3698573b-10e5-4de1-9cac-201048c5fb78",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "dinwiddie-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=5b9d9cbc-1503-4fa6-b286-1c7d9929ee09",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "emporia-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c9146e67-19d0-4ed3-82d1-aecd0ad74bad",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "essex-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=270691fc-5814-47d7-802d-c5cf29dd7514",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "fauquier-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=9864156b-441b-4106-8c7e-63be670ef6d1",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 2,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "floyd-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=959e28ee-5281-4895-958e-7afd8c739683",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "fluvanna-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=75f5e922-e9a8-4a31-8a4e-fe2913988ee3",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "franklin-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=75101a82-748e-458e-bdbe-195eb5b89998",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "franklin-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=73c719b3-09ca-41f0-994f-c0d1f8d5989d",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "frederick-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=d7549425-7136-48c8-9659-7f9107537e28",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "fredericksburg-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=ef61e82b-f7c1-4d73-8464-c5ea3202cb44",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "galax-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=cc38922c-587e-472b-b554-0d66ec8654f9",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "giles-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=64369b21-6b84-47f6-b71e-d026741cbeab",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "gloucester-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=aa8e8b31-42ab-43fa-b4d2-96beeb1891a1",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "goochland-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1dbd110f-40c5-4de9-84aa-572abedff299",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "grayson-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1ea60567-478e-4602-b72d-510de57c34e8",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "greene-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=e842dcb3-c9be-473a-a4f0-02a5f737007f",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "greensville-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2e106eb6-b176-404c-a2d1-14868dd1baa8",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "halifax-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=8321c283-da77-416a-a37e-3fa9ab6752e2",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "hampton-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c9ac1339-4cf4-49a1-8dee-9738cf868d00",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "hanover-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=62d7ffb3-9244-489a-8428-67d874bdbc86",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "harrisonburg-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=611c3a3e-011a-423b-a8da-ba87fae813d7",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "henrico-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=10223a08-6b99-4783-9258-f7f9e1b8778a",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 2,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "henry-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=789f87d4-3b32-4173-815a-65f6f821e82f",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "highland-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6ee46cc9-fa41-416f-bfb3-bec8a5b6b6c2",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "hopewell-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=ea9cad0f-949e-47f0-b391-f74740d084c2",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "isle-of-wight-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=7baf472e-9a3a-4b5c-b148-e73b6ef1aac4",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "james-city-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=199da66a-5f67-44b3-9e16-beadaf1d0805",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "king-and-queen-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=717a2376-1326-49a5-b7c3-273771902448",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "king-george-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=e984ecca-2315-4c56-bbc8-450bca4245b7",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "king-william-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b42ffd80-6ba0-4357-8463-60033a888e7d",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "lancaster-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=24c5ccf1-e36a-4f59-8234-04789a8a9da3",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "lee-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b4a85e50-cc43-42d8-8a81-8ae8b83b72fa",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "lexington-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=49a0b916-1f61-4942-ac3f-e015b55ea724",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "louisa-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=49789a69-bc49-4149-9039-e6bc1ff275c0",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "lunenburg-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f1510126-533b-4d45-90d6-a01f6bb30150",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "lynchburg-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c0bc50dd-bbe4-4ccf-ab52-8662c225e284",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "madison-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f4b32946-8662-4311-acdc-3e709815c36e",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "martinsville-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c5736928-4566-4957-aad2-2d3ba9e8c673",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "mathews-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1681b63b-ec1a-4e4b-8375-cde9c2464ff9",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "mecklenburg-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=494f17b2-fabf-4384-80cd-e433119da3e9",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "middlesex-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f7dbcc8a-008f-4449-b837-ab217c7b656e",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "montgomery-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=692ab05f-8ee5-42a6-8f6e-b3e785c2c804",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "nelson-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=015d2b82-2857-4cb5-bc75-e8ca26f20f83",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "new-kent-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=58a82c57-8834-472b-a080-3bdad8687c2a",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "newport-news-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0a0d3620-30b3-4d02-8b81-7891c791bb65",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 2,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "norfolk-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=f76bfdc4-2aae-435a-a180-0bd05923d1c8",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 4,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "northampton-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=693c40bf-2437-41c7-be21-de7f9f76315c",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "northumberland-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=876337b6-732d-452b-ae55-7c83afa3c4e6",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "norton-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b22ed879-6989-4d60-8ec8-0ecac6864ff9",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "nottoway-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=83119eb9-3a23-4645-a66a-29c25c92b36f",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 1,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "orange-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a4097b5e-924e-4820-a99c-b9ec13202058",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "page-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1a138dc9-4a1c-4770-97d8-db27694315f2",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "patrick-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=03ad2b60-9dd4-4d21-8771-5f926e2064c5",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "petersburg-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=4b6fb5ce-d544-4f9b-9e9c-9b7e597ed7f0",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "pittsylvania-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=81d78070-8cc1-4fb5-b667-d853148a2e4c",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "poquoson-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0d48adb6-fad8-4622-a8d1-49bd2bc9688c",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "portsmouth-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=8d310595-9702-4123-9fc3-b444eb4b238b",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "powhatan-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6e3e2cf4-4fd8-4f9d-8d3f-7b308e81edc9",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "prince-edward-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1168ffb7-0284-4f8c-b323-f9630e2fe20f",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "prince-george-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=fd527e0f-a2c9-47ab-bfc5-bd582041e673",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "pulaski-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=1f4f0d44-bf0e-4d5e-a544-990799fa417b",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "radford-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=678df151-0ad1-4f55-a36d-62fb899e888d",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "rappahannock-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=e9c69a4a-f237-4eed-b3ac-01d17dca67cd",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "richmond-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=186fd109-f099-43c0-bb26-ed067b5aa78b",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 2,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "richmond-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=23fec407-62c0-43fc-9604-bd8f14658058",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "roanoke-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=e67e3433-034c-4f87-8d15-9f4033d3dda7",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "roanoke-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c5ecf0fa-5db1-4de1-bd20-4fa50cb7490e",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 1,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "rockbridge-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0a984eb4-2f30-406a-8f98-fde595c5aa4a",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "rockingham-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=cfd0d9bf-2bf7-45bc-b129-001f828d7b34",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "russell-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=67f1fdd8-d6be-42c6-948a-804256bb3c55",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "salem-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2c55e392-fa66-4d4f-a4df-bae3914a91af",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "scott-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=bb164223-8bf5-4b4b-8b18-57110ac00dad",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "shenandoah-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=46f54421-cc23-493a-93b1-cf3b4606bc03",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "smyth-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=2055ca5c-ff4e-4172-963c-8b0ee2ee8ec3",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "southampton-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a5821066-8969-4e63-b816-de261ee24937",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "spotsylvania-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a78e9abb-2f94-4a39-b077-bdfa22a54622",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "stafford-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=155f3422-03ae-4614-9ec4-f628be4afc74",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "staunton-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c9e8667b-2702-468b-a06a-8f654f6bf867",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "suffolk-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=b63ccbeb-c5e3-4b55-a8ac-6d37f518b928",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "surry-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=76127c48-4cdd-4d3e-ba4e-be83b3ec0287",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "sussex-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=362f5060-7f64-4080-9323-92736658ca6c",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "tazewell-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=28c4fa98-0c44-4785-bd8b-90cd7666ce36",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "virginia-beach-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=a11277ff-10fa-4d4e-85c4-b86dfb2b2c23",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 5,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "warren-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6b1bf8d5-9937-4280-aba4-696e7b21f2d0",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "washington-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=c9b0be0d-d473-4123-9d76-e1714f50f1c6",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "waynesboro-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6c3e9cc9-b7c8-4991-a54a-c1929bf50dfb",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "westmoreland-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=93f951ef-80ac-40bd-9304-c000e5a49651",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "williamsburg-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=0f762342-da37-4d03-99d7-820c61e0e242",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "winchester-city",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=6a6af5ed-2e2d-4a33-9248-01869c1c7dea",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "wise-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=9108d4cb-a23f-43ea-9643-7a36f9ddad05",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 1,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    },
+    {
+      "id": "wythe-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=eca40e2d-d3be-4d17-9383-da183f325cc4",
+      "status": "DPW aggregates; no additional sites listed by ELECT",
+      "satelliteCount": 0,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Skip dashboards unless additional early-voting sites are announced."
+    },
+    {
+      "id": "york-county",
+      "url": "https://vote.elections.virginia.gov/VoterInformation/PublicContactLookup?LocalityUID=25989058-e1e5-42bc-ad1c-e93bd907edf8",
+      "status": "DPW aggregates; per-site dashboard not yet verified",
+      "satelliteCount": 1,
+      "scheduleSource": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+      "notes": "Official satellite schedule ingested. Additional per-site turnout feed remains unverified."
+    }
+  ],
+  "statewideCoverage": 133,
+  "satelliteDefinition": "Locations additional to the main early-voting office; replacement offices excluded."
+}

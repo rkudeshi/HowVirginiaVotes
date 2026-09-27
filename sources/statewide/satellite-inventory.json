@@ -1,0 +1,1561 @@
+{
+  "alexandria-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Charles E. Beatley Jr Central Library",
+        "address": "5005 Duke Street, Alexandria, VA 22304",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 23: 1 p.m. to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 26-29: 1 p.m. to 7 p.m.",
+          "Oct. 30: 1 p.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 1,
+    "replacementOffice": false
+  },
+  "arlington-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Langston-Brown Community Center",
+        "address": "2121 N. Culpeper N. St., Arlington, VA 22207",
+        "firstOpen": "2026-10-17",
+        "satellite": true,
+        "rules": [
+          "Thursday-Friday: 2 p.m. to 7 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Walter Reed Community Center",
+        "address": "2909 16 th Street S., Arlington, VA 22204",
+        "firstOpen": "2026-10-17",
+        "satellite": true,
+        "rules": [
+          "Thursday-Friday: 2 p.m. to 7 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      }
+    ],
+    "count": 2,
+    "replacementOffice": false
+  },
+  "bedford-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Bedford County Vote Center",
+        "address": "1251 Turning Point Road, Bedford, VA 24523",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday (CLOSED Oct. 12): 9 a.m. to 5 p.m.",
+          "Oct. 18: Noon to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 0,
+    "replacementOffice": true
+  },
+  "chesapeake-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Russell Memorial Library",
+        "address": "2808 Taylor Road, Chesapeake, VA 23321",
+        "firstOpen": "2026-10-19",
+        "satellite": true,
+        "rules": [
+          "Monday-Thursday: 10 a.m. to 6 p.m.",
+          "Friday: 10 a.m. to 4 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Chesapeake Central Library",
+        "address": "298 Cedar Road, Chesapeake, VA 23322",
+        "firstOpen": "2026-10-19",
+        "satellite": true,
+        "rules": [
+          "Monday-Thursday: 10 a.m. to 6 p.m.",
+          "Friday: 10 a.m. to 4 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Indian River Library",
+        "address": "2320 Greenbriar Road, Chesapeake, VA 23325",
+        "firstOpen": "2026-10-19",
+        "satellite": true,
+        "rules": [
+          "Monday-Thursday: 10 a.m. to 6 p.m.",
+          "Friday: 10 a.m. to 4 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Major Hillard Library",
+        "address": "824 Old George Washington Highway North, Chesapeake, VA 23323",
+        "firstOpen": "2026-10-19",
+        "satellite": true,
+        "rules": [
+          "Monday-Thursday: 10 a.m. to 6 p.m.",
+          "Friday: 10 a.m. to 4 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Cuffee Community Center",
+        "address": "2019 Windy Road, Chesapeake, VA 23324",
+        "firstOpen": "2026-10-19",
+        "satellite": true,
+        "rules": [
+          "Monday-Thursday: 10 a.m. to 6 p.m.",
+          "Friday: 10 a.m. to 4 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      }
+    ],
+    "count": 5,
+    "replacementOffice": false
+  },
+  "chesterfield-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Central Library",
+        "address": "7051 Lucy Corr Blvd., Chesterfield, VA 23832",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 9 a.m. to 5 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Clover Hill Library",
+        "address": "6701 Deer Run Drive, Chesterfield, VA 23112",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 10 a.m. to 6 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Ettrick/Matoaca Library",
+        "address": "4501 River Road, Chesterfield, VA 23803",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 10 a.m. to 6 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "LaPrade Library",
+        "address": "9000 Hull Street Road, Chesterfield, VA 23236",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 10 a.m. to 6 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Meadowdale Library",
+        "address": "4301 Meadowdale Blvd., Chesterfield, VA 23234",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 10 a.m. to 6 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "North Courthouse Road Library",
+        "address": "325 Courthouse Road, Chesterfield, VA 23236",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 10 a.m. to 6 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 5,
+    "replacementOffice": false
+  },
+  "fairfax-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Registrar's office",
+        "address": "12000 Government Center, Fairfax, VA 22035",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 8 a.m. to 4:30 p.m.",
+          "Saturdays (Sept. 19, Oct. 24 and Oct. 31): 9 a.m. to 5 p.m.",
+          "Sundays (Oct. 18 and Oct. 25): Noon to 5 p.m."
+        ]
+      },
+      {
+        "name": "North County Governmental Center",
+        "address": "1801 Cameron Glen Drive, Reston, VA 20190",
+        "firstOpen": "2026-09-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Saturdays (Sept. 19, Oct. 24 and Oct. 31): 9 a.m. to 5 p.m.",
+          "Sundays (Oct. 18 and Oct. 25): Noon to 5 p.m."
+        ]
+      },
+      {
+        "name": "Mount Vernon Governmental Center",
+        "address": "2511 Parkers Lane, Alexandria, VA 22306",
+        "firstOpen": "2026-09-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Saturdays (Sept. 19, Oct. 24 and Oct. 31): 9 a.m. to 5 p.m.",
+          "Sundays (Oct. 18 and Oct. 25): Noon to 5 p.m."
+        ]
+      },
+      {
+        "name": "Burke Center Library",
+        "address": "5935 Freds Oak Road, Burke, VA 22015",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Centreville Regional Library",
+        "address": "14200 Germain Drive, Centreville, VA 20121",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Franconia Governmental Center",
+        "address": "7130 Silver Lake Boulevard, Alexandria, VA 22315",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Great Falls Library",
+        "address": "9830 Georgetown Pike, Great Falls, VA, 22066",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Herndon Fortnightly Library",
+        "address": "768 Center Street, Herndon, VA 20170",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Jim Scott Community Center",
+        "address": "3001 Vaden Drive, Fairfax, VA 22031",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Lorton Community Center",
+        "address": "9520 Richmond Highway, Lorton, VA 22079",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Mason Governmental Center",
+        "address": "6507 Columbia Pike, Annandale, VA 22003",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "McLean Governmental Center",
+        "address": "1437 Balls Hill Road, McLean, VA 22101",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Sully Governmental Center",
+        "address": "4900 Stonecroft Boulevard, Chantilly, VA 20151",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Thomas Jefferson Library",
+        "address": "7415 Arlington Boulevard, Arlington, VA 22042",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Tysons-Pimmit Regional Library",
+        "address": "7584 Leesburg Pike, Falls Church, VA 22043",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "West Springfield Governmental Center",
+        "address": "6140 Rolling Road, Springfield, VA, 22152",
+        "firstOpen": "2026-10-22",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 1 p.m. to 7 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 15,
+    "replacementOffice": false
+  },
+  "fauquier-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Bealeton Depot",
+        "address": "10877 Willow Drive North, Bealeton, VA 22712",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 9 a.m. to 4 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Vint Hill Community Center",
+        "address": "4235 Aiken Drive, Warrenton, VA, 20187",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 9 a.m. to 4 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      }
+    ],
+    "count": 2,
+    "replacementOffice": false
+  },
+  "goochland-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Goochland Sports Complex",
+        "address": "1876 Sandy Hook Road, Goochland, VA 23063",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 4:30 p.m. (CLOSED Oct. 12)",
+          "Oct. 18: Noon to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 0,
+    "replacementOffice": true
+  },
+  "henrico-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Registrar's office (Western Government Center)",
+        "address": "4305 E. Parham Road, Henrico, VA 23228",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 8 a.m. to 4:30 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Eastern Government Center",
+        "address": "3820 Nine Mile Road, Henrico, VA 23223",
+        "firstOpen": "2026-09-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8 a.m. to 4:30 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Varina Library Meeting Room",
+        "address": "1875 New Market Road, Henrico, VA 23231",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8 a.m. to 4:30 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 2,
+    "replacementOffice": false
+  },
+  "loudoun-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Claude Moore Recreation Center",
+        "address": "46105 Loudoun Park Lane, Sterling, VA 20164",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday, Wednesday, Friday: 10 a.m. to 5 p.m.",
+          "Tuesday, Thursday: Noon to 7 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Dulles South Recreation Center",
+        "address": "24950 Riding Center Drive, Chantilly, VA 20152",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday, Wednesday, Friday: 10 a.m. to 5 p.m.",
+          "Tuesday, Thursday: Noon to 7 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Carver Senior Center",
+        "address": "200 E. Willie Palmer Way, Purcellville, VA 20132",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday, Wednesday, Friday: 10 a.m. to 5 p.m.",
+          "Tuesday, Thursday: Noon to 7 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Ashburn Recreation and Community Center",
+        "address": "21105 Coopers Hawk Drive, Ashburn, VA 20147",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday, Wednesday, Friday: 10 a.m. to 5 p.m.",
+          "Tuesday, Thursday: Noon to 7 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      }
+    ],
+    "count": 4,
+    "replacementOffice": false
+  },
+  "newport-news-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Registrar's office",
+        "address": "2400 Washington Avenue, Sixth Floor, Newport News, VA 23607",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 8 to 5 p.m.",
+          "Oct. 18: 11 a.m. to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "City Center Fountain Plaza II",
+        "address": "700 Town Center Drive, Newport News, VA 23606",
+        "firstOpen": "2026-09-22",
+        "satellite": true,
+        "rules": [
+          "Tuesday and Thursday: 8 a.m. to 5 p.m.",
+          "Oct. 18: 11 a.m. to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Denbigh Community Center",
+        "address": "15198 Warwick Blvd., Newport News, VA 23608",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday and Wednesday: 8 a.m. to 5 p.m.",
+          "Oct. 18: 11 a.m. to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 2,
+    "replacementOffice": false
+  },
+  "norfolk-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Berkley Recreation Center",
+        "address": "121 W. Liberty Street, Norfolk, VA 23523",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Tuesday/Thursday: 9 a.m. to 5 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Jordan-Newby Anchor Branch Library",
+        "address": "1425 Norchester Ave., Norfolk, VA 23504",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Tuesday/Thursday: 9 a.m. to 5 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Lambert\u2019s Point Community Center",
+        "address": "1251 W. 42 nd Street, Norfolk, VA 23508",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Tuesday/Thursday: 9 a.m. to 5 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      },
+      {
+        "name": "Mary D. Pretlow Anchor Branch Library",
+        "address": "111 W. Ocean View Ave. Norfolk, VA 23503",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Tuesday/Thursday: 9 a.m. to 5 p.m.",
+          "Saturday: 9 a.m. to 5 p.m.",
+          "Sunday: 11 a.m. to 4 p.m."
+        ]
+      }
+    ],
+    "count": 4,
+    "replacementOffice": false
+  },
+  "nottoway-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Blackstone Police Station",
+        "address": "101 Elm Street, Blackstone, VA 23824",
+        "firstOpen": "2026-09-22",
+        "satellite": true,
+        "rules": [
+          "Tuesday and Thursday: 4 p.m. to 7 p.m.",
+          "Oct. 18: Noon to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 1,
+    "replacementOffice": false
+  },
+  "prince-william-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "DMV Woodbridge",
+        "address": "2731 Caton Hill Rd, Woodbridge, VA 22191",
+        "firstOpen": "2026-09-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 4:30 p.m.",
+          "Oct. 18: 11 a.m. to 5 p.m.",
+          "Oct. 24: 8:30 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 5 p.m.",
+          "Oct. 31: 8:30 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "AJ Ferlazzo Building",
+        "address": "15941 Donald Curtis Drive, Woodbridge, VA 22191",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 4:30 p.m.",
+          "Oct. 18: 11 a.m. to 5 p.m.",
+          "Oct. 24: 8:30 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 5 p.m.",
+          "Oct. 31: 8:30 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Brentsville Courthouse",
+        "address": "12229 Bristow Rd, Brentsville, VA 20136",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 4:30 p.m.",
+          "Oct. 18: 11 a.m. to 5 p.m.",
+          "Oct. 24: 8:30 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 5 p.m.",
+          "Oct. 31: 8:30 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Dumfries Community Center",
+        "address": "17757 Main St, Dumfries, VA 22026",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 4:30 p.m.",
+          "Oct. 18: 11 a.m. to 5 p.m.",
+          "Oct. 24: 8:30 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 5 p.m.",
+          "Oct. 31: 8:30 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Haymarket Gainesville Library",
+        "address": "14870 Lightner Road, Haymarket, VA 20110",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 4:30 p.m.",
+          "Oct. 18: 11 a.m. to 5 p.m.",
+          "Oct. 24: 8:30 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 5 p.m.",
+          "Oct. 31: 8:30 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 5,
+    "replacementOffice": false
+  },
+  "richmond-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Registrar's office",
+        "address": "2134 West Laburnum Avenue, Richmond, VA 23227",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 5 p.m. (CLOSED Oct. 12)",
+          "Oct. 18: Noon to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Richmond City Hall",
+        "address": "900 East Broad Street, Richmond, VA 23219",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 5 p.m.",
+          "Oct. 18: Noon to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Hickory Hill Community Center",
+        "address": "3000 East Belt Boulevard, Richmond, VA 23234",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 5 p.m.",
+          "Oct. 18: Noon to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 2,
+    "replacementOffice": false
+  },
+  "roanoke-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Registrar's office",
+        "address": "900 Chestnut Street, Vinton, VA 24179",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 8 a.m. to 4 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 8 a.m. to 4 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Brambleton Center",
+        "address": "3738 Brambleton Avenue, Roanoke, VA 24018",
+        "firstOpen": "2026-09-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8 a.m. to 4 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 8 a.m. to 4 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 1,
+    "replacementOffice": false
+  },
+  "spotsylvania-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Spotsylvania Early Voting Office",
+        "address": "4810 Southpoint Parkway, Fredericksburg, VA 22407",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 4:30 p.m. (CLOSED Oct. 12) Oct. 1 and Oct. 15: open until 6:30 p.m.",
+          "Oct. 1 and Oct. 15: open until 6:30 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 8:30 a.m. to 4:30 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 8:30 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 0,
+    "replacementOffice": true
+  },
+  "virginia-beach-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Registrar's office",
+        "address": "500 Studio Drive, Virginia Beach, VA 23452",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 9 a.m. to 5 p.m.",
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Great Neck Recreation Center",
+        "address": "2521 Shorehaven Drive, Virginia Beach, VA 23454",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 26-30: 9 a.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Seatack Recreation Center",
+        "address": "141 S. Birdneck Road, Virginia Beach, VA 23451",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 26-30: 9 a.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Kempsville Area Library",
+        "address": "832 Kempsville Road, Virginia Beach, VA 23464",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 26-30: 9 a.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Bayside Recreation Center",
+        "address": "4500 First Court Road, Virginia Beach, VA 23455",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 26-30: 9 a.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Princess Anne Area Library",
+        "address": "1444 Nimmo Parkway, Virginia Beach, VA 23456",
+        "firstOpen": "2026-10-18",
+        "satellite": true,
+        "rules": [
+          "Oct. 18: 11 a.m. to 4 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: 11 a.m. to 4 p.m.",
+          "Oct. 26-30: 9 a.m. to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 5,
+    "replacementOffice": false
+  },
+  "york-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Registrar's Office",
+        "address": "5322 George Washington Mem Hwy, Yorktown, VA 23692",
+        "firstOpen": "2026-09-18",
+        "satellite": false,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 5 p.m. (CLOSED Oct. 19)",
+          "Oct. 18: Noon to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      },
+      {
+        "name": "Victory Village Shopping Center",
+        "address": "6614 Mooretown Road Suite A, Williamsburg, VA 23188",
+        "firstOpen": "2026-09-18",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 8:30 a.m. to 5 p.m. (CLOSED Oct. 19)",
+          "Oct. 18: Noon to 5 p.m.",
+          "Oct. 24: 9 a.m. to 5 p.m.",
+          "Oct. 25: Noon to 5 p.m.",
+          "Oct. 31: 9 a.m. to 5 p.m."
+        ]
+      }
+    ],
+    "count": 1,
+    "replacementOffice": false
+  },
+  "wise-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [
+      {
+        "name": "Big Stone Gap Town Hall",
+        "address": "505 5th Street S, Big Stone Gap, VA 24219",
+        "firstOpen": "2026-10-13",
+        "satellite": true,
+        "rules": [
+          "Monday-Friday: 9 a.m. to 5 p.m.",
+          "Saturday (Excluding Oct. 17): 9 a.m. to 5 p.m.",
+          "Sunday: Noon to 5 p.m."
+        ]
+      }
+    ],
+    "count": 1,
+    "replacementOffice": false
+  },
+  "accomack-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "albemarle-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "alleghany-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "amelia-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "amherst-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "appomattox-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "augusta-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "bath-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "bland-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "botetourt-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "bristol-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "brunswick-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "buchanan-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "buckingham-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "buena-vista-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "campbell-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "caroline-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "carroll-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "charles-city-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "charlotte-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "charlottesville-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "clarke-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "colonial-heights-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "covington-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "craig-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "culpeper-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "cumberland-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "danville-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "dickenson-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "dinwiddie-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "emporia-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "essex-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "fairfax-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "falls-church-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "floyd-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "fluvanna-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "franklin-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "franklin-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "frederick-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "fredericksburg-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "galax-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "giles-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "gloucester-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "grayson-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "greene-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "greensville-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "halifax-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "hampton-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "hanover-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "harrisonburg-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "henry-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "highland-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "hopewell-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "isle-of-wight-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "james-city-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "king-and-queen-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "king-george-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "king-william-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "lancaster-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "lee-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "lexington-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "louisa-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "lunenburg-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "lynchburg-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "madison-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "manassas-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "manassas-park-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "martinsville-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "mathews-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "mecklenburg-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "middlesex-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "montgomery-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "nelson-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "new-kent-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "northampton-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "northumberland-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "norton-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "orange-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "page-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "patrick-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "petersburg-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "pittsylvania-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "poquoson-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "portsmouth-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "powhatan-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "prince-edward-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "prince-george-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "pulaski-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "radford-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "rappahannock-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "richmond-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "roanoke-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "rockbridge-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "rockingham-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "russell-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "salem-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "scott-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "shenandoah-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "smyth-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "southampton-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "stafford-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "staunton-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "suffolk-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "surry-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "sussex-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "tazewell-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "warren-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "washington-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "waynesboro-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "westmoreland-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "williamsburg-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "winchester-city": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  },
+  "wythe-county": {
+    "source": "https://www.elections.virginia.gov/casting-a-ballot/early-voting-office-locations/",
+    "sites": [],
+    "count": 0
+  }
+}

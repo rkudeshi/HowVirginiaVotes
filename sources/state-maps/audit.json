@@ -1,0 +1,1039 @@
+[
+  {
+    "id": "amelia-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/AMELIA_COUNTY.zip",
+    "sha256": "bad63554b6a9da54e94e9956cb954c003181f376c57b7a58e5919ef371b7282a"
+  },
+  {
+    "id": "appomattox-county",
+    "count": 8,
+    "matched": 8,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/APPOMATTOX_COUNTY.zip",
+    "sha256": "2fd0f66b014f4fc654553aca91db027694ae23fceb4dc7190210d04f3dcb2afd"
+  },
+  {
+    "id": "alexandria-city",
+    "existing": true,
+    "count": 32
+  },
+  {
+    "id": "alleghany-county",
+    "count": 12,
+    "matched": 12,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ALLEGHANY_COUNTY.zip",
+    "sha256": "aed0813a65fa15e07936bd5c67822b74c61a9f13b7a381a0e597766ecac2dd30"
+  },
+  {
+    "id": "accomack-county",
+    "count": 16,
+    "matched": 16,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ACCOMACK_COUNTY.zip",
+    "sha256": "f90eb31ffdcfbce88de6552265bb816762c575b0b4804847a1cc54406abc4926"
+  },
+  {
+    "id": "arlington-county",
+    "existing": true,
+    "count": 55
+  },
+  {
+    "id": "bath-county",
+    "count": 7,
+    "matched": 7,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BATH_COUNTY.zip",
+    "sha256": "f59003492fbfa7fce03e5b7d4311ac201b4aa94afa01d0a4bb8f4279ade160ac"
+  },
+  {
+    "id": "amherst-county",
+    "count": 12,
+    "matched": 12,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/AMHERST_COUNTY_20260911.zip",
+    "sha256": "a4cae0158dbada0140446299d8f16279453fe2ba741eb8adc8291d4ac462bc4c"
+  },
+  {
+    "id": "bland-county",
+    "count": 7,
+    "matched": 7,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BLAND_COUNTY.zip",
+    "sha256": "40216b5ed0680a1dbb038a589bd42d78e3450e871e119d1e674416726d795e70"
+  },
+  {
+    "id": "albemarle-county",
+    "count": 30,
+    "matched": 30,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ALBEMARLE_COUNTY.zip",
+    "sha256": "1c4cb78d16d114cedd745cee916f8953a51b47b12d023e254c074bb8e0d31156"
+  },
+  {
+    "id": "bristol-city",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BRISTOL_CITY.zip",
+    "sha256": "d03d0485dc4536445ad7915950f89beb18a022ae86d62cfc62259d6f025eb6a1"
+  },
+  {
+    "id": "botetourt-county",
+    "count": 10,
+    "matched": 10,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BOTETOURT_COUNTY.zip",
+    "sha256": "a01fc811a08a5771ef45d87a1ec11ca58d5f79995de5a227bce8025a874d524a"
+  },
+  {
+    "id": "buena-vista-city",
+    "count": 2,
+    "matched": 2,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BUENA_VISTA_CITY.zip",
+    "sha256": "6259fe1c41733b2f1701327085eeaad18004a081774e339d3b20788f001f1153"
+  },
+  {
+    "id": "augusta-county",
+    "count": 28,
+    "matched": 28,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/AUGUSTA_COUNTY.zip",
+    "sha256": "229bf87f90647bca85119de5e6b3450e7397d1395742f4e38d37ee48ad52457b"
+  },
+  {
+    "id": "buckingham-county",
+    "count": 10,
+    "matched": 10,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BUCKINGHAM_COUNTY.zip",
+    "sha256": "dcab586bdfbe23d3da9801f7af3bb3f023f2b7deed6bcb219bae421d5cf1d69f"
+  },
+  {
+    "id": "charles-city-county",
+    "count": 3,
+    "matched": 3,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CHARLES_CITY_COUNTY.zip",
+    "sha256": "d89ee4e3e960f852769cc018190d863b5d22a90d822082823f27afb53be6d292"
+  },
+  {
+    "id": "buchanan-county",
+    "count": 16,
+    "matched": 16,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BUCHANAN_COUNTY_20260911.zip",
+    "sha256": "5e86751acc8fb673fd1b59668ee9c45113b6f2fc435ae20fc1f145d7117e8a6f"
+  },
+  {
+    "id": "brunswick-county",
+    "count": 13,
+    "matched": 13,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BRUNSWICK_COUNTY.zip",
+    "sha256": "1fd958963856ab5e1ac01c1f25dd7fa4f217dd74212c190d5144965b1aa617fb"
+  },
+  {
+    "id": "caroline-county",
+    "count": 13,
+    "matched": 13,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CAROLINE_COUNTY.zip",
+    "sha256": "8337e5285e0c5d6e28c44d00e83666b9fef1a1ee1247be31259d3e288eea3096"
+  },
+  {
+    "id": "charlottesville-city",
+    "count": 9,
+    "matched": 9,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CHARLOTTESVILLE_CITY.zip",
+    "sha256": "cc460b195289ff9bfaa2ec18125037cebd40e5898d40208c4284ae9412eb5fca"
+  },
+  {
+    "id": "campbell-county",
+    "count": 16,
+    "matched": 16,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CAMPBELL_COUNTY.zip",
+    "sha256": "5e6745665e73c900d471c6dfeeffe5f847897c88c2423e80b9f7049918200c20"
+  },
+  {
+    "id": "charlotte-county",
+    "count": 7,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CHARLOTTE_COUNTY.zip",
+    "sha256": "b562be4649cfdc00f2bf6267ae8570e5497dd2b5bf9e8fab366dba0c824b59e4"
+  },
+  {
+    "id": "carroll-county",
+    "count": 16,
+    "matched": 16,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CARROLL_COUNTY.zip",
+    "sha256": "1bdd33b1313e4e00b4068214ee27f62fa0f38ca38d1b22f72dd0f66762f64bf2"
+  },
+  {
+    "id": "colonial-heights-city",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/COLONIAL_HEIGHTS_CITY.zip",
+    "sha256": "8ad324fa96fec24be6de9819163cdfb700b39b33a7944ba8d6d28777425ffda7"
+  },
+  {
+    "id": "covington-city",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/COVINGTON_CITY.zip",
+    "sha256": "a08d1410bb1aa937089cd459a57bb5012bfc0b98e08ff1a6ff444ed73e5d2a6f"
+  },
+  {
+    "id": "bedford-county",
+    "count": 32,
+    "matched": 32,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/BEDFORD_COUNTY.zip",
+    "sha256": "a19d988a3432044bfdc1d480eecff247bcc32f713f6d0fcea4272eae9582ae4b"
+  },
+  {
+    "id": "clarke-county",
+    "count": 7,
+    "matched": 7,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CLARKE_COUNTY.zip",
+    "sha256": "5819ed61c2ea516a6535bd41f44031013f4145f4f19c1b163e9b14d44a63778a"
+  },
+  {
+    "id": "craig-county",
+    "count": 8,
+    "matched": 7,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CRAIG_COUNTY.zip",
+    "sha256": "092ef8dcc80c4ee37f5085a9d019cd53c4a93579db730e506823aecc3c6d6eb2"
+  },
+  {
+    "id": "cumberland-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CUMBERLAND_COUNTY.zip",
+    "sha256": "ccff7fde4c0570f67051e96b9164a4258973581ff23ba634dc38c1f25ecb6449"
+  },
+  {
+    "id": "danville-city",
+    "count": 16,
+    "matched": 16,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/DANVILLE_CITY.zip",
+    "sha256": "ba4b54cefb13d0cc8af478a89e420868f8591f5180e7791dcead9b5fbebc3548"
+  },
+  {
+    "id": "emporia-city",
+    "count": 7,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/EMPORIA_CITY.zip",
+    "sha256": "c022177498cadfc8ba2a48f11756b1d64a29e6e19c90e2d525658d4eceadf385"
+  },
+  {
+    "id": "essex-county",
+    "count": 4,
+    "matched": 4,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ESSEX_COUNTY.zip",
+    "sha256": "ac5299425313d06e05073cbfd834fd86e5c561ead71ba3d7e7aa3ecb1b1b2835"
+  },
+  {
+    "id": "culpeper-county",
+    "count": 15,
+    "matched": 15,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CULPEPER_COUNTY.zip",
+    "sha256": "57242ef02c753f3ced32e76dc72c3140d986ad7c313373d651653395cdd0b1ab"
+  },
+  {
+    "id": "dinwiddie-county",
+    "count": 13,
+    "matched": 13,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/DINWIDDIE_COUNTY.zip",
+    "sha256": "27b0d5a6e15e1ae45d020e3fb5ce81a9d81215d2e5fd16255c3ab6a46fc0f9a0"
+  },
+  {
+    "id": "falls-church-city",
+    "existing": true,
+    "count": 3
+  },
+  {
+    "id": "fairfax-city",
+    "existing": true,
+    "count": 6
+  },
+  {
+    "id": "franklin-city",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/FRANKLIN_CITY.zip",
+    "sha256": "15dd4cbd2e503a7bf70df594b552719c54051181813a59c6fedf989f4fd16327"
+  },
+  {
+    "id": "floyd-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/FLOYD_COUNTY.zip",
+    "sha256": "fef026e7e9320106d98c74ac31be8b9596d82034be50da8ec70520b622b19515"
+  },
+  {
+    "id": "fluvanna-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/FLUVANNA_COUNTY.zip",
+    "sha256": "d4e6392508688c06e6657f7d4e653bd685b6341dce76adbf8ea0e2e605aeeb2c"
+  },
+  {
+    "id": "fredericksburg-city",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/FREDERICKSBURG_CITY.zip",
+    "sha256": "30589b7177b69df27e089555382d8fcd67e4d4f5212a74e82cb2c430818c5c91"
+  },
+  {
+    "id": "galax-city",
+    "count": 2,
+    "matched": 2,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/GALAX_CITY.zip",
+    "sha256": "fa32b39b8be1ad4b70618126112a4d1026191c84d686a150871a0e87512c35b4"
+  },
+  {
+    "id": "dickenson-county",
+    "count": 11,
+    "matched": 11,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/DICKENSON_COUNTY.zip",
+    "sha256": "6363b0b12f0a198f8cf7f33f677ee53f4b32f9cdea0ade130f0a7a9d2f14f3b2"
+  },
+  {
+    "id": "chesapeake-city",
+    "count": 64,
+    "matched": 64,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CHESAPEAKE_CITY.zip",
+    "sha256": "b5d1a7e6e275ddb45aaa3e0e73a0cda793e444f7e4bda6af4c801d5d5c18b27e"
+  },
+  {
+    "id": "giles-county",
+    "count": 8,
+    "matched": 8,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/GILES_COUNTY.zip",
+    "sha256": "d1262b550b7684915712442abba8c2c997f9ac8117ea08cbebf10d92b0583368"
+  },
+  {
+    "id": "fauquier-county",
+    "count": 24,
+    "matched": 24,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/FAUQUIER_COUNTY.zip",
+    "sha256": "d8c3897f417a51cebeb6ca7659c43e10ef297cc92d38b20b4671af4c2ec0a74a"
+  },
+  {
+    "id": "gloucester-county",
+    "count": 11,
+    "matched": 11,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/GLOUCESTER_COUNTY.zip",
+    "sha256": "9a27bfa07a936d50d251ac861593bcf696f00e439ed4d38f710ae6491cba437e"
+  },
+  {
+    "id": "greene-county",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/GREENE_COUNTY.zip",
+    "sha256": "0f15e47865c3ace08ddb34bd84cd8afee5e0f74bbae05956c6136ce53d293d7b"
+  },
+  {
+    "id": "greensville-county",
+    "count": 9,
+    "matched": 9,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/GREENSVILLE_COUNTY.zip",
+    "sha256": "9ff9b459bb0299211a57b8462bc832436403f21688ddf364986e43ba57fa64be"
+  },
+  {
+    "id": "goochland-county",
+    "count": 11,
+    "matched": 11,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/GOOCHLAND_COUNTY.zip",
+    "sha256": "170f1d54eea71b22cd1b86fdffbdc931c83023336e3072d396553f0d931ed0a9"
+  },
+  {
+    "id": "frederick-county",
+    "count": 29,
+    "matched": 29,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/FREDERICK_COUNTY.zip",
+    "sha256": "2356efbb6e0cc41c5135447e22fed1bbd05b51e32d35b2aee26fef1f24118a29"
+  },
+  {
+    "id": "franklin-county",
+    "count": 23,
+    "matched": 23,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/FRANKLIN_COUNTY.zip",
+    "sha256": "a3aa2b7a4bb633ce5b037d258885e14f95c8b0693271d9db1a353420fe787b51"
+  },
+  {
+    "id": "chesterfield-county",
+    "count": 78,
+    "matched": 78,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/CHESTERFIELD_COUNTY.zip",
+    "sha256": "381b061f1991e4776c8a591ce71948f00995359d2c4d0720dd4b7b8b0ecb0bac"
+  },
+  {
+    "id": "harrisonburg-city",
+    "count": 8,
+    "matched": 8,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/HARRISONBURG_CITY.zip",
+    "sha256": "f9be0ddf0e5475727b25db392b863eca7c7f0f9e9477de7657ea6298b67a6a87"
+  },
+  {
+    "id": "grayson-county",
+    "count": 15,
+    "matched": 15,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/GRAYSON_COUNTY.zip",
+    "sha256": "728b160fea1cd3c9d32b93a17a50d79d880c5ecbdd161f0a8054512ed80e0f5a"
+  },
+  {
+    "id": "highland-county",
+    "count": 4,
+    "matched": 4,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/HIGHLAND_COUNTY_20260911.zip",
+    "sha256": "12aac19c11e1e8b28ac6bcf04ffc217aa88c0b96a16b8ed9e352dfc8ec6f17e1"
+  },
+  {
+    "id": "hampton-city",
+    "count": 31,
+    "matched": 31,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/HAMPTON_CITY.zip",
+    "sha256": "51daac793404b461402e2a5ab1c34f70712457b349761908feb114d02c46f6cd"
+  },
+  {
+    "id": "hopewell-city",
+    "count": 7,
+    "matched": 7,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/HOPEWELL_CITY.zip",
+    "sha256": "dfdee457c1b508ba931944ecfde8d46c2095bf04a9a6853ab6f8d28e3609de06"
+  },
+  {
+    "id": "halifax-county",
+    "count": 20,
+    "matched": 20,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/HALIFAX_COUNTY.zip",
+    "sha256": "ddbf813a614294831a3ecd9c4d8e2cbcd0b179a3b1b080fda75fdf05a6f62e1f"
+  },
+  {
+    "id": "king-and-queen-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/KING_AND_QUEEN_COUNTY.zip",
+    "sha256": "dcc02196481ae0fb50e710e143cedc5ecf11237e45c4b30dc744ced68a9dd186"
+  },
+  {
+    "id": "king-george-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/KING_GEORGE_COUNTY.zip",
+    "sha256": "8e8f9d2e8afee79c914e85b85fb48e4875711e4340f1f9284ce941746785068a"
+  },
+  {
+    "id": "hanover-county",
+    "count": 36,
+    "matched": 36,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/HANOVER_COUNTY.zip",
+    "sha256": "1c34913e8f952f123614189a21ec5a70227a2409a23aaef2733a1f39acfa7979"
+  },
+  {
+    "id": "king-william-county",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/KING_WILLIAM_COUNTY.zip",
+    "sha256": "a91a34f7179045e8a7b8c9309e1e2fcce7a144d62966dc8fb9af82489abdac57"
+  },
+  {
+    "id": "lancaster-county",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/LANCASTER_COUNTY.zip",
+    "sha256": "5a1bc9a2ac8d423d5e38800aa0b25bc9f5a2a2a556c5917a503f8ec8402d1d13"
+  },
+  {
+    "id": "henry-county",
+    "count": 24,
+    "matched": 24,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/HENRY_COUNTY.zip",
+    "sha256": "7b231f8be59cdc30cc691d62d2a9d92fa9e38e7c47ba33f2bab9146219978d24"
+  },
+  {
+    "id": "lexington-city",
+    "count": 1,
+    "matched": 1,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/LEXINGTON_CITY.zip",
+    "sha256": "fecaee5a04cfd1e8fcacbd2a33ebd4330cd79ecc6749a076f79ee2c294c4eb66"
+  },
+  {
+    "id": "isle-of-wight-county",
+    "count": 17,
+    "matched": 17,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ISLE_OF_WIGHT_COUNTY.zip",
+    "sha256": "b440cd38b521dd92f52584ea5f45d7649f54722de39f5a98fe8bcfb4c221a1ef"
+  },
+  {
+    "id": "lee-county",
+    "count": 16,
+    "matched": 16,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/LEE_COUNTY.zip",
+    "sha256": "2e14f0893092cc80ba83ddc6f077b290ae53b699ef9e937007ac8595638c5d37"
+  },
+  {
+    "id": "james-city-county",
+    "count": 18,
+    "matched": 18,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/JAMES_CITY_COUNTY.zip",
+    "sha256": "cd72fb33ed767e0b33b874a63bd5b1a1b2f14c02f6d0234066e56b3c3a9c4eaa"
+  },
+  {
+    "id": "lunenburg-county",
+    "count": 11,
+    "matched": 11,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/LUNENBURG_COUNTY.zip",
+    "sha256": "46e97ddc544a5201a30423bd7919ed462dfcae7068fb1fbd56911cb76b85e48b"
+  },
+  {
+    "id": "manassas-city",
+    "existing": true,
+    "count": 6
+  },
+  {
+    "id": "lynchburg-city",
+    "count": 18,
+    "matched": 18,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/LYNCHBURG_CITY.zip",
+    "sha256": "fa0cc786d9103466f116985d9983090b804064ed45837d3580a264494bfbd0e6"
+  },
+  {
+    "id": "manassas-park-city",
+    "existing": true,
+    "count": 4
+  },
+  {
+    "id": "mathews-county",
+    "count": 3,
+    "matched": 3,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/MATHEWS_COUNTY.zip",
+    "sha256": "aa3055c78678123c80d9ab963869c6fc0a3c367060860c5e9d66cc18abfc5029"
+  },
+  {
+    "id": "louisa-county",
+    "count": 14,
+    "matched": 14,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/LOUISA_COUNTY.zip",
+    "sha256": "d2ec53587f0f324d62393dbdb25962488403d1132344e5273848240b272f9e2c"
+  },
+  {
+    "id": "martinsville-city",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/MARTINSVILLE_CITY.zip",
+    "sha256": "17fb35e82f3c660bcaed2fc6784f265608e4d9a339bf47582fc1ac7877b6c99e"
+  },
+  {
+    "id": "madison-county",
+    "count": 8,
+    "matched": 7,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/MADISON_COUNTY.zip",
+    "sha256": "7d56d8754ebb5ea11a0fdeeab4da329c0b8d811bd3dc18d7a3ce11d6869fa453"
+  },
+  {
+    "id": "nelson-county",
+    "count": 9,
+    "matched": 9,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/NELSON_COUNTY.zip",
+    "sha256": "32e4fe81b8e2d1dbc613a8b0606bed10516aa8fdfcd0cf273396a02edbc59be0"
+  },
+  {
+    "id": "middlesex-county",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/MIDDLESEX_COUNTY.zip",
+    "sha256": "2a774e95c64bd79a3cbb0d19a1dbe147dd92dbe19854929627e67d486f2aed49"
+  },
+  {
+    "id": "new-kent-county",
+    "count": 10,
+    "matched": 10,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/NEW_KENT_COUNTY.zip",
+    "sha256": "b09d0cc2aaede403309f363d4d32066fdef2f093eb4d37b66e2f0cda355ed684"
+  },
+  {
+    "id": "henrico-county",
+    "count": 90,
+    "matched": 90,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/HENRICO_COUNTY.zip",
+    "sha256": "ee06d32ddd0517ada4938d16cb5fdda190189ae737009d48c6242d7b60d3e7c2"
+  },
+  {
+    "id": "northampton-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/NORTHAMPTON_COUNTY.zip",
+    "sha256": "df7caa0cabfd4ffc166f2733ac49a75c0b7021afa094aab3aed56d4a71851b3d"
+  },
+  {
+    "id": "mecklenburg-county",
+    "count": 22,
+    "matched": 22,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/MECKLENBURG_COUNTY.zip",
+    "sha256": "45b3127342ec53cd0807d13c960a853fb53d0920de2ed97f375ac88fd4bec127"
+  },
+  {
+    "id": "norton-city",
+    "count": 1,
+    "matched": 1,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/NORTON_CITY.zip",
+    "sha256": "062954f45ec1f830403261bd8e3d5dcc01203f8535551698607ccbe69d9f5965"
+  },
+  {
+    "id": "northumberland-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/NORTHUMBERLAND_COUNTY.zip",
+    "sha256": "5d6b1b8833a80e0ecfb7b6070242946ff711952efbc4f903f69dccf39648b7ca"
+  },
+  {
+    "id": "montgomery-county",
+    "count": 29,
+    "matched": 29,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/MONTGOMERY_COUNTY.zip",
+    "sha256": "c3450bc019b27bd40bf6ed6c86f96fa2c23446ea214f44f467a87b473088263f"
+  },
+  {
+    "id": "nottoway-county",
+    "count": 7,
+    "matched": 7,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/NOTTOWAY_COUNTY.zip",
+    "sha256": "6b462ab05b8ae4b61fcdc6c5ce8ef6573cdd891a5b82d6465416f89935e19660"
+  },
+  {
+    "id": "newport-news-city",
+    "count": 43,
+    "matched": 43,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/NEWPORT_NEWS_CITY.zip",
+    "sha256": "a15c73b9ba5f97062dc3a21112d7ef03956b1e859b20f4b882efdd7ae66e6f81"
+  },
+  {
+    "id": "petersburg-city",
+    "count": 7,
+    "matched": 7,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/PETERSBURG_CITY.zip",
+    "sha256": "9ccae26a17ac6f14ba8962f5ba9d3c9fe390506f7c98fd2c311e8760dd411524"
+  },
+  {
+    "id": "page-county",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/PAGE_COUNTY.zip",
+    "sha256": "b49c715a672b8a066a83a444b0bbcf019f068b1e030e5b18b9b634baa2c9b87d"
+  },
+  {
+    "id": "orange-county",
+    "count": 12,
+    "matched": 12,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ORANGE_COUNTY.zip",
+    "sha256": "1c3591f4039f33ff729ebcc9a2e0052877f185d3974edf1e8d7592840760d6e3"
+  },
+  {
+    "id": "norfolk-city",
+    "count": 48,
+    "matched": 48,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/NORFOLK_CITY.zip",
+    "sha256": "ba7f8e8c4bd8ee8bf22e9ea50eb5b97974003b0bcdc85280ef5bc190469db48d"
+  },
+  {
+    "id": "fairfax-county",
+    "existing": true,
+    "count": 266
+  },
+  {
+    "id": "poquoson-city",
+    "count": 3,
+    "matched": 3,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/POQUOSON_CITY.zip",
+    "sha256": "9ce344b48d3da31a6476aee0dfd74faeeb24dd0f40e96b65126fdd58eb178fd0"
+  },
+  {
+    "id": "patrick-county",
+    "count": 13,
+    "matched": 12,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/PATRICK_COUNTY.zip",
+    "sha256": "31e6cabf66d09581c53fe28f53dfc501e313911e2f2f5ca878714acd7269e5a0"
+  },
+  {
+    "id": "prince-george-county",
+    "count": 10,
+    "matched": 10,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/PRINCE_GEORGE_COUNTY.zip",
+    "sha256": "fcef2ea0a78142a0a67e0d1f5f725324ce1af3bed17cce91680417b9403bf8ac"
+  },
+  {
+    "id": "powhatan-county",
+    "count": 12,
+    "matched": 12,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/POWHATAN_COUNTY.zip",
+    "sha256": "8f3c1592ef9d144a0b3624a4965b05133db87bfb954b5a2774bc7b2ddc13d4af"
+  },
+  {
+    "id": "prince-edward-county",
+    "count": 10,
+    "matched": 10,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/PRINCE_EDWARD_COUNTY.zip",
+    "sha256": "3e791130386316e36c70709c5ae5662ad35cb2d9f436226766653aee06da54ff"
+  },
+  {
+    "id": "radford-city",
+    "count": 4,
+    "matched": 4,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/RADFORD_CITY.zip",
+    "sha256": "f992e7b57dc29dff1309e23b625e31997148c4c8cbcfea78b7a7465cb4481410"
+  },
+  {
+    "id": "portsmouth-city",
+    "count": 31,
+    "matched": 30,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/PORTSMOUTH_CITY.zip",
+    "sha256": "5ffc9924cc414fdbdf70e4bd1a05bf956ef8f45bb593689e10f3be674d6b2fdb"
+  },
+  {
+    "id": "rappahannock-county",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/RAPPAHANNOCK_COUNTY.zip",
+    "sha256": "26755b299511aecf47c359f43449091c99550236adf172c04595c715a5a55635"
+  },
+  {
+    "id": "pulaski-county",
+    "count": 13,
+    "matched": 13,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/PULASKI_COUNTY.zip",
+    "sha256": "ed04bf59b8eb3b80de0c42f643b76eb1aab450b44e30175a90d79ddbd2455e3f"
+  },
+  {
+    "id": "richmond-county",
+    "count": 6,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/RICHMOND_COUNTY.zip",
+    "sha256": "5d735e7a87eb00518d95444ff8ffd256095c80ef3842c762a59903f37bd38ae3"
+  },
+  {
+    "id": "loudoun-county",
+    "existing": true,
+    "count": 107
+  },
+  {
+    "id": "pittsylvania-county",
+    "count": 29,
+    "matched": 29,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/PITTSYLVANIA_COUNTY.zip",
+    "sha256": "8818a9ad8714e8e87e218acae7b9c266f01a522ad83cfdbd986213263dbea232"
+  },
+  {
+    "id": "roanoke-city",
+    "count": 20,
+    "matched": 20,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ROANOKE_CITY.zip",
+    "sha256": "0bd08d0dd29557bf06ba90028ccf4b36f3b09e76d11fd982eb7f94e459a2ba6c"
+  },
+  {
+    "id": "rockbridge-county",
+    "count": 14,
+    "matched": 14,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ROCKBRIDGE_COUNTY_20260911.zip",
+    "sha256": "78ed7e7420b63248281c1179565fcc579285d6f1c34ec7997c19f1b5cbde4696"
+  },
+  {
+    "id": "salem-city",
+    "count": 10,
+    "matched": 10,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SALEM_CITY.zip",
+    "sha256": "f2f402366f8bc99c29286174fbe4be47f317b36c6e844b9aaab5afc1e20c5d9d"
+  },
+  {
+    "id": "russell-county",
+    "count": 14,
+    "matched": 14,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/RUSSELL_COUNTY_20260911.zip",
+    "sha256": "5828629117ee40e73ad1b6df4839092836a5368892526d90a98fc1b489000afb"
+  },
+  {
+    "id": "roanoke-county",
+    "count": 33,
+    "matched": 33,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ROANOKE_COUNTY.zip",
+    "sha256": "03c40827c679c6d74f25e546cdfa62b9a02ef94e1b0b0a0b5246f45aff421e08"
+  },
+  {
+    "id": "shenandoah-county",
+    "count": 14,
+    "matched": 14,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SHENANDOAH_COUNTY.zip",
+    "sha256": "5d3e90f72ee329130315dd1c9e7adaa3b3cad3d75dcbb98c370829b9788c56e9"
+  },
+  {
+    "id": "rockingham-county",
+    "count": 29,
+    "matched": 29,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/ROCKINGHAM_COUNTY.zip",
+    "sha256": "9d2cbc2c7a60f47142603137aa39bb93625d2ad3330ccb64650fb157d68662ab"
+  },
+  {
+    "id": "smyth-county",
+    "count": 12,
+    "matched": 12,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SMYTH_COUNTY.zip",
+    "sha256": "6fdc7e8bda306ed62bda69fa4f80d9f114dba7793dfa70d8aac247f6853e124f"
+  },
+  {
+    "id": "richmond-city",
+    "count": 72,
+    "matched": 72,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/RICHMOND_CITY.zip",
+    "sha256": "c4cc44c8fc3ed578ffa291c5e6a1bd8b6d3150a1bda4f334c3ae84ab6569e0e7"
+  },
+  {
+    "id": "southampton-county",
+    "count": 11,
+    "matched": 11,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SOUTHAMPTON_COUNTY.zip",
+    "sha256": "afc33a43f3d11f221311a2d97329d6b4e950c80938c4c447bc75e73f9d7a428a"
+  },
+  {
+    "id": "staunton-city",
+    "count": 5,
+    "matched": 5,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/STAUNTON_CITY.zip",
+    "sha256": "178ab9814ac82e480436616c2b4a6c76c6ef82eccc3e88ef2f07d031716855c8"
+  },
+  {
+    "id": "scott-county",
+    "count": 17,
+    "matched": 17,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SCOTT_COUNTY.zip",
+    "sha256": "6d9f918a66ab04aee82e85a3c71e48a20fecc2dd9e5e3c7ed2f94a4c98198e2a"
+  },
+  {
+    "id": "surry-county",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SURRY_COUNTY.zip",
+    "sha256": "0b301e8a4f87845669f56200dfaf22f8b42748f93179dcc2f77a28a3d991a8e7"
+  },
+  {
+    "id": "sussex-county",
+    "count": 10,
+    "matched": 10,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SUSSEX_COUNTY.zip",
+    "sha256": "1846e7485446429ec86d3ce394cc4dbf94aadce1f71c89be07c5e89bfa5aa736"
+  },
+  {
+    "id": "prince-william-county",
+    "existing": true,
+    "count": 103
+  },
+  {
+    "id": "warren-county",
+    "count": 11,
+    "matched": 11,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/WARREN_COUNTY.zip",
+    "sha256": "9452bfcf96c30331a07099244c3f087c5f2d796a35a00e98cf774f100cf1037b"
+  },
+  {
+    "id": "suffolk-city",
+    "count": 30,
+    "matched": 29,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SUFFOLK_CITY.zip",
+    "sha256": "f41f773403f3630c75df1bbe00c8fcc37e36ec3ef5daf71e2ee57916d8ec2960"
+  },
+  {
+    "id": "spotsylvania-county",
+    "count": 29,
+    "matched": 29,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/SPOTSYLVANIA_COUNTY.zip",
+    "sha256": "3a8c0e98c9197bf0f0cd0f6f5e675f11895d732388232e5297833d3aa2b4bfc9"
+  },
+  {
+    "id": "tazewell-county",
+    "count": 19,
+    "matched": 19,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/TAZEWELL_COUNTY.zip",
+    "sha256": "6c16d4dad2ff533b59b8cec3d437f8a4863ed6a0c80c541067817475be1faeeb"
+  },
+  {
+    "id": "waynesboro-city",
+    "count": 4,
+    "matched": 4,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/WAYNESBORO_CITY.zip",
+    "sha256": "ce972cacc847489e5e5cffc193912d6fb2e3c3fd2525ed9524d8cfaaded0f464"
+  },
+  {
+    "id": "williamsburg-city",
+    "count": 2,
+    "matched": 2,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/WILLIAMSBURG_CITY.zip",
+    "sha256": "995ea936cf80aadc7fcbe50d8fc688a1f7660ab6a1e3ec6b4e337d2108bf722f"
+  },
+  {
+    "id": "winchester-city",
+    "count": 6,
+    "matched": 6,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/WINCHESTER_CITY.zip",
+    "sha256": "f55da7ae4b9b39b791dd71ec71bfa9607affb90ae514cee118985330f2202ea7"
+  },
+  {
+    "id": "stafford-county",
+    "count": 37,
+    "matched": 37,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/STAFFORD_COUNTY.zip",
+    "sha256": "efb930d007d0d8cf2b715db7cc6b6dedbf70d6b900a5917d939e006a9639f381"
+  },
+  {
+    "id": "westmoreland-county",
+    "count": 8,
+    "matched": 8,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/WESTMORELAND_COUNTY.zip",
+    "sha256": "ee532424cb44dac7672b2b113d33a8f9631787f49cf7d18b45120974cbd4e5a2"
+  },
+  {
+    "id": "washington-county",
+    "count": 19,
+    "matched": 18,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/WASHINGTON_COUNTY.zip",
+    "sha256": "953cb88b744ebee89c50c215b5c9955c21c05e3e55f5a521dea8b55e4a453c1a"
+  },
+  {
+    "id": "wythe-county",
+    "count": 11,
+    "matched": 10,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/WYTHE_COUNTY.zip",
+    "sha256": "065a292642031e1974c7492a3df5e7bca3455829b653ff9751be966f8147532b"
+  },
+  {
+    "id": "wise-county",
+    "count": 12,
+    "matched": 12,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/WISE_COUNTY.zip",
+    "sha256": "efc9a1b4d104eeafe9f4c97243c3b65982d14cb3b762f50af805554c716fa77d"
+  },
+  {
+    "id": "york-county",
+    "count": 13,
+    "matched": 13,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/YORK_COUNTY.zip",
+    "sha256": "bdc86d7479abc1e0241c643e0a61a99ea1b5562102986bb3b5929ca876691c49"
+  },
+  {
+    "id": "virginia-beach-city",
+    "count": 108,
+    "matched": 108,
+    "unmatched": [],
+    "source": "https://www.elections.virginia.gov/media/redistricting/gis/-zip-files/VIRGINIA_BEACH_CITY.zip",
+    "sha256": "0bb55f0a0fd1d9243c8afa22bbd6024e94da976309d670a68568562fc6f128be"
+  }
+]

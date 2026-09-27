@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en-US">
+<!--<![endif]-->
+<head>
+	<!-- Published by OpenCities, 1.37.6.1 -->
+
+    
+        
+    
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="theme-color" content="#FFFFFF"/>
+    <title>Early Voting – Arlington County VA Voting and Elections</title>
+	<meta name="generator" content="OpenCities - https://granicus.com/product/opencities" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Using mobile-web-app-capable for now to enable full-screen experience on supported platforms -->
+    <!-- Note: This tag works mainly on Android Chrome. It does NOT enable full-screen mode on iOS Safari. -->
+    <!-- For iOS, the correct tag is: <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <!-- TODO: Monitor for updated meta tag standards from Apple or other browser vendors -->
+    <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="description" content="Early voting is open 45 days before all elections. All voters can vote at any early voting location." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vote.arlingtonva.gov/Early-Voting" />
+    <meta property="og:title" content="Early Voting" />
+    <meta property="og:description" content="Early voting is open 45 days before all elections. All voters can vote at any early voting location." />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Early Voting" />
+    <meta property="twitter:description" content="Early voting is open 45 days before all elections. All voters can vote at any early voting location." />
+    <link rel="canonical" href="https://vote.arlingtonva.gov/Early-Voting" />
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/files/ocfavicon/Vote/apple-touch-icon.png?V=637825219164529877">
+<link rel="icon" type="image/png" sizes="32x32" href="/files/ocfavicon/Vote/favicon-32x32.png?V=637825219164529877">
+<link rel="icon" type="image/png" sizes="16x16" href="/files/ocfavicon/Vote/favicon-16x16.png?V=637825219164529877">
+<link rel="manifest" href="/files/ocfavicon/Vote/site.webmanifest?V=637825219164529877">
+<link rel="shortcut icon" href="/files/ocfavicon/Vote/favicon.ico?V=637825219164529877">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-config" content="/files/ocfavicon/Vote/browserconfig.xml?V=637825219164529877">
+    <script>
+        (function () {
+            if (window.__UNLOAD_LAZY_PATCH__) return;
+            window.__UNLOAD_LAZY_PATCH__ = true;
+
+            var supportsPageHide = ("onpagehide" in window);
+            var mappedType = supportsPageHide ? "pagehide" : "beforeunload";
+            var nativeAdd = window.addEventListener;
+            var nativeRemove = window.removeEventListener;
+            var unloadMap = null;
+            var patched = false;
+
+            function ensurePatched() {
+                if (patched) return;
+                unloadMap = new WeakMap();
+
+                window.addEventListener = function (type, listener, options) {
+                    if (type === "unload") {
+                        var wrapped = function (evt) {
+                            if (supportsPageHide && evt.persisted) return;
+                            listener.call(this, evt);
+                        };
+                        unloadMap.set(listener, wrapped);
+                        return nativeAdd.call(this, mappedType, wrapped, options);
+                    }
+                    return nativeAdd.call(this, type, listener, options);
+                };
+
+                window.removeEventListener = function (type, listener, options) {
+                    if (type === "unload") {
+                        var wrapped = unloadMap.get(listener);
+                        if (wrapped) {
+                            nativeRemove.call(this, mappedType, wrapped, options);
+                            unloadMap.delete(listener);
+                        }
+                        return;
+                    }
+                    return nativeRemove.call(this, type, listener, options);
+                };
+
+                var orig = null;
+                Object.defineProperty(window, "onunload", {
+                    configurable: true, enumerable: true,
+                    get: function () { return orig; },
+                    set: function (h) {
+                        orig = h;
+                        if (typeof h === "function") window.addEventListener("unload", h);
+                    }
+                });
+                patched = true;
+            }
+
+            window.addEventListener = function (type, listener, options) {
+                if (type === "unload") {
+                    ensurePatched();
+                    return window.addEventListener(type, listener, options);
+                }
+                return nativeAdd.call(this, type, listener, options);
+            };
+
+            window.removeEventListener = function (type, listener, options) {
+                if (type === "unload" && !patched) {
+                    return;
+                }
+                return nativeRemove.call(this, type, listener, options);
+            };
+
+            function patchTelerik() {
+                ensurePatched();
+                var ns = window.RadAjaxNamespace;
+                if (!ns || !ns.EventManager || !ns.EventManager.Add || ns.EventManager.__UnloadPatched) return;
+                var origAdd = ns.EventManager.Add;
+                ns.EventManager.Add = function (el, evtName, handler, clientId) {
+                    if (el === window && evtName === "unload") {
+                        return window.addEventListener("unload", handler);
+                    }
+                    return origAdd.call(this, el, evtName, handler, clientId);
+                };
+                ns.EventManager.__UnloadPatched = true;
+            }
+
+            if (window.RadAjaxNamespace)
+                patchTelerik();
+            else (window.requestIdleCallback || function (cb)
+            {
+                setTimeout(cb, 120);
+            })(patchTelerik);
+        })();
+    </script>
+    <!-- Preconnecting to Google Fonts servers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Defer Roboto font loading to avoid render-blocking -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const robotoLink = document.createElement('link');
+            robotoLink.rel = 'stylesheet';
+            robotoLink.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap';
+            document.head.appendChild(robotoLink);
+        });
+    </script>
+
+    <style>
+        .gm-style, .gm-style * {
+            font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important;
+        }
+    </style>
+
+    <script>
+        document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, "js");
+    </script>
+    
+    
+        
+            <script type="text/javascript">
+                window.__oc_flags_ImprovedBreakpointEventHandling = true;
+            </script>
+            
+        
+    
+    
+    
+        <script type="text/javascript">
+            var __metaQueryBreakpoints = {
+                'sc-size-4': '(max-width: 480px)',
+                'sc-size-3': '(min-width: 480px) and (max-width: 768px)',
+                'sc-size-2': '(min-width: 768px) and (max-width: 992px)',
+                'sc-size-1': '(min-width: 992px)'
+            }
+
+            var __ocSizePoints = [
+                { min: 0, name: 'sc-size-4' },
+                { min: 480, name: 'sc-size-3' },
+                { min: 768, name: 'sc-size-2' },
+                { min: 992, name: 'sc-size-1' }
+            ];
+
+        </script>
+    
+
+    <!-- Framework Section -->
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/files/templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/jquery-1.12.4.min.js?seamlessts=639233013019338987" ><\/script>')</script>
+
+    <!--Google Maps API Loader – Improved Version to avoid Warning
+    This script loads the Google Maps JavaScript API using a dynamic and async method.
+    It replaces the old static <script> tag to avoid performance warnings from Google.
+
+    Dynamically creates the <script> tag with loading = async for better performance
+    Builds the API URL with required libraries(places, geometry, marker, geocoding)
+    Uses a Promise and callback(google.maps.__ib__) to confirm when the script is ready
+
+    It Avoids Google’s warning about direct script loading
+    Improves page load speed by loading the API asynchronously-->
+
+    
+        <script>
+            (function (root) {
+                root.OpenCities = root.OpenCities || {};
+                if (!root.OpenCities.GoogleMapsLoader) {
+                    root.OpenCities.GoogleMapsLoader = {
+                        _cbs: [],
+                        _ready: false,
+                        onReady: function (cb) {
+                            if (this._ready) { try { cb(); } catch (e) { console.error(e); } }
+                            else if (typeof cb === 'function') this._cbs.push(cb);
+                        },
+                        _fire: function () {
+                            if (this._ready) return;
+                            this._ready = true;
+                            var q = this._cbs.splice(0);
+                            for (var i = 0; i < q.length; i++) {
+                                try { q[i](); } catch (e) { console.error(e); }
+                            }
+                        }
+                    };
+                }
+            })(window);
+
+            (g => {
+                var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__",
+                    m = document, b = window;
+                b = b[c] || (b[c] = {});
+                var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams,
+                    u = () => h || (h = new Promise(async (resolve, reject) => {
+                        a = m.createElement("script");
+                        e.set("libraries", [...r] + "");
+                        for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+                        e.set("callback", c + ".maps." + q);
+                        a.src = "https://maps." + c + "apis.com/maps/api/js?" + e.toString();
+                        a.loading = "async";
+                        a.async = true;
+                        a.defer = true;
+                        d[q] = resolve;
+                        a.onerror = () => reject(Error(p + " could not load."));
+                        a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+                        m.head.append(a);
+                    }));
+                if (d[l]) {
+                    console.warn(p + " only loads once. Ignoring duplicate load.");
+                } else {
+                    d[l] = (f, ...n) => (r.add(f), u().then(() => d[l](f, ...n)));
+                }
+            })({
+                key: "AIzaSyCcFBHehHLdoruShb-VuSDYl7PJOp_u9lE",
+                v: "3.65"
+            });
+
+            (async () => {
+                try {
+                    if (!google?.maps?.importLibrary) return;
+
+                    if (!window.OpenCities.__mapsLibsPromise) {
+                        window.OpenCities.__mapsLibsPromise = Promise.all([
+                            google.maps.importLibrary('maps'),
+                            google.maps.importLibrary('places'),
+                            google.maps.importLibrary('geocoding'),
+                            google.maps.importLibrary('marker'),
+                            google.maps.importLibrary('geometry')
+                        ]);
+                    }
+                    await window.OpenCities.__mapsLibsPromise;
+
+                    if (window.OpenCities?.GoogleMapsLoader) {
+                        window.OpenCities.GoogleMapsLoader._fire();
+                    }
+                } catch (err) {
+                    console.error('Google Maps failed to initialise', err);
+                }
+            })();
+        </script>
+    
+    <script src="/files/templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/modernizr.custom.710f3bf.js?seamlessts=639233013019338987" defer></script>
+    
+    <!--// End Framework Section -->
+    <!-- OpenCities Section -->
+    <script>
+        var OpenCities = OpenCities || {};
+        OpenCities.Paths = {
+            SiteTemplate: '/files/templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/',
+            ThemePath: '/files/templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/'
+        };
+    </script>
+    <script src='/ocapi/fc0f47ae-0888-4cf4-8627-d1186ff22312/en-US/websitesettings.js'></script>
+    <script src="/files/templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/oc_head.js?applied=20250915050343"></script>
+    <!-- Script Combine. To enter debug mode for this browser session, enter OcScriptCombineDebug=true as a querystring -->
+<link href="/files/oc-templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/oc_grid.css~oc_style.css~oc_wizard_style.css~oc_main.css~oc_forms.css~oc_wizard.css~oc_wizard_menu.css~oc_main_s1.css~oc_wizard_s1.css~oc_wizard_menu_s1.css~oc_grid_s1.css~OcScriptCombine_Minify0?uniqueid=20250915050343" rel="stylesheet" type="text/css">
+    <!-- Script Combine. To enter debug mode for this browser session, enter OcScriptCombineDebug=true as a querystring -->
+<link href="/files/oc-templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/client_style.css~client.css~client_menu.css~client_s1.css~client_menu_s1.css~client_forms.css~OcScriptCombine_Minify0?uniqueid=20250915050343" rel="stylesheet" type="text/css">
+    <script>
+(function (BackgroundSettings, $, undefined) {
+    BackgroundSettings.initialise = function () {
+        this.Application = {"CSSSelector":".background-container","EnableFade":true};
+    };
+} (OpenCities.BackgroundSettings = OpenCities.BackgroundSettings || {}, jQuery));
+OpenCities.BackgroundSettings.initialise();
+</script>
+    
+    <!-- Script Combine. To enter debug mode for this browser session, enter OcScriptCombineDebug=true as a querystring -->
+<link href="/files/oc-templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/oc_print.css~client_print.css~OcScriptCombine_Minify0?uniqueid=20250915050343" rel="stylesheet" type="text/css" media="print">
+    <!-- Script Combine. To enter debug mode for this browser session, enter OcScriptCombineDebug=true as a querystring -->
+<script src="/files/oc-templates/00000000-0000-0000-0000-000000000000/24c92c4e-ab3b-434c-8392-abe1f0c8ce1a/v/264/external_plugins.js~oc_form_helper.js~oc_main.js~plugins.js~oc_main_init.js~OcScriptCombine_Minify0?uniqueid=20250915050343" defer="true"></script>
+    
+    
+
+                                <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="DYTCK-JM9C8-ED4EP-C3GGK-Z575H",function(){function e(){if(!r){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,o.appendChild(e),r=!0}}function t(e){r=!0;var n,t,a,i,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(o,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",i=(a.frameElement||a).style,i.width=0,i.height=0,i.border=0,i.display="none",o.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void 0;",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=14,window.BOOMR.url=n+"DYTCK-JM9C8-ED4EP-C3GGK-Z575H";var i=document.currentScript||document.getElementsByTagName("script")[0],o=i.parentNode,r=!1,d=document.createElement("link");if(d.relList&&"function"==typeof d.relList.supports&&d.relList.supports("preload")&&"as"in d)window.BOOMR.snippetMethod="p",d.href=window.BOOMR.url,d.rel="preload",d.as="script",d.addEventListener("load",e),d.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!r)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),o.appendChild(d);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="fie3vrorfayucjqacqdlyaaannvld5er-f-c75132a24-clienttons-s.akamaihd.net",i="false"=="true"?2:1,o={"ak.v":"41","ak.cp":"1668543","ak.ai":parseInt("1075935",10),"ak.ol":"0","ak.cr":2,"ak.ipv":6,"ak.proto":"http/1.1","ak.rid":"2fe3a34b","ak.r":47805,"ak.a2":n,"ak.m":"dscb","ak.n":"essl","ak.cport":56900,"ak.gh":"23.213.247.108","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"bbr","ak.t":"1790047377","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==s7OodhPdqAwXweh+4QdNQKaiIsmsz8XWKrWLO5W/Lt9c+yfzhijnV7uUFvSkcjuLFjvn74dAnwTkZS/5d9jjp9THCS1ju1AENiI2aYYoKPvq5OqxMyK2kXnsTtUpwmU9dTCcuLxlC1tRm2FT99WBPFWXwvKRbGPJ8yYkFTyln5GMAFYshH57luWwXFb/xSz7MAFXbQ8Dm1jkUdEDw1xtE5bLAVs95Q8lzP0rG43i4o8gs7dkAPQuQNvyzn9QIq0wsCmiheLeFuk0jKgcXDxZCwJjJ73VxxjMzV/hw6roHh+neQ03YcQ2ARxWL3a1qhnvJ1fonIDOMjAs0totT4oMVGI2baXkxCev86zIf0fKhDLXz7SN/NyyjDoQLx9TkrNCxnjT/moAX+AsikHFkq0K1JHBFO866h5KHM4P/ZW6/OU=","ak.pv":"339","ak.dpoabenc":"","ak.tf":i};if(""!==t)o["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))o["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(o)},rv:function(){var e=["ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:o,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<body class="body layout-modern side-menu side-menu-right site-search-always-visble header-full-width content-type-oc-general content-template-oc-2-column-without-image group-template-oc-2-column-with-default-header page-name-early-voting page-sequence-14 page-depth-1 page-section-14 website-type-defaultsubsite device-desktop " id="body-top">
+    <div id="skip-to-content-container">
+        <a href="#main-content" class="visuallyhidden focusable" id="skip-to-content-link">Skip to main content</a>
+    </div>
+    <script>
+        // OCNOW-11988 (Cursor): Proactively focus skip link when returning from browser chrome.
+        // Must run inline (not deferred oc_main.js) so focus is intercepted before NVDA speaks footer.
+        (function () {
+            var awaitingReentry = false;
+            var inertSupported = 'inert' in HTMLElement.prototype;
+
+            function isExplicitlyOutsideDocument(node) {
+                return node != null && !document.documentElement.contains(node);
+            }
+
+            function getSkipContainer() {
+                return document.getElementById('skip-to-content-container');
+            }
+
+            function getSkipLink() {
+                return document.getElementById('skip-to-content-link');
+            }
+
+            function applyGuard() {
+                awaitingReentry = true;
+                if (!inertSupported) {
+                    return;
+                }
+                var skipContainer = getSkipContainer();
+                var children = document.body.children;
+                for (var i = 0; i < children.length; i++) {
+                    if (children[i] !== skipContainer) {
+                        children[i].setAttribute('inert', '');
+                    }
+                }
+            }
+
+            function clearGuard() {
+                awaitingReentry = false;
+                if (!inertSupported) {
+                    return;
+                }
+                var children = document.body.children;
+                for (var i = 0; i < children.length; i++) {
+                    children[i].removeAttribute('inert');
+                }
+            }
+
+            function isSkipLinkElement(target) {
+                if (!target) {
+                    return false;
+                }
+                var skipContainer = getSkipContainer();
+                return target.id === 'skip-to-content-link' ||
+                    (skipContainer && skipContainer.contains(target));
+            }
+
+            function focusSkipLink() {
+                var skipLink = getSkipLink();
+                if (!skipLink) {
+                    return;
+                }
+                if (window.scrollY > 0) {
+                    window.scrollTo(0, 0);
+                }
+                skipLink.focus({ preventScroll: true });
+            }
+
+            function scheduleGuardIfDocumentLostFocus() {
+                window.setTimeout(function () {
+                    if (!document.hasFocus()) {
+                        applyGuard();
+                    }
+                }, 0);
+            }
+
+            document.addEventListener('focusout', function (e) {
+                if (isExplicitlyOutsideDocument(e.relatedTarget)) {
+                    applyGuard();
+                }
+            }, true);
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Tab') {
+                    scheduleGuardIfDocumentLostFocus();
+                } else if (e.key === 'F6' || (e.key === 'l' && e.ctrlKey)) {
+                    scheduleGuardIfDocumentLostFocus();
+                }
+            }, true);
+
+            window.addEventListener('focus', function () {
+                if (!awaitingReentry) {
+                    return;
+                }
+                applyGuard();
+                focusSkipLink();
+            }, true);
+
+            document.addEventListener('focusin', function (e) {
+                var reentryFromChrome = awaitingReentry || isExplicitlyOutsideDocument(e.relatedTarget);
+                if (!reentryFromChrome) {
+                    return;
+                }
+                if (isSkipLinkElement(e.target)) {
+                    clearGuard();
+                    return;
+                }
+                applyGuard();
+                focusSkipLink();
+                clearGuard();
+            }, true);
+        })();
+    </script>
+    <form name="mainForm" method="post" action="/Early-Voting" id="mainForm">
+<input type="hidden" name="ctl04_seamless_script_manager_TSM" id="ctl04_seamless_script_manager_TSM" value="" />
+<input type="hidden" name="__SEAMLESSVIEWSTATE" id="__SEAMLESSVIEWSTATE" value="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" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="" />
+
+
+<script src="/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl04_seamless_script_manager_TSM&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bSystem.Web.Extensions%2c+Version%3d4.0.0.0%2c+Culture%3dneutral%2c+PublicKeyToken%3d31bf3856ad364e35%3aen-US%3add3ac3d5-1e29-4112-8fed-529caffa8f24%3aea597d4b%3bOpenCities.CustomControls%3aen-US%3a8875e443-f2ef-457b-94fb-857d92f72782%3a8e1d32bf" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=Dgt4HF_ft_aJ1oNhpkWrMiNDmBLKt_DsvWnSAz2w6tEELqoI6U0la4w2SXOqY6aKSQopJdYQ7QqurDo6luOWtmOtc0ilepv84Pn5KcIhMMrgeTsEf5EuV8_Sa3cCDWfG--Hnf94oO4VdVbckSgJaVhayxbZ7XIfk_l5vwX8rf1j3PHHLVdsirYnSQi7H-FBaAoI8vrsBRaLWZaSMhQbjtYYKqDWglhIGGk6W571YqSk-uulGq2FPvDWIH4jcRJViiV9xArPU8giGtZPgZuzgazGDA9l8J7QQlNhfdKhxD-RT-xq7lTMNzZtN4P2818X2kcTOPsVXuC5sJXLwZ_95djU3-fBGudmoTPxL2612tOyiZZah_zDS4uE2zWSOvuEiX7jWqffsB-AvNOYbMeUCVMkDWwxm4SnM9P_FzJ7I9RNhaF2SxAANL2e2AV_KOoQt0" type="text/javascript"></script>
+    
+<script type="text/javascript">
+    try{
+        function SeamlessEndRequestHandler(sender, args) {
+            try {
+                var dataItems = args.get_dataItems();
+                if(dataItems.ctl04_seamless_script_manager)
+                    document.getElementById('__SEAMLESSVIEWSTATE').value = dataItems.ctl04_seamless_script_manager;
+            }
+            catch (e) { }
+        }
+
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(SeamlessEndRequestHandler);
+    }
+    catch (e) { }
+</script>
+
+    <div class="unsupported-browser-warning js-element"></div>
+    
+    <div hidden>
+        <span id="new-window-0">opens in new tab or window </span>
+    </div>
+    <div class="overlay-container"></div>
+    
+    <div class="background-container">
+        <div class="page-container">
+            <!-- OC Layout Element GROUP TEMPLATE -->
+            <!--groupTemplateStart--><header><div class="print-header-outer-container print-element">
+<img src="/files/assets/public/templateimages/print-header.png" alt="Arlington County Voting and Elections - Logo" />
+</div>
+            <div class="toolbar-outer-container">
+  <div class="toolbar-inner-container clearfix">
+    <div class="toolbar-item toolbar-language notranslate toolbar-display-dropdown"><div class="no-js-element">
+		  <ul>
+		    <li id="toolbar-language-option-en-us-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=en-US" class="lang-item lang-en-us" data-translate-to="en-us" lang="en-US">English (United States)<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-am-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=am" class="lang-item lang-am" data-translate-to="am" lang="en">አማርኛ<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-ar-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ar" class="lang-item lang-ar" data-translate-to="ar" lang="en">عربي<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-bn-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=bn" class="lang-item lang-bn" data-translate-to="bn" lang="en">বাংলা<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-zh-cn-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=zh-CN" class="lang-item lang-zh-cn" data-translate-to="zh-cn" lang="en">中文<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-zh-tw-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=zh-TW" class="lang-item lang-zh-tw" data-translate-to="zh-tw" lang="en">中文<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-de-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=de" class="lang-item lang-de" data-translate-to="de" lang="en">Deutsch<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-es-419-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=es-419" class="lang-item lang-es-419" data-translate-to="es-419" lang="es-419">Español<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-fr-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=fr" class="lang-item lang-fr" data-translate-to="fr" lang="en">Français<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-ja-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ja" class="lang-item lang-ja" data-translate-to="ja" lang="en">日本<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-ko-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ko" class="lang-item lang-ko" data-translate-to="ko" lang="en"> 한국어<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-mn-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=mn" class="lang-item lang-mn" data-translate-to="mn" lang="en">Монгол<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-pt-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=pt" class="lang-item lang-pt" data-translate-to="pt" lang="en">Português<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-ru-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ru" class="lang-item lang-ru" data-translate-to="ru" lang="en">Pусский<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-ti-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ti" class="lang-item lang-ti" data-translate-to="ti" lang="ti">ትግሪኛ<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-ur-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ur" class="lang-item lang-ur" data-translate-to="ur" lang="en">اردو<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li id="toolbar-language-option-vi-noscript"><a href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=vi" class="lang-item lang-vi" data-translate-to="vi" lang="en">Tiếng Việt<span class="visuallyhidden"> Select this as your preferred language</span></a></li>
+          </ul>
+		</div>
+	<button type="button" role="combobox" aria-controls="toolbar-language-drop-down" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="none" aria-labelledby="toolbar-language-label" class="toolbar-button toolbar-button-language js-element">  
+        <span class="toolbar-language-globe-icon" aria-hidden="true"></span>
+        <span id="toolbar-language-label" class="current-language">
+            Select a language to translate to
+		</span>
+		<i aria-hidden="true"></i>
+	</button>
+	<div id="toolbar-language-drop-down" role="listbox" aria-label="Available languages" class="toolbar-drop-down toolbar-language-drop-down js-element clearfix">
+		<ul role="group">
+		    <li role="presentation"><a id="toolbar-language-option-en-us" role="option" aria-selected="true" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=en-US" class="lang-item lang-en-us" data-translate-to="en-us" lang="en-US">English (United States)<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-am" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=am" class="lang-item lang-am" data-translate-to="am" lang="en">አማርኛ<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-ar" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ar" class="lang-item lang-ar" data-translate-to="ar" lang="en">عربي<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-bn" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=bn" class="lang-item lang-bn" data-translate-to="bn" lang="en">বাংলা<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-zh-cn" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=zh-CN" class="lang-item lang-zh-cn" data-translate-to="zh-cn" lang="en">中文<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-zh-tw" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=zh-TW" class="lang-item lang-zh-tw" data-translate-to="zh-tw" lang="en">中文<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-de" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=de" class="lang-item lang-de" data-translate-to="de" lang="en">Deutsch<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-es-419" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=es-419" class="lang-item lang-es-419" data-translate-to="es-419" lang="es-419">Español<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-fr" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=fr" class="lang-item lang-fr" data-translate-to="fr" lang="en">Français<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-ja" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ja" class="lang-item lang-ja" data-translate-to="ja" lang="en">日本<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-ko" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ko" class="lang-item lang-ko" data-translate-to="ko" lang="en"> 한국어<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-mn" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=mn" class="lang-item lang-mn" data-translate-to="mn" lang="en">Монгол<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-pt" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=pt" class="lang-item lang-pt" data-translate-to="pt" lang="en">Português<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-ru" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ru" class="lang-item lang-ru" data-translate-to="ru" lang="en">Pусский<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-ti" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ti" class="lang-item lang-ti" data-translate-to="ti" lang="ti">ትግሪኛ<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-ur" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=ur" class="lang-item lang-ur" data-translate-to="ur" lang="en">اردو<span class="visuallyhidden"> Select this as your preferred language</span></a></li><li role="presentation"><a id="toolbar-language-option-vi" role="option" aria-selected="false" href="https://vote.arlingtonva.gov/Early-Voting?oc_lang=vi" class="lang-item lang-vi" data-translate-to="vi" lang="en">Tiếng Việt<span class="visuallyhidden"> Select this as your preferred language</span></a></li>
+        </ul>
+	</div></div>
+  </div>
+</div>
+            <div class="header-outer-container clearfix">
+ 	<div class="header-container header-layout-1  clearfix">
+		
+			<div class="header-site-logo">
+				<a href="https://vote.arlingtonva.gov/Home" lang="en-US" aria-label="Arlington County Voting and Elections - Home - Logo">
+				</a>
+			</div>
+		    <div class="mobile-search-btn js-element">
+		        <button><i aria-hidden="true"></i><span class="mobile-search-btn-text"><span class="visuallyhidden">Open </span>Search</span></button>
+		    </div>
+			<div class="header-search-control-container" id="header-search">
+				<div class="search-inner-container">
+					<div class="sc-search-panel">
+	<label for="ctl07_txtSearch" id="ctl07_lblSearch" class="sc-search-label">Search</label><input name="ctl07$txtSearch" type="text" id="ctl07_txtSearch" class="sc-search-text" placeholder="Search for a service or a page" /><input type="submit" name="ctl07$btnSearch" value="Search" id="ctl07_btnSearch" class="sc-search-button" />
+</div>
+					<div role="status" id="predictiveResults"></div>
+				</div>
+			</div>
+	</div>
+
+            <div class="side-menu-btn js-element">
+		            <button type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i><span class="side-menu-btn-text">Menu</span></button>
+		            </div>
+</div>
+<div class="navigation-outer-container">
+	<div id="nav" role="navigation" class="navigation-container" data-menu-type="offscreen" data-offscreen-position="right" aria-label="primary">
+		<div class="grid">
+			<div class="col-xs-12">              
+                <ul class="sf-menu" id="sc-main-menu"><li class="nav-section-quarters-1   first-item nav-item-seq-1">
+<a href="https://vote.arlingtonva.gov/Home" class="nav-level-1 "  target="">
+	<i class="item-icon" aria-hidden="true"></i><span class="item-text">Home</span>
+</a>
+</li>
+          
+            <li class="nav-section-quarters-1   nav-item-seq-2">
+<a href="https://vote.arlingtonva.gov/Voter-Registration" class="nav-level-1 nav-has-children"  target="">Registration</a>
+<button aria-label="Expand" aria-haspopup="true" class="mobnav-subarrow" aria-controls="sc-menu-second-level-nav-item-seq-2">
+              <i aria-hidden="true"></i>
+              </button>
+<ul id="sc-menu-second-level-nav-item-seq-2">
+
+          
+            <li class=" "><a  href="https://vote.arlingtonva.gov/Voter-Registration/Register-Vote" class=""  target="">Register to Vote</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Voter-Registration/checkupdate-registration" class=""  target="">Check Registration</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Voter-Registration/Same-Day-Registration" class=""  target="">Same Day Registration</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Voter-Registration/Understanding-your-Online-Voter-Record" class=""  target="">Understanding your Online Voter Record</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Voter-Registration/Your-Data" class=""  target="">Your Data</a></li></ul></li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-3">
+<a href="https://vote.arlingtonva.gov/Elections" class="nav-level-1 nav-has-children"  target="">Elections</a>
+<button aria-label="Expand" aria-haspopup="true" class="mobnav-subarrow" aria-controls="sc-menu-second-level-nav-item-seq-3">
+              <i aria-hidden="true"></i>
+              </button>
+<ul id="sc-menu-second-level-nav-item-seq-3">
+
+          
+            <li class=" "><a  href="https://vote.arlingtonva.gov/Elections/Elected-Officials" class=""  target="">Elected Officials</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Elections/Polling-Places" class="nav-has-children"  target="">Polling Places</a><button aria-label="Expand" aria-haspopup="true" class="mobnav-subarrow-child" aria-controls="sc-menu-third-level-nav-item-seq-3-nav-item-seq-2"><i aria-hidden="true"></i>
+              </button>
+<ul id="sc-menu-third-level-nav-item-seq-3-nav-item-seq-2">
+          
+            <li  class=" "><a href="https://vote.arlingtonva.gov/Elections/Polling-Places/maps-directions"  target="">Maps and Directions</a></li><li  class=" "><a href="https://vote.arlingtonva.gov/Elections/Polling-Places/rides-polls"  target="">Rides to the Polls</a></li><li  class=" "><a href="https://vote.arlingtonva.gov/Elections/Polling-Places/Accessibility-Services"  target="">Accessibility Services</a></li><li  class=" "><a href="https://vote.arlingtonva.gov/Elections/Polling-Places/election-day-media-guidelines"  target="">Media Guidelines</a></li><li  class=" "><a href="https://vote.arlingtonva.gov/Elections/Polling-Places/Poll-Watchers"  target="">Poll Watchers</a></li></ul></li><li class=" "><a  href="https://vote.arlingtonva.gov/Elections/ID-Requirements" class=""  target="">ID Requirements</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Elections/workatpolls" class=""  target="">Work at the Polls</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Elections/Results-Data" class=""  target="">Results & Data</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Elections/Candidate-Finances" class=""  target="">Candidate Finances</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Elections/Virginia-Elections" class=""  target="">Virginia Elections</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Elections/run-office-arlington-virginia" class=""  target="">Run for Office</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Elections/Ranked-Choice-Voting" class=""  target="">Ranked Choice Voting</a></li></ul></li>
+          
+            <li class="nav-section-quarters-2   nav-item-seq-4">
+<a href="https://vote.arlingtonva.gov/Vote-by-Mail" class="nav-level-1 nav-has-children"  target="">Vote by Mail</a>
+<button aria-label="Expand" aria-haspopup="true" class="mobnav-subarrow" aria-controls="sc-menu-second-level-nav-item-seq-4">
+              <i aria-hidden="true"></i>
+              </button>
+<ul id="sc-menu-second-level-nav-item-seq-4">
+
+          
+            <li class=" "><a  href="https://vote.arlingtonva.gov/Vote-by-Mail/Track-Your-Ballot" class=""  target="">Track Your Ballot</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Vote-by-Mail/ballot-drop-off" class=""  target="">Ballot Drop Box</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Vote-by-Mail/lost-damaged-absentee-ballots" class=""  target="">Lost/Damaged Ballots</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Vote-by-Mail/militaryoverseas-absentee-voting" class=""  target="">Military/Overseas Voting</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Vote-by-Mail/Accessible-Mail-Ballot" class=""  target="">Accessible Mail Ballot</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/Vote-by-Mail/Permanent-Absentee-Mailing-List" class=""  target="">Permanent Absentee Mailing List</a></li></ul></li>
+          
+            <li class="nav-section-quarters-3 nav-active-path nav-active-page nav-item-seq-5">
+<a href="https://vote.arlingtonva.gov/Early-Voting" class="nav-level-1 nav-has-children"  target="">Early Voting</a>
+<button aria-label="Expand" aria-haspopup="true" class="mobnav-subarrow" aria-controls="sc-menu-second-level-nav-item-seq-5">
+              <i aria-hidden="true"></i>
+              </button>
+<ul id="sc-menu-second-level-nav-item-seq-5">
+
+          
+            <li class=" "><a  href="https://vote.arlingtonva.gov/Early-Voting/Disability-Services" class=""  target="">Disability Services</a></li></ul></li>
+          
+            <li class="nav-section-quarters-3   nav-item-seq-6">
+<a href="https://vote.arlingtonva.gov/About" class="nav-level-1 nav-has-children"  target="">Electoral Board and Staff</a>
+<button aria-label="Expand" aria-haspopup="true" class="mobnav-subarrow" aria-controls="sc-menu-second-level-nav-item-seq-6">
+              <i aria-hidden="true"></i>
+              </button>
+<ul id="sc-menu-second-level-nav-item-seq-6">
+
+          
+            <li class=" "><a  href="https://vote.arlingtonva.gov/About/History" class=""  target="">History</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/About/electoral-board-minutes" class="nav-has-children"  target="">Electoral Board Meeting Minutes</a><button aria-label="Expand" aria-haspopup="true" class="mobnav-subarrow-child" aria-controls="sc-menu-third-level-nav-item-seq-6-nav-item-seq-2"><i aria-hidden="true"></i>
+              </button>
+<ul id="sc-menu-third-level-nav-item-seq-6-nav-item-seq-2">
+          
+            <li  class=" "><a href="https://vote.arlingtonva.gov/About/electoral-board-minutes/Electoral-Board-Archives"  target="">Electoral Board Archives</a></li></ul></li><li class=" "><a  href="https://vote.arlingtonva.gov/About/volunteer-opportunities" class=""  target="">Volunteer & Job Opportunities</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/About/voting-resources" class=""  target="">Election Resources</a></li><li class=" "><a  href="https://vote.arlingtonva.gov/About/Outreach" class=""  target="">Voter Registration Drives & Outreach</a></li></ul></li>
+          
+            </ul>
+			</div>
+		</div>
+	</div>
+</div>
+            </header>
+            <div class="content-outer-container">
+                <div id="main" role="main" class="main-outer-container clearfix">
+                        
+                        <div class="content-main-container">
+                            <div class="grid">
+					            <div class="col-xs-12">
+						            <nav id="breadcrumbs-container" aria-label="You Are Here :">
+							            <span role="list">
+<span role="listitem">
+	<a href="https://vote.arlingtonva.gov/Home"  lang="en-US">Home</a>
+	<span class="nav-separator" aria-hidden="true" role="presentation">/</span>
+</span>
+          <span class="current-page" role="listitem" aria-current="page" >Early Voting</span></span>
+						            </nav>
+					            </div>
+                      
+					            <div class="col-xs-12">
+						            <div class="main-inner-container">
+                                        <div class="grid">							
+								            <div class="col-lg-4">								
+									            <div id="sub-navigation-outter-container" role="navigation" aria-label="Section Navigation">
+									            &nbsp;
+									            <div id="sub-navigation-container">
+                                <p class="sub-nav-header" role="heading" aria-level="2" id="in-this-section" >
+	In This Section
+</p>
+<ul><li class='nav-level-1   '>
+	<a href="https://vote.arlingtonva.gov/Early-Voting/Disability-Services"  target="">Disability Services</a>
+	
+</li></ul>
+									            </div>
+									            </div>
+								            </div>
+								            <div class="col-xs-12 col-lg-8">
+							                <div id="main-content" class="main-container clearfix">
+							                  
+                                <!-- OC Layout Element Conent Template -->
+							                  <!--normalTemplateStart--><h1 class='oc-page-title '>Early Voting</h1>
+
+<h2>Early Voting Locations &amp; Hours</h2>
+<p><a href="https://vote.arlingtonva.gov/Elections">November 3, 2026 General &amp; Special Election Information</a></p>
+<ul>
+<li>Voters need&nbsp;<a href="https://vote.arlingtonva.gov/Elections/ID-Requirements" target="_self">an acceptable form of ID.</a></li>
+<li>Voters mark and cast their ballot on the spot. They only need to bring an acceptable ID.&nbsp;</li>
+<li>Curbside voting is available at all Early Voting locations during operating hours for voters with disabilities or those aged 65 and older.&nbsp;<a href="https://vote.arlingtonva.gov/Elections/Polling-Places/Accessibility-Services" style="font-family: inherit; font-size: 1em;">Learn more about Accessibility Services.</a></li>
+</ul>
+<p><span class="emphasis-box-2">There is no in-person voting at the Madison Community Center, as the facility is closed for a maintenance project.</span></p>
+<table class="sc-responsive-table" style="" summary="Early Voting locations and operating hours for each location.">
+<thead>
+<tr>
+<th id="table_heading_0" style="">Early Voting Location</th>
+<th id="table_heading_1" style="">Early Voting Dates &amp; Hours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td headers="table_heading_0" class="" style="">
+<p><strong><a href="https://www.arlingtonva.us/Venues/Locations/Ellen-M-Bozman-Government-Center">Courthouse Plaza</a>&nbsp;</strong><br />
+2100 Clarendon Blvd, Ste 320</p>
+</td>
+<td headers="table_heading_1">
+<p><strong>September 18 - October 30</strong><br />
+Monday - Friday......9am - 5pm</p>
+<strong>Extended Hours: October 22, 23, 29, 30</strong>
+<p>Thursday &amp; Friday......9am - 7pm</p>
+<p><strong><strong>October 18 &amp; 25</strong><br /></strong> Sunday......11am - 4pm</p>
+<p><strong>October 17, 24, 31</strong><br />
+Saturday......9am - 5pm&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td headers="table_heading_0"><strong><a href="https://www.arlingtonva.us/Government/Departments/Parks-Recreation/Locations/Indoor-Facilities/Walter-Reed-Community-Center-Park">Walter Reed Community Center</a></strong><br />
+2909 16th St S</td>
+<td headers="table_heading_1">
+<p><strong>October 22, 23, 29, 30</strong><br />
+Thursday &amp; Friday......2pm - 7pm</p>
+<p><strong><strong>October 18 &amp; 25</strong><br /></strong> Sunday......11am - 4pm</p>
+<p><strong>October 17, 24, 31</strong><br />
+Saturday......9am - 5pm&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td headers="table_heading_0">
+<p><strong><a href="https://www.arlingtonva.us/Government/Departments/Parks-Recreation/Locations/Indoor-Facilities/Langston-Brown-Community-Center-and-Park">Langston-Brown Community Center</a></strong><br />
+2121 N Culpeper St</p>
+</td>
+<td headers="table_heading_1">
+<p><strong>October 22, 23, 29, 30</strong><br />
+Thursday &amp; Friday......2pm - 7pm</p>
+<p><strong><strong>October 18 &amp; 25</strong><br /></strong> Sunday......11am - 4pm</p>
+<p><strong>October 17, 24, 31</strong><br />
+Saturday......9am - 5pm&nbsp;&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+
+
+      
+
+
+<!--normalTemplateEnd-->
+                                
+                                
+                                
+							                </div>
+							                </div>
+							             </div>
+						            </div>
+						            </div>
+                        
+					                  </div>
+                        </div>
+                        <div class="back-to-top-container text-center">
+                            <a href="#body-top" id="back-to-top"><i aria-hidden="true"></i><span class="js-visuallyhidden">Back to top</span></a>
+                        </div>
+                </div>
+            </div><!--groupTemplateEnd-->
+            <footer>
+                
+                    <div class="footer-outer-container footer-first-row">
+                        <div class="footer-container clearfix">
+                            <div class="grid grid-pad">
+                                <div class="col-xs-12 col-s-6 col-m-4 col-lg-4 Contact Us" >
+	
+			<h2 class="visuallyhidden">Site Footer</h2>
+			<h3 class="footer-title">Contact Us</h3>
+			
+	<p>Voter Registration &amp; Elections<br />
+<span style="font-size: 1em; font-family: inherit;">2100 Clarendon Blvd, Suite 320<br /></span><span style="font-size: 1em; font-family: inherit;">Arlington, VA 22201</span></p>
+<p><span style="font-size: 1em; font-family: inherit;">Hours: 9:00 a.m.-5:00 p.m. M-F</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+	<ul class="footer-links with-icons Contact Us">   </ul>
+	
+</div><div class="col-xs-12 col-s-6 col-m-4 col-lg-4 Phone & Fax" >
+	
+			<h2 class="visuallyhidden">Site Footer</h2>
+			<h3 class="footer-title">Phone &amp; Fax</h3>
+			
+	<p>Phone: <a href="tel:7032283456">703-228-3456</a></p>
+<p>TTY: <a href="tel:7032284611">703-228-4611</a></p>
+<p>FAX (main): 703-228-3659</p>
+
+
+	<ul class="footer-links with-icons Phone & Fax">   </ul>
+	
+</div><div class="col-xs-12 col-s-12 col-m-4 col-lg-4 Email" >
+	
+			<h2 class="visuallyhidden">Site Footer</h2>
+			<h3 class="footer-title">Email</h3>
+			
+	<p><a href="mailto:voters@arlingtonva.us">voters@arlingtonva.us</a></p>
+
+
+	<ul class="footer-links with-icons Email">   </ul>
+	
+</div><div class="col-xs-12 col-s-6 col-m-4 col-lg-4 Stay Informed" >
+	
+			<h2 class="visuallyhidden">Site Footer</h2>
+			<h3 class="footer-title">Stay Informed</h3>
+			
+	<p><a href="https://vote.arlingtonva.gov/Stay-Informed">Sign up for the Voter Registration &amp; Elections Newsletter</a></p>
+<p>&nbsp;</p>
+
+
+	<ul class="footer-links with-icons Stay Informed">   </ul>
+	
+</div>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="footer-outer-container footer-second-row">
+                    <div class="footer-container clearfix">
+                        <div class="grid grid-pad footer-secondary-links">
+                            <div class="col-xs-12 col-m-7">
+                                
+                                    <div><a href="https://www.arlingtonva.us/" target="_blank"  >County Homepage</a>&nbsp;| <a href="https://www.arlingtonva.us/terms-conditions/" target="_blank"  >Terms & Conditions</a>&nbsp;| <a href="https://www.arlingtonva.us/global-sitemap/" target="_blank"  >Global Sitemap</a>&nbsp;| <a href="https://www.arlingtonva.us/employees/" target="_blank"  >For Employees</a>&nbsp;| <a href="https://www.arlingtonva.us/contact-arlington/" target="_blank"  >Contact Arlington</a></div>
+                                
+                            </div>
+                            <div class="col-xs-12 col-m-5 powered-by">
+                                <div class="right">
+                                    &copy; 2026 Arlington County Voting and Elections&nbsp;|&nbsp;<span class="powered-by">Powered by <a href="https://granicus.com/solution/govaccess/opencities/" target="_blank">Granicus</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="/files/oc-resources/b8a4bbae-105f-4958-8618-d5068f71addc/JsTextSnippets.js?ocsvclang=en-US" type="text/javascript"></script><script></script>
+    
+    
+    <!-- Monsido Snippet -->
+<script type="text/javascript">
+    window._monsido = window._monsido || {
+        token: "wvErPOn6BwdqGoWaaP-eoA",
+        pageCorrect: {
+            enabled: true,
+        },
+        pageAssistV2: {
+            enabled: true,
+            theme: "light",
+            mainColor: "#783CE2",
+            textColor: "#ffffff",
+            linkColor: "#783CE2",
+            buttonHoverColor: "#783CE2",
+            mainDarkColor: "#052942",
+            textDarkColor: "#ffffff",
+            linkColorDark: "#FFCF4B",
+            buttonHoverDarkColor: "#FFCF4B",
+            greeting: "Discover your personalization options",
+            direction: "leftbottom",
+            coordinates: "   ",
+            iconShape: "circle",
+            title: "Personalization Options",
+            titleText: "Welcome to PageAssist™ toolbar! Adjust the options below to cater the website to your accessibility needs.",
+            iconPictureUrl: "logo",
+            logoPictureUrl: "",
+            logoPictureBase64: "",
+            languages: ["en-US", "es-MX", "de-DE", "fr-FR", "pt-PT", "zh-CN", "ru-RU"],
+            defaultLanguage: "en-US",
+            skipTo: true,
+            alwaysOnTop: false,
+        },
+    };
+</script>
+<script type="text/javascript" async src="https://app-script.monsido.com/v2/monsido-script.js"></script>
+<!-- End Monsido Snippet -->
+<!-- Google site tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N2B6240JE7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N2B6240JE7');
+</script>
+<!-- End Google Site Tag -->
+<!-- Google Tag Manager Header code -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WSS6P22');</script>
+<!-- End Google Tag Manager -->
+<!-- Google Tag Manager Body Code (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSS6P22"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    
+    
+
+<script type="text/javascript">
+//<![CDATA[
+window.__TsmHiddenField = $get('ctl04_seamless_script_manager_TSM');//]]>
+</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+[
+  {
+    "at": "2026-09-23T03:51:04.326387+00:00",
+    "source": "VA Vote",
+    "message": "Added a statewide turnout map, current-election precinct maps, local-time update history, and expandable voting schedules. Historical precinct maps are hidden.",
+    "through": null,
+    "url": null
+  },
+  {
+    "at": "2026-09-23T15:28:19.784305+00:00",
+    "source": "Digital Poll Watchers",
+    "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
+    "through": "2026-09-22",
+    "url": "https://digitalpollwatchers.org/files/DALTracker/2026_November_General/metrics/2026_November_General-DAL-metrics.zip"
+  },
+  {
+    "at": "2026-09-24T14:32:03.151634+00:00",
+    "source": "Digital Poll Watchers",
+    "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
+    "through": "2026-09-23",
+    "url": "https://digitalpollwatchers.org/files/DALTracker/2026_November_General/metrics/2026_November_General-DAL-metrics.zip"
+  },
+  {
+    "at": "2026-09-24T21:32:52.049412+00:00",
+    "source": "Fairfax County PDF",
+    "message": "Loaded county totals, mail-return details and voting-site counts.",
+    "through": "2026-09-23",
+    "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
+  },
+  {
+    "at": "2026-09-26T17:32:38.187761+00:00",
+    "source": "Digital Poll Watchers",
+    "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
+    "through": "2026-09-25",
+    "url": "https://digitalpollwatchers.org/files/DALTracker/2026_November_General/metrics/2026_November_General-DAL-metrics.zip"
+  },
+  {
+    "at": "2026-09-26T17:33:14.565090+00:00",
+    "source": "Fairfax County PDF",
+    "message": "Loaded county totals, mail-return details and voting-site counts.",
+    "through": "2026-09-24",
+    "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
+  }
+]

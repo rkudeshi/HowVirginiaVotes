@@ -1,0 +1,17 @@
+{
+  "election": "2026",
+  "locality": "prince-william-county",
+  "source": "https://www.pwcvotes.org/",
+  "reportDate": "2026-09-22",
+  "retrievedAt": "2026-09-22T18:33:37Z",
+  "activityThrough": "2026-09-21",
+  "activityDateBasis": "displayed cutoff",
+  "displayedCutoff": "2026-09-21",
+  "contentHash": "8d2f809546d7eeeab4bfae5c27d1c61d40ceedf0c41b957d0bd146a1b7c95503",
+  "early": 1720,
+  "mail": 102,
+  "mailSent": 27208,
+  "outstanding": 27106,
+  "registered": 335381,
+  "total": 1822
+}

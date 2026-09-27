@@ -1,0 +1,233 @@
+{
+  "_note": "Registered voters per locality per November general election, snapshot 1 November of each year. Supplied directly from the state's Registrant Counts By Locality and treated as the authority: one consistent series across every locality and year, which is what a cross-jurisdiction share-of-electorate column needs. `registered` is the TOTAL (active + inactive) and is what the site divides by; `active` is carried alongside for reference. scripts/fetch_turnout.py checks this against the state's own per-election precinct files for the years those cover (2020-2022).",
+  "elections": {
+    "2020-11-03": {
+      "Alexandria City": {
+        "registered": 112736,
+        "active": 104859
+      },
+      "Arlington County": {
+        "registered": 178428,
+        "active": 166415
+      },
+      "Fairfax City": {
+        "registered": 17373,
+        "active": 16835
+      },
+      "Fairfax County": {
+        "registered": 787189,
+        "active": 761658
+      },
+      "Falls Church City": {
+        "registered": 11126,
+        "active": 10654
+      },
+      "Loudoun County": {
+        "registered": 283684,
+        "active": 274962
+      },
+      "Manassas City": {
+        "registered": 23391,
+        "active": 22446
+      },
+      "Manassas Park City": {
+        "registered": 8768,
+        "active": 8400
+      },
+      "Prince William County": {
+        "registered": 310676,
+        "active": 295749
+      }
+    },
+    "2021-11-02": {
+      "Alexandria City": {
+        "registered": 107326,
+        "active": 96302
+      },
+      "Arlington County": {
+        "registered": 172064,
+        "active": 155921
+      },
+      "Fairfax City": {
+        "registered": 17506,
+        "active": 16290
+      },
+      "Fairfax County": {
+        "registered": 774473,
+        "active": 733888
+      },
+      "Falls Church City": {
+        "registered": 10838,
+        "active": 10068
+      },
+      "Loudoun County": {
+        "registered": 285043,
+        "active": 270268
+      },
+      "Manassas City": {
+        "registered": 23181,
+        "active": 21628
+      },
+      "Manassas Park City": {
+        "registered": 8677,
+        "active": 8049
+      },
+      "Prince William County": {
+        "registered": 308346,
+        "active": 287462
+      }
+    },
+    "2022-11-08": {
+      "Alexandria City": {
+        "registered": 108407,
+        "active": 98145
+      },
+      "Arlington County": {
+        "registered": 175478,
+        "active": 157160
+      },
+      "Fairfax City": {
+        "registered": 17655,
+        "active": 16454
+      },
+      "Fairfax County": {
+        "registered": 783622,
+        "active": 738427
+      },
+      "Falls Church City": {
+        "registered": 11114,
+        "active": 10242
+      },
+      "Loudoun County": {
+        "registered": 287891,
+        "active": 274171
+      },
+      "Manassas City": {
+        "registered": 23663,
+        "active": 22015
+      },
+      "Manassas Park City": {
+        "registered": 8936,
+        "active": 8212
+      },
+      "Prince William County": {
+        "registered": 314485,
+        "active": 293753
+      }
+    },
+    "2023-11-07": {
+      "Alexandria City": {
+        "registered": 113416,
+        "active": 96612
+      },
+      "Arlington County": {
+        "registered": 175529,
+        "active": 154311
+      },
+      "Fairfax City": {
+        "registered": 18128,
+        "active": 16446
+      },
+      "Fairfax County": {
+        "registered": 787065,
+        "active": 717521
+      },
+      "Falls Church City": {
+        "registered": 11252,
+        "active": 10292
+      },
+      "Loudoun County": {
+        "registered": 295180,
+        "active": 271986
+      },
+      "Manassas City": {
+        "registered": 23995,
+        "active": 21549
+      },
+      "Manassas Park City": {
+        "registered": 9163,
+        "active": 8167
+      },
+      "Prince William County": {
+        "registered": 318710,
+        "active": 286798
+      }
+    },
+    "2024-11-05": {
+      "Alexandria City": {
+        "registered": 119150,
+        "active": 98938
+      },
+      "Arlington County": {
+        "registered": 187091,
+        "active": 164865
+      },
+      "Fairfax City": {
+        "registered": 18826,
+        "active": 17395
+      },
+      "Fairfax County": {
+        "registered": 820130,
+        "active": 746714
+      },
+      "Falls Church City": {
+        "registered": 11883,
+        "active": 10796
+      },
+      "Loudoun County": {
+        "registered": 308577,
+        "active": 283964
+      },
+      "Manassas City": {
+        "registered": 24472,
+        "active": 22396
+      },
+      "Manassas Park City": {
+        "registered": 9615,
+        "active": 8784
+      },
+      "Prince William County": {
+        "registered": 330732,
+        "active": 302625
+      }
+    },
+    "2025-11-04": {
+      "Alexandria City": {
+        "registered": 114997,
+        "active": 100793
+      },
+      "Arlington County": {
+        "registered": 181532,
+        "active": 167699
+      },
+      "Fairfax City": {
+        "registered": 18661,
+        "active": 17800
+      },
+      "Fairfax County": {
+        "registered": 808667,
+        "active": 754532
+      },
+      "Falls Church City": {
+        "registered": 11965,
+        "active": 11291
+      },
+      "Loudoun County": {
+        "registered": 307229,
+        "active": 290412
+      },
+      "Manassas City": {
+        "registered": 24296,
+        "active": 22708
+      },
+      "Manassas Park City": {
+        "registered": 9651,
+        "active": 9166
+      },
+      "Prince William County": {
+        "registered": 330676,
+        "active": 309415
+      }
+    }
+  }
+}
