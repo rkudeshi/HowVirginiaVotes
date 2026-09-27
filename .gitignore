@@ -1,0 +1,5 @@
+.sites-runtime/
+__pycache__/
+
+# Sites deployment archives
+novavote-site.tar.gz

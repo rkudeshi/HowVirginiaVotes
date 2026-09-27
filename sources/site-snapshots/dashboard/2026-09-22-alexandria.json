@@ -1,0 +1,24 @@
+{
+  "election": "2026",
+  "locality": "alexandria-city",
+  "source": "https://www.alexandriava.gov/elections/election-dashboard-november-3-2026",
+  "retrievedAt": "2026-09-22T10:28:44-04:00",
+  "reportDate": "2026-09-22",
+  "activityThrough": "2026-09-21",
+  "early": 1078,
+  "mail": 76,
+  "issued": 10377,
+  "outstanding": 10301,
+  "sitesDaily": [
+    {
+      "date": "2026-09-18",
+      "early": 682,
+      "sites": {"alexandria_office": 682, "beatley": 0}
+    },
+    {
+      "date": "2026-09-21",
+      "early": 396,
+      "sites": {"alexandria_office": 396, "beatley": 0}
+    }
+  ]
+}
