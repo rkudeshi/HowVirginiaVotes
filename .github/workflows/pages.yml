@@ -22,6 +22,8 @@ jobs:
         run: |
           node --check dist/app.js
           node --check dist/planning.js
+          node --check dist/comparison.js
+          node --test tests/comparison.test.cjs
           python3 validate_data.py
       - name: Build clean URL pages
         run: python3 build_routes.py

@@ -61,5 +61,12 @@
     "message": "Completed November 2020 daily histories for all 133 localities, preserving Fairfax. Added comparison timeline and ballot-type filters, regional and locality-size/density summaries, and shoreline-corrected overview map.",
     "through": null,
     "url": null
+  },
+  {
+    "at": "2026-10-05T04:47:51.678561+00:00",
+    "source": "Website update",
+    "message": "Added election comparisons on the homepage and locality pages, a compact regional table, alphabetical locality sorting with region filters and turnout bars, unclipped map tooltips, and chart date bubbles. Historical charts now default to election day.",
+    "through": null,
+    "url": null
   }
 ]

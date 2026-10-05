@@ -33,3 +33,7 @@ Preserve existing enriched data. **Do not run older `build_data.py` or `prepare_
 ## Migration provenance
 
 Imported from VA Vote Sites source commit `5077aaf511f95a11c2a58ed116470dea114aa0d3`. The original Sites deployment is retained. The public site contains aggregate election data, not individual voter records.
+
+## Comparison checks
+
+Run `node --test tests/comparison.test.cjs` to check comparison defaults, election-relative alignment, matched coverage, weighted turnout, and the election-day cutoff. These tests also run in the Pages workflow.
