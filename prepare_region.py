@@ -1,6 +1,7 @@
 """Build the nine-locality dataset from preserved source snapshots.
 Refresh source ZIPs separately before running. No voter-level records are used.
 """
+from source_attribution import DAL_DESCRIPTION
 import csv,io,json,zipfile,re
 from datetime import datetime
 from pathlib import Path
@@ -18,7 +19,7 @@ for year,zname in [(2025,'metrics2025.zip'),(2026,'metrics.zip')]:
   if name in regs:assert regs[name]==vals
   regs[name]=vals
  z=zipfile.ZipFile(ROOT/'sources'/zname)
- election={'year':year,'registrationDate':REG[year][0],'registrationSource':REG[year][1],'source':f'https://digitalpollwatchers.org/files/DALTracker/{year}_November_General/metrics/{year}_November_General-DAL-metrics.zip','localities':[]}
+ election={'year':year,'registrationDate':REG[year][0],'registrationSource':REG[year][1],'source':DAL_DESCRIPTION,'localities':[]}
  for name in NAMES:
   matches=[p for p in z.namelist() if p.startswith('byLOCALITY_NAME/'+name.upper()+'/') and p.endswith('.csv')];assert len(matches)==1,(name,matches)
   records=list(csv.DictReader(io.StringIO(z.read(matches[0]).decode('utf-8-sig'))))[1:]

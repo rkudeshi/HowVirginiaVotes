@@ -6,7 +6,13 @@ The existing Sites deployment remains private. This change does not modify the u
 
 ## Data coverage
 
-- Nine localities, November 2023, 2024, 2025, 2026 and April 2026: saved Digital Poll Watchers/EPEC aggregate DAL snapshots.
+Public source wording: “Compiled from Virginia Daily Absentee List records”
+(via intermediary metric reports), and “Historical voting totals compiled from
+archived reports.” Neither description implies direct acquisition from the
+state. Exact original attribution is kept in the ignored local provenance
+archive; raw data and existing source precedence are preserved.
+
+- Nine localities, November 2023, 2024, 2025, 2026 and April 2026: saved intermediary DAL aggregate DAL snapshots.
 - Fairfax November 2020–2022: daily county spreadsheets preserved in the user's public repository.
 - Fairfax November 2020–2025: county daily reports, site records, schedules and weather. 2024's 16-site table was newly extracted and checked against each site total and every daily total.
 - Current calendar coverage: Fairfax, Loudoun, Prince William, Arlington, Alexandria, Falls Church, Manassas Park. Manassas has a recovered 2025 schedule; its current and Fairfax City's schedules remain unverified.
@@ -76,6 +82,6 @@ All 133 localities are loaded for November 2023–2026 and April 2026; Fairfax's
 name filtering, separate count/rate columns, satellite counts, and next opening
 dates. Current precinct maps are preserved for the original nine only. Schedule
 coverage is explicit; incomplete new schedules are textual, not fed into the
-model as complete hours. Hourly refresh now covers all 133 DPW aggregate series,
+model as complete hours. Hourly refresh now covers all 133 DAL aggregate series,
 Fairfax PDF, and per-site sources where relevant. Native mobile browser visual
 QA is unavailable in this static preview environment; DOM interactions are tested.

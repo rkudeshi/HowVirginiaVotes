@@ -46,4 +46,4 @@ docstring in `scripts/parse_dal.py`.
 - **Registered-voter counts** for the eight non-Fairfax localities and for
   Fairfax 2023/2024, so share of the electorate covers every row.
 - **Past cycles** for the eight non-Fairfax localities; only Nov 2025 is in.
-- **Precinct-level data**: the upstream source is the Virginia Dept. of Elections (ELECT) Daily Absentee List (DAL), plus the Registered Voter List and Comprehensive Absentee Application List. Digital Poll Watchers / EPEC *purchase* these files from ELECT and republish analysis — they are a downstream analyst, not the primary source, and they take explicit positions on ballot questions. Go to ELECT directly.
+- **Precinct-level data**: the upstream source is the Virginia Dept. of Elections (ELECT) Daily Absentee List (DAL), plus the Registered Voter List and Comprehensive Absentee Application List. These datasets were obtained through intermediary compilations, not directly from ELECT. Original acquisition details are preserved in the private local provenance archive.

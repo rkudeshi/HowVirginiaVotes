@@ -1,7 +1,7 @@
 """Merge manually verified locality-dashboard site snapshots into the public series.
 
 Dashboard snapshots use activity dates for chart observations and retain the
-separate report/retrieval dates. Re-running this script is idempotent. DPW
+separate report/retrieval dates. Re-running this script is idempotent. DAL
 remains the countywide aggregate source; dashboards contribute site counts.
 """
 import json

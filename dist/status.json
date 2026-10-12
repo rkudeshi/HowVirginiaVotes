@@ -8,17 +8,17 @@
   },
   {
     "at": "2026-09-23T15:28:19.784305+00:00",
-    "source": "Digital Poll Watchers",
+    "source": "Daily Absentee List",
     "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
     "through": "2026-09-22",
-    "url": "https://digitalpollwatchers.org/files/DALTracker/2026_November_General/metrics/2026_November_General-DAL-metrics.zip"
+    "url": null
   },
   {
     "at": "2026-09-24T14:32:03.151634+00:00",
-    "source": "Digital Poll Watchers",
+    "source": "Daily Absentee List",
     "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
     "through": "2026-09-23",
-    "url": "https://digitalpollwatchers.org/files/DALTracker/2026_November_General/metrics/2026_November_General-DAL-metrics.zip"
+    "url": null
   },
   {
     "at": "2026-09-24T21:32:52.049412+00:00",
@@ -29,10 +29,10 @@
   },
   {
     "at": "2026-09-26T17:32:38.187761+00:00",
-    "source": "Digital Poll Watchers",
+    "source": "Daily Absentee List",
     "message": "Loaded absentee voting data for 133 localities and updated matched precinct histories.",
     "through": "2026-09-25",
-    "url": "https://digitalpollwatchers.org/files/DALTracker/2026_November_General/metrics/2026_November_General-DAL-metrics.zip"
+    "url": null
   },
   {
     "at": "2026-09-26T17:33:14.565090+00:00",
@@ -80,6 +80,13 @@
     "at": "2026-10-12T22:24:11.536729+00:00",
     "source": "Website update",
     "message": "Renamed the site VoteFlow; simplified homepage tables and sorting; enabled all historical comparisons with in-person and mail pace tables; added sortable daily data, transposable site charts, and grouped voting schedules with explicit historical uncertainty.",
+    "through": null,
+    "url": null
+  },
+  {
+    "at": "2026-10-12T22:45:27.717452+00:00",
+    "source": "Website update",
+    "message": "Standardized source naming as Daily Absentee List and Archived voting data; updated import and refresh paths while preserving voting data and source precedence.",
     "through": null,
     "url": null
   }

@@ -4,7 +4,7 @@ PURPOSE
 Use these files to reproduce the simple countywide daily pre-election participation series from the Fairfax-style report for the November 4, 2025 Virginia general election.
 
 SOURCE
-The CSVs are processed daily Daily Absentee List (DAL) metric snapshots published by Digital Poll Watchers / Electoral Process Education Corp. (EPEC), derived from Virginia Department of Elections (ELECT) DAL data. Source page: https://digitalpollwatchers.org/2025-va-november-general-election-dal-file-metrics/
+The CSVs are processed daily Daily Absentee List (DAL) metric snapshots published by intermediary compilers, derived from Virginia Department of Elections (ELECT) DAL data. Source description: Compiled from Virginia Daily Absentee List records via intermediary reports
 
 JURISDICTIONS INCLUDED
 Alexandria City
@@ -18,7 +18,7 @@ Manassas Park City
 Prince William County
 
 FILES
-Each jurisdiction has an untouched CSV from the EPEC locality-level metrics archive.
+Each jurisdiction has an untouched CSV from the intermediary locality-level metrics archive.
 NoVA_2025_DAL_metrics_combined.csv stacks all 9 files and adds LOCALITY as the first column.
 
 IMPORTANT DATA CHARACTERISTIC
@@ -27,11 +27,11 @@ These are DAILY CUMULATIVE DAL SNAPSHOTS, not voter-level raw DAL files and not 
 The original locality CSVs contain a second row that declares data types (string, number, number, ...). Ignore that row when loading data. The combined CSV has already removed it.
 
 CORE FIELDS TO USE
-ON_MACHINE = cumulative approved early in-person ballots in the DAL snapshot. EPEC definition: BALLOT_STATUS == ON_MACHINE and APP_STATUS == APPROVED.
-MAIL_IN = cumulative returned mail/absentee ballots counted by EPEC as MARKED + PRE_PROCESSED.
+ON_MACHINE = cumulative approved early in-person ballots in the DAL snapshot. Intermediary definition: BALLOT_STATUS == ON_MACHINE and APP_STATUS == APPROVED.
+MAIL_IN = cumulative returned mail/absentee ballots counted in the intermediary reports as MARKED + PRE_PROCESSED.
 MARKED = approved records with BALLOT_STATUS == MARKED.
 PRE_PROCESSED = approved records with BALLOT_STATUS == PRE-PROCESSED.
-COUNTABLE = EPEC's broader countable category: PROVISIONAL + MARKED + PRE_PROCESSED + ON_MACHINE + FWAB. Do NOT use COUNTABLE as the simple early-in-person-plus-mail total unless that broader definition is intentionally desired.
+COUNTABLE = the intermediary's broader countable category: PROVISIONAL + MARKED + PRE_PROCESSED + ON_MACHINE + FWAB. Do NOT use COUNTABLE as the simple early-in-person-plus-mail total unless that broader definition is intentionally desired.
 
 TARGET OUTPUT
 For each locality, create one row per activity date with at least:
@@ -87,7 +87,7 @@ election_date, locality, activity_date, early_in_person_daily, early_in_person_c
 
 Use:
 election_date = 2025-11-04
-source = Digital Poll Watchers / EPEC, derived from Virginia ELECT DAL
+source = intermediary compilers, derived from Virginia ELECT DAL
 source_method = Daily cumulative DAL snapshot differencing
 
 LIMITATION RELATIVE TO THE FAIRFAX ATTACHMENT

@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 r=Path(__file__).resolve().parent/'dist';d=json.loads((r/'region.json').read_text())
-supplement=json.loads((r/'vpap-history.json').read_text())
+supplement=json.loads((r/'archived-voting-history.json').read_text())
 for locality,years in supplement['localities'].items():
  assert locality!='fairfax-county', 'Fairfax must retain its official history'
  for year,record in years.items():
@@ -20,9 +20,9 @@ for locality,years in supplement['localities'].items():
     assert row['daily'][key]>=0
     cumulative[key]+=row['daily'][key]
     assert cumulative[key]==row[key]
-  assert cumulative==record['vpap']['dailySum']
+  assert cumulative==record['archivedVoting']['dailySum']
   for key in cumulative:
-   assert record['vpap']['headline'][key]-cumulative[key]==record['vpap']['headlineMinusDailySum'][key]
+   assert record['archivedVoting']['headline'][key]-cumulative[key]==record['archivedVoting']['headlineMinusDailySum'][key]
   d['elections'][year]['localities'].append(record)
 for y,e in d['elections'].items():
  weather=json.loads((r/f'weather/{y}.json').read_text())

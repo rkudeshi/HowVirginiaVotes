@@ -1,11 +1,11 @@
-"""ELECT current precinct boundaries and vetted DPW joins for all localities."""
+"""ELECT current precinct boundaries and vetted DAL joins for all localities."""
 import concurrent.futures,io,json,re,zipfile,urllib.request,hashlib,csv
 from pathlib import Path
 import shapefile
 from shapely.geometry import shape,mapping
 from shapely.ops import transform,unary_union
 from pyproj import CRS,Transformer
-from refresh_dpw import read_rows,number
+from refresh_dal import read_rows,number
 R=Path(__file__).resolve().parent;D=R/'dist';S=R/'sources/state-maps';S.mkdir(exist_ok=True)
 base=json.loads((D/'region.json').read_text());manifest=json.loads((D/'map-manifest.json').read_text())
 original={'fairfax-county','arlington-county','alexandria-city','fairfax-city','falls-church-city','loudoun-county','manassas-city','manassas-park-city','prince-william-county'}
@@ -15,7 +15,7 @@ registration={}
 for r in csv.DictReader(open(R/'sources/registration2026.csv',encoding='utf-8-sig')):
     if r['PrecinctCode'].isdigit():registration[(re.sub(r'^Locality: \d+ ','',r['Locality']),str(int(r['PrecinctCode'])))]=re.sub(r'^\d+\s*-\s*','',r['PrecinctName'])
 def norm(s):return re.sub('[^A-Z0-9]','',s.upper().replace('SAINT','ST'))
-raw=max((R/'sources/dpw-snapshots').glob('*.zip'),key=lambda p:p.stat().st_mtime).read_bytes();z=zipfile.ZipFile(io.BytesIO(raw))
+raw=max((R/'sources/dal-snapshots').glob('*.zip'),key=lambda p:p.stat().st_mtime).read_bytes();z=zipfile.ZipFile(io.BytesIO(raw))
 def get(n):
     key=n['id'];name=n['name'].upper();link=next(u for u in links if u.split('/')[-1].startswith(name.replace(' ','_')));url='https://www.elections.virginia.gov'+link;p=S/(key+'.zip')
     if not p.exists():p.write_bytes(urllib.request.urlopen(url,timeout=90).read())

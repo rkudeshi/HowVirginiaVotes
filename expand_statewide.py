@@ -1,4 +1,4 @@
-"""Add statewide DPW histories without rebuilding existing locality data."""
+"""Add statewide DAL histories without rebuilding existing locality data."""
 import csv,io,json,re,zipfile,urllib.request,subprocess
 from pathlib import Path
 from datetime import datetime,timedelta
@@ -34,7 +34,7 @@ for y in [2023,2024,2025,2026]:
    name=re.sub(r'^Locality: \d+ ','',r['Locality']).replace('&','AND').title();a=number(r['TotalActiveVotersPrecinctLocality']);i=number(r['TotalInActiveVotersPrecinctLocality']);total=number(r['TotalAllVotersPrecinctLocality']);assert a+i==total
    regs[y][name]={'active':a,'inactive':i,'registered':total,'registrationDate':f'{y}-09-01' if y==2026 else f'{y}-11-01'}
  assert len(regs[y])==133,(y,len(regs[y]))
-archives={'2023':'metrics-2023.zip','2024':'metrics-2024.zip','2025':'metrics2025.zip','2026-special':'metrics-2026-special.zip','2026':'dpw-snapshots/2026-09-21-5317da9c06.zip'}
+archives={'2023':'metrics-2023.zip','2024':'metrics-2024.zip','2025':'metrics2025.zip','2026-special':'metrics-2026-special.zip','2026':'dal-snapshots/2026-09-21-5317da9c06.zip'}
 for k,zp in archives.items():
  e=data['elections'][k];saved={l['id'] for l in e['localities']};z=zipfile.ZipFile(R/'sources'/zp)
  for name in sorted(names.values()):

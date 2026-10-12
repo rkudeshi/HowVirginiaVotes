@@ -1,4 +1,5 @@
 """Reproducible aggregate-only NovaVote build from preserved public source files."""
+from source_attribution import DAL_DESCRIPTION
 import json,csv,io,zipfile,re
 from pathlib import Path
 from datetime import datetime,date
@@ -9,7 +10,7 @@ DATES={'2020':'2020-11-03','2021':'2021-11-02','2022':'2022-11-08','2023':'2023-
 def n(s):return int(float(str(s or '0').replace(',','')))
 def rows(f):return list(csv.DictReader(f.open(encoding='utf-8-sig'))) if f.exists() else []
 for k,folder,file in [('2023','2023_General_Election','2023-DAL-metrics.zip'),('2024','2024_November_General','2024_November_General-DAL-metrics.zip'),('2026-special','2026_April_21_Special','2026_April_21_Special-DAL-metrics.zip')]:
- z=zipfile.ZipFile(R/f'sources/metrics-{k}.zip');e={'year':int(k[:4]),'registrationDate':k[:4]+'-11-01' if k!='2026-special' else None,'source':f'https://digitalpollwatchers.org/files/DALTracker/{folder}/metrics/{file}','registrationSource':'https://github.com/rkudeshi/novavote/blob/main/data/registration.json','localities':[]}
+ z=zipfile.ZipFile(R/f'sources/metrics-{k}.zip');e={'year':int(k[:4]),'registrationDate':k[:4]+'-11-01' if k!='2026-special' else None,'source':DAL_DESCRIPTION,'registrationSource':'https://github.com/rkudeshi/novavote/blob/main/data/registration.json','localities':[]}
  for name in names:
   fs=[p for p in z.namelist() if p.startswith('byLOCALITY_NAME/'+name.upper()+'/') and p.endswith('.csv')];assert len(fs)==1,(name,fs)
   days={}

@@ -1,3 +1,4 @@
+from source_attribution import DAL_DESCRIPTION
 import json,zipfile,csv,io,re,datetime,pathlib,shutil
 root=pathlib.Path(__file__).parent
 raw=json.load(open(root/'sources/precincts-full.geojson'))
@@ -23,7 +24,7 @@ for day in dates:
  unmapped[day]={k:county[day][k]-sum(v[day][k] for v in h.values()) for k in keys}
  for k in keys:assert unmapped[day][k]==sum(v.get(day,{}).get(k,0) for v in unmatched),(day,k)
 assert len(h)==265
-out={'year':2025,'dates':dates,'history':h,'county':county,'unmapped':unmapped,'hasRegistration':False,'source':'https://digitalpollwatchers.org/files/DALTracker/2025_November_General/metrics/','retrieved':'2026-09-20'}
+out={'year':2025,'dates':dates,'history':h,'county':county,'unmapped':unmapped,'hasRegistration':False,'source':DAL_DESCRIPTION,'retrieved':'2026-09-20'}
 (root/'dist/history2025.json').write_text(json.dumps(out,separators=(',',':')))
 p=root/'dist/history.json';d=json.loads(p.read_text());d.update(year=2026,hasRegistration=True);p.write_text(json.dumps(d,separators=(',',':')))
 print('2025 validated',len(h),'precincts',len(dates),'dates; final unmapped',unmapped[dates[-1]])

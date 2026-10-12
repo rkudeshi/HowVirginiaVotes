@@ -8,3 +8,6 @@ novavote-site.tar.gz
 /dist/20*/
 /dist/status/
 /sources/weather-batches/
+
+# Private exact source provenance; never deploy or commit
+/.private/

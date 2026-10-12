@@ -2,7 +2,7 @@
 Loudoun's EV_<site> fields are DAILY counts, per the dashboard's 'Early Voters
 Today' labels. EV_Total is cumulative and must not be summed with daily fields.
 A missing day is not a zero. Repeated checks replace the same dated snapshot.
-DPW remains the countywide aggregate source.
+DAL remains the countywide aggregate source.
 """
 import argparse,json,urllib.request,hashlib
 from pathlib import Path

@@ -15,16 +15,23 @@ example, must not share observations. Daily high/low temperature, precipitation,
 snow, wind, and weather code are saved in local time for each tracked election.
 
 ## Recovered historical daily data
-`dist/vpap-history.json` supplements missing locality/election histories. The app
+`dist/archived-voting-history.json` supplements missing locality/election histories. The app
 merges it with `region.json` without replacing existing histories. Fairfax is
 explicitly excluded. Do not delete this supplemental file during future refreshes.
-Saved chart literals are in `sources/vpap/`; regenerate with `python import_vpap.py`.
+Saved chart literals are in `sources/archived-voting/`; regenerate with `python import_archived_voting.py`.
 The importer validates daily in-person + mail totals against the cumulative chart,
 preserves zero days, and retains headline totals separately when they differ.
 Unreturned applications are final snapshots only, never invented daily observations.
 Registration uses the existing November 1 registration series, not a denominator
-inferred from rounded turnout rates. Source metadata stays in the saved files;
-do not add source labels or attribution to the voting-data display.
+inferred from rounded turnout rates. Public metadata uses “Archived voting data”
+and “Historical voting totals compiled from archived reports.” These are
+intermediary reports, not data downloaded directly from the state.
+Preserve exact URLs and original attribution privately under the ignored
+`.private/source-provenance/` directory. For newly acquired archived snapshots,
+keep the original there and use neutral attribution in the tracked copy (a null
+`url` and `sourceLabel: "Archived voting data"`); preserve every chart literal,
+count, date, and retrieval timestamp. The importer also records supplied URLs
+privately and never exports them to the website.
 
 After validation, commit data and any display changes to `main` in
 `rkudeshi/HowVirginiaVotes`. `.github/workflows/pages.yml` automatically validates
@@ -35,6 +42,8 @@ live GitHub Pages site shows the new data. Do not publish to ChatGPT Sites.
 Successful changed-data imports automatically append retrieval timestamps and source
 details to `dist/status.json` through `status_log.py`. Publish that file with every
 data update. Do not fabricate past retrieval times or log unchanged checks as imports.
+DAL imports use the public label “Daily Absentee List”; their download URL and
+content hash are recorded privately, not as a public Status link.
 For a manual verified import, run `python status_log.py "Source name" "What changed"
 --through YYYY-MM-DD --url SOURCE_URL` immediately after saving the data.
 Also log substantive site changes. The Status page formats UTC timestamps in the
@@ -45,19 +54,19 @@ This is a static GitHub Pages project in rkudeshi/HowVirginiaVotes. Start from
 the latest main branch before editing. Preserve all historical data/UI. Do not rebuild
 with build_data.py or prepare_region.py: those older builders predate enrichment.
 
-1. Run `python refresh_dpw.py`. It downloads aggregate metrics, merges current
+1. Run `python refresh_dal.py`. It downloads aggregate metrics, merges current
    locality and vetted precinct histories, preserves registration denominators,
    validates mail component totals and saves changed source snapshots. It prints
    changedFiles. A second run with the same ZIP must report zero changed files.
-2. Use DPW for non-Fairfax countywide aggregates. Run site-level dashboard
+2. Use DAL for non-Fairfax countywide aggregates. Run site-level dashboard
    refreshers only while one or more satellite early-voting locations are open
    and the source reports per-site turnout. Dashboards are for site counts, not
    an alternate countywide series. For Loudoun, `python refresh_sites.py`
    archives per-site days as published; the live ArcGIS feed exposes only the
    latest day. Preserve gaps, partial site coverage and prior verified site
    counts. Do not let its EV_Total, Ballots_Returned or Ballots_Mailed fields
-   replace DPW aggregates. If a site feed fails, keep its previous data and
-   continue the DPW update.
+   replace DAL aggregates. If a site feed fails, keep its previous data and
+   continue the DAL update.
 3. Run `python refresh_fairfax.py`. Fetch the linked PDF contents every time,
    even if its filename, URL, report date or HTTP metadata is unchanged. The
    September 19 filename was serving September 21 content. Parse the internal
@@ -67,19 +76,19 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    Fairfax PDF values take precedence everywhere they exist. app.js applies
    preferCountyReports() for the homepage, locality cards and comparison charts;
    daily charts use official history and projections already use official rows.
-   Raw DPW data remains for fields unavailable in the PDF, especially precincts.
+   Raw DAL data remains for fields unavailable in the PDF, especially precincts.
    Never offer a source selector or competing Fairfax totals to visitors.
 4. When Alexandria or Arlington satellite sites are open, check the live
    Tableau or Power BI site/day views. Save a content snapshot under
    `sources/site-snapshots/dashboard/`, then run
-   `python refresh_dashboard_snapshots.py` after `refresh_dpw.py`. Dashboard
+   `python refresh_dashboard_snapshots.py` after `refresh_dal.py`. Dashboard
    snapshots keep activity dates separate from report and retrieval dates; a
    corrected snapshot replaces the affected site/day observation. Skip these
    dashboards while only the main office is open.
 5. When Prince William satellite sites are open, check its official site-level
    feed or dashboard. `python refresh_pwc.py` currently captures countywide Wix
    figures and therefore should not run as the aggregate source. Retain its raw
-   snapshots and prior verified observations, but let DPW supply current
+   snapshots and prior verified observations, but let DAL supply current
    countywide totals.
 6. Arlington's public Power BI workbook currently reuses 2024 internal field
    names with a 2026 visible calendar. The verified September18 counts are saved
@@ -98,7 +107,7 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
 
 The previous Sites refresh instructions used hourly checks at :30, America/New_York.
 The active schedule is managed separately by the user in ChatGPT; follow that
-scheduled task's timing rather than creating another schedule here. Check DPW for all 133 Virginia
+scheduled task's timing rather than creating another schedule here. Check DAL for all 133 Virginia
 localities and Fairfax's PDF every run. Check a locality dashboard or linked feed
 only while satellite early-voting locations are open and it can add per-site
 turnout. Use sources/site-audit/coverage.json as the starting source list, not a
@@ -111,7 +120,7 @@ retain its last valid observations and continue all other checks.
 
 ## Statewide expansion
 
-The homepage and five DPW election histories now cover all 133 localities.
+The homepage and five DAL election histories now cover all 133 localities.
 Run `python refresh_satellites.py` to recheck ELECT's official schedule contents.
 `dist/region.json` satellites.2026 contains verified listed locations, opening
 rules, and additional-site counts. Counts exclude the main voting office, even
@@ -119,7 +128,7 @@ when that office is offsite. The satellite list currently contains 17 multi-site
 localities. Regions are editorial browsing groups; Northern Virginia is exactly
 the original nine. No new precinct layers were created for this expansion.
 
-DPW refresh iterates all 133 current localities. Keep all fixed denominators and
+DAL refresh iterates all 133 current localities. Keep all fixed denominators and
 historical series. New 2023/2024 localities use official November 1 registration
 reports archived in sources; existing denominators are preserved. Some official
 CSV URLs return PDF content; the expansion importer detects the content type.
@@ -130,7 +139,7 @@ checked merely because its schedule was downloaded. Never manufacture site
 counts or treat an incomplete set of site hours as a complete calendar for the
 projection model. Verified textual schedules are shown separately when a full
 calendar has not been reconstructed. Election-relative forecasts remain available
-from DPW histories without unverified site-hours assumptions.
+from DAL histories without unverified site-hours assumptions.
 
 ## Homepage comparisons and overview boundaries
 The overview uses Census 2024 shoreline-clipped cartographic county boundaries,

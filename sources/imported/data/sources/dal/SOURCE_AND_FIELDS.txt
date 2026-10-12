@@ -1,7 +1,7 @@
-Source page: https://digitalpollwatchers.org/2025-va-november-general-election-dal-file-metrics/
-Data source stated by EPEC: Virginia Department of Elections (ELECT) Daily Absentee List.
+Source description: Compiled from Virginia Daily Absentee List records via intermediary reports
+Data source attributed by the intermediary: Virginia Department of Elections (ELECT) Daily Absentee List.
 
-EPEC field definitions relevant here:
+Intermediary field definitions relevant here:
 ON_MACHINE = BALLOT_STATUS ON_MACHINE + APP_STATUS APPROVED
 MARKED = BALLOT_STATUS MARKED + APP_STATUS APPROVED
 PRE_PROCESSED = BALLOT_STATUS PRE-PROCESSED + APP_STATUS APPROVED

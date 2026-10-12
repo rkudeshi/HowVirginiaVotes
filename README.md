@@ -26,7 +26,22 @@ The data-fetching schedule is managed separately in ChatGPT. This repository's w
 
 ## Data preparation
 
-The primary DPW updater uses Python's standard library. The Fairfax PDF updater also requires `pdftotext` (Poppler). Some optional acquisition and historic/geographic reconstruction scripts use Beautiful Soup, pdfplumber, shapely, pyshp, and pyproj. None are required to view or deploy the saved website.
+The primary DAL updater uses Python's standard library. The Fairfax PDF updater also requires `pdftotext` (Poppler). Some optional acquisition and historic/geographic reconstruction scripts use Beautiful Soup, pdfplumber, shapely, pyshp, and pyproj. None are required to view or deploy the saved website.
+
+Source names are **Daily Absentee List (DAL)** and **Archived voting data**.
+DAL totals are compiled from Virginia Daily Absentee List records via intermediary
+reports. Historical voting totals are compiled from archived reports. These
+datasets were not obtained directly from the state; official locality reports
+retain their existing precedence.
+
+Use `refresh_dal.py` for current DAL updates and `import_archived_voting.py` for
+saved historical reports. Archives live in `sources/dal-snapshots/` and
+`sources/archived-voting/`; the website loads `dist/archived-voting-history.json`.
+Exact original attribution and URLs are preserved locally in the ignored
+`.private/source-provenance/` directory, outside both Git and the Pages artifact.
+Keep a private backup of that directory when transferring the workspace; it is
+not included in a fresh clone. Git history and original raw data archives remain
+unchanged. The DAL download URL stays in the acquisition script.
 
 Preserve existing enriched data. **Do not run older `build_data.py` or `prepare_region.py` to refresh the current dataset**; follow REFRESH.md instead. Older implementation and provenance notes are retained in [SOURCE-NOTES.md](SOURCE-NOTES.md); dated historical descriptions there may no longer match the current site.
 
@@ -37,6 +52,11 @@ Imported from VA Vote Sites source commit `5077aaf511f95a11c2a58ed116470dea114aa
 ## Comparison checks
 
 Run `node --test tests/*.test.cjs` to check comparison defaults, election-relative alignment, matched coverage, weighted turnout, and the election-day cutoff. These tests also run in the Pages workflow.
+
+Run `python3 -m unittest discover -s tests -p 'test_*.py'` to verify historical
+import reproducibility, DAL corrections and repeatability, preserved registration
+and official-report precedence, and private acquisition metadata. The Pages
+workflow runs these checks before deployment.
 
 ## Planned updates
 
