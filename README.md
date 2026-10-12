@@ -37,3 +37,7 @@ Imported from VA Vote Sites source commit `5077aaf511f95a11c2a58ed116470dea114aa
 ## Comparison checks
 
 Run `node --test tests/comparison.test.cjs` to check comparison defaults, election-relative alignment, matched coverage, weighted turnout, and the election-day cutoff. These tests also run in the Pages workflow.
+
+## Planned updates
+
+See [TODO.md](TODO.md) for deferred congressional district views, percentage precision, and Election Day voting data.

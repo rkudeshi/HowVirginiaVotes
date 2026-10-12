@@ -68,5 +68,12 @@
     "message": "Added election comparisons on the homepage and locality pages, a compact regional table, alphabetical locality sorting with region filters and turnout bars, unclipped map tooltips, and chart date bubbles. Historical charts now default to election day.",
     "through": null,
     "url": null
+  },
+  {
+    "at": "2026-10-12T21:45:24.297024+00:00",
+    "source": "Website update",
+    "message": "Simplified turnout summaries and locality tables; added automatic comparable-election insights and a homepage historical chart; changed cumulative ballots to lines; added aligned hover details, holiday badges, daily totals, and clearer filters.",
+    "through": null,
+    "url": null
   }
 ]
