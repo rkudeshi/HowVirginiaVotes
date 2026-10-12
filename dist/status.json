@@ -75,5 +75,12 @@
     "message": "Simplified turnout summaries and locality tables; added automatic comparable-election insights and a homepage historical chart; changed cumulative ballots to lines; added aligned hover details, holiday badges, daily totals, and clearer filters.",
     "through": null,
     "url": null
+  },
+  {
+    "at": "2026-10-12T22:24:11.536729+00:00",
+    "source": "Website update",
+    "message": "Renamed the site VoteFlow; simplified homepage tables and sorting; enabled all historical comparisons with in-person and mail pace tables; added sortable daily data, transposable site charts, and grouped voting schedules with explicit historical uncertainty.",
+    "through": null,
+    "url": null
   }
 ]
