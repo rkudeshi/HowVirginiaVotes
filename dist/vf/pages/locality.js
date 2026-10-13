@@ -95,7 +95,7 @@ class Locality extends DCLogic {
     const pc = (a, b) => (a / b * 100).toFixed(a / b < 0.1 ? 1 : 0) + '%';
     const engaged = ip + (req != null ? req : ret), none = reg - engaged;
     const noneName = live ? 'No early ballot yet' : 'Did not vote early';
-    const hasPBflow = req != null && fx && fx.post != null && fx.box != null;
+    const hasPBflow = req != null && fx && fx.through === cur.through && fx.post != null && fx.box != null && fx.post + fx.box === ret;
     const flow = [
       { kicker: 'Registered voters', title: f(reg), hasRib: true, a: 0, b: (engaged / reg * 100).toFixed(2), ribDelay: '.6s',
         segs: [
@@ -125,7 +125,7 @@ class Locality extends DCLogic {
           ] });
       }
     }
-    const flowNote = 'Each step zooms into the outlined slice above it.' + (fx ? ' Post and drop-box counts come from the county’s own daily report, which runs slightly ahead of the state list.' : '') + (cur.out == null && fx ? ' Mail requests use the county’s count of ballots sent.' : '');
+    const flowNote = 'Each step zooms into the outlined slice above it.' + (fx ? ' County mail details are through ' + dmd(fx.through) + '; the latest totals use DAL until county figures are available for the same date.' : '') + (cur.out == null && fx ? ' Mail requests use the county’s count of ballots sent.' : '');
 
     const fcView = this.state.flowView || 'chart';
     const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bars']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
@@ -327,7 +327,8 @@ class Locality extends DCLogic {
     const ser = cur.series;
     let lastI = -1; for (let i = 0; i < 53; i++) if (ser.e[i] != null) lastI = i;
     const dayDate = (i) => { const x = new Date(eDate); x.setDate(x.getDate() - (46 - i)); return x; };
-    const act = Array.from({ length: 53 }, (_, i) => { if (ser.e[i] == null) return null; const pe = i > 0 && ser.e[i - 1] != null ? ser.e[i - 1] : 0, pmm = i > 0 && ser.m[i - 1] != null ? ser.m[i - 1] : 0; return { de: Math.max(0, ser.e[i] - pe), dm: Math.max(0, ser.m[i] - pmm), e: ser.e[i], m: ser.m[i] }; });
+    const act = Array.from({ length: 53 }, (_, i) => { if (ser.e[i] == null) return null; const pe = i > 0 && ser.e[i - 1] != null ? ser.e[i - 1] : 0, pmm = i > 0 && ser.m[i - 1] != null ? ser.m[i - 1] : 0; return { de: ser.e[i] - pe, dm: ser.m[i] - pmm, e: ser.e[i], m: ser.m[i] }; });
+    if (live && D.id === 'fairfax-county') D.rows.forEach((r) => { const i = Math.round((parse(r.d) - parse(cur.date)) / 864e5) + 46; if (act[i]) { act[i].de = r.de; act[i].dm = r.dm; } });
     const refs = live ? EL.filter((x) => ['2025', '2024', '2023', '2022', '2021'].includes(x.id) && x.series && x.series.e[lastI]) : [];
     const med = (arr) => { const q = arr.slice().sort((x, y) => x - y); const L2 = q.length; return !L2 ? null : L2 % 2 ? q[(L2 - 1) / 2] : (q[L2 / 2 - 1] + q[L2 / 2]) / 2; };
     const estFor = (key, i) => { const v = refs.map((r) => { const s2 = r.series; if (s2[key][i] == null || s2[key][i - 1] == null || !s2[key][lastI]) return null; return Math.max(0, s2[key][i] - s2[key][i - 1]) * ser[key][lastI] / s2[key][lastI]; }).filter((x) => x != null); return med(v); };

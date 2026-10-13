@@ -117,5 +117,12 @@
     "message": "Added a small header notice for delayed data refreshes; it clears after the required source checks recover.",
     "through": null,
     "url": null
+  },
+  {
+    "at": "2026-10-13T13:19:29.275342+00:00",
+    "source": "Website update",
+    "message": "Removed the public technical-delay notice. Fairfax now uses DAL for newer dates and county figures for matching activity dates; daily schedule checks are disabled.",
+    "through": null,
+    "url": null
   }
 ]

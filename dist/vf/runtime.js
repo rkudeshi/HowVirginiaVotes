@@ -98,7 +98,7 @@
   }
 
   class DCLogic extends Component {
-    render() { const v = this.renderVals(); v.vfDelayed = VF.delayed; return h(Fragment, null, this.constructor.__tpl(v)); }
+    render() { const v = this.renderVals(); return h(Fragment, null, this.constructor.__tpl(v)); }
   }
 
   const pages = {};
@@ -117,15 +117,7 @@
       el.innerHTML = '';
       const draw = () => render(h(Logic, props), el);
       draw();
-      /* Header notice when a scheduled refresh failed; see REFRESH.md "Header refresh-delay notice". */
-      const check = () => fetch('/refresh-status.json', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).then((st) => {
-        if (st && typeof st.delayed === 'boolean' && st.delayed !== VF.delayed) { VF.delayed = st.delayed; draw(); }
-      }).catch(() => {});
-      check();
-      document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
-      setInterval(() => { if (!document.hidden) check(); }, 300000);
     },
-    delayed: false,
     /* Path routing: /, /status, /<election>, /<election>/<locality>[/scenarios] */
     route(pathname) {
       const parts = pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);

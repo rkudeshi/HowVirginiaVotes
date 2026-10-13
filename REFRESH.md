@@ -121,7 +121,9 @@ retain its last valid observations and continue all other checks.
 ## Statewide expansion
 
 The homepage and five DAL election histories now cover all 133 localities.
-Run `python refresh_satellites.py` to recheck ELECT's official schedule contents.
+Schedule checks are on demand only, not part of the daily turnout refresh.
+Keep the existing inventory. Run `python refresh_satellites.py` only when a schedule
+review is requested or a specific announced change requires verification.
 `dist/region.json` satellites.2026 contains verified listed locations, opening
 rules, and additional-site counts. Counts exclude the main voting office, even
 when that office is offsite. The satellite list currently contains 17 multi-site
@@ -158,27 +160,18 @@ November 2021 and 2022 also cover all 133 localities, preserving existing Fairfa
 Structured rendered-chart snapshots use schemaVersion 2; the historical importer
 validates both saved chart literals and structured daily records.
 
-## Header refresh-delay notice
-The header on both the current site ("refreshed daily at 7 AM ET") and the
-previous design at /old/v2 ("Updated daily at 7 a.m. ET") has a small muted-red
-parenthetical controlled only by `dist/refresh-status.json`:
-`{"delayed": false}` hides it; `{"delayed": true}` shows
-"(Update delayed by technical issues)". The browser rechecks without cache on
-page load, tab return, and every five minutes while visible.
+## Current refresh policy (October 13, 2026)
+Use DAL immediately for all 133 localities, including Fairfax County. Fetch the
+county report whenever refreshing Fairfax; use county values for the exact
+activity dates and fields it provides. Keep newer DAL dates until the county
+covers those dates. A county report not yet covering the newest DAL day is normal,
+not a failed update. Preserve both raw source series; build_voteflow.py merges them
+in memory through fairfax_history.py. Preserve fixed registration denominators.
+Use each source's own daily counts, not differences between unlike sources.
+Do not clamp away negative corrections. Keep older county mail breakdowns dated;
+do not present them as parts of a newer DAL mail total.
 
-If a scheduled source fetch, parse, validation, or import fails, preserve that
-source's last valid data, continue independent sources, and set delayed to true.
-A partial success must not clear an unresolved failure. After all required
-checks recover and validated updates are ready for publication, set it to false
-in the same commit as any changed data. A successful content-verified unchanged
-check can also clear the flag. Unchanged source contents, normal reporting lags,
-and the already documented older precinct coverage alone are not technical failures.
-
-Status-only commits to this file are authorized exceptions to the data-only
-publication rule, including when execution is blocked but GitHub remains
-available. Do not change the flag on every check or add timestamp-only commits.
-Never change ballot coverage dates to reflect a status check. Do not append failed
-checks as successful imports to status.json. Rebase the narrow status edit onto
-the latest branch head and verify the Pages deployment. If GitHub or deployment
-is unavailable, report that the public notice could not be published; do not
-claim visitors can see it. Preserve current design and all unrelated files.
+Do not run ELECT schedule checks as part of daily turnout updates. Schedule and
+optional site-feed failures must not block otherwise valid DAL/Fairfax publication.
+Report technical issues directly to the user. The public delay banner and its
+status flag have been removed; do not recreate them or publish error-only commits.

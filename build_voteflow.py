@@ -16,6 +16,7 @@ import datetime as dt
 import json
 import math
 import re
+from fairfax_history import merged_history
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent / 'dist'
@@ -28,6 +29,10 @@ W26 = json.loads((ROOT / 'weather' / '2026.json').read_text())
 MANIFEST = json.loads((ROOT / 'map-manifest.json').read_text())
 NAMES = {n['id']: n for n in D['names']}
 ALL_NAMES = [[n['id'], n['name']] for n in sorted(D['names'], key=lambda n: n['name'])]
+# Display-only merge. Never write county values over the saved DAL observations.
+for locality in D['elections']['2026']['localities']:
+    if locality['id'] == 'fairfax-county':
+        locality['history'] = merged_history(locality['history'], D.get('official', {}).get('2026', {}))
 EL = D['elections']
 LIVE = '2026'
 ORDER = ['2026', '2026-special', '2025', '2024', '2023', '2022', '2021', '2020']
@@ -78,7 +83,7 @@ def series(hist, edate, registered):
     ce = cm = 0
     for k in range(46, -7, -1):
         if k in pts:
-            ce = max(ce, pts[k][0]); cm = max(cm, pts[k][1])
+            ce = pts[k][0]; cm = pts[k][1]
         if k > first or k < last:
             e_.append(None); m_.append(None)
         else:
@@ -91,6 +96,7 @@ def statewide(eid):
     meta = election_meta(eid)
     E = date(meta['date'])
     allpts, reg, active = [], 0, 0
+    daily_by_points = []
     for lid in NAMES:
         l = loc_hist(eid, lid)
         if not l:
@@ -99,17 +105,22 @@ def statewide(eid):
         p = points(l['history'], E)
         if p:
             allpts.append(p)
+            daily_by_points.append({(E - date(h['date'])).days: h.get('daily', {}) for h in l['history']})
     glast = min(min(p) for p in allpts)
     agg = {}
-    for p in allpts:
+    for p, source_daily in zip(allpts, daily_by_points):
         ce = cm = 0; co = None
         for k in range(46, -7, -1):
+            prior_e, prior_m = ce, cm
             if k in p:
-                ce = max(ce, p[k][0]); cm = max(cm, p[k][1]); co = p[k][2] if p[k][2] is not None else co
+                ce = p[k][0]; cm = p[k][1]; co = p[k][2] if p[k][2] is not None else co
             if k < glast or k > max(p):
                 continue
-            a = agg.setdefault(k, [0, 0, 0])
+            a = agg.setdefault(k, [0, 0, 0, 0, 0])
             a[0] += ce; a[1] += cm; a[2] += co or 0
+            daily = source_daily.get(k, {})
+            a[3] += daily.get('early') if daily.get('early') is not None else ce - prior_e
+            a[4] += daily.get('mail') if daily.get('mail') is not None else cm - prior_m
     e_ = [agg[k][0] if k in agg else None for k in range(46, -7, -1)]
     m_ = [agg[k][1] if k in agg else None for k in range(46, -7, -1)]
     rows, prev = [], None
@@ -118,7 +129,7 @@ def statewide(eid):
             continue
         a = agg[k]
         d = (E - dt.timedelta(days=k)).isoformat()
-        rows.append({'d': d, 'e': a[0], 'm': a[1], 'de': a[0] - (prev[0] if prev else 0), 'dm': a[1] - (prev[1] if prev else 0), 'o': a[2] or None})
+        rows.append({'d': d, 'e': a[0], 'm': a[1], 'de': a[3], 'dm': a[4], 'o': a[2] or None})
         prev = a
     return {'e': e_, 'm': m_, 'r': reg}, rows, reg, active
 
@@ -270,7 +281,7 @@ def main():
     OUT.mkdir(exist_ok=True)
     (OUT / 'loc').mkdir(exist_ok=True)
     e26 = EL[LIVE]
-    as_of = e26.get('asOf') or max(h['date'] for l in e26['localities'] for h in l['history'])
+    as_of = max(h['date'] for l in e26['localities'] for h in l['history'])
     today = date(as_of)
     # "Today" as days before the live Election Day (series index = 46 - days before)
     tdb = max(-6, min(46, (date(election_meta(LIVE)['date']) - today).days))
@@ -341,6 +352,9 @@ def main():
             r = {'d': h['date'], 'e': h['early'], 'm': h['mail'], 'de': h['early'] - (prev['early'] if prev else 0),
                  'dm': h['mail'] - (prev['mail'] if prev else 0), 'o': h.get('outstanding'), 'pv': h.get('provisional') or 0,
                  'w': {'l': w['label'], 'hi': round(w['tempMax']), 'lo': round(w['tempMin']), 'p': round(w.get('precip') or 0, 2), 'wet': bool(w.get('wet'))} if w else None}
+            if lid == 'fairfax-county':
+                r['de'] = h.get('daily', {}).get('early')
+                r['dm'] = h.get('daily', {}).get('mail')
             if lid == 'fairfax-county' and h['date'] in official:
                 x = official[h['date']]
                 r['site'] = {k: v for k, v in x['sites'].items() if v}
@@ -384,7 +398,7 @@ def main():
             last = lh['history'][-1]
             elections.append({'id': eid, 'label': meta['label'], 'type': meta['type'], 'date': meta['date'],
                               'reg': lh['registered'], 'early': last.get('early') or 0, 'mail': last.get('mail') or 0,
-                              'total': tot(last), 'out': last.get('outstanding'),
+                              'total': tot(last), 'out': last.get('outstanding'), 'through': last['date'],
                               'atT': at_days_before(lh['history'], date(meta['date']), tdb),
                               'final': eid != LIVE, 'series': series(lh['history'], meta['date'], lh['registered'])})
         fx_mail = None
@@ -394,9 +408,9 @@ def main():
                 hh = D.get('official', {}).get(y, {}).get('history')
                 if hh:
                     c = hh[-1].get('cumulative') or {}
-                    fx_mail[y] = {'sent': c.get('sent'), 'post': c.get('postal'), 'box': c.get('dropbox'), 'early': c.get('early')}
+                    fx_mail[y] = {'through': hh[-1]['date'], 'sent': c.get('sent'), 'post': c.get('postal'), 'box': c.get('dropbox'), 'early': c.get('early')}
         n, nxt = sat_summary(lid, today)
-        b = {'id': lid, 'name': l['name'], 'asOf': as_of, 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
+        b = {'id': lid, 'name': l['name'], 'asOf': l['history'][-1]['date'], 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
              'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1,
              'rows': rows, 'sched': days_sched, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
              'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
