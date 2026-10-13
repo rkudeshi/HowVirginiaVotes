@@ -62,8 +62,15 @@ class Home extends DCLogic {
     const heroFs = (pct, n) => 'clamp(28px, calc((100cqi - 52px) / ' + (emW(pct + '%') + emW(f(n))).toFixed(2) + '), 96px)';
     const hero = { fs: heroFs((total / D.reg * 100).toFixed(1), total), kicker: live ? 'Early votes cast · statewide · through ' + dmd(D.asOf) : 'Early votes cast · statewide · final', pctLbl: live ? 'turnout so far' : 'early turnout', votes: f(total * e), pct: (total / D.reg * 100 * e).toFixed(1), reg: f(D.reg), active: f(D.active), ip: f(last.e * e), m: f(last.m * e), ipW: (last.e / total * 100).toFixed(1), mW: (last.m / total * 100).toFixed(1) };
     const COLORS = { '2026': '#00A37A', '2026-special': '#6B7F1A', '2025': '#7C4DDB', '2024': '#121417', '2023': '#B7791F', '2022': '#8C5A00', '2021': '#8A8F99', '2020': '#A68A00' };
-    const paceKeys = ['2026', '2025', '2024', '2026-special', '2022', '2021', '2020'].filter((k) => H[k] && k !== EID && at(k, tIdx)).slice(0, 4);
-    const paceChips = paceKeys.map((k) => ({ ratio: Math.round(total / at(k, tIdx) * 100) + '%', label: H[k].label.replace(' special', ''), border: COLORS[k], tail: live ? 'at this point' : 'by the same point' }));
+    // Pace chips, newest election first. The live election compares at today's point; a past
+    // election compares with the live one at today's point and with other past ones in total.
+    const finalOf = (k) => { let v = null; for (let i = 0; i < 53; i++) { const x = at(k, i); if (x != null) v = x; } return v; };
+    let liveT = -1; if (H['2026']) for (let i = 0; i < 53; i++) if (H['2026'].e[i] != null) liveT = i;
+    const paceKeys = ['2026', '2026-special', '2025', '2024', '2022', '2021', '2020'].filter((k) => H[k] && k !== EID
+      && (live ? at(k, tIdx) : k === '2026' ? at(EID, liveT) && at(k, liveT) : finalOf(k))).slice(0, 4);
+    const paceChips = paceKeys.map((k) => { const sameDay = live || k === '2026';
+      const ratio = live ? total / at(k, tIdx) : k === '2026' ? at(EID, liveT) / at(k, liveT) : total / finalOf(k);
+      return { ratio: Math.round(ratio * 100) + '%', label: H[k].label.replace(' special', ''), border: COLORS[k], tail: sameDay ? 'at this point' : 'overall' }; });
     const satDates = Object.keys(D.satOpen).filter((d) => d > D.asOf).sort();
     const nextSat = satDates[0];
     const satLine = !live ? 'Mail ballots counted through ' + dmd(dead) : nextSat ? D.satOpen[nextSat].n + (D.satOpen[nextSat].n === 1 ? ' satellite site opens ' : ' satellite sites open ') + dmd(nextSat) : 'All satellite sites are open';
@@ -156,7 +163,7 @@ class Home extends DCLogic {
       for (let i = 1; i < g.length; i++) if (g[i].y - g[i - 1].y < lgap) g[i].y = g[i - 1].y + lgap;
       const over = g[g.length - 1].y - CB; if (over > 0) { g[g.length - 1].y = CB; for (let i = g.length - 2; i >= 0; i--) if (g[i + 1].y - g[i].y < lgap) g[i].y = g[i + 1].y - lgap; } });
     ends.forEach((e2) => { e2.x = e2.x.toFixed(1); e2.y = e2.y.toFixed(1); });
-    const ch = { todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, hasToday: live, todayLbl: 'TODAY · E–' + (46 - tIdx), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
+    const ch = { todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, hasToday: live, todayLbl: 'THROUGH ' + md(D.asOf).toUpperCase(), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
       todayX: todayX.toFixed(1), todayLX: (win === 'today' ? todayX - 8 : todayX + 8).toFixed(1), todayAnchor: win === 'today' ? 'end' : 'start',
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
@@ -177,7 +184,7 @@ class Home extends DCLogic {
     const byDate = {}; rows.forEach((r) => { byDate[r.d] = r; });
     const dv = (r) => calM === 'all' ? r.de + r.dm : calM === 'early' ? r.de : r.dm;
     const maxDay = Math.max(1, ...rows.map(dv));
-    const ramp = calM === 'mail' ? ['#FFFFFF', '#E9E1FB', '#BBA2F0', '#7C4DDB', '#4E2A9E'] : ['#FFFFFF', '#D3F1E6', '#86D9BA', '#00A37A', '#006B50'];
+    const ramp = calM === 'mail' ? ['#FFFFFF', '#E9E1FB', '#BBA2F0', '#7C4DDB', '#4E2A9E'] : calM === 'early' ? ['#FFFFFF', '#D3F1E6', '#86D9BA', '#00A37A', '#006B50'] : ['#FFFFFF', '#DDE3EE', '#9AA9C4', '#41557F', '#1B2A6B'];
     const startCal = new Date(start); startCal.setDate(start.getDate() - start.getDay());
     const cal = [];
     for (let i = 0; i < 63; i++) {

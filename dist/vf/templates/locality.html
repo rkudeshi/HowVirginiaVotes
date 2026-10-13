@@ -43,7 +43,7 @@ a{color:#00694F}a:hover{color:#121417}
 .fx-nav::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:#7C4DDB;transform:scaleX(0);transform-origin:left;transition:transform .2s}
 .fx-nav:hover::after{transform:scaleX(1)}
 .fx-row{transition:background .15s}.fx-row:hover{background:#F1FAF6}
-.fx-pill{transition:transform .12s,background .15s,color .15s,border-color .15s}.fx-pill:hover{transform:translateY(-1px)}.fx-pill:active{transform:translateY(1px)}
+.fx-pill{transition:transform .12s,background .15s,color .15s,border-color .15s}@media (hover: hover){.fx-pill:hover{transform:translateY(-1px)}}.fx-pill:active{transform:translateY(1px)}[role=group] .fx-pill,[role=group] .fx-pill:hover,[role=group] .fx-pill:active{transform:none}
 .fx-load{animation:fxShimmer 1.2s ease-in-out infinite}
 .fx-range{accent-color:#00A37A}
 .fx-tick{display:inline-block;animation:fxTick .35s cubic-bezier(.2,1.4,.4,1)}
@@ -78,7 +78,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
   .fx-tree:not(.fx-big) .fx-fcbox > div:first-child b{font-size:10.5px !important;line-height:1.15 !important}
   .fx-tree:not(.fx-big) .fx-fcbox > div:first-child span{font-size:clamp(12px,3.8vw,18px) !important;letter-spacing:-0.04em !important}
   .fx-tree:not(.fx-big) .fx-fcbox > div:nth-child(2){height:5px !important;margin:5px 0 4px !important}
-  .fx-tree:not(.fx-big) .fx-fcbox > div:last-child{font-size:0 !important;line-height:1.1}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:last-child{font-size:10px !important;line-height:1.2}
   .fx-tree:not(.fx-big) .fx-fcbox > div:last-child b{font-size:11px !important}
   .fx-tree:not(.fx-big) .fx-conn{height:24px}
 }
@@ -122,6 +122,13 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
   .vf-h1{font-size:40px !important;letter-spacing:-0.045em !important}
   .vf-kick{font-size:11px !important}
   .fx-main h2{font-size:21px !important}
+}
+.dn-n{display:none}
+@media (max-width: 599.98px){
+  .dn .dn-x,.dn .dn-w{display:none !important}.dn .dn-n{display:inline}
+  .dn > div{padding:0 6px !important;font-size:12px !important}
+  .dn > div > *{padding-left:5px !important;padding-right:5px !important}
+  .dn > div:first-child{font-size:9.5px !important;letter-spacing:.02em !important}
 }
 </style>
 </helmet>
@@ -251,7 +258,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
         <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em">Final early vote</div>
         <div style="font-size: 44px; font-weight: 800; letter-spacing: -0.04em; line-height: 1">{{hero.dateLabel}}</div>
         <div style="font-size: 15px; color: #4A5260">{{hero.typeLabel}}</div>
-        <div style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">At {{hero.TL}}: {{hero.atT}} ballots</div>
+        <div style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{hero.atT}} ballots by this point in early voting</div>
         <button class="fx-pill" onClick="{{backToNow}}" style="min-height: 44px; padding: 0 18px; border: 2px solid #121417; border-radius: 999px; background: #121417; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Back to November 2026</button>
       </sc-if>
     </section>
@@ -603,6 +610,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
       </div>
     </section>
 
+    <sc-if value="{{showSites}}">
     <section id="sites" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
         <div>
@@ -694,6 +702,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
         </div>
       </sc-if>
     </section>
+    </sc-if>
 
     <section id="daily" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 0 20px">
       <div style="padding: 0 36px 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
@@ -701,30 +710,30 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
         <button class="fx-pill" onClick="{{tbl.toggleShade}}" aria-pressed="{{tbl.shadePressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{tbl.shadeBg}}; color: {{tbl.shadeFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px"><span style="display: flex; gap: 2px"><span style="width: 8px; height: 14px; border-radius: 2px; background: #DDF3EA"></span><span style="width: 8px; height: 14px; border-radius: 2px; background: #A6E0CA"></span><span style="width: 8px; height: 14px; border-radius: 2px; background: #5CC9A3"></span></span>Shade by volume</button>
       </div>
       <div style="overflow: auto; max-height: 580px; border-top: 2px solid #121417">
-        <div style="min-width: 1000px">
-          <div style="position: sticky; top: 0; z-index: 2; display: grid; grid-template-columns: {{tbl.grid}}; gap: 12px; padding: 12px 36px; background: #F5F6F8; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em">
-            <span>Date</span><span style="text-align: right">In person</span><span style="text-align: right">By mail</span>
-            <sc-if value="{{tbl.hasPB}}" hint-placeholder-val="{{ true }}"><span style="text-align: right">Post · drop box</span></sc-if>
-            <span style="text-align: right">Daily total</span><span style="text-align: right">Running total</span><span style="text-align: right">Turnout</span>
-            <sc-if value="{{tbl.live}}" hint-placeholder-val="{{ true }}"><span style="text-align: right">Mail out</span><span style="text-align: right">Sites</span><span>Weather</span></sc-if>
+        <div class="dn" style="min-width: {{tbl.minW}}">
+          <div style="position: sticky; top: 0; z-index: 2; display: grid; grid-template-columns: {{tbl.grid}}; padding: 0 26px; background: #F5F6F8; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em; align-items: end">
+            <span style="padding: 12px 10px">Date</span><span style="padding: 12px 10px; text-align: right">In person</span><span style="padding: 12px 10px; text-align: right">By mail</span>
+            <sc-if value="{{tbl.hasPB}}"><span class="dn-x" style="padding: 12px 10px; text-align: right">Post · drop box</span></sc-if>
+            <span style="padding: 12px 10px; text-align: right">Day total</span><span class="dn-x" style="padding: 12px 10px; text-align: right">Running total</span><span style="padding: 12px 10px; text-align: right">Turnout</span>
+            <sc-if value="{{tbl.live}}"><span class="dn-x" style="padding: 12px 10px; text-align: right">Mail out</span><span class="dn-x" style="padding: 12px 10px; text-align: right">Sites</span><span style="padding: 12px 10px">Weather</span></sc-if>
           </div>
           <sc-for list="{{tbl.rows}}" as="tr" hint-placeholder-count="12">
-            <div class="fx-row" style="display: grid; grid-template-columns: {{tbl.grid}}; gap: 12px; padding: 9px 36px; border-bottom: 1.5px solid #ECEEF2; align-items: center; font-size: 14px; background: {{tr.bg}}; transition: background .3s">
-              <b>{{tr.date}}</b>
-              <span style="text-align: right; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{tr.deBg}}">{{tr.de}}</span>
-              <span style="text-align: right; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{tr.dmBg}}">{{tr.dm}}</span>
-              <sc-if value="{{tbl.hasPB}}" hint-placeholder-val="{{ true }}"><span style="text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.pb}}</span></sc-if>
-              <b style="text-align: right; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{tr.dayBg}}">{{tr.day}}</b>
-              <span style="text-align: right; font-family: 'DM Mono', monospace">{{tr.run}}</span>
-              <span style="text-align: right; font-family: 'DM Mono', monospace">{{tr.pct}}</span>
-              <sc-if value="{{tbl.live}}" hint-placeholder-val="{{ true }}">
-                <span style="text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.out}}</span>
-                <span style="text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.sites}}</span>
-                <span><span style="display: inline-flex; align-items: center; gap: 6px; padding: {{tr.wPad}}; border-radius: 999px; background: {{tr.wBg}}; color: {{tr.wFg}}; font-size: 12px; font-weight: {{tr.wW}}; white-space: nowrap">
-                  <sc-if value="{{tr.icoRain}}" hint-placeholder-val="{{ false }}"><svg width="11" height="13" viewBox="0 0 12 14" aria-hidden="true"><path d="M6 1C6 1 1.5 6.5 1.5 9a4.5 4.5 0 0 0 9 0C10.5 6.5 6 1 6 1z" fill="currentColor"></path></svg></sc-if>
-                  <sc-if value="{{tr.icoSun}}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"></path></svg></sc-if>
-                  <sc-if value="{{tr.icoCloud}}" hint-placeholder-val="{{ false }}"><svg width="15" height="12" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 16h11a4 4 0 0 0 0-8 6 6 0 0 0-11.5-1.5A4.5 4.5 0 0 0 7 16z"></path></svg></sc-if>
-                  {{tr.wx}}</span></span>
+            <div class="fx-row" style="display: grid; grid-template-columns: {{tbl.grid}}; padding: 0 26px; border-bottom: 1px solid #ECEEF2; align-items: stretch; font-size: 14px">
+              <b style="padding: 9px 10px; white-space: nowrap"><span class="dn-w">{{tr.date}}</span><span class="dn-n">{{tr.dateS}}</span></b>
+              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; background: {{tr.deBg}}">{{tr.de}}</span>
+              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; background: {{tr.dmBg}}">{{tr.dm}}</span>
+              <sc-if value="{{tbl.hasPB}}"><span class="dn-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.pb}}</span></sc-if>
+              <b style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; background: {{tr.dayBg}}">{{tr.day}}</b>
+              <span class="dn-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace">{{tr.run}}</span>
+              <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace">{{tr.pct}}</span>
+              <sc-if value="{{tbl.live}}">
+                <span class="dn-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.out}}</span>
+                <span class="dn-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.sites}}</span>
+                <span style="padding: 6px 10px; display: flex; align-items: center"><span style="display: inline-flex; align-items: center; gap: 6px; padding: {{tr.wPad}}; border-radius: 999px; background: {{tr.wBg}}; color: {{tr.wFg}}; font-size: 12px; font-weight: {{tr.wW}}; white-space: nowrap">
+                  <sc-if value="{{tr.icoRain}}"><svg width="11" height="13" viewBox="0 0 12 14" aria-hidden="true"><path d="M6 1C6 1 1.5 6.5 1.5 9a4.5 4.5 0 0 0 9 0C10.5 6.5 6 1 6 1z" fill="currentColor"></path></svg></sc-if>
+                  <sc-if value="{{tr.icoSun}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"></path></svg></sc-if>
+                  <sc-if value="{{tr.icoCloud}}"><svg width="15" height="12" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 16h11a4 4 0 0 0 0-8 6 6 0 0 0-11.5-1.5A4.5 4.5 0 0 0 7 16z"></path></svg></sc-if>
+                  <span class="dn-w">{{tr.wx}}</span><span class="dn-n">{{tr.wxS}}</span></span></span>
               </sc-if>
             </div>
           </sc-for>
@@ -732,6 +741,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
       </div>
     </section>
 
+    <sc-if value="{{showPrecincts}}">
     <section id="precincts" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; {{pm.fs}}">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
         <div>
@@ -790,6 +800,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
         </sc-for>
       </div>
     </section>
+    </sc-if>
 
   </main>
   </sc-if>

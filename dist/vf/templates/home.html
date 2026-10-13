@@ -40,8 +40,8 @@ a{color:#00694F}a:hover{color:#121417}
 .fx-nav{position:relative}
 .fx-nav::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:#7C4DDB;transform:scaleX(0);transform-origin:left;transition:transform .2s}
 .fx-nav:hover::after{transform:scaleX(1)}
-.fx-row{transition:background .15s,transform .15s}.fx-row:hover{background:#F1FAF6;transform:translateX(4px)}
-.fx-pill{transition:transform .12s,background .15s,color .15s}.fx-pill:hover{transform:translateY(-1px)}.fx-pill:active{transform:translateY(1px)}
+.fx-row{transition:background .15s,transform .15s}.fx-row:hover{background:#F1FAF6}
+.fx-pill{transition:transform .12s,background .15s,color .15s}@media (hover: hover){.fx-pill:hover{transform:translateY(-1px)}}.fx-pill:active{transform:translateY(1px)}[role=group] .fx-pill,[role=group] .fx-pill:hover,[role=group] .fx-pill:active{transform:none}
 .fx-th{transition:color .15s}.fx-th:hover{color:#00694F}
 .fx-load{animation:fxShimmer 1.2s ease-in-out infinite}
 .fx-tick{display:inline-block;animation:fxTick .35s cubic-bezier(.2,1.4,.4,1)}
@@ -71,7 +71,7 @@ a{color:#00694F}a:hover{color:#121417}
   .fx-tree:not(.fx-big) .fx-fcbox > div:first-child b{font-size:10.5px !important;line-height:1.15 !important}
   .fx-tree:not(.fx-big) .fx-fcbox > div:first-child span{font-size:clamp(12px,3.8vw,18px) !important;letter-spacing:-0.04em !important}
   .fx-tree:not(.fx-big) .fx-fcbox > div:nth-child(2){height:5px !important;margin:5px 0 4px !important}
-  .fx-tree:not(.fx-big) .fx-fcbox > div:last-child{font-size:0 !important;line-height:1.1}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:last-child{font-size:10px !important;line-height:1.2}
   .fx-tree:not(.fx-big) .fx-fcbox > div:last-child b{font-size:11px !important}
   .fx-tree:not(.fx-big) .fx-conn{height:24px}
 }
@@ -568,23 +568,23 @@ a{color:#00694F}a:hover{color:#121417}
         </div>
       </div>
       <div style="overflow-x: auto">
-        <div style="min-width: 1260px">
-          <div style="display: grid; grid-template-columns: 1.4fr 0.85fr 1.9fr 1.3fr 1.3fr 1.4fr 0.75fr 0.65fr 0.9fr; gap: 12px; padding: 10px 36px; border-top: 2px solid #121417; border-bottom: 2px solid #121417; background: #F5F6F8">
+        <div style="min-width: 1080px">
+          <div style="display: grid; grid-template-columns: 1.7fr 0.9fr 1.15fr 0.95fr 0.95fr 1fr 0.8fr 0.7fr 0.9fr; gap: 12px; padding: 10px 36px; border-top: 2px solid #121417; border-bottom: 2px solid #121417; background: #F5F6F8">
             <sc-for list="{{cols}}" as="c" hint-placeholder-count="9">
               <button class="fx-th" onClick="{{c.pick}}" style="min-height: 40px; padding: 0; border: 0; background: transparent; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em; color: #121417; cursor: pointer; text-align: {{c.align}}">{{c.label}} {{c.arrow}}</button>
             </sc-for>
           </div>
           <sc-for list="{{rows}}" as="r" hint-placeholder-count="15">
-            <a class="fx-row" href="{{r.href}}" style="display: grid; grid-template-columns: 1.4fr 0.85fr 1.9fr 1.3fr 1.3fr 1.4fr 0.75fr 0.65fr 0.9fr; gap: 12px; align-items: center; padding: 10px 36px; border-bottom: 1.5px solid #ECEEF2; text-decoration: none; color: #121417">
+            <a class="fx-row" href="{{r.href}}" style="display: grid; grid-template-columns: 1.7fr 0.9fr 1.15fr 0.95fr 0.95fr 1fr 0.8fr 0.7fr 0.9fr; gap: 12px; align-items: center; padding: 10px 36px; border-bottom: 1.5px solid #ECEEF2; text-decoration: none; color: #121417">
               <span style="display: flex; flex-direction: column; line-height: 1.2"><b style="font-size: 16px">{{r.name}}</b><span style="font-size: 12px; color: #4A5260">{{r.region}}</span></span>
               <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right">{{r.reg}}</span>
-              <span style="display: flex; align-items: center; gap: 10px">
-                <span style="flex: 1; height: 10px; background: #ECEEF2; border-radius: 999px; overflow: hidden"><span class="fx-meter" style="display: block; height: 100%; width: {{r.w}}%; background: #00A37A; border-radius: 999px"></span></span>
-                <span style="display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; white-space: nowrap"><b style="font-size: 15px">{{r.p}}%</b><span style="font-size: 15px; color: #4A5260">{{r.v}}</span></span>
+              <span style="display: flex; flex-direction: column; gap: 5px">
+                <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap"><b style="font-size: 15px">{{r.p}}%</b><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #4A5260">{{r.v}}</span></span>
+                <span style="height: 4px; background: #ECEEF2; border-radius: 999px; overflow: hidden"><span class="fx-meter" style="display: block; height: 100%; width: {{r.w}}%; background: #00A37A; border-radius: 999px"></span></span>
               </span>
-              <span style="display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; white-space: nowrap"><b style="font-size: 15px">{{r.ep}}%</b><span style="font-size: 15px; color: #4A5260">{{r.e}}</span></span>
-              <span style="display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; white-space: nowrap"><b style="font-size: 15px">{{r.mp}}%</b><span style="font-size: 15px; color: #4A5260">{{r.m}}</span></span>
-              <span style="display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; white-space: nowrap"><b style="font-size: 15px">{{r.rr}}</b><span style="font-size: 15px; color: #4A5260">{{r.out}} out</span></span>
+              <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap"><b style="font-size: 15px">{{r.ep}}%</b><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #4A5260">{{r.e}}</span></span>
+              <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap"><b style="font-size: 15px">{{r.mp}}%</b><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #4A5260">{{r.m}}</span></span>
+              <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap"><b style="font-size: 15px">{{r.rr}}</b><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #4A5260">{{r.out}} out</span></span>
               <span style="justify-self: end; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; padding: 4px 7px; border-radius: 6px; background: {{r.cbg}}; color: {{r.cfg}}">{{r.c}}</span>
               <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: center">{{r.sat}}</span>
               <span style="font-family: 'DM Mono', monospace; font-size: 12px; text-align: right">{{r.next}}</span>

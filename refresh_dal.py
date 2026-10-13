@@ -91,5 +91,9 @@ def main():
   from status_log import record
   preserve_provenance(ROOT, {'source': DAL_LABEL, 'url': URL, 'sha256': hashlib.sha256(raw).hexdigest(), 'through': e['asOf']})
   record(DAL_LABEL,f'Loaded absentee voting data for {len(e["localities"])} localities and updated matched precinct histories.',e['asOf'])
+ else:
+  # Unchanged download: still note the completed check so the Status page shows the site is current.
+  from status_log import record_check
+  record_check(DAL_LABEL,e['asOf'])
  print(json.dumps({'changedFiles':changed,'reportDate':e['asOf'],'changedLocalityDays':changes}))
 if __name__=='__main__':main()

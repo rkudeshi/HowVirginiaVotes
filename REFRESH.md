@@ -42,6 +42,9 @@ live GitHub Pages site shows the new data. Do not publish to ChatGPT Sites.
 Successful changed-data imports automatically append retrieval timestamps and source
 details to `dist/status.json` through `status_log.py`. Publish that file with every
 data update. Do not fabricate past retrieval times or log unchanged checks as imports.
+When `refresh_dal.py` completes but the download has nothing newer, it adds one
+"Checked for new data" entry per Eastern day (`status_log.record_check`). Commit and
+push that `dist/status.json` change so the Status page shows the daily check ran.
 DAL imports use the public label “Daily Absentee List”; their download URL and
 content hash are recorded privately, not as a public Status link.
 For a manual verified import, run `python status_log.py "Source name" "What changed"

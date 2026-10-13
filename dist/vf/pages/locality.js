@@ -82,9 +82,14 @@ class Locality extends DCLogic {
       votes: f(tot * k), pct: (tot / cur.reg * 100 * k).toFixed(1), reg: f(cur.reg), regNote: '.',
       ip: f(cur.early * k), m: f(cur.mail * k), ipW: (cur.early / tot * 100).toFixed(1), mW: (cur.mail / tot * 100).toFixed(1),
       dateLabel: MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear(), typeLabel, atT: f(cur.atT), TL };
-    const refOrder = ['2026', '2025', '2024', '2026-special', '2022', '2021'];
-    const ref = refOrder.map((id) => EL.find((x) => x.id === id)).filter((x) => x && x.id !== eid && x.atT).slice(0, 4);
-    const paceChips = ref.map((x) => ({ ratio: Math.round(cur.atT / x.atT * 100) + '%', label: 'of ' + x.label.replace(' special', '') + ' at ' + TL, border: COLORS[x.id] }));
+    // Pace chips, newest election first. The live election compares at today's point; a past
+    // election compares with the live one at today's point and with other past ones in total.
+    const refOrder = ['2026', '2026-special', '2025', '2024', '2022', '2021', '2020'];
+    const ref = refOrder.map((id) => EL.find((x) => x.id === id)).filter((x) => x && x.id !== eid
+      && (live ? x.atT : x.id === '2026' ? cur.atT && x.atT : x.total)).slice(0, 4);
+    const paceChips = ref.map((x) => { const sameDay = live || x.id === '2026';
+      const ratio = sameDay ? cur.atT / x.atT : cur.total / x.total;
+      return { ratio: Math.round(ratio * 100) + '%', label: 'of ' + x.label.replace(' special', '') + (sameDay ? ' at this point' : ' overall'), border: COLORS[x.id] }; });
     const satLine = D.sat ? D.sat + (D.sat === 1 ? ' satellite site · ' : ' satellite sites · ') + (D.next === 'open' ? 'all open' : 'next open ' + dmd(D.next)) : 'Registrar’s office only, no satellites';
 
     // flow
@@ -189,7 +194,7 @@ class Locality extends DCLogic {
       for (let i = 1; i < g.length; i++) if (g[i].y - g[i - 1].y < lgap) g[i].y = g[i - 1].y + lgap;
       const over = g[g.length - 1].y - CB; if (over > 0) { g[g.length - 1].y = CB; for (let i = g.length - 2; i >= 0; i--) if (g[i + 1].y - g[i].y < lgap) g[i].y = g[i + 1].y - lgap; } });
     ends.forEach((e2) => { e2.x = e2.x.toFixed(1); e2.y = e2.y.toFixed(1); });
-    const ch = { todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, todayLbl: 'TODAY · ' + TL, lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
+    const ch = { todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, todayLbl: 'THROUGH ' + md(D.asOf).toUpperCase(), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
       todayX: todayX.toFixed(1), todayLX: (win === 'today' ? todayX - 8 : todayX + 8).toFixed(1), todayAnchor: win === 'today' ? 'end' : 'start',
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
@@ -200,7 +205,7 @@ class Locality extends DCLogic {
     const ctrls = [
       opt('Method', 'method', method, [['all', 'All early'], ['early', 'In person'], ['mail', 'By mail']]),
       opt('Measure', 'measure', measure, [['count', 'Ballots'], ['pct', '% of registered']]),
-      opt('Timeline', 'win', win, [['today', live ? 'Through today' : 'Through ' + TL], ['election', 'Through Election Day'], ['deadline', 'Through mail deadline']])
+      opt('Timeline', 'win', win, [['today', live ? 'Through today' : 'Through same point'], ['election', 'Through Election Day'], ['deadline', 'Through mail deadline']])
     ];
     const years = EL.filter((x) => x.series).map((x) => { const on = show[x.id] || x.id === eid; return { label: (x.label).replace('November ', 'Nov ').replace('April 2026 special', 'Apr 2026'), type: x.type, color: COLORS[x.id], on, locked: x.id === eid, border: on ? COLORS[x.id] : '#D3D7DE', bg: on ? '#FFFFFF' : '#F5F6F8', op: on ? 1 : 0.6,
       toggle: () => { if (x.id !== eid) this.setState(Object.assign({ show: Object.assign({}, show, { [x.id]: !show[x.id] }) }, bump)); } }; });
@@ -231,7 +236,7 @@ class Locality extends DCLogic {
     const endK = (() => { const x = new Date(eDate); x.setDate(x.getDate() + 6); return iso(x); })();
     const calStart = new Date(startE); calStart.setDate(calStart.getDate() - calStart.getDay());
     const maxDay = Math.max(1, ...drows.map(dv));
-    const ramp = calM === 'mail' ? ['#FFFFFF', '#E9E1FB', '#BBA2F0', '#7C4DDB', '#4E2A9E'] : ['#FFFFFF', '#D3F1E6', '#86D9BA', '#00A37A', '#006B50'];
+    const ramp = calM === 'mail' ? ['#FFFFFF', '#E9E1FB', '#BBA2F0', '#7C4DDB', '#4E2A9E'] : calM === 'early' ? ['#FFFFFF', '#D3F1E6', '#86D9BA', '#00A37A', '#006B50'] : ['#FFFFFF', '#DDE3EE', '#9AA9C4', '#41557F', '#1B2A6B'];
     const firstK = iso(startE), eK = cur.date;
     const defaultK = live ? D.asOf : eK;
     const selK = this.state.cal || defaultK;
@@ -249,7 +254,7 @@ class Locality extends DCLogic {
       else if (inWin) { bg = '#F5F6F8'; border = '2px dashed #C6CBD4'; }
       if (selK === k2) border = '3px solid #121417';
       cal.push({ day: d.getDate() === 1 || k2 === firstK ? MON[d.getMonth()] + ' ' + d.getDate() : String(d.getDate()), k: kText,
-        mark: isE ? '★ Election Day' : sc ? sc.n + (sc.n === 1 ? ' site' : ' sites') + (satOpens[k2] ? ' ▲' : '') : afterE ? 'mail arriving' : '', wet: !!(r && isWet(r.w)),
+        mark: this.state.narrow ? (isE ? '★' : sc ? sc.n + (satOpens[k2] ? '▲' : '') : '') : isE ? '★ Election Day' : sc ? sc.n + (sc.n === 1 ? ' site' : ' sites') + (satOpens[k2] ? ' ▲' : '') : afterE ? 'mail arriving' : '', wet: !!(r && isWet(r.w)),
         bg, fg, border, vis: inWin ? 'visible' : 'hidden', display: i >= 56 && !inWin ? 'none' : 'flex', pressed: selK === k2 ? 'true' : 'false',
         anim: this.state.calTick % 2 ? 'fx-pa' : 'fx-pb', delay: (i * 10) + 'ms', aria: dmd(k2) + (r ? ': ' + f(dv(r)) + ' ballots' : ''),
         move: (ev) => { if (inWin) this.setState({ cal: k2, tip: this.tipAt(ev, 'cal', k2) }); } });
@@ -307,20 +312,21 @@ class Locality extends DCLogic {
     const SH = ['#FFFFFF', '#F2FAF7', '#E2F5EC', '#CDEEDF', '#B4E5D0'];
     const maxDe = Math.max(1, ...drows.map((r) => r.de)), maxDm = Math.max(1, ...drows.map((r) => r.dm));
     const lvlOf = (v, m) => { const q = v / m; return !v ? 0 : q < 0.25 ? 1 : q < 0.5 ? 2 : q < 0.75 ? 3 : 4; };
-    const GSH = ['transparent', '#EAF7F1', '#C9EEDD', '#97DDC1', '#55C7A0'], PSH = ['transparent', '#F3EEFD', '#E0D4F8', '#C3ADF1', '#A385E8'], TSH = ['transparent', '#F1F2F5', '#E3E6EB', '#CFD4DC', '#B6BDC8'];
+    const GSH = ['transparent', '#E3F5ED', '#BDEBD6', '#86D9BA', '#4CC49B'], PSH = ['transparent', '#F0EAFC', '#DCCEF7', '#BFA6F0', '#9E7DE6'], TSH = ['transparent', '#EEF0F3', '#DDE1E7', '#C7CDD6', '#AAB2BF'];
     const tRows = drows.slice().reverse().map((r) => {
       const sc = live ? D.sched[r.d] : null; const w = r.w;
       const heavy = !!(w && w.p >= 0.25), wetish = isWet(w), sunny = !!(w && !wetish && /clear|sun/i.test(w.l));
       const q = (r.de + r.dm) / maxDT; const lv = q < 0.02 ? 0 : q < 0.3 ? 1 : q < 0.55 ? 2 : q < 0.8 ? 3 : 4;
-      return { date: dmd(r.d), de: fz(r.de), dm: fz(r.dm), pb: r.post != null ? fz(r.post) + ' · ' + fz(r.box) : '–', day: fz(r.de + r.dm), run: f(r.e + r.m),
+      return { date: dmd(r.d), dateS: DOW[parse(r.d).getDay()].slice(0, 2) + ' ' + (parse(r.d).getMonth() + 1) + '/' + parse(r.d).getDate(), wxS: w ? w.hi + '°' : '', de: fz(r.de), dm: fz(r.dm), pb: r.post != null ? fz(r.post) + ' · ' + fz(r.box) : '–', day: fz(r.de + r.dm), run: f(r.e + r.m),
         pct: ((r.e + r.m) / cur.reg * 100).toFixed(2) + '%', out: fz(r.o), sites: sc ? String(sc.n) : '–', wx: w ? wxOf(w) : '',
         icoRain: wetish, icoSun: sunny, icoCloud: !!(w && !wetish && !sunny),
         wBg: heavy ? '#EEF0F3' : 'transparent', wFg: heavy ? '#121417' : '#8A93A3', wPad: '3px 10px', wW: heavy ? 700 : 500, bg: '#FFFFFF',
         deBg: shade ? GSH[lvlOf(r.de, maxDe)] : 'transparent', dmBg: shade ? PSH[lvlOf(r.dm, maxDm)] : 'transparent', dayBg: shade ? TSH[lvlOf(r.de + r.dm, maxDT)] : 'transparent' };
     });
-    const tbl = { rows: tRows, hasPB, live,
+    const narrowT = this.state.narrow;
+    const tbl = { rows: tRows, hasPB, live, minW: narrowT ? '0' : '980px',
       shadePressed: shade ? 'true' : 'false', shadeBg: shade ? '#121417' : '#FFFFFF', shadeFg: shade ? '#FFFFFF' : '#121417', toggleShade: () => this.setState({ shade: !shade }),
-      grid: live ? (hasPB ? '1fr 0.8fr 0.8fr 1fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr' : '1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr') : '1.2fr 1fr 1fr 1fr 1fr 0.8fr' };
+      grid: narrowT ? (live ? '1.1fr 1fr 1fr 1fr 0.95fr 0.75fr' : '1.1fr 1fr 1fr 1fr 0.95fr') : live ? (hasPB ? '1fr 0.8fr 0.8fr 1fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr' : '1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr') : '1.2fr 1fr 1fr 1fr 1fr 0.8fr' };
 
     // ---- ballots by day (+ planning)
     const bdView = this.state.bdView || 'daily', bdM = this.state.bdM || 'all', bdWin = this.state.bdWin || 'today';
@@ -379,7 +385,7 @@ class Locality extends DCLogic {
     const bd = {
       daily: bdView === 'daily', cum: bdView !== 'daily', hasPlan: usePlan, showE: N > 46, showToday: live && N > lastI + 1,
       ctrls: [bdOpt('View', 'bdView', bdView, [['daily', 'Daily ballots'], ['cum', 'Cumulative']]), bdOpt('Method', 'bdM', bdM, [['all', 'All early'], ['early', 'In person'], ['mail', 'By mail']]),
-        bdOpt('Timeline', 'bdWin', bdWin, [['today', live ? 'Through today' : 'Through ' + TL], ['election', 'Through Election Day'], ['deadline', 'Through mail deadline']])],
+        bdOpt('Timeline', 'bdWin', bdWin, [['today', live ? 'Through today' : 'Through same point'], ['election', 'Through Election Day'], ['deadline', 'Through mail deadline']])],
       yTitle: bdView === 'daily' ? 'Ballots per day' : 'Ballots, running total',
       yt: [0, 1, 2, 3, 4].map((j) => ({ y: 400 - j * 95, ty: 404 - j * 95, l: short(btop * j / 4), stroke: j === 0 ? '#121417' : '#ECEEF2' })),
       xt: xs.map((i) => { const x = dayDate(i); return { x: BX(i).toFixed(1), l: MON[x.getMonth()] + ' ' + x.getDate() }; }),
@@ -546,6 +552,7 @@ class Locality extends DCLogic {
         locs: [{ value: '', text: 'All of Virginia' }].concat(D.names.map(([id, nm]) => ({ value: id, text: nm }))),
         pickE: (ev) => { const v = ev.target.value; this.setState({ eid: v, show: Object.assign({}, this.state.show, { [v]: true }), cal: null, hi: null, tip: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }); },
         pickL: (ev) => { const v = ev.target.value; location.href = v ? '/' + eid + '/' + v : (eid === '2026' ? '/' : '/' + eid); } },
+      showSites: live && D.sites.length > 0, showPrecincts: live && D.precincts.some((p) => p.r),
       loading: false, ready: true, backHref: eid === '2026' ? '/' : '/' + eid, L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
       flow, flowNote, ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: ramp.slice(1), sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Hide addresses & hours' : 'Show addresses & hours',
       ticker: ticker0.concat(ticker0, ticker0)

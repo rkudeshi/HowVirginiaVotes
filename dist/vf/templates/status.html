@@ -38,8 +38,8 @@ a{color:#00694F}a:hover{color:#121417}
 .fx-nav{position:relative}
 .fx-nav::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:#7C4DDB;transform:scaleX(0);transform-origin:left;transition:transform .2s}
 .fx-nav:hover::after{transform:scaleX(1)}
-.fx-row{transition:background .15s,transform .15s}.fx-row:hover{background:#F1FAF6;transform:translateX(4px)}
-.fx-pill{transition:transform .12s,background .15s,color .15s}.fx-pill:hover{transform:translateY(-1px)}.fx-pill:active{transform:translateY(1px)}
+.fx-row{transition:background .15s,transform .15s}.fx-row:hover{background:#F1FAF6}
+.fx-pill{transition:transform .12s,background .15s,color .15s}@media (hover: hover){.fx-pill:hover{transform:translateY(-1px)}}.fx-pill:active{transform:translateY(1px)}[role=group] .fx-pill,[role=group] .fx-pill:hover,[role=group] .fx-pill:active{transform:none}
 .fx-th{transition:color .15s}.fx-th:hover{color:#00694F}
 .fx-load{animation:fxShimmer 1.2s ease-in-out infinite}
 .fx-tick{display:inline-block;animation:fxTick .35s cubic-bezier(.2,1.4,.4,1)}
@@ -70,7 +70,7 @@ a{color:#00694F}a:hover{color:#121417}
   .fx-tree:not(.fx-big) .fx-fcbox > div:first-child b{font-size:10.5px !important;line-height:1.15 !important}
   .fx-tree:not(.fx-big) .fx-fcbox > div:first-child span{font-size:clamp(12px,3.8vw,18px) !important;letter-spacing:-0.04em !important}
   .fx-tree:not(.fx-big) .fx-fcbox > div:nth-child(2){height:5px !important;margin:5px 0 4px !important}
-  .fx-tree:not(.fx-big) .fx-fcbox > div:last-child{font-size:0 !important;line-height:1.1}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:last-child{font-size:10px !important;line-height:1.2}
   .fx-tree:not(.fx-big) .fx-fcbox > div:last-child b{font-size:11px !important}
   .fx-tree:not(.fx-big) .fx-conn{height:24px}
 }

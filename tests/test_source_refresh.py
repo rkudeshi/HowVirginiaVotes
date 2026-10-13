@@ -78,10 +78,17 @@ class SourceRefreshTests(unittest.TestCase):
         private = list((self.root / '.private/source-provenance/acquisitions').glob('*.json'))
         self.assertEqual(len(private), 1)
         self.assertTrue(json.loads(private[0].read_text())['url'].startswith('https://'))
-        unchanged_status = status_path.read_bytes()
         second = json.loads(self.run_script('refresh_dal.py', '--zip', archive).stdout)
         self.assertEqual(second['changedFiles'], 0)
-        self.assertEqual(status_path.read_bytes(), unchanged_status)
+        # An unchanged check is logged once per day, and never as an import.
+        status = json.loads(status_path.read_text())
+        self.assertEqual(len(status), 2)
+        self.assertTrue(status[1]['check'])
+        self.assertEqual(status[1]['through'], status[0]['through'])
+        checked_status = status_path.read_bytes()
+        third = json.loads(self.run_script('refresh_dal.py', '--zip', archive).stdout)
+        self.assertEqual(third['changedFiles'], 0)
+        self.assertEqual(status_path.read_bytes(), checked_status)
 
 
 if __name__ == '__main__':
