@@ -1,5 +1,5 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
-const S=require('../dist/schedules.js'),P=require('../dist/planning.js');
+const S=require('../dist/old/v2/schedules.js'),P=require('../dist/old/v2/planning.js');
 const raw=JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'../dist/region.json')));
 const data=S.prepare(structuredClone(raw));
 test('historical templates do not manufacture weekend openings',()=>{

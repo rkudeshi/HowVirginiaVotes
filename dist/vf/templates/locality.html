@@ -1,0 +1,788 @@
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400..800&amp;family=Hanken+Grotesk:wght@400..800&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E6E8EC}
+a{color:#00694F}a:hover{color:#121417}
+@keyframes fxMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes fxRise{from{opacity:0;translate:0 28px;scale:.985}to{opacity:1;translate:0 0;scale:1}}
+@keyframes fxGrowX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fxPulse{0%{box-shadow:0 0 0 0 rgba(124,77,219,.75)}70%{box-shadow:0 0 0 12px rgba(124,77,219,0)}100%{box-shadow:0 0 0 0 rgba(124,77,219,0)}}
+@keyframes fxDrawA{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes fxDrawB{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes fxFade{from{opacity:0}to{opacity:1}}
+@keyframes fxPopA{0%{opacity:0;scale:.55;rotate:-4deg}70%{scale:1.06}100%{opacity:1;scale:1;rotate:0deg}}
+@keyframes fxPopB{0%{opacity:0;scale:.55;rotate:4deg}70%{scale:1.06}100%{opacity:1;scale:1;rotate:0deg}}
+@keyframes fxShimmer{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes fxDrift{from{background-position:0 0}to{background-position:44px 44px}}
+@keyframes fxTick{0%{translate:0 -40%;opacity:0}100%{translate:0 0;opacity:1}}
+@keyframes fxBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes fxSpin{to{transform:rotate(360deg)}}
+@keyframes fxTipIn{from{opacity:0;transform:translateY(6px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fxDrip{0%,100%{translate:0 0}50%{translate:0 2px}}
+.fx-ground{background-color:#E6E8EC}
+.fx-card{animation:fxRise .7s cubic-bezier(.2,.9,.3,1) both;transition:transform .25s cubic-bezier(.2,.9,.3,1),box-shadow .25s}
+@supports (animation-timeline: view()){.fx-card{animation:fxRise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}}
+.fx-card:hover{transform:translateY(-3px);box-shadow:0 22px 40px -26px rgba(20,32,43,.55)}
+.fx-track{animation:fxMarquee 44s linear infinite}
+.fx-track:hover{animation-play-state:paused}
+.fx-meter{transform-origin:left;animation:fxGrowX 1.1s cubic-bezier(.2,1,.3,1) both}
+.fx-live{animation:fxPulse 1.6s infinite}
+.fx-a{stroke-dasharray:1;animation:fxDrawA 1.6s cubic-bezier(.65,0,.35,1) both}
+.fx-b{stroke-dasharray:1;animation:fxDrawB 1.6s cubic-bezier(.65,0,.35,1) both}
+.fx-fade{animation:fxFade .6s ease both}
+.fx-cell{transition:transform .15s,box-shadow .15s}
+.fx-pa{animation:fxPopA .45s cubic-bezier(.3,1.4,.5,1) both}
+.fx-pb{animation:fxPopB .45s cubic-bezier(.3,1.4,.5,1) both}
+.fx-cell:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 10px 18px -10px rgba(20,32,43,.6);z-index:1}
+.fx-heat{transition:transform .12s}.fx-heat:hover{transform:scale(1.3);z-index:1}
+.fx-path{animation:fxFade .5s ease both;transition:fill .3s;cursor:pointer}
+.fx-path:hover{stroke:#121417;stroke-width:2}
+.fx-hit{cursor:crosshair}
+.fx-nav{position:relative}
+.fx-nav::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:#7C4DDB;transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.fx-nav:hover::after{transform:scaleX(1)}
+.fx-row{transition:background .15s}.fx-row:hover{background:#F1FAF6}
+.fx-pill{transition:transform .12s,background .15s,color .15s,border-color .15s}.fx-pill:hover{transform:translateY(-1px)}.fx-pill:active{transform:translateY(1px)}
+.fx-load{animation:fxShimmer 1.2s ease-in-out infinite}
+.fx-range{accent-color:#00A37A}
+.fx-tick{display:inline-block;animation:fxTick .35s cubic-bezier(.2,1.4,.4,1)}
+.fx-bob{animation:fxBob 2.4s ease-in-out infinite}
+.fx-spin{animation:fxSpin 22s linear infinite;transform-origin:center}
+.fx-tip{animation:fxTipIn .15s ease both}
+.fx-drip{animation:fxDrip 1.6s ease-in-out infinite}
+.fx-check{transition:transform .12s,border-color .15s,opacity .15s}.fx-check:hover{transform:translateY(-1px)}
+.fx-check input{width:20px;height:20px;accent-color:#121417;margin:0;cursor:pointer}
+details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover{box-shadow:0 12px 22px -16px rgba(20,32,43,.5)}
+@media (max-width: 900px){.fx-side{display:none !important}}
+.fx-narrow{display:none}
+@media (max-width: 1000px){.fx-narrow{display:flex}.fx-maps .fx-mapbox{display:none}.fx-maps.sel-all .m-all,.fx-maps.sel-e .m-e,.fx-maps.sel-m .m-m{display:block}}
+@keyframes fxGrowY{from{scale:1 0}to{scale:1 1}}
+.fx-grow{transform-box:fill-box;transform-origin:bottom;animation:fxGrowY .6s cubic-bezier(.2,1.1,.4,1) both}
+@keyframes fxRing{0%{scale:1;opacity:.8}100%{scale:2.2;opacity:0}}
+.fx-ring2{transform-box:fill-box;transform-origin:center;animation:fxRing 1.8s ease-out infinite}
+.fx-popdot{transform-box:fill-box;transform-origin:center;animation:fxPopA .5s cubic-bezier(.3,1.4,.5,1) both}
+
+.fx-mini input{width:15px;height:15px;accent-color:#4A5260}
+.fx-strow{transition:background .15s}.fx-strow:hover{background:#F1FAF6}
+.fx-fcbox{transition:transform .2s cubic-bezier(.3,1.4,.5,1),box-shadow .2s}.fx-fcbox:hover{transform:translateY(-3px);box-shadow:0 14px 26px -18px rgba(27,42,107,.45)}
+@media (max-width: 760px){.fx-tree{display:flex !important;flex-direction:column;gap:12px}.fx-conn{display:none !important}}
+@keyframes fxPie{from{stroke-dasharray:0 100}}
+.fx-pie{animation:fxPie .7s cubic-bezier(.2,.9,.3,1) both}
+
+.fx-axis{font-size:12px}
+@media (max-width: 900px){
+  .fx-main{gap:16px !important;padding-left:12px !important;padding-right:12px !important}
+  .fx-main > *{grid-column:1 / -1 !important;min-width:0 !important}
+  .fx-card{padding:22px 16px !important;border-radius:22px !important}
+  #daily.fx-card,#localities.fx-card{padding:22px 0 14px !important}
+  header{padding:14px 12px !important;gap:12px !important}
+  header nav{flex-wrap:nowrap !important;overflow-x:auto;max-width:100%}
+  header nav a{white-space:nowrap}
+}
+@media (max-width: 600px){
+  .fx-axis{font-size:30px !important}
+  .fx-cell{min-height:56px !important;padding:4px !important}
+  .fx-cell span{font-size:10px !important}
+  .fx-chtip{position:static !important;transform:none !important;margin-top:10px;min-width:0 !important}
+  .fx-hero-num{font-size:46px !important}
+}
+@media (min-width: 701px){.fx-leg-opt{display:none !important}}
+.fx-pmaps.lay-one .fx-mapbox{display:none}
+.fx-pmaps.lay-one.sel-all .m-all,.fx-pmaps.lay-one.sel-e .m-e,.fx-pmaps.lay-one.sel-m .m-m{display:block}
+.fx-hero{container-type:inline-size}
+</style>
+</helmet>
+<div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
+
+  <div style="background: #121417; color: #FFFFFF">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 12px 20px; flex-wrap: wrap">
+      <div role="group" aria-label="State" style="display: flex; gap: 6px; align-items: center">
+        <span style="font: 600 11px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B7BCC6; margin-right: 4px">State</span>
+        <button aria-pressed="true" style="min-height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #00A37A; color: #FFFFFF; font: 700 14px 'Hanken Grotesk', sans-serif; display: flex; align-items: center; gap: 8px; cursor: default"><span class="fx-live" style="width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF"></span>Virginia</button>
+      </div>
+      <span style="font: 500 12px 'DM Mono', monospace; color: #B7BCC6">Data through {{band.asOf}} · refreshed daily at 7 AM ET<sc-if value="{{vfDelayed}}"> <span role="status" style="color: #FF9B9B">(Update delayed by technical issues)</span></sc-if></span>
+      <span style="margin-left: auto; font: 500 13px 'DM Mono', monospace; display: flex; gap: 6px; align-items: center; color: #B7BCC6">{{cd.label}} <b style="color: #FFD23F; display: inline-flex; gap: 5px">{{cd.days}}d {{cd.h}}h {{cd.m}}m <span class="fx-tick {{cd.anim}}" style="min-width: 3ch">{{cd.s}}s</span></b></span>
+    </div>
+  </div>
+
+  <header style="max-width: 1240px; margin: 0 auto; padding: 22px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap">
+    <a href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #121417">
+      <span class="fx-bob" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#121417" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l8 13 8-13"></path></svg>
+      </span>
+      <span style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">vote<span style="color: #7C4DDB">flow</span><span style="color: #00A37A">.</span></span>
+    </a>
+    <nav aria-label="Page sections" style="display: flex; gap: 2px; flex-wrap: wrap; font-size: 16px; font-weight: 600">
+      <a class="fx-nav" href="#flow" style="padding: 12px; text-decoration: none; color: #121417">Breakdown</a>
+      <a class="fx-nav" href="#compare" style="padding: 12px; text-decoration: none; color: #121417">History</a>
+      <a class="fx-nav" href="#byday" style="padding: 12px; text-decoration: none; color: #121417">By day</a>
+      <a class="fx-nav" href="#calendar" style="padding: 12px; text-decoration: none; color: #121417">Calendar</a>
+      <a class="fx-nav" href="#sites" style="padding: 12px; text-decoration: none; color: #121417">Sites</a>
+      <a class="fx-nav" href="#daily" style="padding: 12px; text-decoration: none; color: #121417">Daily numbers</a>
+      <a class="fx-nav" href="#precincts" style="padding: 12px; text-decoration: none; color: #121417">Precincts</a>
+    </nav>
+  </header>
+
+  <sc-if value="{{loading}}" hint-placeholder-val="{{ false }}">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px">
+      <div class="fx-load" style="grid-column: span 12; height: 120px; background: #FFFFFF; border: 2px solid #D3D7DE; border-radius: 28px"></div>
+      <div class="fx-load" style="grid-column: span 8; height: 360px; background: #FFFFFF; border: 2px solid #D3D7DE; border-radius: 28px"></div>
+      <div class="fx-load" style="grid-column: span 4; height: 360px; background: #FFFFFF; border: 2px solid #D3D7DE; border-radius: 28px"></div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ready}}" hint-placeholder-val="{{ true }}">
+  <main class="fx-main" style="max-width: 1240px; margin: 0 auto; padding: 0 24px 48px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px">
+
+    <div style="grid-column: span 12; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 4px 4px 0">
+      <div>
+        <a href="{{backHref}}" style="font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; min-height: 32px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Virginia · {{L.region}}</a>
+        <h1 style="margin: 4px 0 0; font-size: clamp(48px, 7vw, 92px); font-weight: 800; letter-spacing: -0.055em; line-height: .95">{{L.name}}</h1>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <span class="fx-pill" style="padding: 10px 14px; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 12px; font-weight: 700; font-size: 15px">#{{L.rankV}} of 133 in ballots</span>
+        <span class="fx-pill" style="padding: 10px 14px; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 12px; font-weight: 700; font-size: 15px">#{{L.rankP}} of 133 in turnout %</span>
+      </div>
+    </div>
+
+    <nav aria-label="Jump to an election" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 18px 20px">
+      <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; margin: 0 4px 12px">Jump to an election in {{L.name}}</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px">
+        <sc-for list="{{elChips}}" as="ec" hint-placeholder-count="8">
+          <button class="fx-pill" onClick="{{ec.pick}}" aria-pressed="{{ec.pressed}}" style="min-height: 58px; padding: 8px 12px; border: 2px solid {{ec.border}}; border-radius: 12px; background: {{ec.bg}}; color: {{ec.fg}}; font: inherit; cursor: pointer; text-align: left; display: flex; flex-direction: column; justify-content: center; gap: 2px">
+            <b style="font-size: 14px">{{ec.label}}</b>
+            <span style="font-family: 'DM Mono', monospace; font-size: 12px; opacity: .85">{{ec.sub}}</span>
+            <span style="font-family: 'DM Mono', monospace; font-size: 12px; opacity: .85">{{ec.sub2}}</span>
+          </button>
+        </sc-for>
+      </div>
+    </nav>
+
+    <section class="fx-card fx-hero" style="grid-column: span 8; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 36px 40px; min-width: 280px">
+      <div style="display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; flex-wrap: wrap">
+        <sc-if value="{{hero.live}}" hint-placeholder-val="{{ true }}"><span class="fx-live" style="width: 10px; height: 10px; border-radius: 50%; background: #7C4DDB"></span></sc-if>
+        {{hero.kicker}}
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px 44px; align-items: flex-end; margin: 40px 0 36px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95">{{hero.pct}}%</span>
+          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #C9F2E4; color: #00694F; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #7C4DDB">{{hero.votes}}</span>
+          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #EDE6FC; color: #4E2A9E; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
+        </div>
+      </div>
+      <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters{{hero.regNote}}</p>
+      <div style="display: flex; height: 22px; border-radius: 999px; overflow: hidden; background: #E6E8EC">
+        <div class="fx-meter" style="width: {{hero.ipW}}%; background: #00A37A"></div>
+        <div class="fx-meter" style="width: {{hero.mW}}%; background: #7C4DDB; animation-delay: .25s"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 16px; font-weight: 600">
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #00A37A; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #7C4DDB; border-radius: 3px"></span>By mail · {{hero.m}} · {{hero.mW}}%</span>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
+        <sc-for list="{{paceChips}}" as="pc" hint-placeholder-count="3">
+          <span class="fx-pill" style="padding: 8px 12px; border: 2px solid {{pc.border}}; border-radius: 10px; font-size: 14px; font-weight: 600"><b style="font-size: 17px">{{pc.ratio}}</b> {{pc.label}}</span>
+        </sc-for>
+      </div>
+    </section>
+
+    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
+      <sc-if value="{{hero.live}}" hint-placeholder-val="{{ true }}">
+        <div style="position: relative; width: 200px; height: 200px">
+          <svg width="200" height="200" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#ECEEF2" stroke-width="12"></circle>
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#7C4DDB" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{cd.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle>
+            
+          </svg>
+          <div style="position: absolute; inset: 0; display: grid; place-items: center; align-content: center">
+            <div style="font-size: 72px; font-weight: 800; letter-spacing: -0.05em; line-height: 1">{{cd.days}}</div>
+            <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em">days left</div>
+          </div>
+        </div>
+        <div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Election Day · Tue Nov 3</div>
+        <div style="font-size: 15px; color: #4A5260">Mail ballots count through Mon Nov 9.</div>
+        <div class="fx-bob" style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{satLine}}</div>
+      </sc-if>
+      <sc-if value="{{hero.past}}" hint-placeholder-val="{{ false }}">
+        <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em">Final early vote</div>
+        <div style="font-size: 44px; font-weight: 800; letter-spacing: -0.04em; line-height: 1">{{hero.dateLabel}}</div>
+        <div style="font-size: 15px; color: #4A5260">{{hero.typeLabel}}</div>
+        <div style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">At {{hero.TL}}: {{hero.atT}} ballots</div>
+        <button class="fx-pill" onClick="{{backToNow}}" style="min-height: 44px; padding: 0 18px; border: 2px solid #121417; border-radius: 999px; background: #121417; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Back to November 2026</button>
+      </sc-if>
+    </section>
+
+    <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 36px">
+      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where {{L.name}}'s voters stand · {{elLabel}}</h2>
+      <p style="margin: 6px 0 26px; color: #4A5260; font-size: 16px">{{flowNote}}</p>
+      <div role="group" aria-label="Flow view" style="display: inline-flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden; margin: 0 0 22px">
+        <sc-for list="{{fcOpts}}" as="o" hint-placeholder-count="2">
+          <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 16px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+        </sc-for>
+      </div>
+      <sc-if value="{{fc.on}}" hint-placeholder-val="{{ true }}">
+        <div class="fx-tree" style="display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 0; row-gap: 0; align-items: stretch">
+          <div class="fx-fcbox fx-pa" style="grid-column: 8 / 18; grid-row: 1; background: #F6F8FD; border: 2.5px solid #1B2A6B; border-radius: 14px; padding: 12px 16px; animation-delay: 0s">
+            <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1B2A6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><circle cx="9" cy="8" r="3.4"></circle><path d="M2.5 20c0-3.6 2.9-5.6 6.5-5.6s6.5 2 6.5 5.6"></path><circle cx="17.2" cy="8.8" r="2.8"></circle><path d="M16.4 14.5c3 .2 5.1 2 5.1 5.5"></path></svg>
+              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">{{fc.total.title}}</b>
+              <span style="font-family: 'Unbounded', sans-serif; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{fc.total.val}}</span>
+            </div>
+            <div style="height: 9px; border-radius: 999px; background: #DCE3EF; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.total.w}}%; background: #1E3FA0; border-radius: 999px; animation-delay: 0s"></div></div>
+            <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{fc.total.pct}}</b> {{fc.total.cap}}</div>
+          </div>
+          <svg class="fx-conn fx-fade" viewBox="0 0 1000 40" preserveAspectRatio="none" width="100%" height="38" aria-hidden="true" style="grid-column: 1 / -1; grid-row: 2; display: block; overflow: visible; animation-delay: .3s">
+            <g fill="none" stroke="#5A6E8C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M500,0 V12 Q500,19 492,19 H258 Q250,19 250,26 V36" vector-effect="non-scaling-stroke"></path>
+              <path d="M500,0 V12 Q500,19 508,19 H742 Q750,19 750,26 V36" vector-effect="non-scaling-stroke"></path>
+              <path d="M245,30 L250,37 L255,30" vector-effect="non-scaling-stroke"></path><path d="M745,30 L750,37 L755,30" vector-effect="non-scaling-stroke"></path>
+            </g>
+          </svg>
+          <div class="fx-fcbox fx-pa" style="grid-column: 2 / 12; grid-row: 3; background: #F3FBF9; border: 2.5px solid #2BB39A; border-radius: 14px; padding: 12px 16px; animation-delay: .45s">
+            <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#12A38A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21c0-4.2 3.4-6.5 7.5-6.5s7.5 2.3 7.5 6.5"></path></svg>
+              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">{{fc.ip.title}}</b>
+              <span style="font-family: 'Unbounded', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{fc.ip.val}}</span>
+            </div>
+            <div style="height: 9px; border-radius: 999px; background: #D3F0E8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.ip.w}}%; background: #12A38A; border-radius: 999px; animation-delay: .45s"></div></div>
+            <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{fc.ip.pct}}</b> {{fc.ip.cap}}</div>
+          </div>
+          <div class="fx-fcbox fx-pa" style="grid-column: 14 / 24; grid-row: 3; background: #F3F8FF; border: 2.5px solid #4A8FE7; border-radius: 14px; padding: 12px 16px; animation-delay: .55s">
+            <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6FD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="3" y="5.5" width="18" height="13" rx="2"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg>
+              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">{{fc.mail.title}}</b>
+              <span style="font-family: 'Unbounded', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{fc.mail.val}}</span>
+            </div>
+            <div style="height: 9px; border-radius: 999px; background: #D9E4F2; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.mail.w}}%; background: #3B82F6; border-radius: 999px; animation-delay: .55s"></div></div>
+            <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{fc.mail.pct}}</b> {{fc.mail.cap}}</div>
+          </div>
+          <sc-if value="{{fc.hasReq}}" hint-placeholder-val="{{ true }}">
+          <svg class="fx-conn fx-fade" viewBox="0 0 1000 40" preserveAspectRatio="none" width="100%" height="38" aria-hidden="true" style="grid-column: 1 / -1; grid-row: 4; display: block; overflow: visible; animation-delay: .75s">
+            <g fill="none" stroke="#5A6E8C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M750,0 V12 Q750,19 742,19 H529 Q521,19 521,26 V36" vector-effect="non-scaling-stroke"></path>
+              <path d="M750,0 V12 Q750,19 758,19 H825 Q833,19 833,26 V36" vector-effect="non-scaling-stroke"></path>
+              <path d="M516,30 L521,37 L526,30" vector-effect="non-scaling-stroke"></path><path d="M828,30 L833,37 L838,30" vector-effect="non-scaling-stroke"></path>
+            </g>
+          </svg>
+          <div class="fx-fcbox fx-pa" style="grid-column: 10 / 17; grid-row: 5; background: #F5F9FF; border: 2.5px solid #8DB6EC; border-radius: 14px; padding: 12px 16px; animation-delay: .9s">
+            <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6FD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="3" y="5.5" width="18" height="13" rx="2"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg>
+              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">{{fc.ret.title}}</b>
+              <span style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{fc.ret.val}}</span>
+            </div>
+            <div style="height: 9px; border-radius: 999px; background: #D9E4F2; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.ret.w}}%; background: #3B82F6; border-radius: 999px; animation-delay: .9s"></div></div>
+            <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{fc.ret.pct}}</b> {{fc.ret.cap}}</div>
+          </div>
+          <div class="fx-fcbox fx-pa" style="grid-column: 18 / 24; grid-row: 5; background: #FFFBEF; border: 2.5px solid #F2C14E; border-radius: 14px; padding: 12px 16px; animation-delay: 1s">
+            <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C98A0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5.2l3.4 2"></path></svg>
+              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">{{fc.out.title}}</b>
+              <span style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{fc.out.val}}</span>
+            </div>
+            <div style="height: 9px; border-radius: 999px; background: #FBEBC8; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.out.w}}%; background: #F5A524; border-radius: 999px; animation-delay: 1s"></div></div>
+            <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{fc.out.pct}}</b> {{fc.out.cap}}</div>
+          </div>
+          </sc-if>
+          <sc-if value="{{fc.hasPB}}" hint-placeholder-val="{{ false }}">
+          <svg class="fx-conn fx-fade" viewBox="0 0 1000 40" preserveAspectRatio="none" width="100%" height="38" aria-hidden="true" style="grid-column: 1 / -1; grid-row: 6; display: block; overflow: visible; animation-delay: 1.2s">
+            <g fill="none" stroke="#5A6E8C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M521,0 V12 Q521,19 513,19 H404 Q396,19 396,26 V36" vector-effect="non-scaling-stroke"></path>
+              <path d="M521,0 V12 Q521,19 529,19 H721 Q729,19 729,26 V36" vector-effect="non-scaling-stroke"></path>
+              <path d="M391,30 L396,37 L401,30" vector-effect="non-scaling-stroke"></path><path d="M724,30 L729,37 L734,30" vector-effect="non-scaling-stroke"></path>
+            </g>
+          </svg>
+          <div class="fx-fcbox fx-pa" style="grid-column: 7 / 14; grid-row: 7; background: #F5F9FF; border: 2.5px solid #6FA6EA; border-radius: 14px; padding: 12px 16px; animation-delay: 1.35s">
+            <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6FD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="3" y="5.5" width="18" height="13" rx="2"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg>
+              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">{{fc.post.title}}</b>
+              <span style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{fc.post.val}}</span>
+            </div>
+            <div style="height: 9px; border-radius: 999px; background: #D9E4F2; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.post.w}}%; background: #3B82F6; border-radius: 999px; animation-delay: 1.35s"></div></div>
+            <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{fc.post.pct}}</b> {{fc.post.cap}}</div>
+          </div>
+          <div class="fx-fcbox fx-pa" style="grid-column: 15 / 22; grid-row: 7; background: #F5F9FF; border: 2.5px solid #6FA6EA; border-radius: 14px; padding: 12px 16px; animation-delay: 1.45s">
+            <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6FD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M5 9h14"></path><path d="M9.5 6h5"></path><path d="M10 13h4"></path></svg>
+              <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">{{fc.box.title}}</b>
+              <span style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{fc.box.val}}</span>
+            </div>
+            <div style="height: 9px; border-radius: 999px; background: #D9E4F2; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.box.w}}%; background: #3B82F6; border-radius: 999px; animation-delay: 1.45s"></div></div>
+            <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{fc.box.pct}}</b> {{fc.box.cap}}</div>
+          </div>
+          </sc-if>
+        </div>
+        <p style="margin: 16px 0 0; text-align: center; font-size: 14px; color: #5A6E8C">Outstanding requests are not votes cast. Mail requests can include voters who later vote in person.</p>
+      </sc-if>
+      <sc-if value="{{fc.off}}" hint-placeholder-val="{{ false }}">
+      <sc-for list="{{flow}}" as="lv" hint-placeholder-count="4">
+        <div style="margin-bottom: 30px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px">
+            <span style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260">{{lv.kicker}}</span>
+            <span style="font-size: 22px; font-weight: 800; letter-spacing: -0.03em">{{lv.title}}</span>
+          </div>
+          <div style="display: flex; height: 48px; border-radius: 10px; overflow: hidden; background: #F1F2F5">
+            <sc-for list="{{lv.segs}}" as="sg" hint-placeholder-count="3">
+              <div class="fx-meter" style="width: {{sg.w}}%; background: {{sg.bg}}; color: {{sg.fg}}; display: flex; align-items: center; padding: 0 12px; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: 15px; animation-delay: {{sg.delay}}; box-shadow: inset -2px 0 0 #FFFFFF; outline: {{sg.outline}}; outline-offset: -3px">{{sg.inside}}</div>
+            </sc-for>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 12px">
+            <sc-for list="{{lv.segs}}" as="sg" hint-placeholder-count="3">
+              <div class="{{sg.legCls}}" style="display: flex; gap: 10px; align-items: flex-start">
+                <span style="width: 14px; height: 14px; border-radius: 4px; background: {{sg.bg}}; margin-top: 4px; flex-shrink: 0; box-shadow: inset 0 0 0 1.5px rgba(20,32,43,.2)"></span>
+                <span style="display: flex; flex-direction: column; line-height: 1.25"><b style="font-size: 16px">{{sg.name}} · {{sg.val}}</b><span style="font-size: 14px; color: #4A5260">{{sg.of}}</span></span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+      </sc-if>
+    </section>
+
+    <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
+      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">{{L.name}} against past elections</h2>
+      <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px">Running totals by days before Election Day. Hover the chart for any day.</p>
+      <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px">
+        <sc-for list="{{ctrls}}" as="cg" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260">{{cg.label}}</span>
+            <div role="group" aria-label="{{cg.label}}" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+              <sc-for list="{{cg.opts}}" as="o" hint-placeholder-count="3">
+                <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <fieldset style="border: 0; margin: 0 0 14px; padding: 0">
+        <legend style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260; margin-bottom: 6px">Elections shown</legend>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <sc-for list="{{years}}" as="y" hint-placeholder-count="8">
+            <label class="fx-check fx-mini" style="min-height: 38px; padding: 4px 10px 4px 8px; border: 2px solid {{y.border}}; border-radius: 10px; background: {{y.bg}}; display: flex; align-items: center; gap: 7px; cursor: pointer; opacity: {{y.op}}">
+              <input type="checkbox" checked="{{y.on}}" disabled="{{y.locked}}" onChange="{{y.toggle}}">
+              <span style="display: flex; flex-direction: column; line-height: 1.1"><b style="font-size: 13px">{{y.label}}</b><span style="font-size: 11px; color: #4A5260">{{y.type}}</span></span>
+            </label>
+          </sc-for>
+        </div>
+      </fieldset>
+      <div style="display: flex; align-items: center; gap: 6px; font: 700 13px 'Hanken Grotesk', sans-serif; color: #121417; margin: 4px 0 2px"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M2 5l4-4 4 4" fill="none" stroke="#121417" stroke-width="1.8"></path></svg>{{ch.yTitle}}</div>
+      <div style="position: relative" onMouseLeave="{{ch.leave}}">
+        <svg viewBox="-20 0 1020 540" width="100%" role="img" aria-label="Cumulative early ballots by days before Election Day for the selected elections" style="display: block; overflow: visible">
+          <sc-for list="{{ch.yt}}" as="t" hint-placeholder-count="5">
+<g>
+            <line x1="60" y1="{{t.y}}" x2="1000" y2="{{t.y}}" stroke="{{t.stroke}}" stroke-width="1.5"></line>
+            <text x="54" y="{{t.ty}}" text-anchor="end" class="fx-axis" style="font-family: 'DM Mono', monospace" fill="#4A5260">{{t.l}}</text></g>
+</sc-for>
+          <sc-for list="{{ch.xt}}" as="t" hint-placeholder-count="5">
+<g>
+            <line x1="{{t.x}}" y1="500" x2="{{t.x}}" y2="506" stroke="#121417" stroke-width="1.5"></line>
+            <text x="{{t.x}}" y="526" text-anchor="middle" class="fx-axis" style="font-family: 'DM Mono', monospace" fill="#4A5260">{{t.l}}</text></g>
+</sc-for>
+          <line x1="{{ch.todayX}}" y1="10" x2="{{ch.todayX}}" y2="500" stroke="#5B2FB8" stroke-width="2" stroke-dasharray="2 4"></line>
+          <text x="{{ch.todayLX}}" y="12" text-anchor="{{ch.todayAnchor}}" style="font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600" fill="#5B2FB8">{{ch.todayLbl}}</text>
+          <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="4">
+            <path class="{{ch.anim}}" d="{{ln.d}}" pathLength="1" fill="none" stroke="{{ln.color}}" stroke-width="{{ln.w}}" stroke-linejoin="round" stroke-linecap="round"></path>
+          </sc-for>
+          <sc-if value="{{ch.hasProj}}" hint-placeholder-val="{{ false }}">
+            <path class="fx-fade" d="{{ch.proj}}" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round" style="animation-delay: 1.9s"></path>
+          </sc-if>
+          <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
+            <line x1="{{ch.hiX}}" y1="20" x2="{{ch.hiX}}" y2="500" stroke="#121417" stroke-width="1.5"></line>
+            <sc-for list="{{ch.hiDots}}" as="hd" hint-placeholder-count="3">
+              <circle cx="{{ch.hiX}}" cy="{{hd.y}}" r="6" fill="#FFFFFF" stroke="{{hd.color}}" stroke-width="3"></circle>
+            </sc-for>
+          </sc-if>
+          <sc-for list="{{ch.hits}}" as="h" hint-placeholder-count="0">
+            <rect class="fx-hit" x="{{h.x}}" y="0" width="{{h.w}}" height="510" fill="transparent" onMouseEnter="{{h.enter}}"></rect>
+          </sc-for>
+        </svg>
+        <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
+          <div class="fx-tip fx-chtip" style="position: absolute; top: 8px; left: {{ch.tipLeft}}%; transform: translateX({{ch.tipShift}}); background: #FFFFFF; color: #121417; border: 2px solid #121417; border-radius: 12px; padding: 14px 16px; min-width: 260px; pointer-events: none; box-shadow: 0 18px 32px -18px rgba(20,32,43,.6)">
+            <div style="font-family: 'DM Mono', monospace; font-size: 12px; color: #5B2FB8; text-transform: uppercase; letter-spacing: .08em">{{ch.hiTitle}}</div>
+            <sc-for list="{{ch.hiRows}}" as="hr" hint-placeholder-count="3">
+              <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 14px">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: {{hr.color}}"></span>
+                <span style="flex: 1">{{hr.label}}</span>
+                <b style="font-family: 'DM Mono', monospace">{{hr.val}}</b>
+                <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260; width: 52px; text-align: right">{{hr.rel}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 6px; font: 700 13px 'Hanken Grotesk', sans-serif; color: #121417; margin-top: 2px">Days before Election Day<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" fill="none" stroke="#121417" stroke-width="1.8"></path></svg></div>
+      <p style="margin: 12px 0 0; font-size: 14px; color: #4A5260">{{ch.note}}</p>
+    </section>
+
+    <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px">
+      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Ballots by day · {{elLabel}}</h2>
+      <p style="margin: 6px 0 16px; color: #4A5260; font-size: 16px">{{bd.note}}</p>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px">
+        <sc-for list="{{bd.ctrls}}" as="cg" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260">{{cg.label}}</span>
+            <div role="group" aria-label="{{cg.label}}" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+              <sc-for list="{{cg.opts}}" as="o" hint-placeholder-count="3">
+                <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{bd.hasPlan}}" hint-placeholder-val="{{ false }}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 16px">
+          <sc-for list="{{bd.chips}}" as="pc" hint-placeholder-count="4">
+            <div class="fx-pill" style="padding: 12px 16px; border-radius: 16px; background: {{pc.bg}}; border: 2px solid {{pc.border}}; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260">{{pc.k}}</span>
+              <b style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em">{{pc.v}}</b>
+              <span style="font-size: 13px; color: #4A5260">{{pc.sub}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="display: flex; align-items: center; gap: 6px; font: 700 13px 'Hanken Grotesk', sans-serif; color: #121417; margin: 4px 0 2px"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M2 5l4-4 4 4" fill="none" stroke="#121417" stroke-width="1.8"></path></svg>{{bd.yTitle}}</div>
+      <div onMouseLeave="{{hideTip}}">
+        <svg viewBox="-20 0 1020 430" width="100%" role="img" aria-label="Ballots by day" style="display: block; overflow: visible">
+          <sc-if value="{{bd.hasPlan}}" hint-placeholder-val="{{ false }}">
+            <rect x="{{bd.futX}}" y="20" width="{{bd.futW}}" height="380" fill="#F7F4FE"></rect>
+            <text x="{{bd.futLX}}" y="40" class="fx-axis" style="font-family: 'DM Mono', monospace; font-weight: 600; letter-spacing: 1px" fill="#5B2FB8">ESTIMATES →</text>
+          </sc-if>
+          <sc-for list="{{bd.yt}}" as="t" hint-placeholder-count="5">
+<g>
+            <line x1="60" y1="{{t.y}}" x2="1000" y2="{{t.y}}" stroke="{{t.stroke}}" stroke-width="1.5"></line>
+            <text x="54" y="{{t.ty}}" text-anchor="end" class="fx-axis" style="font-family: 'DM Mono', monospace" fill="#4A5260">{{t.l}}</text></g>
+</sc-for>
+          <sc-for list="{{bd.xt}}" as="t" hint-placeholder-count="8">
+<g>
+            <line x1="{{t.x}}" y1="400" x2="{{t.x}}" y2="406" stroke="#121417" stroke-width="1.5"></line>
+            <text x="{{t.x}}" y="424" text-anchor="middle" class="fx-axis" style="font-family: 'DM Mono', monospace" fill="#4A5260">{{t.l}}</text></g>
+</sc-for>
+          <sc-if value="{{bd.showE}}" hint-placeholder-val="{{ false }}">
+            <line x1="{{bd.eX}}" y1="14" x2="{{bd.eX}}" y2="400" stroke="#121417" stroke-width="1.5" stroke-dasharray="2 4"></line>
+            <text x="{{bd.eX}}" y="10" text-anchor="middle" class="fx-axis" style="font-family: 'DM Mono', monospace; font-weight: 600" fill="#121417">ELECTION DAY</text>
+          </sc-if>
+          <sc-if value="{{bd.showToday}}" hint-placeholder-val="{{ true }}">
+            <line x1="{{bd.todayX}}" y1="20" x2="{{bd.todayX}}" y2="400" stroke="#F0592A" stroke-width="2" stroke-dasharray="2 4"></line>
+            <text x="{{bd.todayLX}}" y="40" text-anchor="end" class="fx-axis" style="font-family: 'DM Mono', monospace; font-weight: 600" fill="#B4400F">TODAY</text>
+          </sc-if>
+          <sc-if value="{{bd.daily}}" hint-placeholder-val="{{ true }}">
+            <sc-for list="{{bd.plan}}" as="pb" hint-placeholder-count="0">
+<g>
+              <rect class="fx-grow" x="{{pb.x}}" y="{{pb.y}}" width="{{pb.w}}" height="{{pb.h}}" rx="3" fill="#FFFFFF" stroke="#7C4DDB" stroke-width="1.5" stroke-dasharray="4 3" style="animation-delay: {{pb.delay}}"></rect>
+              <line x1="{{pb.cx}}" y1="{{pb.lo}}" x2="{{pb.cx}}" y2="{{pb.hi}}" stroke="#5B2FB8" stroke-width="1.5"></line></g>
+</sc-for>
+            <sc-for list="{{bd.bars}}" as="b" hint-placeholder-count="0">
+<g>
+              <rect class="fx-grow" x="{{b.x}}" y="{{b.yE}}" width="{{b.w}}" height="{{b.hE}}" fill="#00A37A" style="animation-delay: {{b.delay}}"></rect>
+              <rect class="fx-grow" x="{{b.x}}" y="{{b.yM}}" width="{{b.w}}" height="{{b.hM}}" rx="3" fill="#7C4DDB" style="animation-delay: {{b.delay}}"></rect></g>
+</sc-for>
+          </sc-if>
+          <sc-if value="{{bd.cum}}" hint-placeholder-val="{{ false }}">
+            <path class="fx-fade" d="{{bd.band}}" fill="#ECE5FC"></path>
+            <path class="fx-fade" d="{{bd.projLine}}" fill="none" stroke="#7C4DDB" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" style="animation-delay: .8s"></path>
+            <path class="fx-a" d="{{bd.mLine}}" pathLength="1" fill="none" stroke="#7C4DDB" stroke-width="3" stroke-linejoin="round"></path>
+            <path class="fx-a" d="{{bd.eLine}}" pathLength="1" fill="none" stroke="#00A37A" stroke-width="3" stroke-linejoin="round"></path>
+            <path class="fx-a" d="{{bd.line}}" pathLength="1" fill="none" stroke="#121417" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"></path>
+          </sc-if>
+          <sc-for list="{{bd.hits}}" as="h" hint-placeholder-count="0">
+            <rect class="fx-hit" x="{{h.x}}" y="0" width="{{h.w}}" height="410" fill="{{h.fill}}" onMouseMove="{{h.move}}" onClick="{{h.move}}"></rect>
+          </sc-for>
+        </svg>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 6px; font: 700 13px 'Hanken Grotesk', sans-serif; color: #121417; margin-top: 2px">Date<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" fill="none" stroke="#121417" stroke-width="1.8"></path></svg></div>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260; align-items: center">
+        <sc-for list="{{bd.legend}}" as="lg" hint-placeholder-count="4"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 18px; height: 10px; border-radius: 3px; background: {{lg.bg}}; border: {{lg.border}}"></span>{{lg.l}}</span></sc-for>
+      </div>
+    </section>
+
+    <section id="calendar" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; display: flex; flex-wrap: wrap; gap: 28px">
+      <div style="flex: 999 1 600px; min-width: 0">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px">
+          <div>
+            <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">The calendar · {{elLabel}}</h2>
+            <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">Darker means busier. Hover or tap a day for sites, hours, weather and numbers.</p>
+          </div>
+          <div role="group" aria-label="Ballot method" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+            <sc-for list="{{calOpts}}" as="o" hint-placeholder-count="3">
+              <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; color: #4A5260; margin-bottom: 6px">
+          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+        <div onMouseLeave="{{hideTip}}" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px">
+          <sc-for list="{{cal}}" as="c" hint-placeholder-count="63">
+            <button class="fx-cell {{c.anim}}" onMouseMove="{{c.move}}" onClick="{{c.move}}" aria-label="{{c.aria}}" aria-pressed="{{c.pressed}}" style="position: relative; min-height: 84px; padding: 8px; border: {{c.border}}; border-radius: 10px; background: {{c.bg}}; color: {{c.fg}}; font: inherit; text-align: left; display: {{c.display}}; flex-direction: column; justify-content: space-between; cursor: pointer; visibility: {{c.vis}}; animation-delay: {{c.delay}}">
+              <span style="font-family: 'DM Mono', monospace; font-size: 11px; display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 4px"><span>{{c.day}}</span>
+              </span>
+              <span style="font-weight: 800; font-size: 17px; letter-spacing: -0.02em">{{c.k}}</span>
+              <span style="font-family: 'DM Mono', monospace; font-size: 10px">{{c.mark}}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px; font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260; align-items: center">
+          <span style="display: flex; gap: 6px; align-items: center"><sc-for list="{{calRamp}}" as="cr" hint-placeholder-count="4"><span style="width: 16px; height: 16px; border-radius: 4px; background: {{cr}}"></span></sc-for>fewer → more ballots</span>
+          <span>N sites = sites open · ▲ satellites open</span>
+          <span>★ Election Day</span>
+          <span style="display: flex; gap: 6px; align-items: center"><span style="width: 16px; height: 16px; border-radius: 4px; border: 2px dashed #B7BCC6"></span>mail still arriving</span>
+        </div>
+      </div>
+      <div class="fx-side" style="flex: 1 1 290px; background: #FFF6D1; border: 2px solid #F0D27A; color: #121417; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 4px; align-self: stretch">
+        <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{sel.kicker}}</div>
+        <div style="font-size: 30px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05">{{sel.title}}</div>
+        <div style="font-size: 15px; color: #4A5260; margin-bottom: 10px">{{sel.sub}}</div>
+        <sc-if value="{{sel.hasPie}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; align-items: center; gap: 14px; margin: 4px 0 10px">
+            <svg width="72" height="72" viewBox="0 0 42 42" role="img" aria-label="In person {{sel.pctE}}, by mail {{sel.pctM}}" style="flex-shrink: 0">
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#7C4DDB" stroke-width="9"></circle>
+              <circle class="fx-pie" cx="21" cy="21" r="15.915" fill="none" stroke="#00A37A" stroke-width="9" stroke-dasharray="{{sel.pieE}} {{sel.pieRest}}" stroke-dashoffset="25"></circle>
+            </svg>
+            <div style="font-size: 13px; line-height: 1.7">
+              <div style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #00A37A"></span>In person <b>{{sel.pctE}}</b></div>
+              <div style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #7C4DDB"></span>By mail <b>{{sel.pctM}}</b></div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-for list="{{sel.rows}}" as="sr" hint-placeholder-count="8">
+          <div style="display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px solid #F0E2B0; font-size: 14px"><span style="color: #4A5260">{{sr.k}}</span><b style="font-family: 'DM Mono', monospace; text-align: right">{{sr.v}}</b></div>
+        </sc-for>
+        <sc-if value="{{sel.hasList}}" hint-placeholder-val="{{ false }}">
+          <div style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8; margin-top: 12px">{{sel.listHead}}</div>
+          <sc-for list="{{sel.list}}" as="ss" hint-placeholder-count="3">
+            <div style="display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 13px"><span>{{ss.k}}</span><b style="font-family: 'DM Mono', monospace">{{ss.v}}</b></div>
+          </sc-for>
+        </sc-if>
+      </div>
+    </section>
+
+    <section id="sites" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
+        <div>
+          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Early voting sites · Nov 2026</h2>
+          <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">{{siteSummary}}</p>
+        </div>
+        <button class="fx-pill" onClick="{{siteAllToggle}}" aria-pressed="{{siteAllPressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{siteAllBg}}; color: {{siteAllFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer">{{siteAllLabel}}</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; margin-top: 20px">
+        <div style="flex: 1 1 340px; min-width: 0; max-width: 520px">
+          <svg onMouseLeave="{{hideTip}}" viewBox="{{pmView}}" width="100%" role="img" aria-label="Map of early voting sites" style="display: block; max-height: 620px">
+            <sc-for list="{{sm.base}}" as="p" hint-placeholder-count="0">
+              <path d="{{p}}" fill="#ECEEF2" stroke="#FFFFFF" stroke-width="1"></path>
+            </sc-for>
+            <sc-for list="{{sm.dots}}" as="dt" hint-placeholder-count="0">
+              <g onMouseMove="{{dt.move}}" onClick="{{dt.click}}" style="cursor: pointer">
+                <circle class="{{dt.ringCls}}" cx="{{dt.x}}" cy="{{dt.y}}" r="{{dt.r}}" fill="none" stroke="#00A37A" stroke-width="3"></circle>
+                <circle class="fx-popdot" cx="{{dt.x}}" cy="{{dt.y}}" r="{{dt.r}}" fill="{{dt.fill}}" stroke="{{dt.stroke}}" stroke-width="4" style="animation-delay: {{dt.delay}}"></circle>
+                <text x="{{dt.x}}" y="{{dt.ty}}" text-anchor="middle" style="font-family: 'DM Mono', monospace; font-size: {{dt.fs}}px; font-weight: 600; pointer-events: none" fill="{{dt.tc}}">{{dt.n}}</text>
+              </g>
+            </sc-for>
+          </svg>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260">
+            <span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; background: #00A37A"></span>open</span>
+            <span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; background: #FFFFFF; border: 3px solid #7C4DDB"></span>opens later</span>
+            <span>{{sm.sizeNote}}</span>
+          </div>
+        </div>
+        <div style="flex: 999 1 520px; min-width: 0; overflow-x: auto">
+          <div style="min-width: 600px">
+            <div style="display: grid; grid-template-columns: 34px 2.4fr 1.1fr 0.9fr 0.9fr 0.7fr 0.8fr; gap: 10px; padding: 10px 12px; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em">
+              <span>#</span><span>Site</span><span>Status</span><span style="text-align: right">In person</span><span style="text-align: right">Share</span><span style="text-align: right">Per hour</span><span style="text-align: right">Hours so far</span>
+            </div>
+            <sc-for list="{{siteTable}}" as="st" hint-placeholder-count="6">
+              <div style="border-bottom: 1.5px solid #ECEEF2">
+                <button class="fx-strow" onClick="{{st.toggle}}" aria-expanded="{{st.expanded}}" style="width: 100%; display: grid; grid-template-columns: 34px 2.4fr 1.1fr 0.9fr 0.9fr 0.7fr 0.8fr; gap: 10px; padding: 10px 12px; align-items: center; font: inherit; font-size: 14px; color: #121417; text-align: left; background: {{st.rowBg}}; border: 0; cursor: pointer">
+                  <span style="width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 12px 'DM Mono', monospace; background: {{st.dotBg}}; color: {{st.dotFg}}; border: 2px solid {{st.dotBorder}}">{{st.n}}</span>
+                  <span style="display: flex; flex-direction: column; line-height: 1.2"><b>{{st.name}} <span style="font-weight: 400; color: #4A5260">{{st.caret}}</span></b><span style="font-size: 12px; color: #4A5260">{{st.kind}}</span></span>
+                  <span style="display: flex; flex-direction: column; gap: 2px; align-items: flex-start"><span style="font: 700 11px 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{st.chipBg}}; color: {{st.chipFg}}">{{st.status}}</span><span style="font: 500 11px 'DM Mono', monospace; color: #4A5260">{{st.opens}}</span></span>
+                  <b style="text-align: right; font-family: 'DM Mono', monospace">{{st.ballots}}</b>
+                  <span style="display: flex; align-items: center; gap: 6px; justify-content: flex-end"><span style="width: 44px; height: 8px; border-radius: 999px; background: #ECEEF2; overflow: hidden"><span class="fx-meter" style="display: block; height: 100%; width: {{st.w}}%; background: #00A37A"></span></span><span style="font-family: 'DM Mono', monospace; font-size: 13px; width: 40px; text-align: right">{{st.share}}</span></span>
+                  <span style="text-align: right; font-family: 'DM Mono', monospace">{{st.rate}}</span>
+                  <span style="text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{st.hrs}}</span>
+                </button>
+                <sc-if value="{{st.showDetail}}" hint-placeholder-val="{{ false }}">
+                  <div class="fx-fade" style="padding: 4px 12px 14px 56px; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 14px">
+                    <div style="min-width: 200px"><div style="font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">Address</div>{{st.address}}</div>
+                    <div><div style="font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">Hours</div>
+                      <ul style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 2px"><sc-for list="{{st.rules}}" as="ru" hint-placeholder-count="3"><li>{{ru}}</li></sc-for></ul>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+            <p style="margin: 10px 12px 0; font-size: 13px; color: #4A5260">{{siteTableNote}}</p>
+          </div>
+        </div>
+      </div>
+      <sc-if value="{{rh.has}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; margin: 32px 0 12px">
+          <div>
+            <h3 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 18px; font-weight: 700">Site rhythm</h3>
+            <p style="margin: 4px 0 0; color: #4A5260; font-size: 15px">Every site, every day of early voting. Dashed squares are scheduled days not yet reported. Hover any square.</p>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
+            <sc-for list="{{rh.ctrls}}" as="cg" hint-placeholder-count="2">
+              <div role="group" aria-label="{{cg.label}}" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+              <sc-for list="{{cg.opts}}" as="o" hint-placeholder-count="3">
+                <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+              </sc-for>
+            </div>
+            </sc-for>
+            <button class="fx-pill" onClick="{{rh.swap}}" aria-pressed="{{rh.swapped}}" style="min-height: 44px; padding: 0 14px; border: 2px solid #121417; border-radius: 999px; background: {{rh.swapBg}}; color: {{rh.swapFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer">⇄ Swap rows / columns</button>
+          </div>
+        </div>
+        <div style="overflow-x: auto; border: 2px solid #ECEEF2; border-radius: 16px; padding: 12px">
+          <div style="display: grid; grid-template-columns: {{rh.grid}}; gap: 3px; min-width: {{rh.minW}}; align-items: stretch">
+            <span></span>
+            <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: #4A5260; text-align: right; padding-right: 6px">{{rh.totLabel}}</span>
+            <sc-for list="{{rh.head}}" as="hc" hint-placeholder-count="10"><span style="font-family: 'DM Mono', monospace; font-size: 10px; color: #4A5260; text-align: center; padding: 0 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" title="{{hc.full}}">{{hc.l}}</span></sc-for>
+            <sc-for list="{{rh.rows}}" as="rr" hint-placeholder-count="3">
+              <span style="font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; align-self: center" title="{{rr.name}}">{{rr.name}}</span>
+              <b style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right; align-self: center; padding-right: 6px">{{rr.total}}</b>
+              <sc-for list="{{rr.cells}}" as="c" hint-placeholder-count="10">
+                <span class="fx-heat {{rh.anim}}" title="{{c.tip}}" style="min-height: {{rh.cellH}}; border-radius: 4px; background: {{c.bg}}; border: {{c.border}}; color: {{c.fg}}; display: grid; place-items: center; font: 600 11px 'DM Mono', monospace; animation-delay: {{c.delay}}">{{c.txt}}</span>
+              </sc-for>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </section>
+
+    <section id="daily" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 0 20px">
+      <div style="padding: 0 36px 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
+        <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Daily numbers · {{elLabel}}</h2>
+        <button class="fx-pill" onClick="{{tbl.toggleShade}}" aria-pressed="{{tbl.shadePressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{tbl.shadeBg}}; color: {{tbl.shadeFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px"><span style="display: flex; gap: 2px"><span style="width: 8px; height: 14px; border-radius: 2px; background: #DDF3EA"></span><span style="width: 8px; height: 14px; border-radius: 2px; background: #A6E0CA"></span><span style="width: 8px; height: 14px; border-radius: 2px; background: #5CC9A3"></span></span>Shade by volume</button>
+      </div>
+      <div style="overflow: auto; max-height: 580px; border-top: 2px solid #121417">
+        <div style="min-width: 1000px">
+          <div style="position: sticky; top: 0; z-index: 2; display: grid; grid-template-columns: {{tbl.grid}}; gap: 12px; padding: 12px 36px; background: #F5F6F8; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em">
+            <span>Date</span><span style="text-align: right">In person</span><span style="text-align: right">By mail</span>
+            <sc-if value="{{tbl.hasPB}}" hint-placeholder-val="{{ true }}"><span style="text-align: right">Post · drop box</span></sc-if>
+            <span style="text-align: right">Daily total</span><span style="text-align: right">Running total</span><span style="text-align: right">Turnout</span>
+            <sc-if value="{{tbl.live}}" hint-placeholder-val="{{ true }}"><span style="text-align: right">Mail out</span><span style="text-align: right">Sites</span><span>Weather</span></sc-if>
+          </div>
+          <sc-for list="{{tbl.rows}}" as="tr" hint-placeholder-count="12">
+            <div class="fx-row" style="display: grid; grid-template-columns: {{tbl.grid}}; gap: 12px; padding: 9px 36px; border-bottom: 1.5px solid #ECEEF2; align-items: center; font-size: 14px; background: {{tr.bg}}; transition: background .3s">
+              <b>{{tr.date}}</b>
+              <span style="text-align: right; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{tr.deBg}}">{{tr.de}}</span>
+              <span style="text-align: right; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{tr.dmBg}}">{{tr.dm}}</span>
+              <sc-if value="{{tbl.hasPB}}" hint-placeholder-val="{{ true }}"><span style="text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.pb}}</span></sc-if>
+              <b style="text-align: right; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{tr.dayBg}}">{{tr.day}}</b>
+              <span style="text-align: right; font-family: 'DM Mono', monospace">{{tr.run}}</span>
+              <span style="text-align: right; font-family: 'DM Mono', monospace">{{tr.pct}}</span>
+              <sc-if value="{{tbl.live}}" hint-placeholder-val="{{ true }}">
+                <span style="text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.out}}</span>
+                <span style="text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.sites}}</span>
+                <span><span style="display: inline-flex; align-items: center; gap: 6px; padding: {{tr.wPad}}; border-radius: 999px; background: {{tr.wBg}}; color: {{tr.wFg}}; font-size: 12px; font-weight: {{tr.wW}}; white-space: nowrap">
+                  <sc-if value="{{tr.icoRain}}" hint-placeholder-val="{{ false }}"><svg width="11" height="13" viewBox="0 0 12 14" aria-hidden="true"><path d="M6 1C6 1 1.5 6.5 1.5 9a4.5 4.5 0 0 0 9 0C10.5 6.5 6 1 6 1z" fill="currentColor"></path></svg></sc-if>
+                  <sc-if value="{{tr.icoSun}}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"></path></svg></sc-if>
+                  <sc-if value="{{tr.icoCloud}}" hint-placeholder-val="{{ false }}"><svg width="15" height="12" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 16h11a4 4 0 0 0 0-8 6 6 0 0 0-11.5-1.5A4.5 4.5 0 0 0 7 16z"></path></svg></sc-if>
+                  {{tr.wx}}</span></span>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section id="precincts" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; {{pm.fs}}">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+        <div>
+          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Precinct maps</h2>
+          <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">{{pm.note}}</p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <div role="group" aria-label="Layout" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+            <sc-for list="{{pm.lays}}" as="o" hint-placeholder-count="2">
+              <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 12px; border: 0; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{pm.one}}" hint-placeholder-val="{{ false }}">
+          <div role="group" aria-label="Map shown" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+            <sc-for list="{{pm.pick}}" as="o" hint-placeholder-count="3">
+              <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 12px; border: 0; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+            </sc-for>
+          </div>
+          </sc-if>
+          <button class="fx-pill" onClick="{{pm.toggleFull}}" aria-pressed="{{pm.fullPressed}}" style="min-height: 44px; padding: 0 14px; border: 2px solid #121417; border-radius: 999px; background: {{pm.fullBg}}; color: {{pm.fullFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg>{{pm.fullLabel}}</button>
+          <sc-for list="{{pm.ctrls}}" as="cg" hint-placeholder-count="1">
+            <div role="group" aria-label="{{cg.label}}" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+              <sc-for list="{{cg.opts}}" as="o" hint-placeholder-count="3">
+                <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div class="fx-pmaps lay-{{pm.lay}} sel-{{pm.sel}}" onMouseLeave="{{hideTip}}" style="display: grid; grid-template-columns: {{pm.cols}}; gap: 18px; margin-top: 18px">
+        <sc-for list="{{pm.maps}}" as="mp" hint-placeholder-count="3">
+          <div class="fx-mapbox m-{{mp.id}}" style="border: 2px solid {{mp.border}}; border-radius: 20px; padding: 14px">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px"><b style="font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 700">{{mp.title}}</b><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260">{{mp.total}}</span></div>
+            <svg viewBox="{{pmView}}" width="100%" role="img" aria-label="{{mp.title}} by precinct" style="display: block; max-height: {{pm.mapMax}}; margin: 0 auto">
+              <sc-for list="{{mp.paths}}" as="p" hint-placeholder-count="0">
+                <path class="fx-path" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="{{p.sw}}" stroke-linejoin="round" onMouseMove="{{p.move}}" onClick="{{p.move}}" style="animation-delay: {{p.delay}}"></path>
+              </sc-for>
+            </svg>
+            <div style="display: flex; gap: 3px; margin-top: 8px">
+              <sc-for list="{{mp.bins}}" as="b" hint-placeholder-count="5">
+                <span style="flex: 1; display: flex; flex-direction: column; gap: 3px; font-family: 'DM Mono', monospace; font-size: 10px; color: #4A5260"><span style="height: 8px; border-radius: 3px; background: {{b.c}}; box-shadow: inset 0 0 0 1px rgba(18,20,23,.1)"></span>{{b.l}}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <label style="display: flex; align-items: center; gap: 14px; margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; flex-wrap: wrap">Reporting date
+        <input class="fx-range" type="range" min="0" max="{{pm.max}}" value="{{pm.idx}}" onInput="{{pm.onSlide}}" style="flex: 1; min-width: 200px; min-height: 44px">
+        <b style="font-size: 14px; min-width: 90px">{{pm.dateLabel}}</b>
+        <button class="fx-pill" onClick="{{pm.play}}" style="min-height: 40px; padding: 0 14px; border: 2px solid #121417; border-radius: 999px; background: #FFFFFF; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer">{{pm.playLabel}}</button>
+      </label>
+      <div style="margin-top: 14px; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 20px; padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center">
+        <div style="min-width: 200px"><div style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{pm.hov.kicker}}</div><div style="font-family: 'Unbounded', sans-serif; font-size: 18px; font-weight: 700">{{pm.hov.title}}</div><div style="font-size: 14px; color: #4A5260">{{pm.hov.sub}}</div></div>
+        <sc-for list="{{pm.hov.rows}}" as="hr" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; font-size: 13px"><span style="color: #4A5260">{{hr.k}}</span><b style="font-family: 'DM Mono', monospace; font-size: 15px">{{hr.v}}</b></div>
+        </sc-for>
+      </div>
+    </section>
+
+  </main>
+  </sc-if>
+
+  <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
+    <span>This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
+    <span style="font-family: 'DM Mono', monospace; font-size: 13px">Data: Virginia Department of Elections and local registrars · <a href="/status">Update status</a> · <a href="/old/v2/">Previous design</a></span>
+  </footer>
+
+  <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">
+    <div class="fx-tip" role="tooltip" style="position: fixed; left: {{tip.x}}px; top: {{tip.y}}px; z-index: 90; width: 300px; background: #FFFFFF; border: 2px solid #121417; border-radius: 20px; padding: 16px; pointer-events: none; box-shadow: 0 22px 40px -20px rgba(20,32,43,.65)">
+      <div style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{tip.kicker}}</div>
+      <sc-if value="{{tip.hasBadge}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 0 4px; padding: 3px 10px; border-radius: 999px; background: #EDE6FC; color: #4E2A9E; font: 700 11px 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase">{{tip.badge}}</span></sc-if>
+      <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1">{{tip.title}}</div>
+      <div style="font-size: 13px; color: #4A5260; margin-bottom: 6px">{{tip.sub}}</div>
+        <sc-if value="{{tip.hasPie}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; align-items: center; gap: 14px; margin: 4px 0 10px">
+            <svg width="56" height="56" viewBox="0 0 42 42" role="img" aria-label="In person {{tip.pctE}}, by mail {{tip.pctM}}" style="flex-shrink: 0">
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#7C4DDB" stroke-width="9"></circle>
+              <circle class="fx-pie" cx="21" cy="21" r="15.915" fill="none" stroke="#00A37A" stroke-width="9" stroke-dasharray="{{tip.pieE}} {{tip.pieRest}}" stroke-dashoffset="25"></circle>
+            </svg>
+            <div style="font-size: 13px; line-height: 1.7">
+              <div style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #00A37A"></span>In person <b>{{tip.pctE}}</b></div>
+              <div style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #7C4DDB"></span>By mail <b>{{tip.pctM}}</b></div>
+            </div>
+          </div>
+        </sc-if>
+      <sc-for list="{{tip.rows}}" as="tr" hint-placeholder-count="5">
+        <div style="display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; border-top: 1px solid #ECEEF2; font-size: 13px"><span style="color: #4A5260">{{tr.k}}</span><b style="font-family: 'DM Mono', monospace; text-align: right">{{tr.v}}</b></div>
+      </sc-for>
+      <sc-if value="{{tip.hasList}}" hint-placeholder-val="{{ false }}">
+        <div style="font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8; margin-top: 8px">{{tip.listHead}}</div>
+        <sc-for list="{{tip.list}}" as="tl" hint-placeholder-count="3">
+          <div style="display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; font-size: 12px"><span>{{tl.k}}</span><b style="font-family: 'DM Mono', monospace">{{tl.v}}</b></div>
+        </sc-for>
+      </sc-if>
+    </div>
+  </sc-if>
+</div>

@@ -1,6 +1,6 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
-const {choices,references,defaultReference,compare,aggregateHistories,dayLabels}=require('../dist/comparison.js');
+const {choices,references,defaultReference,compare,aggregateHistories,dayLabels}=require('../dist/old/v2/comparison.js');
 const row=(date,total)=>({date,total,early:total*.8,mail:total*.2});
 const locality=(id,registered,history)=>({id,registered,history});
 const elections={

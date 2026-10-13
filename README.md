@@ -1,14 +1,18 @@
-# How Virginia Votes · VA Vote
+# VoteFlow · Virginia
 
 Virginia early-voting turnout dashboard covering all 133 localities, historical comparisons, precinct maps, voting schedules, and planning scenarios.
 
-The website is plain HTML, CSS, JavaScript, and saved JSON data. It needs no server, database, API key, package installation, or build step. D3 is included locally.
+The website is static HTML, JavaScript, and saved JSON data. It needs no server, database, API key, or package installation.
+
+- **Current design** (`dist/index.html`, `dist/vf/`): pages are HTML templates in `dist/vf/templates/` with logic in `dist/vf/pages/`, rendered by a small runtime (`dist/vf/runtime.js`) on a vendored copy of Preact (`dist/vf/preact.min.js`, MIT). Routes: `/`, `/<election>`, `/<election>/<locality>`, `/status`.
+- **Page data** (`dist/data/`, not committed): `build_voteflow.py` turns the saved data into one bundle per election (`home-<election>.json`) and one per locality (`loc/<locality>.json`). The publish workflow runs it on every deploy.
+- **Previous design** (`dist/old/v2/`): the earlier dashboard, kept at `/old/v2/`. It reads the same saved data files from the site root.
 
 ## Website and publishing
 
-GitHub Pages publishes **only `dist/`** through `.github/workflows/pages.yml` when changes reach `main`. The workflow validates the saved data and JavaScript before publishing. The existing custom domain is `howvirginiavotes.raviudeshi.com`.
+GitHub Pages publishes **only `dist/`** through `.github/workflows/pages.yml` when changes reach `main`. The workflow validates the saved data and JavaScript before publishing. The custom domain is `voteflow.raviudeshi.com`.
 
-For a local preview, run `python3 -m http.server 8000 --directory dist` and open http://localhost:8000. Navigation uses hash routes and all website assets use relative paths.
+For a local preview, run `python3 build_voteflow.py && python3 build_routes.py`, then `python3 -m http.server 8000 --directory dist` and open http://localhost:8000. Navigation uses clean paths; `build_routes.py` writes an entry page for each route so deep links work on GitHub Pages.
 
 ## Where scheduled updates belong
 
@@ -20,7 +24,7 @@ The scheduled ChatGPT task should update this repository:
 - `dist/map-manifest.json`, `dist/maps/`, and other geography files: update only when geography changes.
 - `sources/`: preserve source snapshots, provenance, and coverage records; this folder is not published to Pages.
 
-Follow **[REFRESH.md](REFRESH.md)** for source precedence, corrections, missing data, and validation. Run the relevant Python refresh scripts, inspect the diff, run `python3 validate_data.py`, `node --check dist/app.js`, and `node --check dist/planning.js`, then commit the actual changes to `main`. A successful push triggers publication. Do not put credentials, personal voter records, or temporary files in this repository.
+Follow **[REFRESH.md](REFRESH.md)** for source precedence, corrections, missing data, and validation. Run the relevant Python refresh scripts, inspect the diff, run `python3 validate_data.py` and `python3 build_voteflow.py` (it must finish without errors), then commit the actual changes to `main`. A successful push triggers publication. Do not put credentials, personal voter records, or temporary files in this repository.
 
 The data-fetching schedule is managed separately in ChatGPT. This repository's workflow only validates and publishes saved files; it does not schedule data collection. Do not create a second refresh schedule here.
 

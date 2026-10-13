@@ -73,7 +73,7 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    report date and compare content hashes. Reconcile every daily table to the
    cover totals before replacing data. The parser fails closed on a new layout;
    inspect and adapt it, then continue other sources if recovery is blocked.
-   Fairfax PDF values take precedence everywhere they exist. app.js applies
+   Fairfax PDF values take precedence everywhere they exist. the site applies
    preferCountyReports() for the homepage, locality cards and comparison charts;
    daily charts use official history and projections already use official rows.
    Raw DAL data remains for fields unavailable in the PDF, especially precincts.
@@ -101,7 +101,7 @@ with build_data.py or prepare_region.py: those older builders predate enrichment
    official (which carries full Fairfax mail composition). Do not fill site
    counts from precinct-of-residence data. Do not invent daily history from
    cumulative totals or allocate county totals across multiple sites.
-8. Run `node --check dist/app.js` and `python validate_data.py` before publishing.
+8. Run `python validate_data.py` and `python build_voteflow.py` before publishing.
    Commit and push only actual changes to the GitHub main branch. The Pages
    workflow validates and publishes dist/; confirm the deployment succeeds.
 
@@ -159,8 +159,9 @@ Structured rendered-chart snapshots use schemaVersion 2; the historical importer
 validates both saved chart literals and structured daily records.
 
 ## Header refresh-delay notice
-The shared header reads "Updated daily at 7 a.m. ET". Its small muted-red
-parenthetical is controlled only by `dist/refresh-status.json`:
+The header on both the current site ("refreshed daily at 7 AM ET") and the
+previous design at /old/v2 ("Updated daily at 7 a.m. ET") has a small muted-red
+parenthetical controlled only by `dist/refresh-status.json`:
 `{"delayed": false}` hides it; `{"delayed": true}` shows
 "(Update delayed by technical issues)". The browser rechecks without cache on
 page load, tab return, and every five minutes while visible.
