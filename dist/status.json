@@ -110,5 +110,12 @@
     "message": "Expanded November 2021 and November 2022 historical daily in-person and mail coverage to all 133 Virginia localities, preserving existing Fairfax and Loudoun histories.",
     "through": "2022-11-14",
     "url": null
+  },
+  {
+    "at": "2026-10-13T07:34:21.878Z",
+    "source": "Website update",
+    "message": "Added a small header notice for delayed data refreshes; it clears after the required source checks recover.",
+    "through": null,
+    "url": null
   }
 ]

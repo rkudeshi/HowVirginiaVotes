@@ -157,3 +157,27 @@ November 2020 now covers all 133 localities, preserving the existing Fairfax dat
 November 2021 and 2022 also cover all 133 localities, preserving existing Fairfax and Loudoun histories.
 Structured rendered-chart snapshots use schemaVersion 2; the historical importer
 validates both saved chart literals and structured daily records.
+
+## Header refresh-delay notice
+The shared header reads "Updated daily at 7 a.m. ET". Its small muted-red
+parenthetical is controlled only by `dist/refresh-status.json`:
+`{"delayed": false}` hides it; `{"delayed": true}` shows
+"(Update delayed by technical issues)". The browser rechecks without cache on
+page load, tab return, and every five minutes while visible.
+
+If a scheduled source fetch, parse, validation, or import fails, preserve that
+source's last valid data, continue independent sources, and set delayed to true.
+A partial success must not clear an unresolved failure. After all required
+checks recover and validated updates are ready for publication, set it to false
+in the same commit as any changed data. A successful content-verified unchanged
+check can also clear the flag. Unchanged source contents, normal reporting lags,
+and the already documented older precinct coverage alone are not technical failures.
+
+Status-only commits to this file are authorized exceptions to the data-only
+publication rule, including when execution is blocked but GitHub remains
+available. Do not change the flag on every check or add timestamp-only commits.
+Never change ballot coverage dates to reflect a status check. Do not append failed
+checks as successful imports to status.json. Rebase the narrow status edit onto
+the latest branch head and verify the Pages deployment. If GitHub or deployment
+is unavailable, report that the public notice could not be published; do not
+claim visitors can see it. Preserve current design and all unrelated files.
