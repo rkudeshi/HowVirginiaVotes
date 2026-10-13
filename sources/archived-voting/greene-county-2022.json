@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 2,
+  "localityId": "greene-county",
+  "localityName": "Greene County",
+  "year": "2022",
+  "retrievedAt": "2026-10-12T23:18:22.541Z",
+  "url": null,
+  "sourceLabel": "Archived voting data",
+  "method": "Rendered historical report text and chart tooltip values read through Microsoft Edge.",
+  "asOf": "2022-11-13",
+  "headline": {
+    "early": 2793,
+    "mail": 614,
+    "total": 3407,
+    "mailApplicationsNotReturned": 107
+  },
+  "previousComparableElection": {
+    "date": "2018-11-06",
+    "total": 795
+  },
+  "rates": [
+    {
+      "area": "Greene County",
+      "per1000": 229.8,
+      "display": "229.8"
+    },
+    {
+      "area": "Piedmont",
+      "per1000": 178.1,
+      "display": "178.1"
+    },
+    {
+      "area": "Virginia",
+      "per1000": 164.3,
+      "display": "164.3"
+    }
+  ],
+  "regionDefinition": "Includes Albemarle County, Amherst County, Caroline County, Charlottesville City, Culpeper County, Fluvanna County, Fredericksburg City, Greene County, Louisa County, Madison County, Nelson County, Orange County, Rappahannock County, Spotsylvania County, Stafford County",
+  "daily": [
+    {
+      "date": "2022-09-23",
+      "early": 46,
+      "mail": 0,
+      "total": 46,
+      "cumulativeTotal": 46
+    },
+    {
+      "date": "2022-09-24",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 46
+    },
+    {
+      "date": "2022-09-25",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 46
+    },
+    {
+      "date": "2022-09-26",
+      "early": 45,
+      "mail": 3,
+      "total": 48,
+      "cumulativeTotal": 94
+    },
+    {
+      "date": "2022-09-27",
+      "early": 34,
+      "mail": 8,
+      "total": 42,
+      "cumulativeTotal": 136
+    },
+    {
+      "date": "2022-09-28",
+      "early": 35,
+      "mail": 36,
+      "total": 71,
+      "cumulativeTotal": 207
+    },
+    {
+      "date": "2022-09-29",
+      "early": 37,
+      "mail": 27,
+      "total": 64,
+      "cumulativeTotal": 271
+    },
+    {
+      "date": "2022-09-30",
+      "early": 41,
+      "mail": 25,
+      "total": 66,
+      "cumulativeTotal": 337
+    },
+    {
+      "date": "2022-10-01",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 337
+    },
+    {
+      "date": "2022-10-02",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 337
+    },
+    {
+      "date": "2022-10-03",
+      "early": 52,
+      "mail": 47,
+      "total": 99,
+      "cumulativeTotal": 436
+    },
+    {
+      "date": "2022-10-04",
+      "early": 60,
+      "mail": 6,
+      "total": 66,
+      "cumulativeTotal": 502
+    },
+    {
+      "date": "2022-10-05",
+      "early": 42,
+      "mail": 27,
+      "total": 69,
+      "cumulativeTotal": 571
+    },
+    {
+      "date": "2022-10-06",
+      "early": 40,
+      "mail": 23,
+      "total": 63,
+      "cumulativeTotal": 634
+    },
+    {
+      "date": "2022-10-07",
+      "early": 70,
+      "mail": 23,
+      "total": 93,
+      "cumulativeTotal": 727
+    },
+    {
+      "date": "2022-10-08",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 727
+    },
+    {
+      "date": "2022-10-09",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 727
+    },
+    {
+      "date": "2022-10-10",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 727
+    },
+    {
+      "date": "2022-10-11",
+      "early": 71,
+      "mail": 31,
+      "total": 102,
+      "cumulativeTotal": 829
+    },
+    {
+      "date": "2022-10-12",
+      "early": 50,
+      "mail": 12,
+      "total": 62,
+      "cumulativeTotal": 891
+    },
+    {
+      "date": "2022-10-13",
+      "early": 45,
+      "mail": 14,
+      "total": 59,
+      "cumulativeTotal": 950
+    },
+    {
+      "date": "2022-10-14",
+      "early": 55,
+      "mail": 17,
+      "total": 72,
+      "cumulativeTotal": 1022
+    },
+    {
+      "date": "2022-10-15",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 1022
+    },
+    {
+      "date": "2022-10-16",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 1022
+    },
+    {
+      "date": "2022-10-17",
+      "early": 91,
+      "mail": 19,
+      "total": 110,
+      "cumulativeTotal": 1132
+    },
+    {
+      "date": "2022-10-18",
+      "early": 74,
+      "mail": 2,
+      "total": 76,
+      "cumulativeTotal": 1208
+    },
+    {
+      "date": "2022-10-19",
+      "early": 70,
+      "mail": 11,
+      "total": 81,
+      "cumulativeTotal": 1289
+    },
+    {
+      "date": "2022-10-20",
+      "early": 88,
+      "mail": 20,
+      "total": 108,
+      "cumulativeTotal": 1397
+    },
+    {
+      "date": "2022-10-21",
+      "early": 123,
+      "mail": 26,
+      "total": 149,
+      "cumulativeTotal": 1546
+    },
+    {
+      "date": "2022-10-22",
+      "early": 1,
+      "mail": 0,
+      "total": 1,
+      "cumulativeTotal": 1547
+    },
+    {
+      "date": "2022-10-23",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 1547
+    },
+    {
+      "date": "2022-10-24",
+      "early": 105,
+      "mail": 36,
+      "total": 141,
+      "cumulativeTotal": 1688
+    },
+    {
+      "date": "2022-10-25",
+      "early": 94,
+      "mail": 3,
+      "total": 97,
+      "cumulativeTotal": 1785
+    },
+    {
+      "date": "2022-10-26",
+      "early": 103,
+      "mail": 19,
+      "total": 122,
+      "cumulativeTotal": 1907
+    },
+    {
+      "date": "2022-10-27",
+      "early": 104,
+      "mail": 15,
+      "total": 119,
+      "cumulativeTotal": 2026
+    },
+    {
+      "date": "2022-10-28",
+      "early": 123,
+      "mail": 13,
+      "total": 136,
+      "cumulativeTotal": 2162
+    },
+    {
+      "date": "2022-10-29",
+      "early": 117,
+      "mail": 16,
+      "total": 133,
+      "cumulativeTotal": 2295
+    },
+    {
+      "date": "2022-10-30",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 2295
+    },
+    {
+      "date": "2022-10-31",
+      "early": 144,
+      "mail": 25,
+      "total": 169,
+      "cumulativeTotal": 2464
+    },
+    {
+      "date": "2022-11-01",
+      "early": 113,
+      "mail": 3,
+      "total": 116,
+      "cumulativeTotal": 2580
+    },
+    {
+      "date": "2022-11-02",
+      "early": 122,
+      "mail": 13,
+      "total": 135,
+      "cumulativeTotal": 2715
+    },
+    {
+      "date": "2022-11-03",
+      "early": 187,
+      "mail": 7,
+      "total": 194,
+      "cumulativeTotal": 2909
+    },
+    {
+      "date": "2022-11-04",
+      "early": 227,
+      "mail": 16,
+      "total": 243,
+      "cumulativeTotal": 3152
+    },
+    {
+      "date": "2022-11-05",
+      "early": 183,
+      "mail": 24,
+      "total": 207,
+      "cumulativeTotal": 3359
+    },
+    {
+      "date": "2022-11-06",
+      "early": 1,
+      "mail": 0,
+      "total": 1,
+      "cumulativeTotal": 3360
+    },
+    {
+      "date": "2022-11-07",
+      "early": 0,
+      "mail": 27,
+      "total": 27,
+      "cumulativeTotal": 3387
+    },
+    {
+      "date": "2022-11-08",
+      "early": 0,
+      "mail": 7,
+      "total": 7,
+      "cumulativeTotal": 3394
+    },
+    {
+      "date": "2022-11-09",
+      "early": 0,
+      "mail": 10,
+      "total": 10,
+      "cumulativeTotal": 3404
+    },
+    {
+      "date": "2022-11-10",
+      "early": 0,
+      "mail": 3,
+      "total": 3,
+      "cumulativeTotal": 3407
+    },
+    {
+      "date": "2022-11-11",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 3407
+    },
+    {
+      "date": "2022-11-12",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 3407
+    },
+    {
+      "date": "2022-11-13",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 3407
+    },
+    {
+      "date": "2022-11-14",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 3407
+    }
+  ]
+}

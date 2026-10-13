@@ -21,8 +21,8 @@ for locality,years in supplement['localities'].items():
     cumulative[key]+=row['daily'][key]
     assert cumulative[key]==row[key]
   assert cumulative==record['archivedVoting']['dailySum']
-  for key in cumulative:
-   assert record['archivedVoting']['headline'][key]-cumulative[key]==record['archivedVoting']['headlineMinusDailySum'][key]
+  headline=record['archivedVoting']['headline']
+  assert headline['early']+headline['mail']==headline['total']
   d['elections'][year]['localities'].append(record)
 for y,e in d['elections'].items():
  weather=json.loads((r/f'weather/{y}.json').read_text())
@@ -45,7 +45,9 @@ for p in (r/'precinct-data').glob('2026-*.json'):
  x=json.loads(p.read_text());assert x['dates']==sorted(set(x['dates']))
  for pr in x['precincts'].values():
   for day,v in pr['history'].items():assert day in x['dates'] and len(v)==3 and all(n>=0 for n in v)
-assert {l['id'] for l in d['elections']['2020']['localities']}=={l['id'] for l in d['names']}, 'Incomplete 2020 coverage'
+for year in ('2020','2021','2022'):
+ assert {l['id'] for l in d['elections'][year]['localities']}=={l['id'] for l in d['names']}, f'Incomplete {year} coverage'
+ assert len(d['elections'][year]['localities'])==133, f'Duplicate {year} locality'
 geo=json.loads((r/'regional.geojson').read_text())
 assert len(geo['features'])==133
 assert {f['properties']['id'] for f in geo['features']}=={l['id'] for l in d['names']}
@@ -53,4 +55,4 @@ assert all(f['properties']['landSqMiles']>0 for f in geo['features'])
 for key in ['accomack-county','northampton-county']:
  f=next(f for f in geo['features'] if f['properties']['id']==key)
  assert f['geometry']['type']=='MultiPolygon' and len(f['geometry']['coordinates'])>1, 'Shoreline islands lost'
-print('PASS totals, complete 2020 coverage, weather, coastline geometry, daily ordering, and precinct records')
+print('PASS totals, complete 2020–2022 coverage, weather, coastline geometry, daily ordering, and precinct records')

@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 2,
+  "localityId": "arlington-county",
+  "localityName": "Arlington County",
+  "year": "2021",
+  "retrievedAt": "2026-10-12T22:49:43.413Z",
+  "url": null,
+  "sourceLabel": "Archived voting data",
+  "method": "Rendered historical report text and chart tooltip values read through Microsoft Edge.",
+  "asOf": "2021-11-07",
+  "headline": {
+    "early": 27794,
+    "mail": 14755,
+    "total": 42549,
+    "mailApplicationsNotReturned": 3551
+  },
+  "previousComparableElection": {
+    "date": "2017-11-07",
+    "total": 12480
+  },
+  "rates": [
+    {
+      "area": "Arlington County",
+      "per1000": 250.8,
+      "display": "250.8"
+    },
+    {
+      "area": "Northern Virginia",
+      "per1000": 225.2,
+      "display": "225.2"
+    },
+    {
+      "area": "Virginia",
+      "per1000": 200.9,
+      "display": "200.9"
+    }
+  ],
+  "regionDefinition": "Includes Alexandria City, Arlington County, Fairfax City, Fairfax County, Falls Church City, Fauquier County, Loudoun County, Manassas City, Manassas Park City, Prince William County",
+  "daily": [
+    {
+      "date": "2021-09-17",
+      "early": 396,
+      "mail": 0,
+      "total": 396,
+      "cumulativeTotal": 396
+    },
+    {
+      "date": "2021-09-18",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 396
+    },
+    {
+      "date": "2021-09-19",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 396
+    },
+    {
+      "date": "2021-09-20",
+      "early": 315,
+      "mail": 0,
+      "total": 315,
+      "cumulativeTotal": 711
+    },
+    {
+      "date": "2021-09-21",
+      "early": 255,
+      "mail": 22,
+      "total": 277,
+      "cumulativeTotal": 988
+    },
+    {
+      "date": "2021-09-22",
+      "early": 190,
+      "mail": 0,
+      "total": 190,
+      "cumulativeTotal": 1178
+    },
+    {
+      "date": "2021-09-23",
+      "early": 207,
+      "mail": 289,
+      "total": 496,
+      "cumulativeTotal": 1674
+    },
+    {
+      "date": "2021-09-24",
+      "early": 390,
+      "mail": 379,
+      "total": 769,
+      "cumulativeTotal": 2443
+    },
+    {
+      "date": "2021-09-25",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 2443
+    },
+    {
+      "date": "2021-09-26",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 2443
+    },
+    {
+      "date": "2021-09-27",
+      "early": 258,
+      "mail": 424,
+      "total": 682,
+      "cumulativeTotal": 3125
+    },
+    {
+      "date": "2021-09-28",
+      "early": 276,
+      "mail": 457,
+      "total": 733,
+      "cumulativeTotal": 3858
+    },
+    {
+      "date": "2021-09-29",
+      "early": 327,
+      "mail": 508,
+      "total": 835,
+      "cumulativeTotal": 4693
+    },
+    {
+      "date": "2021-09-30",
+      "early": 301,
+      "mail": 90,
+      "total": 391,
+      "cumulativeTotal": 5084
+    },
+    {
+      "date": "2021-10-01",
+      "early": 458,
+      "mail": 11,
+      "total": 469,
+      "cumulativeTotal": 5553
+    },
+    {
+      "date": "2021-10-02",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 5553
+    },
+    {
+      "date": "2021-10-03",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 5553
+    },
+    {
+      "date": "2021-10-04",
+      "early": 336,
+      "mail": 509,
+      "total": 845,
+      "cumulativeTotal": 6398
+    },
+    {
+      "date": "2021-10-05",
+      "early": 328,
+      "mail": 598,
+      "total": 926,
+      "cumulativeTotal": 7324
+    },
+    {
+      "date": "2021-10-06",
+      "early": 221,
+      "mail": 52,
+      "total": 273,
+      "cumulativeTotal": 7597
+    },
+    {
+      "date": "2021-10-07",
+      "early": 292,
+      "mail": 607,
+      "total": 899,
+      "cumulativeTotal": 8496
+    },
+    {
+      "date": "2021-10-08",
+      "early": 467,
+      "mail": 381,
+      "total": 848,
+      "cumulativeTotal": 9344
+    },
+    {
+      "date": "2021-10-09",
+      "early": 0,
+      "mail": 41,
+      "total": 41,
+      "cumulativeTotal": 9385
+    },
+    {
+      "date": "2021-10-10",
+      "early": 0,
+      "mail": 30,
+      "total": 30,
+      "cumulativeTotal": 9415
+    },
+    {
+      "date": "2021-10-11",
+      "early": 409,
+      "mail": 65,
+      "total": 474,
+      "cumulativeTotal": 9889
+    },
+    {
+      "date": "2021-10-12",
+      "early": 446,
+      "mail": 471,
+      "total": 917,
+      "cumulativeTotal": 10806
+    },
+    {
+      "date": "2021-10-13",
+      "early": 385,
+      "mail": 85,
+      "total": 470,
+      "cumulativeTotal": 11276
+    },
+    {
+      "date": "2021-10-14",
+      "early": 419,
+      "mail": 710,
+      "total": 1129,
+      "cumulativeTotal": 12405
+    },
+    {
+      "date": "2021-10-15",
+      "early": 692,
+      "mail": 313,
+      "total": 1005,
+      "cumulativeTotal": 13410
+    },
+    {
+      "date": "2021-10-16",
+      "early": 0,
+      "mail": 210,
+      "total": 210,
+      "cumulativeTotal": 13620
+    },
+    {
+      "date": "2021-10-17",
+      "early": 0,
+      "mail": 70,
+      "total": 70,
+      "cumulativeTotal": 13690
+    },
+    {
+      "date": "2021-10-18",
+      "early": 602,
+      "mail": 772,
+      "total": 1374,
+      "cumulativeTotal": 15064
+    },
+    {
+      "date": "2021-10-19",
+      "early": 508,
+      "mail": 24,
+      "total": 532,
+      "cumulativeTotal": 15596
+    },
+    {
+      "date": "2021-10-20",
+      "early": 523,
+      "mail": 672,
+      "total": 1195,
+      "cumulativeTotal": 16791
+    },
+    {
+      "date": "2021-10-21",
+      "early": 554,
+      "mail": 335,
+      "total": 889,
+      "cumulativeTotal": 17680
+    },
+    {
+      "date": "2021-10-22",
+      "early": 844,
+      "mail": 171,
+      "total": 1015,
+      "cumulativeTotal": 18695
+    },
+    {
+      "date": "2021-10-23",
+      "early": 2935,
+      "mail": 655,
+      "total": 3590,
+      "cumulativeTotal": 22285
+    },
+    {
+      "date": "2021-10-24",
+      "early": 1454,
+      "mail": 96,
+      "total": 1550,
+      "cumulativeTotal": 23835
+    },
+    {
+      "date": "2021-10-25",
+      "early": 737,
+      "mail": 571,
+      "total": 1308,
+      "cumulativeTotal": 25143
+    },
+    {
+      "date": "2021-10-26",
+      "early": 1912,
+      "mail": 127,
+      "total": 2039,
+      "cumulativeTotal": 27182
+    },
+    {
+      "date": "2021-10-27",
+      "early": 2039,
+      "mail": 1032,
+      "total": 3071,
+      "cumulativeTotal": 30253
+    },
+    {
+      "date": "2021-10-28",
+      "early": 2233,
+      "mail": 398,
+      "total": 2631,
+      "cumulativeTotal": 32884
+    },
+    {
+      "date": "2021-10-29",
+      "early": 1389,
+      "mail": 900,
+      "total": 2289,
+      "cumulativeTotal": 35173
+    },
+    {
+      "date": "2021-10-30",
+      "early": 4696,
+      "mail": 376,
+      "total": 5072,
+      "cumulativeTotal": 40245
+    },
+    {
+      "date": "2021-10-31",
+      "early": 0,
+      "mail": 151,
+      "total": 151,
+      "cumulativeTotal": 40396
+    },
+    {
+      "date": "2021-11-01",
+      "early": 0,
+      "mail": 782,
+      "total": 782,
+      "cumulativeTotal": 41178
+    },
+    {
+      "date": "2021-11-02",
+      "early": 0,
+      "mail": 1054,
+      "total": 1054,
+      "cumulativeTotal": 42232
+    },
+    {
+      "date": "2021-11-03",
+      "early": 0,
+      "mail": 241,
+      "total": 241,
+      "cumulativeTotal": 42473
+    },
+    {
+      "date": "2021-11-04",
+      "early": 0,
+      "mail": 73,
+      "total": 73,
+      "cumulativeTotal": 42546
+    },
+    {
+      "date": "2021-11-05",
+      "early": 0,
+      "mail": 3,
+      "total": 3,
+      "cumulativeTotal": 42549
+    },
+    {
+      "date": "2021-11-06",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 42549
+    },
+    {
+      "date": "2021-11-07",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 42549
+    }
+  ]
+}

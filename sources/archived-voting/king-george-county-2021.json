@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 2,
+  "localityId": "king-george-county",
+  "localityName": "King George County",
+  "year": "2021",
+  "retrievedAt": "2026-10-12T23:00:03.108Z",
+  "url": null,
+  "sourceLabel": "Archived voting data",
+  "method": "Rendered historical report text and chart tooltip values read through Microsoft Edge.",
+  "asOf": "2021-11-07",
+  "headline": {
+    "early": 3968,
+    "mail": 687,
+    "total": 4655,
+    "mailApplicationsNotReturned": 131
+  },
+  "previousComparableElection": {
+    "date": "2017-11-07",
+    "total": 496
+  },
+  "rates": [
+    {
+      "area": "King George County",
+      "per1000": 246.6,
+      "display": "246.6"
+    },
+    {
+      "area": "Northern Neck / Middle Peninsula",
+      "per1000": 210.1,
+      "display": "210.1"
+    },
+    {
+      "area": "Virginia",
+      "per1000": 200.9,
+      "display": "200.9"
+    }
+  ],
+  "regionDefinition": "Includes Accomack County, Essex County, Gloucester County, King George County, King & Queen County, King William County, Lancaster County, Mathews County, Middlesex County, Northampton County, Northumberland County, Richmond County, Westmoreland County",
+  "daily": [
+    {
+      "date": "2021-09-17",
+      "early": 57,
+      "mail": 2,
+      "total": 59,
+      "cumulativeTotal": 59
+    },
+    {
+      "date": "2021-09-18",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 59
+    },
+    {
+      "date": "2021-09-19",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 59
+    },
+    {
+      "date": "2021-09-20",
+      "early": 49,
+      "mail": 26,
+      "total": 75,
+      "cumulativeTotal": 134
+    },
+    {
+      "date": "2021-09-21",
+      "early": 41,
+      "mail": 9,
+      "total": 50,
+      "cumulativeTotal": 184
+    },
+    {
+      "date": "2021-09-22",
+      "early": 56,
+      "mail": 18,
+      "total": 74,
+      "cumulativeTotal": 258
+    },
+    {
+      "date": "2021-09-23",
+      "early": 44,
+      "mail": 28,
+      "total": 72,
+      "cumulativeTotal": 330
+    },
+    {
+      "date": "2021-09-24",
+      "early": 51,
+      "mail": 17,
+      "total": 68,
+      "cumulativeTotal": 398
+    },
+    {
+      "date": "2021-09-25",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 398
+    },
+    {
+      "date": "2021-09-26",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 398
+    },
+    {
+      "date": "2021-09-27",
+      "early": 31,
+      "mail": 18,
+      "total": 49,
+      "cumulativeTotal": 447
+    },
+    {
+      "date": "2021-09-28",
+      "early": 43,
+      "mail": 8,
+      "total": 51,
+      "cumulativeTotal": 498
+    },
+    {
+      "date": "2021-09-29",
+      "early": 34,
+      "mail": 3,
+      "total": 37,
+      "cumulativeTotal": 535
+    },
+    {
+      "date": "2021-09-30",
+      "early": 44,
+      "mail": 16,
+      "total": 60,
+      "cumulativeTotal": 595
+    },
+    {
+      "date": "2021-10-01",
+      "early": 67,
+      "mail": 18,
+      "total": 85,
+      "cumulativeTotal": 680
+    },
+    {
+      "date": "2021-10-02",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 680
+    },
+    {
+      "date": "2021-10-03",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 680
+    },
+    {
+      "date": "2021-10-04",
+      "early": 60,
+      "mail": 14,
+      "total": 74,
+      "cumulativeTotal": 754
+    },
+    {
+      "date": "2021-10-05",
+      "early": 54,
+      "mail": 47,
+      "total": 101,
+      "cumulativeTotal": 855
+    },
+    {
+      "date": "2021-10-06",
+      "early": 38,
+      "mail": 5,
+      "total": 43,
+      "cumulativeTotal": 898
+    },
+    {
+      "date": "2021-10-07",
+      "early": 62,
+      "mail": 5,
+      "total": 67,
+      "cumulativeTotal": 965
+    },
+    {
+      "date": "2021-10-08",
+      "early": 51,
+      "mail": 31,
+      "total": 82,
+      "cumulativeTotal": 1047
+    },
+    {
+      "date": "2021-10-09",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 1047
+    },
+    {
+      "date": "2021-10-10",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 1047
+    },
+    {
+      "date": "2021-10-11",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 1047
+    },
+    {
+      "date": "2021-10-12",
+      "early": 108,
+      "mail": 27,
+      "total": 135,
+      "cumulativeTotal": 1182
+    },
+    {
+      "date": "2021-10-13",
+      "early": 82,
+      "mail": 10,
+      "total": 92,
+      "cumulativeTotal": 1274
+    },
+    {
+      "date": "2021-10-14",
+      "early": 90,
+      "mail": 13,
+      "total": 103,
+      "cumulativeTotal": 1377
+    },
+    {
+      "date": "2021-10-15",
+      "early": 138,
+      "mail": 9,
+      "total": 147,
+      "cumulativeTotal": 1524
+    },
+    {
+      "date": "2021-10-16",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 1524
+    },
+    {
+      "date": "2021-10-17",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 1524
+    },
+    {
+      "date": "2021-10-18",
+      "early": 118,
+      "mail": 53,
+      "total": 171,
+      "cumulativeTotal": 1695
+    },
+    {
+      "date": "2021-10-19",
+      "early": 140,
+      "mail": 14,
+      "total": 154,
+      "cumulativeTotal": 1849
+    },
+    {
+      "date": "2021-10-20",
+      "early": 137,
+      "mail": 17,
+      "total": 154,
+      "cumulativeTotal": 2003
+    },
+    {
+      "date": "2021-10-21",
+      "early": 121,
+      "mail": 17,
+      "total": 138,
+      "cumulativeTotal": 2141
+    },
+    {
+      "date": "2021-10-22",
+      "early": 190,
+      "mail": 17,
+      "total": 207,
+      "cumulativeTotal": 2348
+    },
+    {
+      "date": "2021-10-23",
+      "early": 102,
+      "mail": 17,
+      "total": 119,
+      "cumulativeTotal": 2467
+    },
+    {
+      "date": "2021-10-24",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 2467
+    },
+    {
+      "date": "2021-10-25",
+      "early": 228,
+      "mail": 34,
+      "total": 262,
+      "cumulativeTotal": 2729
+    },
+    {
+      "date": "2021-10-26",
+      "early": 252,
+      "mail": 16,
+      "total": 268,
+      "cumulativeTotal": 2997
+    },
+    {
+      "date": "2021-10-27",
+      "early": 292,
+      "mail": 5,
+      "total": 297,
+      "cumulativeTotal": 3294
+    },
+    {
+      "date": "2021-10-28",
+      "early": 275,
+      "mail": 45,
+      "total": 320,
+      "cumulativeTotal": 3614
+    },
+    {
+      "date": "2021-10-29",
+      "early": 432,
+      "mail": 6,
+      "total": 438,
+      "cumulativeTotal": 4052
+    },
+    {
+      "date": "2021-10-30",
+      "early": 480,
+      "mail": 27,
+      "total": 507,
+      "cumulativeTotal": 4559
+    },
+    {
+      "date": "2021-10-31",
+      "early": 0,
+      "mail": 5,
+      "total": 5,
+      "cumulativeTotal": 4564
+    },
+    {
+      "date": "2021-11-01",
+      "early": 0,
+      "mail": 19,
+      "total": 19,
+      "cumulativeTotal": 4583
+    },
+    {
+      "date": "2021-11-02",
+      "early": 1,
+      "mail": 64,
+      "total": 65,
+      "cumulativeTotal": 4648
+    },
+    {
+      "date": "2021-11-03",
+      "early": 0,
+      "mail": 7,
+      "total": 7,
+      "cumulativeTotal": 4655
+    },
+    {
+      "date": "2021-11-04",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 4655
+    },
+    {
+      "date": "2021-11-05",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 4655
+    },
+    {
+      "date": "2021-11-06",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 4655
+    },
+    {
+      "date": "2021-11-07",
+      "early": 0,
+      "mail": 0,
+      "total": 0,
+      "cumulativeTotal": 4655
+    }
+  ]
+}

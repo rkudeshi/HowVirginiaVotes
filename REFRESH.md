@@ -154,4 +154,6 @@ Historical comparison filters apply to both axes, lines, and detail values.
 The Through today view caps the selected election at its latest report and clips
 all years to that election-relative day. In-person and mail filters remain distinct.
 November 2020 now covers all 133 localities, preserving the existing Fairfax data.
-November 2021 and 2022 statewide recovery remains pending beyond Loudoun/Fairfax.
+November 2021 and 2022 also cover all 133 localities, preserving existing Fairfax and Loudoun histories.
+Structured rendered-chart snapshots use schemaVersion 2; the historical importer
+validates both saved chart literals and structured daily records.

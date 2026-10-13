@@ -12,7 +12,45 @@ from source_attribution import ARCHIVED_LABEL, ARCHIVED_DESCRIPTION, preserve_pr
 ROOT = Path(__file__).resolve().parent
 
 
+def parse_structured_snapshot(snapshot, election_date, registration):
+    """Read saved rendered chart values, with the same checks as chart literals."""
+    year = snapshot['year']
+    assert snapshot['localityId'] != 'fairfax-county', 'Fairfax is excluded'
+    assert int(year) == dt.date.fromisoformat(election_date).year
+    history, cumulative = [], {'early': 0, 'mail': 0, 'total': 0}
+    for row in snapshot['daily']:
+        date = dt.date.fromisoformat(row['date'])
+        assert date.year == int(year)
+        if history:
+            assert date == dt.date.fromisoformat(history[-1]['date']) + dt.timedelta(days=1)
+        daily = {key: row[key] for key in cumulative}
+        assert all(isinstance(value, int) and value >= 0 for value in daily.values())
+        assert daily['early'] + daily['mail'] == daily['total']
+        for key in cumulative:
+            cumulative[key] += daily[key]
+        assert cumulative['total'] == row['cumulativeTotal'], 'Daily series disagrees with cumulative chart'
+        history.append({'date': row['date'], **cumulative, 'daily': daily, 'outstanding': None})
+    assert history, 'Empty historical series'
+    headline = snapshot['headline']
+    assert headline['early'] + headline['mail'] == headline['total']
+    return {
+        'id': snapshot['localityId'], 'name': snapshot['localityName'],
+        **registration, 'registrationDate': year + '-11-01',
+        'source': ARCHIVED_DESCRIPTION, 'sourceLabel': ARCHIVED_LABEL, 'history': history,
+        'archivedVoting': {
+            'retrievedAt': snapshot['retrievedAt'], 'asOf': snapshot['asOf'],
+            'upstreamSource': 'Virginia Department of Elections, as attributed by the archived report; not acquired directly',
+            'dailyDateMeaning': 'Dates as labeled in archived reports; not independently verified activity dates.',
+            'headline': headline, 'dailySum': dict(cumulative),
+            'earlyVotesPer1000Registered': snapshot['rates'],
+            'previousComparableElection': snapshot['previousComparableElection'],
+        },
+    }
+
+
 def parse_snapshot(snapshot, election_date, registration):
+    if snapshot.get('schemaVersion') == 2:
+        return parse_structured_snapshot(snapshot, election_date, registration)
     year = snapshot['year']
     assert snapshot['localityId'] != 'fairfax-county', 'Fairfax is excluded'
     assert int(year) == dt.date.fromisoformat(election_date).year
@@ -56,7 +94,6 @@ def parse_snapshot(snapshot, election_date, registration):
                               'total': snapshot['headlineTotal'],
                               'mailApplicationsNotReturned': types['Mail Ballot Applications Not Returned']},
                  'dailySum': dict(cum),
-                 'headlineMinusDailySum': {k: {'early': types['In Person'], 'mail': types['Mail'], 'total': snapshot['headlineTotal']}[k] - cum[k] for k in cum},
                  'earlyVotesPer1000Registered': rates,
                  'previousComparableElection': {'date': previous_date, 'total': snapshot['previousComparableElectionTotal']},
                  'sourceSnapshot': f'sources/archived-voting/{snapshot["localityId"].removesuffix("-county")}-{year}.json'}
@@ -80,7 +117,7 @@ def main():
         parsed['registrationSource'] = (ROOT / f'sources/statewide/registration{year}-source.txt').read_text().strip()
         parsed['archivedVoting']['sourceSnapshot'] = str(path.relative_to(ROOT))
         result['localities'].setdefault(locality, {})[year] = parsed
-        print(year, locality, len(parsed['history']), 'days;', parsed['archivedVoting']['dailySum'], 'headline difference:', parsed['archivedVoting']['headlineMinusDailySum'])
+        print(year, locality, len(parsed['history']), 'days')
     (ROOT / 'dist/archived-voting-history.json').write_text(json.dumps(result, indent=2) + '\n')
 
 
