@@ -89,5 +89,19 @@
     "message": "Standardized source naming as Daily Absentee List and Archived voting data; updated import and refresh paths while preserving voting data and source precedence.",
     "through": null,
     "url": null
+  },
+  {
+    "at": "2026-10-12T22:57:43.696144+00:00",
+    "source": "Daily Absentee List",
+    "message": "Loaded locality totals through October 11 for all 133 localities. The download supplied no newer matched precinct observations; existing precinct histories were retained.",
+    "through": "2026-10-11",
+    "url": null
+  },
+  {
+    "at": "2026-10-12T22:58:00.961004+00:00",
+    "source": "Fairfax County PDF",
+    "message": "Loaded county totals, mail-return details and voting-site counts.",
+    "through": "2026-10-10",
+    "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
   }
 ]
