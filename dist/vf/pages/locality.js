@@ -2,10 +2,15 @@ class Locality extends DCLogic {
   constructor(props) {
     super(props);
     this.SRC = '/data/loc/' + props.lid + '.json';
-    this.state = { data: null, t: 0, now: Date.now(), eid: props.eid, method: 'all', measure: 'count', win: 'today', show: {}, chTick: 0, hi: null, cal: null, calM: 'all', calTick: 0, tip: null, pIdx: null, pMeasure: 'p', pMethod: 'all', pHover: null, playing: false };
+    this.state = { narrow: window.innerWidth < 600, data: null, t: 0, now: Date.now(), eid: props.eid, method: 'all', measure: 'count', win: 'today', show: {}, chTick: 0, hi: null, cal: null, calM: 'all', calTick: 0, tip: null, pIdx: null, pMeasure: 'p', pMethod: 'all', pHover: null, playing: false };
   }
   componentDidMount() {
-    this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this.clock = setInterval(() => this.setState({ now: Date.now() }), 60000);
+    this.onScroll = () => { if (this.state.tip || this.state.hi != null) this.setState({ tip: null, hi: null }); };
+    this.onResize = () => { const nw = window.innerWidth < 600; if (nw !== this.state.narrow) this.setState({ narrow: nw, hi: null }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+
     fetch(this.SRC).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((data) => {
       const show = {}; data.elections.forEach((x) => { show[x.id] = true; });
       const eid = data.elections.some((x) => x.id === this.state.eid) ? this.state.eid : '2026';
@@ -23,7 +28,7 @@ class Locality extends DCLogic {
     const title = D.name + (cur && this.state.eid !== '2026' ? ' · ' + cur.label : '') + ' · VoteFlow';
     if (document.title !== title) document.title = title;
   }
-  componentWillUnmount() { cancelAnimationFrame(this.raf); clearInterval(this.clock); clearInterval(this.player); }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); clearInterval(this.clock); clearInterval(this.player); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize); }
   tipAt(ev, kind, key) {
     const W = window.innerWidth, H = window.innerHeight;
     let x = ev.clientX + 18, y = ev.clientY + 18;
@@ -52,7 +57,7 @@ class Locality extends DCLogic {
     const frac = Math.min(1, Math.max(0, (this.state.now - evStart) / (target - evStart)));
     const cdS = Math.floor(left % 6e4 / 1000);
     const cd = { label: left > 0 ? 'Election Day polls open in' : 'Polls are open', days: Math.floor(left / 864e5), h: String(Math.floor(left % 864e5 / 36e5)).padStart(2, '0'), m: String(Math.floor(left % 36e5 / 6e4)).padStart(2, '0'), s: String(cdS).padStart(2, '0'), anim: cdS % 2 ? 'fx-pa' : 'fx-pb', offset: (339.3 * (1 - frac)).toFixed(1) };
-    if (!D) return { loading: true, ready: false, ticker: [], tip: { on: false }, cd, band: { asOf: '…' } };
+    if (!D) return { loading: true, ready: false, ticker: [], tip: { on: false }, cd, band: { asOf: '…' }, hdr: { elections: [], locs: [] } };
 
     const e = this.state.t >= 1 ? 1 : 1 - Math.pow(2, -10 * this.state.t);
     const { eid } = this.state;
@@ -77,8 +82,9 @@ class Locality extends DCLogic {
       votes: f(tot * k), pct: (tot / cur.reg * 100 * k).toFixed(1), reg: f(cur.reg), regNote: '.',
       ip: f(cur.early * k), m: f(cur.mail * k), ipW: (cur.early / tot * 100).toFixed(1), mW: (cur.mail / tot * 100).toFixed(1),
       dateLabel: MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear(), typeLabel, atT: f(cur.atT), TL };
-    const ref = EL.filter((x) => x.id !== eid && x.atT && ['2026', '2025', '2024', '2022', '2021'].includes(x.id)).slice(0, 4);
-    const paceChips = ref.map((x) => ({ ratio: Math.round(cur.atT / x.atT * 100) + '%', label: 'of ' + x.label + ' at ' + TL, border: COLORS[x.id] }));
+    const refOrder = ['2026', '2025', '2024', '2026-special', '2022', '2021'];
+    const ref = refOrder.map((id) => EL.find((x) => x.id === id)).filter((x) => x && x.id !== eid && x.atT).slice(0, 4);
+    const paceChips = ref.map((x) => ({ ratio: Math.round(cur.atT / x.atT * 100) + '%', label: 'of ' + x.label.replace(' special', '') + ' at ' + TL, border: COLORS[x.id] }));
     const satLine = D.sat ? D.sat + (D.sat === 1 ? ' satellite site · ' : ' satellite sites · ') + (D.next === 'open' ? 'all open' : 'next open ' + dmd(D.next)) : 'Registrar’s office only, no satellites';
 
     // flow
@@ -126,7 +132,9 @@ class Locality extends DCLogic {
     const fcW = (a, b) => Math.max(1.5, Math.min(100, a / b * 100)).toFixed(1);
     const fcTot = ip + ret;
     const fcPB = hasPBflow ? fx.post + fx.box : 1;
-    const fc = { on: fcView === 'chart', off: fcView !== 'chart', hasReq: req != null, hasPB: !!hasPBflow,
+    const fcBig = !!this.state.fcBig;
+    const fc = { bigCls: fcBig ? 'fx-big' : '', tapHint: fcBig ? 'Tap to go back to the flow chart' : 'Tap the chart for big numbers',
+      tap: () => { if (window.innerWidth <= 760) this.setState({ fcBig: !fcBig }); }, on: fcView === 'chart', off: fcView !== 'chart', hasReq: req != null, hasPB: !!hasPBflow,
       total: { title: 'Total voters', val: f(reg), w: fcW(fcTot, reg), pct: pc(fcTot, reg), cap: 'have already voted early · ' + f(fcTot) + ' ballots' },
       ip: { title: 'Voted early in person', val: f(ip), w: fcW(ip, reg), pct: pc(ip, reg), cap: 'of registered voters' },
       mail: { title: req != null ? 'Requested a mail ballot' : 'Returned a mail ballot', val: f(req != null ? req : ret), w: fcW(req != null ? req : ret, reg), pct: pc(req != null ? req : ret, reg), cap: 'of registered voters' },
@@ -148,18 +156,20 @@ class Locality extends DCLogic {
     if (hasProj) for (let i = T; i < n; i++) { const v = projVal(i); if (v != null) peak = Math.max(peak, v); }
     const units = measure === 'pct' ? [0.25, 0.5, 1, 2, 2.5, 5, 10, 12.5] : [250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000];
     const top = Math.min(...units.map((u) => Math.ceil(Math.max(peak, 1) * 1.04 / (8 * u)) * 8 * u));
-    const X = (i) => 60 + i / (n - 1) * 930;
-    const Y = (v) => 500 - v / top * 480;
+    // Taller chart on phones; a right gutter holds the line-end election labels.
+    const narrow = this.state.narrow, CB = narrow ? 1000 : 500, XR = narrow ? 830 : 905;
+    const X = (i) => 60 + i / (n - 1) * (XR - 60);
+    const Y = (v) => CB - v / top * (CB - 20);
     const fmtV = (v) => v == null ? '—' : measure === 'pct' ? v.toFixed(2) + '%' : f(v);
     const fmtT = (v) => measure === 'pct' ? (+v.toFixed(2)) + '%' : short(v);
     const pathOf = (fn) => { let d = ''; let pen = false; for (let i = 0; i < n; i++) { const v = fn(i); if (v == null) { pen = false; continue; } d += (pen ? ' L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); pen = true; } return d; };
-    const lines = visEl.slice().sort((a, b) => (a.id === eid) - (b.id === eid)).map((x) => ({ d: pathOf((i) => val(x, i)), color: COLORS[x.id], w: x.id === eid ? 6 : 3 }));
+    const lines = visEl.slice().sort((a, b) => (a.id === eid) - (b.id === eid)).map((x) => ({ d: pathOf((i) => val(x, i)), color: COLORS[x.id], w: x.id === eid ? (narrow ? 10 : 6) : (narrow ? 5 : 3) }));
     const proj = hasProj ? pathOf((i) => i < T ? null : projVal(i)) : '';
-    const yt = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((j) => ({ y: 500 - j * 60, ty: 504 - j * 60, l: fmtT(top * j / 8), stroke: j === 0 ? '#121417' : '#ECEEF2' }));
+    const yt = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((j) => ({ y: CB - j * (CB - 20) / 8, ty: CB + 4 - j * (CB - 20) / 8, l: fmtT(top * j / 8), stroke: j === 0 ? '#121417' : '#ECEEF2' }));
     const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= T) : win === 'election' ? [40, 30, 20, 10, 0] : [40, 30, 20, 10, 0, -6];
     const xt = dset.map((d) => ({ x: X(46 - d).toFixed(1), l: d === 0 ? 'Election Day' : d < 0 ? (-d) + ' days after' : d + ' days' }));
     const todayX = X(T);
-    const hits = Array.from({ length: n }, (_, i) => ({ x: (X(i) - 930 / (n - 1) / 2).toFixed(1), w: (930 / (n - 1)).toFixed(1), enter: () => this.setState({ hi: i }) }));
+    const hits = Array.from({ length: n }, (_, i) => ({ x: (X(i) - (XR - 60) / (n - 1) / 2).toFixed(1), w: ((XR - 60) / (n - 1)).toFixed(1), enter: () => this.setState({ hi: i }) }));
     const hasHi = hi != null && hi < n;
     let hiRows = [], hiDots = [], hiTitle = '';
     if (hasHi) {
@@ -169,7 +179,17 @@ class Locality extends DCLogic {
       visEl.forEach((x) => { const v = val(x, hi); hiRows.push({ color: COLORS[x.id], label: x.label, val: fmtV(v), rel: x.id !== eid && base != null && v ? Math.round(base / v * 100) + '%' : '' }); if (v != null) hiDots.push({ y: Y(v).toFixed(1), color: COLORS[x.id] }); });
       if (hasProj && hi > T) { const pv = projVal(hi); if (pv != null) { hiRows.unshift({ color: '#00A37A', label: '2026 projected', val: fmtV(pv), rel: '' }); hiDots.push({ y: Y(pv).toFixed(1), color: '#00A37A' }); } }
     }
-    const ch = { todayLbl: 'TODAY · ' + TL, lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
+    const ends = [];
+    visEl.map((x) => ({ k: x.id, label: x.label, color: COLORS[x.id], cur: x.id === eid, v: (i) => val(x, i) })).forEach((L0) => { let li = -1; for (let i = 0; i < n; i++) if (L0.v(i) != null) li = i;
+      if (li >= 0) ends.push({ x: X(li) + 10, y: Y(L0.v(li)), t: L0.label.replace('November ', 'Nov ').replace('April ', 'Apr ').replace(' special', ''), color: L0.color, fw: L0.cur ? 700 : 500 }); });
+    // Spread labels that end at the same x so they don't overlap.
+    const lgap = narrow ? 32 : 15;
+    const groups = {}; ends.forEach((e2) => { (groups[Math.round(e2.x / 40)] = groups[Math.round(e2.x / 40)] || []).push(e2); });
+    Object.values(groups).forEach((g) => { g.sort((a, b) => a.y - b.y);
+      for (let i = 1; i < g.length; i++) if (g[i].y - g[i - 1].y < lgap) g[i].y = g[i - 1].y + lgap;
+      const over = g[g.length - 1].y - CB; if (over > 0) { g[g.length - 1].y = CB; for (let i = g.length - 2; i >= 0; i--) if (g[i + 1].y - g[i].y < lgap) g[i].y = g[i + 1].y - lgap; } });
+    ends.forEach((e2) => { e2.x = e2.x.toFixed(1); e2.y = e2.y.toFixed(1); });
+    const ch = { todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, todayLbl: 'TODAY · ' + TL, lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
       todayX: todayX.toFixed(1), todayLX: (win === 'today' ? todayX - 8 : todayX + 8).toFixed(1), todayAnchor: win === 'today' ? 'end' : 'start',
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
@@ -520,6 +540,11 @@ class Locality extends DCLogic {
 
     return {
       fc, fcOpts,
+      hdr: { eid, lid: D.id,
+        elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })),
+        locs: [{ value: '', text: 'All of Virginia' }].concat(D.names.map(([id, nm]) => ({ value: id, text: nm }))),
+        pickE: (ev) => { const v = ev.target.value; this.setState({ eid: v, show: Object.assign({}, this.state.show, { [v]: true }), cal: null, hi: null, tip: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }); },
+        pickL: (ev) => { const v = ev.target.value; location.href = v ? '/' + eid + '/' + v : (eid === '2026' ? '/' : '/' + eid); } },
       loading: false, ready: true, backHref: eid === '2026' ? '/' : '/' + eid, L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
       flow, flowNote, ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: ramp.slice(1), sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Hide addresses & hours' : 'Show addresses & hours',
       ticker: ticker0.concat(ticker0, ticker0)

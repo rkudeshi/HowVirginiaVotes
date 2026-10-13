@@ -5,7 +5,7 @@ class Status extends DCLogic {
   }
   componentDidMount() {
     document.title = 'Status · VoteFlow';
-    this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this.clock = setInterval(() => this.setState({ now: Date.now() }), 60000);
     fetch('/status.json').then((r) => r.json()).then((log) => this.setState({ log })).catch(() => this.setState({ log: [] }));
   }
   componentWillUnmount() { clearInterval(this.clock); }

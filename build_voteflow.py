@@ -27,6 +27,7 @@ ARCH = json.loads((ROOT / 'archived-voting-history.json').read_text())['localiti
 W26 = json.loads((ROOT / 'weather' / '2026.json').read_text())
 MANIFEST = json.loads((ROOT / 'map-manifest.json').read_text())
 NAMES = {n['id']: n for n in D['names']}
+ALL_NAMES = [[n['id'], n['name']] for n in sorted(D['names'], key=lambda n: n['name'])]
 EL = D['elections']
 LIVE = '2026'
 ORDER = ['2026', '2026-special', '2025', '2024', '2023', '2022', '2021', '2020']
@@ -398,7 +399,7 @@ def main():
         b = {'id': lid, 'name': l['name'], 'asOf': as_of, 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
              'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1,
              'rows': rows, 'sched': days_sched, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
-             'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
+             'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
         (OUT / 'loc' / f'{lid}.json').write_text(json.dumps(b, separators=(',', ':')))
     print(f'Built {len(ORDER)} statewide bundles and {len(e26["localities"])} locality bundles in {OUT}')
 

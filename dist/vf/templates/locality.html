@@ -66,7 +66,22 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
 .fx-mini input{width:15px;height:15px;accent-color:#4A5260}
 .fx-strow{transition:background .15s}.fx-strow:hover{background:#F1FAF6}
 .fx-fcbox{transition:transform .2s cubic-bezier(.3,1.4,.5,1),box-shadow .2s}.fx-fcbox:hover{transform:translateY(-3px);box-shadow:0 14px 26px -18px rgba(27,42,107,.45)}
-@media (max-width: 760px){.fx-tree{display:flex !important;flex-direction:column;gap:12px}.fx-conn{display:none !important}}
+.fx-taphint{display:none}
+@media (max-width: 760px){
+  .fx-taphint{display:block}
+  .fx-tree{cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .fx-tree.fx-big{display:flex !important;flex-direction:column;gap:12px}.fx-tree.fx-big .fx-conn{display:none !important}
+  .fx-tree:not(.fx-big) .fx-fcbox{padding:7px 5px !important;border-radius:10px !important;border-width:2px !important;text-align:center}
+  .fx-tree:not(.fx-big) .fx-fcbox:hover{transform:none;box-shadow:none}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:first-child{display:flex !important;flex-direction:column;align-items:center;gap:2px}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:first-child svg{width:17px;height:17px}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:first-child b{font-size:10.5px !important;line-height:1.15 !important}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:first-child span{font-size:clamp(12px,3.8vw,18px) !important;letter-spacing:-0.04em !important}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:nth-child(2){height:5px !important;margin:5px 0 4px !important}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:last-child{font-size:0 !important;line-height:1.1}
+  .fx-tree:not(.fx-big) .fx-fcbox > div:last-child b{font-size:11px !important}
+  .fx-tree:not(.fx-big) .fx-conn{height:24px}
+}
 @keyframes fxPie{from{stroke-dasharray:0 100}}
 .fx-pie{animation:fxPie .7s cubic-bezier(.2,.9,.3,1) both}
 
@@ -91,29 +106,53 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
 .fx-pmaps.lay-one .fx-mapbox{display:none}
 .fx-pmaps.lay-one.sel-all .m-all,.fx-pmaps.lay-one.sel-e .m-e,.fx-pmaps.lay-one.sel-m .m-m{display:block}
 .fx-hero{container-type:inline-size}
+
+/* shared header */
+.vf-sections{overflow-x:auto;scrollbar-width:none;white-space:nowrap}.vf-sections::-webkit-scrollbar{display:none}
+@media (max-width: 700px){
+  .vf-wide{display:none}
+  .vf-band > div{padding:6px 12px !important;gap:4px 10px !important}
+  .vf-bandtxt{font-size:10.5px !important}
+  .vf-head{padding:10px 12px 0 !important;gap:10px !important}
+  .vf-logomark{width:34px !important;height:34px !important;border-radius:8px !important}.vf-logomark svg{width:18px;height:18px}
+  .vf-logotext{font-size:19px !important}
+  .vf-picks{margin-left:0 !important;width:100%;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) !important;gap:8px !important}
+  .vf-picks select{min-height:40px !important;font-size:14px !important;padding:0 26px 0 12px !important}
+  .vf-sections{font-size:14px !important;margin:0 -6px !important}.vf-sections a{padding:10px 8px !important}
+  .vf-h1{font-size:40px !important;letter-spacing:-0.045em !important}
+  .vf-kick{font-size:11px !important}
+  .fx-main h2{font-size:21px !important}
+}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
 
-  <div style="background: #121417; color: #FFFFFF">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 12px 20px; flex-wrap: wrap">
+  <div class="vf-band" style="background: #121417; color: #FFFFFF">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 8px 24px; display: flex; align-items: center; gap: 6px 16px; flex-wrap: wrap">
       <div role="group" aria-label="State" style="display: flex; gap: 6px; align-items: center">
-        <span style="font: 600 11px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B7BCC6; margin-right: 4px">State</span>
-        <button aria-pressed="true" style="min-height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #00A37A; color: #FFFFFF; font: 700 14px 'Hanken Grotesk', sans-serif; display: flex; align-items: center; gap: 8px; cursor: default"><span class="fx-live" style="width: 8px; height: 8px; border-radius: 50%; background: #FFFFFF"></span>Virginia</button>
+        <span class="vf-wide" style="font: 600 11px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B7BCC6; margin-right: 4px">State</span>
+        <button aria-pressed="true" style="min-height: 30px; padding: 0 12px; border-radius: 999px; border: 0; background: #00A37A; color: #FFFFFF; font: 700 13px 'Hanken Grotesk', sans-serif; display: flex; align-items: center; gap: 7px; cursor: default"><span class="fx-live" style="width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF"></span>Virginia</button>
       </div>
-      <span style="font: 500 12px 'DM Mono', monospace; color: #B7BCC6">Data through {{band.asOf}} · refreshed daily at 7 AM ET<sc-if value="{{vfDelayed}}"> <span role="status" style="color: #FF9B9B">(Update delayed by technical issues)</span></sc-if></span>
-      <span style="margin-left: auto; font: 500 13px 'DM Mono', monospace; display: flex; gap: 6px; align-items: center; color: #B7BCC6">{{cd.label}} <b style="color: #FFD23F; display: inline-flex; gap: 5px">{{cd.days}}d {{cd.h}}h {{cd.m}}m <span class="fx-tick {{cd.anim}}" style="min-width: 3ch">{{cd.s}}s</span></b></span>
+      <span class="vf-bandtxt" style="font: 500 12px 'DM Mono', monospace; color: #B7BCC6">Data through {{band.asOf}} · refreshed daily at 7 AM ET<sc-if value="{{vfDelayed}}"> <span role="status" style="color: #FF9B9B">(Update delayed by technical issues)</span></sc-if></span>
     </div>
   </div>
 
-  <header style="max-width: 1240px; margin: 0 auto; padding: 22px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap">
-    <a href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #121417">
-      <span class="fx-bob" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center">
+  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 18px 24px 6px; display: flex; align-items: flex-end; gap: 14px 24px; flex-wrap: wrap">
+    <a class="vf-logo" href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #121417; align-self: center">
+      <span class="fx-bob vf-logomark" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#121417" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l8 13 8-13"></path></svg>
       </span>
-      <span style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">vote<span style="color: #7C4DDB">flow</span><span style="color: #00A37A">.</span></span>
+      <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">vote<span style="color: #7C4DDB">flow</span><span style="color: #00A37A">.</span></span>
     </a>
-    <nav aria-label="Page sections" style="display: flex; gap: 2px; flex-wrap: wrap; font-size: 16px; font-weight: 600">
+    <div class="vf-picks" style="margin-left: auto; display: grid; grid-template-columns: minmax(220px, 270px) minmax(200px, 260px); gap: 10px">
+      <label style="display: flex; flex-direction: column; gap: 4px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; min-width: 0">Election
+        <select sc-options="{{hdr.elections}}" value="{{hdr.eid}}" onChange="{{hdr.pickE}}" style="min-height: 42px; width: 100%; padding: 0 34px 0 14px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 700 15px 'Hanken Grotesk', sans-serif; color: #121417; cursor: pointer"></select>
+      </label>
+      <label style="display: flex; flex-direction: column; gap: 4px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; min-width: 0">Locality
+        <select sc-options="{{hdr.locs}}" value="{{hdr.lid}}" onChange="{{hdr.pickL}}" style="min-height: 42px; width: 100%; padding: 0 34px 0 14px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 700 15px 'Hanken Grotesk', sans-serif; color: #121417; cursor: pointer"></select>
+      </label>
+    </div>
+    <nav class="vf-sections" aria-label="Page sections" style="flex-basis: 100%; display: flex; gap: 2px; font-size: 16px; font-weight: 600; margin: 0 -12px">
       <a class="fx-nav" href="#flow" style="padding: 12px; text-decoration: none; color: #121417">Breakdown</a>
       <a class="fx-nav" href="#compare" style="padding: 12px; text-decoration: none; color: #121417">History</a>
       <a class="fx-nav" href="#byday" style="padding: 12px; text-decoration: none; color: #121417">By day</a>
@@ -139,7 +178,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
       <div>
         <a href="{{backHref}}" style="font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; min-height: 32px">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Virginia · {{L.region}}</a>
-        <h1 style="margin: 4px 0 0; font-size: clamp(48px, 7vw, 92px); font-weight: 800; letter-spacing: -0.055em; line-height: .95">{{L.name}}</h1>
+        <h1 class="vf-h1" style="margin: 4px 0 0; font-size: clamp(48px, 7vw, 92px); font-weight: 800; letter-spacing: -0.055em; line-height: .95">{{L.name}}</h1>
       </div>
       <div style="display: flex; gap: 10px; flex-wrap: wrap">
         <span class="fx-pill" style="padding: 10px 14px; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 12px; font-weight: 700; font-size: 15px">#{{L.rankV}} of 133 in ballots</span>
@@ -226,7 +265,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
         </sc-for>
       </div>
       <sc-if value="{{fc.on}}" hint-placeholder-val="{{ true }}">
-        <div class="fx-tree" style="display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 0; row-gap: 0; align-items: stretch">
+        <div class="fx-tree {{fc.bigCls}}" onClick="{{fc.tap}}" role="button" aria-label="{{fc.tapHint}}" style="display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 0; row-gap: 0; align-items: stretch">
           <div class="fx-fcbox fx-pa" style="grid-column: 8 / 18; grid-row: 1; background: #F6F8FD; border: 2.5px solid #1B2A6B; border-radius: 14px; padding: 12px 16px; animation-delay: 0s">
             <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1B2A6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><circle cx="9" cy="8" r="3.4"></circle><path d="M2.5 20c0-3.6 2.9-5.6 6.5-5.6s6.5 2 6.5 5.6"></path><circle cx="17.2" cy="8.8" r="2.8"></circle><path d="M16.4 14.5c3 .2 5.1 2 5.1 5.5"></path></svg>
@@ -316,6 +355,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
           </div>
           </sc-if>
         </div>
+        <p class="fx-taphint" style="margin: 12px 0 0; font: 600 13px 'DM Mono', monospace; color: #4A5260; text-align: center">{{fc.tapHint}}</p>
         <p style="margin: 16px 0 0; text-align: center; font-size: 14px; color: #5A6E8C">Outstanding requests are not votes cast. Mail requests can include voters who later vote in person.</p>
       </sc-if>
       <sc-if value="{{fc.off}}" hint-placeholder-val="{{ false }}">
@@ -371,7 +411,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
       </fieldset>
       <div style="display: flex; align-items: center; gap: 6px; font: 700 13px 'Hanken Grotesk', sans-serif; color: #121417; margin: 4px 0 2px"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M2 5l4-4 4 4" fill="none" stroke="#121417" stroke-width="1.8"></path></svg>{{ch.yTitle}}</div>
       <div style="position: relative" onMouseLeave="{{ch.leave}}">
-        <svg viewBox="-20 0 1020 540" width="100%" role="img" aria-label="Cumulative early ballots by days before Election Day for the selected elections" style="display: block; overflow: visible">
+        <svg viewBox="{{ch.vb}}" width="100%" role="img" aria-label="Cumulative early ballots by days before Election Day for the selected elections" style="display: block; overflow: visible">
           <sc-for list="{{ch.yt}}" as="t" hint-placeholder-count="5">
 <g>
             <line x1="60" y1="{{t.y}}" x2="1000" y2="{{t.y}}" stroke="{{t.stroke}}" stroke-width="1.5"></line>
@@ -379,25 +419,28 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
 </sc-for>
           <sc-for list="{{ch.xt}}" as="t" hint-placeholder-count="5">
 <g>
-            <line x1="{{t.x}}" y1="500" x2="{{t.x}}" y2="506" stroke="#121417" stroke-width="1.5"></line>
-            <text x="{{t.x}}" y="526" text-anchor="middle" class="fx-axis" style="font-family: 'DM Mono', monospace" fill="#4A5260">{{t.l}}</text></g>
+            <line x1="{{t.x}}" y1="{{ch.b}}" x2="{{t.x}}" y2="{{ch.b6}}" stroke="#121417" stroke-width="1.5"></line>
+            <text x="{{t.x}}" y="{{ch.b26}}" text-anchor="middle" class="fx-axis" style="font-family: 'DM Mono', monospace" fill="#4A5260">{{t.l}}</text></g>
 </sc-for>
-          <line x1="{{ch.todayX}}" y1="10" x2="{{ch.todayX}}" y2="500" stroke="#5B2FB8" stroke-width="2" stroke-dasharray="2 4"></line>
-          <text x="{{ch.todayLX}}" y="12" text-anchor="{{ch.todayAnchor}}" style="font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600" fill="#5B2FB8">{{ch.todayLbl}}</text>
+          <line x1="{{ch.todayX}}" y1="10" x2="{{ch.todayX}}" y2="{{ch.b}}" stroke="#5B2FB8" stroke-width="2" stroke-dasharray="2 4"></line>
+          <text x="{{ch.todayLX}}" y="{{ch.todayY}}" text-anchor="{{ch.todayAnchor}}" class="fx-axis" style="font-family: 'DM Mono', monospace; font-weight: 600" fill="#5B2FB8">{{ch.todayLbl}}</text>
           <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="4">
             <path class="{{ch.anim}}" d="{{ln.d}}" pathLength="1" fill="none" stroke="{{ln.color}}" stroke-width="{{ln.w}}" stroke-linejoin="round" stroke-linecap="round"></path>
+          </sc-for>
+          <sc-for list="{{ch.ends}}" as="el" hint-placeholder-count="4">
+            <text class="fx-axis fx-fade" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s" fill="{{el.color}}">{{el.t}}</text>
           </sc-for>
           <sc-if value="{{ch.hasProj}}" hint-placeholder-val="{{ false }}">
             <path class="fx-fade" d="{{ch.proj}}" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round" style="animation-delay: 1.9s"></path>
           </sc-if>
           <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
-            <line x1="{{ch.hiX}}" y1="20" x2="{{ch.hiX}}" y2="500" stroke="#121417" stroke-width="1.5"></line>
+            <line x1="{{ch.hiX}}" y1="20" x2="{{ch.hiX}}" y2="{{ch.b}}" stroke="#121417" stroke-width="1.5"></line>
             <sc-for list="{{ch.hiDots}}" as="hd" hint-placeholder-count="3">
               <circle cx="{{ch.hiX}}" cy="{{hd.y}}" r="6" fill="#FFFFFF" stroke="{{hd.color}}" stroke-width="3"></circle>
             </sc-for>
           </sc-if>
           <sc-for list="{{ch.hits}}" as="h" hint-placeholder-count="0">
-            <rect class="fx-hit" x="{{h.x}}" y="0" width="{{h.w}}" height="510" fill="transparent" onMouseEnter="{{h.enter}}"></rect>
+            <rect class="fx-hit" x="{{h.x}}" y="0" width="{{h.w}}" height="{{ch.b10}}" fill="transparent" onMouseEnter="{{h.enter}}"></rect>
           </sc-for>
         </svg>
         <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
@@ -753,7 +796,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
 
   <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
     <span>This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
-    <span style="font-family: 'DM Mono', monospace; font-size: 13px">Data: Virginia Department of Elections and local registrars · <a href="/status">Update status</a> · <a href="/old/v2/">Previous design</a></span>
+    <span style="font-family: 'DM Mono', monospace; font-size: 13px">Data: Virginia Department of Elections and local registrars · <a href="/status">Update status</a></span>
   </footer>
 
   <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">

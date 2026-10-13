@@ -64,7 +64,14 @@
       if (a.name.indexOf('hint-') === 0) continue;
       attrs.push([a.name, compileValue(a.value)]);
     }
-    const kids = compileChildren(node);
+    let kids = compileChildren(node);
+    /* <select sc-options="{{list}}">: the HTML parser drops <sc-for> inside <select>, so options come from a list of {value, text}. */
+    const optAttr = attrs.find(([n]) => n === 'sc-options');
+    if (optAttr) {
+      const list = optAttr[1];
+      attrs.splice(attrs.indexOf(optAttr), 1);
+      kids = [(s) => (list(s) || []).map((o) => h('option', { value: o.value }, o.text))];
+    }
     return (s) => {
       const props = {};
       for (const [n, f] of attrs) {

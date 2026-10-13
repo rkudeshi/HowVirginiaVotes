@@ -1,10 +1,15 @@
 class Home extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { data: null, t: 0, now: Date.now(), method: 'all', measure: 'count', show: {}, chTick: 0, hi: null, cal: null, win: props.eid === '2026' ? 'today' : 'deadline', calM: 'all', calTick: 0, mapMeasure: 'p', hover: null, tip: null, sortKey: 'p', sortDir: -1, all: false, q: '', region: '' };
+    this.state = { narrow: window.innerWidth < 600, data: null, t: 0, now: Date.now(), method: 'all', measure: 'count', show: {}, chTick: 0, hi: null, cal: null, win: props.eid === '2026' ? 'today' : 'deadline', calM: 'all', calTick: 0, mapMeasure: 'p', hover: null, tip: null, sortKey: 'p', sortDir: -1, all: false, q: '', region: '' };
   }
   componentDidMount() {
-    this.clock = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this.clock = setInterval(() => this.setState({ now: Date.now() }), 60000);
+    this.onScroll = () => { if (this.state.tip || this.state.hi != null) this.setState({ tip: null, hi: null }); };
+    this.onResize = () => { const nw = window.innerWidth < 600; if (nw !== this.state.narrow) this.setState({ narrow: nw, hi: null }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+
     fetch('/data/home-' + this.props.eid + '.json').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((data) => {
       this.setState({ data, cal: data.live ? data.asOf : VF.addDays(data.date, -1) });
       document.title = (data.live ? 'Virginia early voting' : 'Virginia early voting · ' + data.label) + ' · VoteFlow';
@@ -13,7 +18,7 @@ class Home extends DCLogic {
       this.raf = requestAnimationFrame(step);
     }).catch(() => { location.replace('/'); });
   }
-  componentWillUnmount() { cancelAnimationFrame(this.raf); clearInterval(this.clock); }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); clearInterval(this.clock); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize); }
   tipAt(ev, kind, key) {
     const W = window.innerWidth, H = window.innerHeight;
     let x = ev.clientX + 18, y = ev.clientY + 18;
@@ -42,7 +47,7 @@ class Home extends DCLogic {
     const frac = Math.min(1, Math.max(0, (this.state.now - evStart) / (target - evStart)));
     const cd = { label: left > 0 ? 'Election Day polls open in' : 'Polls are open', days: cdDays, h: String(cdH).padStart(2, '0'), m: String(cdM).padStart(2, '0'), s: String(cdS).padStart(2, '0'), anim: cdS % 2 ? 'fx-pa' : 'fx-pb', offset: (339.3 * (1 - frac)).toFixed(1), dayN: Math.min(46, Math.floor((this.state.now - evStart) / 864e5) + 1) };
 
-    if (!D) return { loading: true, ready: false, ticker: [], tip: { on: false }, cd, band: { asOf: '…' }, mini: [], elections: [], box: {}, eid: this.props.eid };
+    if (!D) return { loading: true, ready: false, ticker: [], tip: { on: false }, cd, band: { asOf: '…' }, mini: [], hdr: { elections: [], locs: [] }, box: {}, eid: this.props.eid };
     const e = this.state.t >= 1 ? 1 : 1 - Math.pow(2, -10 * this.state.t);
     const EID = D.eid, live = D.live, EDATE = D.date, EYR = EDATE.slice(0, 4);
     const start = parse(VF.addDays(EDATE, -46)), eDay = parse(EDATE), dead = VF.addDays(EDATE, 6);
@@ -57,14 +62,14 @@ class Home extends DCLogic {
     const heroFs = (pct, n) => 'clamp(28px, calc((100cqi - 52px) / ' + (emW(pct + '%') + emW(f(n))).toFixed(2) + '), 96px)';
     const hero = { fs: heroFs((total / D.reg * 100).toFixed(1), total), kicker: live ? 'Early votes cast · statewide · through ' + dmd(D.asOf) : 'Early votes cast · statewide · final', pctLbl: live ? 'turnout so far' : 'early turnout', votes: f(total * e), pct: (total / D.reg * 100 * e).toFixed(1), reg: f(D.reg), active: f(D.active), ip: f(last.e * e), m: f(last.m * e), ipW: (last.e / total * 100).toFixed(1), mW: (last.m / total * 100).toFixed(1) };
     const COLORS = { '2026': '#00A37A', '2026-special': '#6B7F1A', '2025': '#7C4DDB', '2024': '#121417', '2023': '#B7791F', '2022': '#8C5A00', '2021': '#8A8F99', '2020': '#A68A00' };
-    const paceKeys = ['2026', '2025', '2024', '2023', '2022', '2021', '2020'].filter((k) => H[k] && k !== EID && k !== '2026-special' && at(k, tIdx)).slice(0, 4);
-    const paceChips = paceKeys.map((k) => ({ ratio: Math.round(total / at(k, tIdx) * 100) + '%', label: H[k].label, border: COLORS[k], tail: live ? 'at this point' : 'by the same point' }));
+    const paceKeys = ['2026', '2025', '2024', '2026-special', '2022', '2021', '2020'].filter((k) => H[k] && k !== EID && at(k, tIdx)).slice(0, 4);
+    const paceChips = paceKeys.map((k) => ({ ratio: Math.round(total / at(k, tIdx) * 100) + '%', label: H[k].label.replace(' special', ''), border: COLORS[k], tail: live ? 'at this point' : 'by the same point' }));
     const satDates = Object.keys(D.satOpen).filter((d) => d > D.asOf).sort();
     const nextSat = satDates[0];
     const satLine = !live ? 'Mail ballots counted through ' + dmd(dead) : nextSat ? D.satOpen[nextSat].n + (D.satOpen[nextSat].n === 1 ? ' satellite site opens ' : ' satellite sites open ') + dmd(nextSat) : 'All satellite sites are open';
 
     const evDays = 46;
-    const box = live ? { big: cdDays, small: cdDays === 1 ? 'day left' : 'days left', offset: cd.offset, title: 'Election Day · ' + dmd(EDATE), sub: 'Early voting is ' + cd.dayN + ' of ' + evDays + ' days in.' }
+    const box = live ? { big: cdDays, small: cdDays === 1 ? 'day left' : 'days left', offset: cd.offset, title: 'Election Day · ' + dmd(EDATE), sub: '' }
       : { big: evDays, small: 'early-vote days', offset: 0, title: 'Election Day · ' + dmd(EDATE) + ', ' + EYR, sub: 'Final early-vote totals for ' + D.label + '.' };
 
     // flow
@@ -94,7 +99,9 @@ class Home extends DCLogic {
     const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bars']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
     const fcW = (a, b) => Math.max(1.5, Math.min(100, a / b * 100)).toFixed(1);
     const fcTot = ip + ret;
-    const fc = { on: fcView === 'chart', off: fcView !== 'chart', hasReq: true, hasPB: false,
+    const fcBig = !!this.state.fcBig;
+    const fc = { bigCls: fcBig ? 'fx-big' : '', tapHint: fcBig ? 'Tap to go back to the flow chart' : 'Tap the chart for big numbers',
+      tap: () => { if (window.innerWidth <= 760) this.setState({ fcBig: !fcBig }); }, on: fcView === 'chart', off: fcView !== 'chart', hasReq: true, hasPB: false,
       total: { title: 'Total voters', val: f(reg), w: fcW(fcTot, reg), pct: pc(fcTot, reg), cap: 'have already voted early · ' + f(fcTot) + ' ballots' },
       ip: { title: 'Voted early in person', val: f(ip), w: fcW(ip, reg), pct: pc(ip, reg), cap: 'of registered voters' },
       mail: { title: 'Requested a mail ballot', val: f(req), w: fcW(req, reg), pct: pc(req, reg), cap: 'of registered voters' },
@@ -115,19 +122,21 @@ class Home extends DCLogic {
     if (live && win !== 'today') for (let i = tIdx; i < n; i++) { const v = projVal(i); if (v != null) peak = Math.max(peak, v); }
     const units = measure === 'pct' ? [0.25, 0.5, 1, 2, 2.5, 5, 10, 12.5] : [2500, 5000, 10000, 25000, 50000, 100000, 125000, 150000, 250000, 500000, 750000];
     const top = Math.min(...units.map((u) => Math.ceil(peak * 1.04 / (8 * u)) * 8 * u));
-    const X = (i) => 60 + i / (n - 1) * 930;
-    const Y = (v) => 500 - v / top * 480;
+    // Taller chart on phones; a right gutter holds the line-end election labels.
+    const narrow = this.state.narrow, CB = narrow ? 1000 : 500, XR = narrow ? 830 : 905;
+    const X = (i) => 60 + i / (n - 1) * (XR - 60);
+    const Y = (v) => CB - v / top * (CB - 20);
     const fmtV = (v) => v == null ? '—' : measure === 'pct' ? v.toFixed(2) + '%' : f(v);
     const fmtT = (v) => measure === 'pct' ? (+v.toFixed(2)) + '%' : short(v);
     const pathOf = (fn) => { let d = ''; let pen = false; for (let i = 0; i < n; i++) { const v = fn(i); if (v == null) { pen = false; continue; } d += (pen ? ' L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); pen = true; } return d; };
-    const lines = vis.slice().reverse().map((k) => ({ d: pathOf((i) => val(k, i)), color: COLORS[k], w: k === EID ? 6 : 3 }));
+    const lines = vis.slice().reverse().map((k) => ({ d: pathOf((i) => val(k, i)), color: COLORS[k], w: k === EID ? (narrow ? 10 : 6) : (narrow ? 5 : 3) }));
     const hasProj = live && win !== 'today' && !!val('2025', tIdx);
     const proj = hasProj ? pathOf((i) => i < tIdx ? null : projVal(i)) : '';
-    const yt = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((j) => ({ y: 500 - j * 60, ty: 504 - j * 60, l: fmtT(top * j / 8), stroke: j === 0 ? '#121417' : '#ECEEF2' }));
+    const yt = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((j) => ({ y: CB - j * (CB - 20) / 8, ty: CB + 4 - j * (CB - 20) / 8, l: fmtT(top * j / 8), stroke: j === 0 ? '#121417' : '#ECEEF2' }));
     const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= tIdx) : win === 'election' ? [40, 30, 20, 10, 0] : [40, 30, 20, 10, 0, -6];
     const xt = dset.map((d) => ({ x: X(46 - d).toFixed(1), l: d === 0 ? 'Election Day' : d < 0 ? (-d) + ' days after' : d + ' days' }));
     const todayX = X(tIdx);
-    const hits = Array.from({ length: n }, (_, i) => ({ x: (X(i) - 930 / (n - 1) / 2).toFixed(1), w: (930 / (n - 1)).toFixed(1), enter: () => this.setState({ hi: i }) }));
+    const hits = Array.from({ length: n }, (_, i) => ({ x: (X(i) - (XR - 60) / (n - 1) / 2).toFixed(1), w: ((XR - 60) / (n - 1)).toFixed(1), enter: () => this.setState({ hi: i }) }));
     const hasHi = hi != null && hi < n;
     let hiRows = [], hiDots = [], hiTitle = '';
     if (hasHi) {
@@ -137,7 +146,17 @@ class Home extends DCLogic {
       vis.forEach((k) => { const v = val(k, hi); hiRows.push({ color: COLORS[k], label: H[k].label, val: fmtV(v), rel: k !== EID && base != null && v ? Math.round(base / v * 100) + '%' : '' }); if (v != null) hiDots.push({ y: Y(v).toFixed(1), color: COLORS[k] }); });
       if (hasProj && hi > tIdx) { const pv = projVal(hi); if (pv != null) { hiRows.unshift({ color: '#00A37A', label: EYR + ' projected', val: fmtV(pv), rel: '' }); hiDots.push({ y: Y(pv).toFixed(1), color: '#00A37A' }); } }
     }
-    const ch = { hasToday: live, todayLbl: 'TODAY · E–' + (46 - tIdx), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
+    const ends = [];
+    vis.map((k) => ({ k, label: H[k].label, color: COLORS[k], cur: k === EID, v: (i) => val(k, i) })).forEach((L0) => { let li = -1; for (let i = 0; i < n; i++) if (L0.v(i) != null) li = i;
+      if (li >= 0) ends.push({ x: X(li) + 10, y: Y(L0.v(li)), t: L0.label.replace('November ', 'Nov ').replace('April ', 'Apr ').replace(' special', ''), color: L0.color, fw: L0.cur ? 700 : 500 }); });
+    // Spread labels that end at the same x so they don't overlap.
+    const lgap = narrow ? 32 : 15;
+    const groups = {}; ends.forEach((e2) => { (groups[Math.round(e2.x / 40)] = groups[Math.round(e2.x / 40)] || []).push(e2); });
+    Object.values(groups).forEach((g) => { g.sort((a, b) => a.y - b.y);
+      for (let i = 1; i < g.length; i++) if (g[i].y - g[i - 1].y < lgap) g[i].y = g[i - 1].y + lgap;
+      const over = g[g.length - 1].y - CB; if (over > 0) { g[g.length - 1].y = CB; for (let i = g.length - 2; i >= 0; i--) if (g[i + 1].y - g[i].y < lgap) g[i].y = g[i + 1].y - lgap; } });
+    ends.forEach((e2) => { e2.x = e2.x.toFixed(1); e2.y = e2.y.toFixed(1); });
+    const ch = { todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, hasToday: live, todayLbl: 'TODAY · E–' + (46 - tIdx), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
       todayX: todayX.toFixed(1), todayLX: (win === 'today' ? todayX - 8 : todayX + 8).toFixed(1), todayAnchor: win === 'today' ? 'end' : 'start',
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
@@ -255,8 +274,11 @@ class Home extends DCLogic {
     const pqs = D.locs.map((o) => o.p).sort((a, b) => a - b), pq = [0.25, 0.5, 0.75].map((x) => pqs[Math.floor(x * (pqs.length - 1))]);
     return {
       eid: EID, label: D.label, box,
-      elections: D.elections.map((o) => ({ id: o.id, text: o.label.replace('April 2026 special', 'April 2026') + ' · ' + o.type })),
-      pickElection: (ev) => { location.href = ev.target.value === '2026' ? '/' : '/' + ev.target.value; },
+      hdr: { eid: EID, lid: '',
+        elections: D.elections.map((o) => ({ value: o.id, text: o.label.replace('April 2026 special', 'April 2026') + ' · ' + o.type })),
+        locs: [{ value: '', text: 'All of Virginia' }].concat(D.locs.slice().sort((a, b) => a.n.localeCompare(b.n)).map((o) => ({ value: o.id, text: o.n }))),
+        pickE: (ev) => { location.href = ev.target.value === '2026' ? '/' : '/' + ev.target.value; },
+        pickL: (ev) => { if (ev.target.value) location.href = linkOf(ev.target.value); } },
       band: { asOf: dmd(D.asOf) },
       mini: D.locs.map((o) => { const q = o.p; return { d: o.d, fill: q < pq[0] ? '#B3E6D3' : q < pq[1] ? '#5CC9A3' : q < pq[2] ? '#00A37A' : '#006B50', delay: Math.round(parseFloat(o.d.slice(1)) * 1.4 + 300) + 'ms' }; }),
       fc, fcOpts,
