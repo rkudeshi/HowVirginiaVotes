@@ -124,5 +124,19 @@
     "message": "Removed the public technical-delay notice. Fairfax now uses DAL for newer dates and county figures for matching activity dates; daily schedule checks are disabled.",
     "through": null,
     "url": null
+  },
+  {
+    "at": "2026-10-14T12:23:20.812820+00:00",
+    "source": "Daily Absentee List",
+    "message": "Loaded locality totals through October 13 for all 133 localities. No newer matched precinct observations were supplied; existing precinct histories through September 23 were retained.",
+    "through": "2026-10-13",
+    "url": null
+  },
+  {
+    "at": "2026-10-14T12:23:40.645354+00:00",
+    "source": "Fairfax County PDF",
+    "message": "Loaded county totals, mail-return details and voting-site counts.",
+    "through": "2026-10-12",
+    "url": "https://www.fairfaxcounty.gov/elections/sites/elections/files/Assets/AB%20Daily%20Report/AB%20Daily%20Report%20-%20Nov%203%202026%20-%2009192026.pdf"
   }
 ]

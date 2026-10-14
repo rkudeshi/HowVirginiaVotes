@@ -3,7 +3,7 @@
   "timezone": "America/New_York",
   "provider": "Open-Meteo historical weather API",
   "endpoint": "https://archive-api.open-meteo.com/v1/archive",
-  "generatedAt": "2026-10-12T22:59:15.326504+00:00",
+  "generatedAt": "2026-10-14T12:25:54.000182+00:00",
   "locations": [
     {
       "id": "amelia-county",
@@ -681,9 +681,9 @@
     },
     "2026": {
       "start": "2026-09-09",
-      "end": "2026-10-11",
+      "end": "2026-10-13",
       "localities": 133,
-      "records": 4389,
+      "records": 4655,
       "missing": []
     },
     "2023": {
