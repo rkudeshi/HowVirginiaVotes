@@ -225,7 +225,7 @@ class Home extends DCLogic {
 
     // maps (three small multiples)
     const mm = this.state.mapMeasure === 'v' ? 'v' : 'p';
-    const GR = ['#F0FAF6', '#D3F1E6', '#A8E3CC', '#6FCFAC', '#2FB58A', '#00895F', '#005A40'], PU = ['#F6F2FE', '#E4D9FA', '#C9B6F2', '#A98BE8', '#8B63DD', '#6A3FC4', '#4A2696'];
+    const GR = ['#f0faf6', '#d3f1e6', '#a8e3cc', '#6fcfac', '#2fb58a', '#00895f', '#005a40'], PU = ['#f6f2fe', '#e4d9fa', '#c9b6f2', '#a98be8', '#8b63dd', '#6a3fc4', '#4a2696'];
     const mdefs = [['all', 'All early votes', (o) => o.v, GR, '#D3D7DE'], ['e', 'In person', (o) => o.e, GR, '#D3D7DE'], ['m', 'By mail', (o) => o.m, GR, '#D3D7DE']];
     const mapSel = this.state.mapSel || 'all';
     const sBase = total ? last.e / total : 0.5;

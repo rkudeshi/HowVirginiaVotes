@@ -11,6 +11,78 @@
   'use strict';
   const { h, render, Component, Fragment } = window.preact;
 
+  /* Look settings (the "?" panel): theme (auto / light / dark) and border style (soft gray or bold
+     black). Both are applied by rewriting colors as the templates render, so the templates keep
+     their light-mode colors as written:
+       - tc(str) rewrites every UPPERCASE #RRGGBB and rgb()/rgba() in a style string or SVG color.
+       - Lowercase hex is left alone on purpose: use it for colors that must not change in dark
+         mode (data ramps on maps, the brand bar). An all-digit color needs a letter to opt out,
+         so the near-black is written #12141a there. */
+  const pref = (k, d) => { try { return localStorage.getItem(k) || d; } catch (e) { return d; } };
+  const THEME = pref('vf-theme', 'auto'), BORDERS = pref('vf-borders', 'soft');
+  const DARK = THEME === 'dark' || (THEME === 'auto' && !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches));
+  const SOFT = BORDERS === 'soft';
+  document.documentElement.classList.toggle('vf-dark', DARK);
+  document.documentElement.classList.toggle('vf-soft', SOFT);
+  document.documentElement.style.colorScheme = DARK ? 'dark' : 'light';
+  const DARK_MAP = { FFFFFF: '1B1E24', E6E8EC: '0F1115', '121417': 'E9EBEF', '4A5260': 'A4ABB7', '3A3F48': '5A616D', ECEEF2: '2A2E36', F1F2F5: '23272E',
+    F5F6F8: '20242B', F8F9FB: '1F2329', D3D7DE: '3A3F48', DCDFE5: '343943', E4D9FA: '3B2F5C', EEEEEE: '2A2E36', '2A2F38': 'D3D7DE', '5F6775': 'A4ABB7',
+    '8A93A3': '8A93A3', B7BCC6: '5F6775', FFD23F: 'C9A227', FFF6D1: '2E2814', F0D27A: '6B5A22', '5B2FB8': 'B49BF2', '4E2A9E': 'C4AEF6', '7C4DDB': '9673E6',
+    '00A37A': '1DB98C', '00694F': '5CD3AA', '41557F': '8EA2CC', '1B2A6B': 'AFC0EA', '121A3A': 'C9D2EA' };
+  const hsl = (r, g, b) => { r /= 255; g /= 255; b /= 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2; let hh = 0, ss = 0;
+    if (mx !== mn) { const d = mx - mn; ss = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); hh = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; hh /= 6; } return [hh, ss, l]; };
+  const rgbOf = (hh, ss, l) => { if (!ss) return [l, l, l].map((v) => Math.round(v * 255)); const q = l < 0.5 ? l * (1 + ss) : l + ss - l * ss, pp = 2 * l - q;
+    const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? pp + (q - pp) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? pp + (q - pp) * (2 / 3 - t) * 6 : pp; }; return [f(hh + 1 / 3), f(hh), f(hh - 1 / 3)].map((v) => Math.round(v * 255)); };
+  const darkRGB = (r, g, b) => {
+    const [hh, ss, l] = hsl(r, g, b); let l2 = l, s2 = ss;
+    if (ss < 0.12) l2 = Math.min(0.94, Math.max(0.08, 1.02 - l * 0.93));          // grays flip
+    else if (l >= 0.85) { l2 = 0.15 + (1 - l) * 0.7; s2 = ss * 0.5; }               // pale tints → dark tints
+    else if (l <= 0.3) l2 = 0.74;                                                    // dark ink → light ink
+    return rgbOf(hh, s2, l2);
+  };
+  const memo = {};
+  const darkHex = (hx) => { if (DARK_MAP[hx]) return '#' + DARK_MAP[hx]; if (memo[hx]) return memo[hx];
+    const c = darkRGB(parseInt(hx.slice(0, 2), 16), parseInt(hx.slice(2, 4), 16), parseInt(hx.slice(4, 6), 16));
+    return (memo[hx] = '#' + c.map((v) => v.toString(16).padStart(2, '0')).join('').toUpperCase()); };
+  const SOFT_RE = /(border(?:-top|-right|-bottom|-left)?\s*:\s*[^;"]*?)#(3A3F48|121417|D3D7DE)\b/g;
+  const tc = (v) => {
+    if (typeof v !== 'string' || (!DARK && !SOFT)) return v;
+    if (SOFT) v = v.replace(SOFT_RE, '$1#EEEEEE');
+    if (DARK) v = v.replace(/#([0-9A-F]{6})\b/g, (m, hx) => darkHex(hx))
+      .replace(/rgba?\((\d+),\s*(\d+),\s*(\d+)((?:,\s*[\d.]+)?)\)/g, (m, r, g, b, a) => { const c = darkRGB(+r, +g, +b); return (a ? 'rgba(' : 'rgb(') + c.join(',') + a + ')'; });
+    return v;
+  };
+  const COLOR_ATTRS = { style: 1, fill: 1, stroke: 1, 'stop-color': 1, color: 1 };
+  /* The secret look panel, opened with "?" (Shift+/) anywhere outside a text field. */
+  const LOOK_CSS = '.vf-look{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:rgba(18,20,23,.35);backdrop-filter:blur(6px)}'
+    + '.vf-look>div{width:min(420px,calc(100vw - 32px));background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.6);border-radius:22px;padding:22px 22px 18px;box-shadow:0 30px 60px -20px rgba(18,20,23,.5);font-family:"Hanken Grotesk",sans-serif;color:#121417}'
+    + '.vf-look h2{margin:0 0 2px;font:700 18px "Unbounded",sans-serif;letter-spacing:-.02em}.vf-look p{margin:0 0 16px;color:#4A5260;font-size:14px}'
+    + '.vf-look .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid rgba(18,20,23,.08)}.vf-look .row b{font-size:15px}'
+    + '.vf-look .seg{display:inline-flex;gap:3px;padding:4px;border-radius:999px;background:rgba(18,20,23,.07)}'
+    + '.vf-look .seg button{border:0;border-radius:999px;background:transparent;color:#4A5260;font:600 13px "Hanken Grotesk",sans-serif;padding:7px 12px;cursor:pointer}'
+    + '.vf-look .seg button[aria-pressed=true]{background:#FFFFFF;color:#121417;box-shadow:0 1px 3px rgba(18,20,23,.18)}.vf-look small{display:block;margin-top:12px;color:#4A5260;font-size:12px}';
+  const openLook = () => {
+    if (document.querySelector('.vf-look')) return;
+    const st = document.createElement('style'); st.textContent = tc(LOOK_CSS) + '.vf-look{background:rgba(10,12,15,' + (DARK ? '.55' : '.3') + ')}'; st.id = 'vf-look-css'; document.head.appendChild(st);
+    const wrap = document.createElement('div'); wrap.className = 'vf-look'; wrap.setAttribute('role', 'dialog'); wrap.setAttribute('aria-label', 'Look settings');
+    const row = (label, key, cur, opts) => '<div class="row"><b>' + label + '</b><span class="seg">' + opts.map(([v, t]) => '<button data-k="' + key + '" data-v="' + v + '" aria-pressed="' + (cur === v) + '">' + t + '</button>').join('') + '</span></div>';
+    wrap.innerHTML = '<div><h2>Super secret mode</h2><p>Look settings for this browser.</p>'
+      + row('Borders', 'vf-borders', BORDERS, [['soft', 'Soft gray'], ['bold', 'Bold black']])
+      + row('Theme', 'vf-theme', THEME, [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']])
+      + '<small>Press ? or Esc to close.</small></div>';
+    const close = () => { wrap.remove(); st.remove(); };
+    wrap.addEventListener('click', (ev) => { const b = ev.target.closest('button[data-k]');
+      if (b) { try { localStorage.setItem(b.dataset.k, b.dataset.v); } catch (e) { /* storage off */ } location.reload(); return; }
+      if (ev.target === wrap) close(); });
+    document.body.appendChild(wrap); openLook.close = close;
+  };
+  document.addEventListener('keydown', (ev) => {
+    const t = ev.target, typing = t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+    if (ev.key === '?' && !typing) { ev.preventDefault(); if (document.querySelector('.vf-look')) openLook.close(); else openLook(); }
+    else if (ev.key === 'Escape' && document.querySelector('.vf-look')) openLook.close();
+  });
+  if (THEME === 'auto' && window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => location.reload());
+
   /* <vf-combo items="{{list}}" value="{{v}}" onpick="{{fn}}" placeholder="…" search="true" label="…">
      A custom dropdown: opens the whole list on click/focus, typing filters it (search="true"),
      arrow keys + Enter pick, Escape or a click elsewhere closes. items: [{ value, text, sub }]. */
@@ -134,7 +206,7 @@
       for (const [n, f] of attrs) {
         const v = f(s);
         if (n.indexOf('on') === 0) { if (typeof v === 'function') props[n] = v; continue; }
-        props[n] = v;
+        props[n] = COLOR_ATTRS[n] ? tc(v) : v;
       }
       return h(tag, props, renderAll(kids, s));
     };
@@ -146,7 +218,8 @@
     if (helmet) {
       helmet.querySelectorAll('style, link').forEach((n) => {
         if (n.tagName === 'LINK' && document.head.querySelector('link[href="' + n.getAttribute('href') + '"]')) return;
-        document.head.appendChild(document.importNode(n, true));
+        const c = document.importNode(n, true); if (c.tagName === 'STYLE') c.textContent = tc(c.textContent);
+        document.head.appendChild(c);
       });
       helmet.remove();
     }
@@ -164,8 +237,12 @@
      fixed and the page keeps a constant gap for its tall height, so slimming it never moves the
      page (a moving page used to flip the bar back and forth near the top). Two thresholds keep
      it from flickering: slim past 56px, tall again only back near the top. */
-  const BAND_CSS = '.vf-band{position:fixed !important;top:0;left:0;right:0}body{padding-top:var(--vf-bandh,68px)}body.vf-full .vf-band{display:none !important}';
-  { const st = document.createElement('style'); st.textContent = BAND_CSS; document.head.appendChild(st); }
+  const BAND_CSS = 'html.vf-soft [role=group]{border:1px solid #E1E5EC !important;background:#F0F2F6 !important;padding:4px;gap:3px;border-radius:999px !important}'
+    + 'html.vf-soft [role=group]>button{background:transparent !important;color:#586477 !important;border-radius:999px !important;min-height:36px !important}'
+    + 'html.vf-soft [role=group]>button[aria-pressed=true]{background:#FFFFFF !important;color:#121417 !important;box-shadow:0 1px 3px rgba(18,20,23,.16),0 0 0 1px rgba(18,20,23,.04)}'
+    + 'html.vf-soft [role=group]>button:not([aria-pressed=true]):hover{color:#121417 !important}'
+    + '.vf-band{position:fixed !important;top:0;left:0;right:0}body{padding-top:var(--vf-bandh,68px)}body.vf-full .vf-band{display:none !important}';
+  { const st = document.createElement('style'); st.textContent = tc(BAND_CSS); document.head.appendChild(st); }
   const measureBand = () => {
     const b = document.querySelector('.vf-band');
     if (b && !document.body.classList.contains('vf-scrolled') && !measureBand.busy) document.documentElement.style.setProperty('--vf-bandh', b.offsetHeight + 'px');
@@ -195,15 +272,17 @@
     window.scrollTo({ top: Math.max(0, top - off), behavior: 'smooth' });
     history.replaceState(null, '', a.getAttribute('href'));
   });
-  { const st = document.createElement('style'); st.textContent = COMBO_CSS; document.head.appendChild(st); }
+  { const st = document.createElement('style'); st.textContent = tc(COMBO_CSS); document.head.appendChild(st); }
   /* Calendar shading: a continuous slate scale, so every daily total gets its own shade. */
-  const CAL_STOPS = [[0, [241, 244, 249]], [0.2, [205, 214, 230]], [0.45, [140, 158, 191]], [0.7, [65, 85, 127]], [1, [27, 42, 107]]];
+  // Lowercase hex output keeps these out of the theme rewrite; dark mode has its own scale.
+  const CAL_STOPS = DARK ? [[0, [38, 43, 54]], [0.2, [50, 62, 88]], [0.45, [72, 96, 146]], [0.7, [112, 140, 198]], [1, [170, 192, 240]]]
+    : [[0, [241, 244, 249]], [0.2, [205, 214, 230]], [0.45, [140, 158, 191]], [0.7, [65, 85, 127]], [1, [27, 42, 107]]];
   const calColor = (q) => {
     q = Math.max(0, Math.min(1, q || 0));
     let j = 1; while (j < CAL_STOPS.length - 1 && q > CAL_STOPS[j][0]) j++;
     const [qa, a] = CAL_STOPS[j - 1], [qb, b] = CAL_STOPS[j], t = (q - qa) / (qb - qa || 1);
     const c = a.map((x, k) => Math.round(x + (b[k] - x) * t));
-    return { bg: 'rgb(' + c.join(',') + ')', fg: q > 0.5 ? '#FFFFFF' : '#121417' };
+    return { bg: '#' + c.map((x) => x.toString(16).padStart(2, '0')).join(''), fg: DARK ? (q > 0.55 ? '#12141a' : '#e9ebef') : (q > 0.5 ? '#ffffff' : '#12141a') };
   };
   /* Recently opened localities (this browser only), listed first in the locality pickers. */
   const RECENT_KEY = 'vf-recent-localities';
@@ -226,7 +305,7 @@
   window.VF = {
     dayFlag, flagChip: (k, eDate) => { const t = dayFlag(k, eDate); return t === 'Election Day' ? '★ Election Day' : t ? 'Holiday · ' + t : ''; },
     recentLocs, addRecent, recentItems, unRecent: (v) => (v || '').replace(/^r:/, ''),
-    calColor, calLegend: [0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 1].map((q) => calColor(q).bg),
+    dark: DARK, soft: SOFT, tc, calColor, calLegend: [0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 1].map((q) => calColor(q).bg),
     page(name, Logic) { pages[name] = Logic; },
     /* Mail ballots must arrive by noon on the 3rd day after Election Day; a weekend or
        state holiday (Veterans Day, Nov 11) moves it to the next business day. */
@@ -238,7 +317,7 @@
     },
     /* "In person vs. mail" map colors: a place's in-person share of early votes minus the
        overall share. Green = leans in person, purple = leans mail, gray = near the average. */
-    LEAN: ['#4E2A9E', '#8E6ADF', '#CDBCF3', '#E3E6EB', '#BDEBD6', '#4CC49B', '#00694F'],
+    LEAN: ['#4e2a9e', '#8e6adf', '#cdbcf3', '#e3e6eb', '#bdebd6', '#4cc49b', '#00694f'],
     leanColor(e, m, base) {
       if (!(e + m)) return '#F1F2F5';
       const d = e / (e + m) - base, a = Math.abs(d), k = a < 0.03 ? 0 : a < 0.08 ? 1 : a < 0.15 ? 2 : 3;

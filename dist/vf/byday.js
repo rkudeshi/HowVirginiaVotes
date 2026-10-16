@@ -86,15 +86,13 @@
       band = 'M' + up.join(' L') + ' L' + dn.join(' L') + ' Z';
       projLine = linePts((i) => i === lastI ? cumAct(i) : i > lastI ? cumMid[i] : null, lastI, N - 1);
     }
-    const rnd = (v) => v >= 10000 ? Math.round(v / 1000) + 'K' : v >= 1000 ? (Math.round(v / 100) / 10) + 'K' : v >= 100 ? String(Math.round(v / 10) * 10) : String(Math.round(v));
+    const rnd = (v) => v >= 1e6 ? (v / 1e6).toFixed(v >= 1e7 ? 1 : 2) + 'M' : v >= 10000 ? Math.round(v / 1000) + 'K' : v >= 1000 ? (Math.round(v / 100) / 10) + 'K' : v >= 100 ? String(Math.round(v / 10) * 10) : String(Math.round(v));
     const sumPlan = (key) => plan.reduce((acc, p) => p ? acc + p[key] : acc, 0);
     const curE = lastI >= 0 ? act[lastI].e : 0, curM = lastI >= 0 ? act[lastI].m : 0;
     const remE = sumPlan('e'), remELo = sumPlan('eLo'), remEHi = sumPlan('eHi'), remM = sumPlan('m'), remMLo = sumPlan('mLo'), remMHi = sumPlan('mHi');
     const futX = BX(lastI) + 940 / N / 2;
     const bdOpt = (label, key, curv, list) => ({ label, opts: list.map(([v, l]) => Object.assign({ label: l, pick: () => set({ [key]: v, tip: null }) }, pill(curv, v))) });
     const xs = []; for (let i = 0; i < N; i += (N > 30 ? 7 : 4)) xs.push(i);
-    // Projected finals for other parts of the page; the chart's timeline toggle doesn't change them.
-    const bdProj = live && refs.length && lastI >= 0 ? { fin: curE + curM + remE + remM, lo: curE + curM + sumPlan('eLo') + sumPlan('mLo'), hi: curE + curM + sumPlan('eHi') + sumPlan('mHi') } : null;
     const bd = {
       daily: bdView === 'daily', cum: bdView !== 'daily', hasPlan: usePlan, showE: N > 46, showToday: live && N > lastI + 1,
       ctrls: [bdOpt('View', 'bdView', bdView, [['daily', 'Daily ballots'], ['cum', 'Cumulative']]), bdOpt('Method', 'bdM', bdM, [['all', 'All early'], ['early', 'In person'], ['mail', 'By mail']]),
@@ -141,6 +139,6 @@
         list: sc ? sc.open.map(([nm, hrs]) => ({ k: nm + ' (' + hrs + ')', v: '' })) : [] };
     };
 
-    return { bd, barInfo, proj: bdProj };
+    return { bd, barInfo };
   };
 })();

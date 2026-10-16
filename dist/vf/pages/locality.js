@@ -318,7 +318,10 @@ class Locality extends DCLogic {
     const SH = ['#FFFFFF', '#F2FAF7', '#E2F5EC', '#CDEEDF', '#B4E5D0'];
     const maxDe = Math.max(1, ...drows.map((r) => r.de)), maxDm = Math.max(1, ...drows.map((r) => r.dm));
     const lvlOf = (v, m) => { const q = v / m; return !v ? 0 : q < 0.25 ? 1 : q < 0.5 ? 2 : q < 0.75 ? 3 : 4; };
-    const GSH = ['transparent', '#E3F5ED', '#BDEBD6', '#86D9BA', '#4CC49B'], PSH = ['transparent', '#F0EAFC', '#DCCEF7', '#BFA6F0', '#9E7DE6'], TSH = ['transparent', '#EEF0F3', '#DDE1E7', '#C7CDD6', '#AAB2BF'];
+    // Dark mode gets its own (lowercase, so not rewritten) shading that keeps light text readable.
+    const GSH = VF.dark ? ['transparent', '#173a2f', '#1d5541', '#257556', '#2f9a71'] : ['transparent', '#E3F5ED', '#BDEBD6', '#86D9BA', '#4CC49B'],
+      PSH = VF.dark ? ['transparent', '#2a2342', '#3a2d63', '#4b3a85', '#5d48a8'] : ['transparent', '#F0EAFC', '#DCCEF7', '#BFA6F0', '#9E7DE6'],
+      TSH = VF.dark ? ['transparent', '#23272e', '#2c313a', '#373d48', '#454c59'] : ['transparent', '#EEF0F3', '#DDE1E7', '#C7CDD6', '#AAB2BF'];
     const tRows = drows.slice().reverse().map((r) => {
       const sc = live ? D.sched[r.d] : null; const w = r.w;
       const heavy = !!(w && w.p >= 0.25), wetish = isWet(w), sunny = !!(w && !wetish && /clear|sun/i.test(w.l));
@@ -366,34 +369,36 @@ class Locality extends DCLogic {
       grid: narrowT ? (live ? '1.1fr 1fr 1fr 1fr 0.95fr 0.75fr' : '1.1fr 1fr 1fr 1fr 0.95fr') : live ? (hasPB ? '1fr 0.8fr 0.8fr 1fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr' : '1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr') : '1.2fr 1fr 1fr 1fr 1fr 0.8fr' };
 
     // ---- ballots by day (+ planning)
-    const { bd, barInfo, proj: bdProj } = VF.byDay({ place: D.name, ser: cur.series, live, endI, T, date: cur.date, reg: cur.reg, label: cur.label,
+    const { bd, barInfo } = VF.byDay({ place: D.name, ser: cur.series, live, endI, T, date: cur.date, reg: cur.reg, label: cur.label,
       refs: EL.filter((x) => ['2025', '2024', '2023', '2022', '2021'].includes(x.id)), sched: live ? D.sched : null, gate: 'sched', officeKnown: !!D.officeKnown,
       rowDaily: live && D.id === 'fairfax-county' ? D.rows : null, fx: D.fxMail && D.fxMail[cur.id] ? D.fxMail[cur.id].ser : null, st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
 
-    // A plain-language read of the live election for the top card: pace against comparable past
-    // elections at the same point, the past week's trend, the in-person/mail mix, mail returns,
-    // where the early vote looks headed, and what changes next.
-    const insight = { on: false, text: '' };
-    if (live && cur.series) {
-      const S = cur.series; let li = -1; for (let i = 0; i < 53; i++) if (S.e[i] != null) li = i;
-      const atI = (x) => x && x.series && x.series.e[li] != null ? x.series.e[li] + x.series.m[li] : null;
-      const sentences = [], r2 = (v) => { const u = v >= 10000 ? 1000 : v >= 1000 ? 100 : 10; return Math.round(v / u) * u; };
-      const sameType = EL.find((x) => x.id !== eid && x.type === cur.type && x.final && atI(x));
-      const lastYr = EL.find((x) => x.id !== eid && x.final && x.id !== (sameType && sameType.id) && /^November/.test(x.label) && atI(x));
-      const lbl = (x) => x.type === cur.type ? 'the ' + x.label.replace('November ', '') + ' ' + x.type.toLowerCase() : x.label;
-      const vs = (x) => { const r = (S.e[li] + S.m[li]) / atI(x); return r >= 1.9 && r <= 2.1 ? 'about twice ' + lbl(x) : r >= 1.45 ? 'about ' + r.toFixed(1) + ' times ' + lbl(x)
-        : r >= 1.03 ? Math.round((r - 1) * 100) + '% more than ' + lbl(x) : r <= 0.97 ? Math.round((1 - r) * 100) + '% fewer than ' + lbl(x) : 'about even with ' + lbl(x); };
-      if (sameType) sentences.push(D.name + ' has ' + f(S.e[li] + S.m[li]) + ' early ballots so far: ' + vs(sameType) + ' at the same point' + (lastYr ? ', and ' + vs(lastYr) : '') + '.');
-      const lastD = D.rows[D.rows.length - 1].d, wk = (from, to) => D.rows.filter((r) => r.d > from && r.d <= to).reduce((a, r) => a + r.de + r.dm, 0);
-      const w1 = wk(VF.addDays(lastD, -7), lastD), w0 = wk(VF.addDays(lastD, -14), VF.addDays(lastD, -7));
-      if (w0 > 0) { const ch = Math.round((w1 / w0 - 1) * 100); sentences.push('The past week brought ' + f(w1) + ' ballots, ' + (Math.abs(ch) < 5 ? 'about the same as' : Math.abs(ch) + '% ' + (ch > 0 ? 'more than' : 'fewer than')) + ' the week before.'); }
-      const share = S.e[li] / (S.e[li] + S.m[li]) * 100, ref2 = sameType || lastYr;
-      if (ref2) { const rs = ref2.series.e[li] / atI(ref2) * 100; sentences.push(Math.round(share) + '% of ballots so far were cast in person, ' + (Math.abs(share - rs) < 3 ? 'close to' : share > rs ? 'more than' : 'less than') + ' the ' + Math.round(rs) + '% at this point in ' + ref2.label.replace('November ', '') + '.'); }
-      if (cur.out != null && cur.mail + cur.out > 0) sentences.push(Math.round(cur.mail / (cur.mail + cur.out) * 100) + '% of mail ballots requested have come back; ' + f(cur.out) + ' are still out.');
-      if (bdProj) sentences.push('If the rest of early voting follows past patterns, expect about ' + f(r2(bdProj.fin)) + ' early ballots in all (likely ' + f(r2(bdProj.lo)) + '–' + f(r2(bdProj.hi)) + '), about ' + (bdProj.fin / cur.reg * 100).toFixed(0) + '% of registered voters.');
-      if (D.sat && D.next && D.next !== 'open') sentences.push((D.sat === 1 ? 'A satellite site opens ' : D.sat + ' satellite sites open ') + dmd(D.next) + ', which usually brings a jump in in-person voting.');
-      insight.on = sentences.length > 0; insight.text = sentences.join(' ');
+    // Same day, last time: each day of this election next to the same day before Election Day in
+    // a past election (Nov 2025 by default), with that day's change and the running comparison.
+    const sdOpts = EL.filter((x) => x.id !== eid && x.series);
+    const sdId = sdOpts.some((x) => x.id === this.state.sdRef) ? this.state.sdRef : (sdOpts.find((x) => x.id === '2025') || sdOpts[0] || {}).id;
+    const sdRefEl = sdOpts.find((x) => x.id === sdId);
+    const sd = { on: !!(sdRefEl && cur.series), ref: sdId, refLabel: sdRefEl ? sdRefEl.label.replace('April 2026 special', 'April 2026') : '', curLabel: cur.label, rows: [],
+      opts: sdOpts.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })), pick: (v) => this.setState({ sdRef: v }) };
+    if (sd.on) {
+      const A = cur.series, B = sdRefEl.series, tA = (i) => A.e[i] == null ? null : A.e[i] + A.m[i], tB = (i) => B.e[i] == null ? null : B.e[i] + B.m[i];
+      const rowByDate = {}; D.rows.forEach((r) => { rowByDate[r.d] = r; });
+      const pctTxt = (a, b) => !b ? (a ? 'new' : '–') : (a >= b ? '+' : '–') + Math.abs(Math.round((a / b - 1) * 100)) + '%';
+      const tone = (a, b) => !b || a === b ? '#4A5260' : a > b ? '#00694F' : '#B42318';
+      for (let i = 0; i <= Math.min(endI, 52); i++) {
+        const a = tA(i); if (a == null) continue;
+        const rowA = live ? rowByDate[VF.addDays(cur.date, i - 46)] : null; // the daily table's own counts where the source publishes them
+        const b = tB(i), dA = rowA ? rowA.de + rowA.dm : a - (i ? tA(i - 1) || 0 : 0), dB = b == null ? null : b - (i && tB(i - 1) != null ? tB(i - 1) : 0);
+        if (!dA && !dB) continue; // both closed
+        const kA = VF.addDays(cur.date, i - 46), kB = VF.addDays(sdRefEl.date, i - 46), flA = VF.dayFlag(kA, cur.date), flB = VF.dayFlag(kB, sdRefEl.date);
+        sd.rows.unshift({ e: i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46), dA: dmd(kA), dAs: DOW[parse(kA).getDay()] + ' ' + (parse(kA).getMonth() + 1) + '/' + parse(kA).getDate(), dB: dmd(kB), vA: fz(dA), vB: dB == null ? '—' : fz(dB),
+          flA: flA && flA !== 'Election Day' ? flA : '', flB: flB && flB !== 'Election Day' ? flB : '',
+          diff: dB == null ? '—' : pctTxt(dA, dB), diffFg: tone(dA, dB || 0), runA: f(a), runB: b == null ? '—' : f(b), run: b ? pctTxt(a, b) : '—', runFg: tone(a, b || 0) });
+      }
+      sd.note = 'Days line up by how many days remain before Election Day, so weekdays match. Days when neither election had any ballots are left out. Green is ahead of ' + sd.refLabel + ', red is behind.';
     }
+    // Trend notes for the live election, written at build time from the latest data (trends.py).
+    const insight = { on: live && !!D.trend, text: D.trend || '' };
 
     // ---- site map + table
     const hoursBy = {}; Object.keys(D.sched).forEach((d5) => { D.sched[d5].open.forEach(([nm, sp, hh]) => { if (!hoursBy[nm]) hoursBy[nm] = {}; hoursBy[nm][d5] = hh; }); });
@@ -448,7 +453,7 @@ class Locality extends DCLogic {
     const cellOf = (s5, j, ri, ci) => { const c = rVal[s5.name][j]; let bg, fg = '#121417', border = '0', txt = '';
       if (!c.past) { if (c.h) { bg = '#FFFFFF'; border = '1.5px dashed #C6CBD4'; } else bg = '#F8F9FB'; }
       else if (!c.h && !c.raw) bg = '#F1F2F5';
-      else { const q = (c.v || 0) / (rMax || 1); /* lighter greens keep dark text readable */ bg = !c.v ? '#F1F2F5' : q < 0.25 ? '#E3F5ED' : q < 0.5 ? '#C2EBDB' : q < 0.75 ? '#93DCC0' : '#5CC9A3'; if (!rhFit && c.v) txt = fmtR(c.v); }
+      else { const q = (c.v || 0) / (rMax || 1); /* lighter greens keep dark text readable */ const RG = VF.dark ? ['#173a2f', '#1d5541', '#257556', '#2f9a71'] : ['#E3F5ED', '#C2EBDB', '#93DCC0', '#5CC9A3']; bg = !c.v ? '#F1F2F5' : RG[q < 0.25 ? 0 : q < 0.5 ? 1 : q < 0.75 ? 2 : 3]; if (!rhFit && c.v) txt = fmtR(c.v); }
       return { bg, fg, border, txt, delay: (ri * 30 + ci * 6) + 'ms',
         tip: shortName(s5) + ' · ' + dmd(c.d) + ': ' + (!c.past ? (c.h ? 'scheduled, ' + c.h + ' h' : 'closed') : !c.h && !c.raw ? 'closed' : fz(c.raw) + ' ballots' + (c.h ? ' in ' + c.h + ' h (' + Math.round(c.raw / c.h) + '/h)' : '')) }; };
     const totOf = (arr) => { const pastA = arr.filter((c) => c.past); const sum = pastA.reduce((x, c) => x + c.raw, 0); const hh = pastA.reduce((x, c) => x + c.h, 0);
@@ -475,7 +480,7 @@ class Locality extends DCLogic {
     // ---- precinct maps (three)
     const P = D.precincts; const lastIdx = D.pdates.length - 1; const pIdx = this.state.pIdx == null ? lastIdx : this.state.pIdx;
     const { pMeasure } = this.state; const pHover = this.state.pHover || this.state.pPinned; // hover previews; a click pins
-    const GRN = ['#F0FAF6', '#D3F1E6', '#A8E3CC', '#6FCFAC', '#2FB58A', '#00895F', '#005A40'], PUR = ['#F6F2FE', '#E4D9FA', '#C9B6F2', '#A98BE8', '#8B63DD', '#6A3FC4', '#4A2696'];
+    const GRN = ['#f0faf6', '#d3f1e6', '#a8e3cc', '#6fcfac', '#2fb58a', '#00895f', '#005a40'], PUR = ['#f6f2fe', '#e4d9fa', '#c9b6f2', '#a98be8', '#8b63dd', '#6a3fc4', '#4a2696'];
     const pdefs = [['all', 'All early votes', (h) => h[0] + h[1], GRN, '#D3D7DE'], ['e', 'In person', (h) => h[0], GRN, '#D3D7DE'], ['m', 'By mail', (h) => h[1], PUR, '#D3D7DE']];
     const pSel0 = this.state.pSel || 'all';
     const pBase = (() => { const e7 = P.reduce((x, p) => x + p.h[pIdx][0], 0), m7 = P.reduce((x, p) => x + p.h[pIdx][1], 0); return e7 + m7 ? e7 / (e7 + m7) : 0.5; })();
@@ -543,7 +548,7 @@ class Locality extends DCLogic {
     ];
 
     return {
-      fc, fcOpts, vb, insight,
+      fc, fcOpts, vb, insight, sd,
       hdr: { eid, lid: D.id,
         elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })),
         locs: (() => { const all = D.names.map(([id, nm]) => ({ value: id, text: nm })); return [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(all, D.id), all); })(),

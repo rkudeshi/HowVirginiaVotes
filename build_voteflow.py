@@ -17,6 +17,7 @@ import json
 import math
 import re
 from fairfax_history import merged_history
+from trends import trend_notes
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent / 'dist'
@@ -487,6 +488,13 @@ def main():
     by_pct = sorted(e26['localities'], key=lambda x: -tot(x['history'][-1]) / x['registered'])
     by_reg = sorted(e26['localities'], key=lambda x: -x['registered'])
     official = {x['date']: x for x in D.get('official', {}).get(LIVE, {}).get('history', [])}
+    # Turnout rank now and a week earlier, for the trend notes.
+    s26 = {l['id']: series(l['history'], election_meta(LIVE)['date'], l['registered']) for l in e26['localities']}
+    li26 = max(i for x in s26.values() if x for i, v in enumerate(x['e']) if v is not None)
+    def rank_at(i):
+        vals = sorted(((((x['e'][i] or 0) + (x['m'][i] or 0)) / x['r'] if x and x['e'][i] is not None else 0, lid) for lid, x in s26.items()), reverse=True)
+        return {lid: n + 1 for n, (_, lid) in enumerate(vals)}
+    rank_now, rank_wk = rank_at(li26), rank_at(li26 - 7)
     geocoded = {x['name'].lower(): (x['lat'], x['lon']) for x in D.get('sites', [])}
     for l in e26['localities']:
         lid = l['id']
@@ -573,11 +581,16 @@ def main():
                     fx_mail[y] = {'through': hh[-1]['date'], 'sent': c.get('sent'), 'post': c.get('postal'), 'box': c.get('dropbox'), 'early': c.get('early'),
                                   'ser': fx_series(hh, election_meta(y)['date']), 'extras': fx_extras(D['official'][y].get('extras'))}
         n, nxt = sat_summary(lid, today)
+        sat_dates = [date(x['firstOpen']) for x in D.get('satellites', {}).get(LIVE, {}).get(lid, {}).get('sites', []) if x['satellite']]
+        ref25 = next((x['series'] for x in elections if x['id'] == '2025'), None)
+        cur26 = next((x['series'] for x in elections if x['id'] == LIVE), None)
+        notes = trend_notes(l['name'], date(election_meta(LIVE)['date']), cur26, ref25, hist[LIVE], hist['2025'], date(l['history'][-1]['date']),
+                            sat_dates, rank_now.get(lid), rank_wk.get(lid)) if cur26 else ''
         b = {'id': lid, 'name': l['name'], 'asOf': l['history'][-1]['date'], 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
              'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1, 'rankR': by_reg.index(l) + 1,
              'state26': {'e': hist[LIVE]['e'], 'm': hist[LIVE]['m'], 'r': hist[LIVE]['r']},
              'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
-             'fxReport': fairfax_report() if lid == 'fairfax-county' else None, 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
+             'trend': notes, 'fxReport': fairfax_report() if lid == 'fairfax-county' else None, 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
         (OUT / 'loc' / f'{lid}.json').write_text(json.dumps(b, separators=(',', ':')))
     print(f'Built {len(ORDER)} statewide bundles and {len(e26["localities"])} locality bundles in {OUT}')
 

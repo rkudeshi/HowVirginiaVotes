@@ -118,8 +118,8 @@ a{color:#00694F}a:hover{color:#121417}
 }
 .vf-short{display:none}
 section[id]{scroll-margin-top:62px !important}
-@media (max-width: 380px){.vf-tag{display:none}}
-@media (max-width: 700px){.vf-tag{font-size:12px !important;padding-left:10px !important}.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:18px !important}.vf-logomark{width:28px !important;height:28px !important}}
+@media (max-width: 340px){.vf-tag{display:none}}
+@media (max-width: 700px){.vf-bandtxt{display:none !important}.vf-tag{font-size:12px !important;padding-left:10px !important}.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:18px !important}.vf-logomark{width:28px !important;height:28px !important}}
 @media (max-width: 700px){.vf-head{justify-content:flex-start !important}}
 .vf-band > div,.vf-logomark,.vf-logomark > span,.vf-logotext{transition:padding .25s ease,width .25s ease,height .25s ease,font-size .25s ease}
 body:not(.vf-scrolled) .vf-band > div{padding-top:14px !important;padding-bottom:14px !important}
@@ -131,14 +131,14 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
 
-  <div class="vf-band" style="position: sticky; top: 0; z-index: 80; background: #121417; color: #FFFFFF">
+  <div class="vf-band" style="position: sticky; top: 0; z-index: 80; background: #12141a; color: #ffffff">
     <div style="max-width: 1240px; margin: 0 auto; padding: 6px 24px; display: flex; align-items: center; gap: 8px 18px">
-      <a class="vf-logo" href="/" aria-label="VoteFlow Virginia home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF; flex-shrink: 0">
-        <span class="vf-logomark" style="width: 30px; height: 30px; background: #FFD23F; border-radius: 7px; display: grid; place-items: center"><span style="font: 800 12.5px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
+      <a class="vf-logo" href="/" aria-label="VoteFlow Virginia home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #ffffff; flex-shrink: 0">
+        <span class="vf-logomark" style="width: 30px; height: 30px; background: #ffd23f; border-radius: 7px; display: grid; place-items: center"><span style="font: 800 12.5px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #12141a">VA</span></span>
         <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
       </a>
-      <span class="vf-tag" style="font: 500 14px 'Hanken Grotesk', sans-serif; color: #8A93A3; padding-left: 14px; border-left: 1px solid #3A3F48; white-space: nowrap"><span class="vf-long">Analyzing early voting data</span><span class="vf-short">Early voting data</span></span>
-      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea or a question? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap"><span class="vf-long">Send me an email</span><span class="vf-short">Email me</span></a></span>
+      <span class="vf-tag" style="font: 500 14px 'Hanken Grotesk', sans-serif; color: #8a93a3; padding-left: 14px; border-left: 1px solid #3a3f48; white-space: nowrap">Analyzing early voting data</span>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #b7bcc6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea or a question? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #ffd23f; font-weight: 700; white-space: nowrap"><span class="vf-long">Send me an email</span><span class="vf-short">Email me</span></a></span>
     </div>
   </div>
 
@@ -162,9 +162,9 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       <div style="font-size: 15px; color: #4A5260">{{lastLoad}}</div>
     </section>
     <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 240px">
-      <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">Last site update</div>
-      <div style="font-family: 'Unbounded', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.03em">{{lastAt}}</div>
-      <div style="font-size: 15px; color: #4A5260">{{lastAgo}}</div>
+      <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">Coverage</div>
+      <div style="font-family: 'Unbounded', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.03em">133 localities</div>
+      <div style="font-size: 15px; color: #4A5260">Every Virginia county and city, with elections back to 2020.</div>
     </section>
     <section class="fx-card" style="grid-column: span 4; background: #FFF6D1; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 240px">
       <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">Schedule</div>
@@ -192,7 +192,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
   </main>
 
   <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
-    <span>© 2026</span>
-    <span><a href="/about" style="font-weight: 700">About</a> · This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
+    <span>Have a question, or a feature that would help you? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="font-weight: 700; color: #121417">Send me an email</a>.</span>
+    <span><a href="/about" style="font-weight: 700; color: #121417">About this site</a> · Made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700; color: #121417">Ravi Udeshi</a></span>
   </footer>
 </div>
