@@ -93,6 +93,8 @@
     const futX = BX(lastI) + 940 / N / 2;
     const bdOpt = (label, key, curv, list) => ({ label, opts: list.map(([v, l]) => Object.assign({ label: l, pick: () => set({ [key]: v, tip: null }) }, pill(curv, v))) });
     const xs = []; for (let i = 0; i < N; i += (N > 30 ? 7 : 4)) xs.push(i);
+    // Projected finals for other parts of the page; the chart's timeline toggle doesn't change them.
+    const bdProj = live && refs.length && lastI >= 0 ? { fin: curE + curM + remE + remM, lo: curE + curM + sumPlan('eLo') + sumPlan('mLo'), hi: curE + curM + sumPlan('eHi') + sumPlan('mHi') } : null;
     const bd = {
       daily: bdView === 'daily', cum: bdView !== 'daily', hasPlan: usePlan, showE: N > 46, showToday: live && N > lastI + 1,
       ctrls: [bdOpt('View', 'bdView', bdView, [['daily', 'Daily ballots'], ['cum', 'Cumulative']]), bdOpt('Method', 'bdM', bdM, [['all', 'All early'], ['early', 'In person'], ['mail', 'By mail']]),
@@ -139,6 +141,6 @@
         list: sc ? sc.open.map(([nm, hrs]) => ({ k: nm + ' (' + hrs + ')', v: '' })) : [] };
     };
 
-    return { bd, barInfo };
+    return { bd, barInfo, proj: bdProj };
   };
 })();

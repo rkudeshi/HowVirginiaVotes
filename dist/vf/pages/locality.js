@@ -366,9 +366,34 @@ class Locality extends DCLogic {
       grid: narrowT ? (live ? '1.1fr 1fr 1fr 1fr 0.95fr 0.75fr' : '1.1fr 1fr 1fr 1fr 0.95fr') : live ? (hasPB ? '1fr 0.8fr 0.8fr 1fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr' : '1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr') : '1.2fr 1fr 1fr 1fr 1fr 0.8fr' };
 
     // ---- ballots by day (+ planning)
-    const { bd, barInfo } = VF.byDay({ place: D.name, ser: cur.series, live, endI, T, date: cur.date, reg: cur.reg, label: cur.label,
+    const { bd, barInfo, proj: bdProj } = VF.byDay({ place: D.name, ser: cur.series, live, endI, T, date: cur.date, reg: cur.reg, label: cur.label,
       refs: EL.filter((x) => ['2025', '2024', '2023', '2022', '2021'].includes(x.id)), sched: live ? D.sched : null, gate: 'sched', officeKnown: !!D.officeKnown,
       rowDaily: live && D.id === 'fairfax-county' ? D.rows : null, fx: D.fxMail && D.fxMail[cur.id] ? D.fxMail[cur.id].ser : null, st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
+
+    // A plain-language read of the live election for the top card: pace against comparable past
+    // elections at the same point, the past week's trend, the in-person/mail mix, mail returns,
+    // where the early vote looks headed, and what changes next.
+    const insight = { on: false, text: '' };
+    if (live && cur.series) {
+      const S = cur.series; let li = -1; for (let i = 0; i < 53; i++) if (S.e[i] != null) li = i;
+      const atI = (x) => x && x.series && x.series.e[li] != null ? x.series.e[li] + x.series.m[li] : null;
+      const sentences = [], r2 = (v) => { const u = v >= 10000 ? 1000 : v >= 1000 ? 100 : 10; return Math.round(v / u) * u; };
+      const sameType = EL.find((x) => x.id !== eid && x.type === cur.type && x.final && atI(x));
+      const lastYr = EL.find((x) => x.id !== eid && x.final && x.id !== (sameType && sameType.id) && /^November/.test(x.label) && atI(x));
+      const lbl = (x) => x.type === cur.type ? 'the ' + x.label.replace('November ', '') + ' ' + x.type.toLowerCase() : x.label;
+      const vs = (x) => { const r = (S.e[li] + S.m[li]) / atI(x); return r >= 1.9 && r <= 2.1 ? 'about twice ' + lbl(x) : r >= 1.45 ? 'about ' + r.toFixed(1) + ' times ' + lbl(x)
+        : r >= 1.03 ? Math.round((r - 1) * 100) + '% more than ' + lbl(x) : r <= 0.97 ? Math.round((1 - r) * 100) + '% fewer than ' + lbl(x) : 'about even with ' + lbl(x); };
+      if (sameType) sentences.push(D.name + ' has ' + f(S.e[li] + S.m[li]) + ' early ballots so far: ' + vs(sameType) + ' at the same point' + (lastYr ? ', and ' + vs(lastYr) : '') + '.');
+      const lastD = D.rows[D.rows.length - 1].d, wk = (from, to) => D.rows.filter((r) => r.d > from && r.d <= to).reduce((a, r) => a + r.de + r.dm, 0);
+      const w1 = wk(VF.addDays(lastD, -7), lastD), w0 = wk(VF.addDays(lastD, -14), VF.addDays(lastD, -7));
+      if (w0 > 0) { const ch = Math.round((w1 / w0 - 1) * 100); sentences.push('The past week brought ' + f(w1) + ' ballots, ' + (Math.abs(ch) < 5 ? 'about the same as' : Math.abs(ch) + '% ' + (ch > 0 ? 'more than' : 'fewer than')) + ' the week before.'); }
+      const share = S.e[li] / (S.e[li] + S.m[li]) * 100, ref2 = sameType || lastYr;
+      if (ref2) { const rs = ref2.series.e[li] / atI(ref2) * 100; sentences.push(Math.round(share) + '% of ballots so far were cast in person, ' + (Math.abs(share - rs) < 3 ? 'close to' : share > rs ? 'more than' : 'less than') + ' the ' + Math.round(rs) + '% at this point in ' + ref2.label.replace('November ', '') + '.'); }
+      if (cur.out != null && cur.mail + cur.out > 0) sentences.push(Math.round(cur.mail / (cur.mail + cur.out) * 100) + '% of mail ballots requested have come back; ' + f(cur.out) + ' are still out.');
+      if (bdProj) sentences.push('If the rest of early voting follows past patterns, expect about ' + f(r2(bdProj.fin)) + ' early ballots in all (likely ' + f(r2(bdProj.lo)) + '–' + f(r2(bdProj.hi)) + '), about ' + (bdProj.fin / cur.reg * 100).toFixed(0) + '% of registered voters.');
+      if (D.sat && D.next && D.next !== 'open') sentences.push((D.sat === 1 ? 'A satellite site opens ' : D.sat + ' satellite sites open ') + dmd(D.next) + ', which usually brings a jump in in-person voting.');
+      insight.on = sentences.length > 0; insight.text = sentences.join(' ');
+    }
 
     // ---- site map + table
     const hoursBy = {}; Object.keys(D.sched).forEach((d5) => { D.sched[d5].open.forEach(([nm, sp, hh]) => { if (!hoursBy[nm]) hoursBy[nm] = {}; hoursBy[nm][d5] = hh; }); });
@@ -518,7 +543,7 @@ class Locality extends DCLogic {
     ];
 
     return {
-      fc, fcOpts, vb,
+      fc, fcOpts, vb, insight,
       hdr: { eid, lid: D.id,
         elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })),
         locs: (() => { const all = D.names.map(([id, nm]) => ({ value: id, text: nm })); return [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(all, D.id), all); })(),
