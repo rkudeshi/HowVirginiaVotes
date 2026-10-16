@@ -26,6 +26,7 @@ a{color:#00694F}a:hover{color:#121417}
 .fx-track{animation:fxMarquee 48s linear infinite}
 .fx-track:hover{animation-play-state:paused}
 .fx-meter{transform-origin:left;animation:fxGrowX 1.1s cubic-bezier(.2,1,.3,1) both}
+.vf-d{margin-left:-9px;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}.vf-d:first-child{margin-left:0;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}.vf-d:last-child{clip-path:polygon(12px 0,100% 0,100% 100%,0 100%)}.vf-d:only-child{clip-path:none}.vf-dbar{animation:fxGrowX 1.1s cubic-bezier(.2,1,.3,1) both;transform-origin:left}
 .fx-live{animation:fxPulse 1.6s infinite}
 .fx-a{stroke-dasharray:1;animation:fxDrawA 1.6s cubic-bezier(.65,0,.35,1) both}
 .fx-b{stroke-dasharray:1;animation:fxDrawB 1.6s cubic-bezier(.65,0,.35,1) both}
@@ -121,7 +122,8 @@ a{color:#00694F}a:hover{color:#121417}
 section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
 .vf-short{display:none}
 section[id]{scroll-margin-top:62px !important}
-@media (max-width: 700px){.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:18px !important}.vf-logomark{width:28px !important;height:28px !important}}
+@media (max-width: 380px){.vf-tag{display:none}}
+@media (max-width: 700px){.vf-tag{font-size:12px !important;padding-left:10px !important}.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:18px !important}.vf-logomark{width:28px !important;height:28px !important}}
 @media (max-width: 700px){.vf-head{justify-content:flex-start !important}}
 @keyframes fxFadeA{from{opacity:0}to{opacity:1}}@keyframes fxFadeB{from{opacity:0}to{opacity:1}}.fx-fa{animation:fxFadeA .6s ease both}.fx-fb{animation:fxFadeB .6s ease both}
 @keyframes vfGlow{0%,100%{stroke-opacity:1;stroke-width:5}50%{stroke-opacity:.35;stroke-width:13}}
@@ -154,7 +156,8 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
         <span class="vf-logomark" style="width: 30px; height: 30px; background: #FFD23F; border-radius: 7px; display: grid; place-items: center"><span style="font: 800 12.5px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
         <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
       </a>
-      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea or a question? </span><span class="vf-short">Ideas or questions? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send me an email</a></span>
+      <span class="vf-tag" style="font: 500 14px 'Hanken Grotesk', sans-serif; color: #8A93A3; padding-left: 14px; border-left: 1px solid #3A3F48; white-space: nowrap"><span class="vf-long">Analyzing Virginia’s early voting data</span><span class="vf-short">Early voting data</span></span>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea or a question? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap"><span class="vf-long">Send me an email</span><span class="vf-short">Email me</span></a></span>
     </div>
   </div>
 
@@ -347,27 +350,26 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
         <p style="margin: 16px 0 0; text-align: center; font-size: 14px; color: #5A6E8C">Outstanding requests are not votes cast. Mail requests can include voters who later vote in person.</p>
       </sc-if>
       <sc-if value="{{fc.off}}" hint-placeholder-val="{{ false }}">
-      <sc-for list="{{flow}}" as="lv" hint-placeholder-count="3">
-        <div style="margin-bottom: 30px">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px">
-            <span style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260">{{lv.kicker}}</span>
-            <span style="font-size: 22px; font-weight: 800; letter-spacing: -0.03em">{{lv.title}}</span>
+      <div style="display: flex; flex-direction: column; gap: 30px">
+      <sc-for list="{{vb.rows}}" as="lv" hint-placeholder-count="3">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px">
+            <span style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em">{{lv.title}}</span>
+            <span style="font-size: 15px; color: #4A5260"><b style="color: #121417; font-size: 18px">{{lv.total}}</b> {{lv.unit}}</span>
           </div>
-          <div style="display: flex; height: 48px; border-radius: 10px; overflow: hidden; background: #F1F2F5">
+          <div class="vf-dbar" style="display: flex; height: 44px; border-radius: 10px; overflow: hidden; background: #F1F2F5">
             <sc-for list="{{lv.segs}}" as="sg" hint-placeholder-count="3">
-              <div class="fx-meter" style="width: {{sg.w}}%; background: {{sg.bg}}; color: {{sg.fg}}; display: flex; align-items: center; padding: 0 12px; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: 15px; animation-delay: {{sg.delay}}; box-shadow: inset -2px 0 0 #FFFFFF; outline: {{sg.outline}}; outline-offset: -3px">{{sg.inside}}</div>
+              <div class="vf-d" title="{{sg.name}} · {{sg.val}} · {{sg.share}}" style="flex: {{sg.w}} 1 0; min-width: 16px; background: {{sg.bg}}; color: {{sg.fg}}; display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: 14px">{{sg.inside}}</div>
             </sc-for>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 12px">
+          <div style="display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; font-size: 14px; color: #4A5260">
             <sc-for list="{{lv.segs}}" as="sg" hint-placeholder-count="3">
-              <div class="{{sg.legCls}}" style="display: flex; gap: 10px; align-items: flex-start">
-                <span style="width: 14px; height: 14px; border-radius: 4px; background: {{sg.bg}}; margin-top: 4px; flex-shrink: 0; box-shadow: inset 0 0 0 1.5px rgba(20,32,43,.2)"></span>
-                <span style="display: flex; flex-direction: column; line-height: 1.25"><b style="font-size: 16px">{{sg.name}} · {{sg.val}}</b><span style="font-size: 14px; color: #4A5260">{{sg.of}}</span></span>
-              </div>
+              <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 10px; height: 10px; border-radius: 3px; background: {{sg.bg}}; flex-shrink: 0"></span><span><span style="color: #121417; font-weight: 600">{{sg.name}}</span> {{sg.val}} · {{sg.share}}</span></span>
             </sc-for>
           </div>
         </div>
       </sc-for>
+      </div>
       </sc-if>
     </section>
 
@@ -555,7 +557,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
             <button class="fx-cell {{c.anim}}" onMouseMove="{{c.move}}" onClick="{{c.move}}" aria-label="{{c.aria}}" aria-pressed="{{c.pressed}}" style="position: relative; min-height: 76px; padding: 8px; border: {{c.border}}; border-radius: 10px; background: {{c.bg}}; color: {{c.fg}}; font: inherit; text-align: left; display: {{c.display}}; flex-direction: column; justify-content: space-between; cursor: pointer; visibility: {{c.vis}}; animation-delay: {{c.delay}}">
               <span style="font-family: 'DM Mono', monospace; font-size: 11px; display: flex; justify-content: space-between; width: 100%"><span>{{c.day}}</span><span>{{c.mark}}</span></span>
               <span style="font-weight: 800; font-size: 17px; letter-spacing: -0.02em">{{c.k}}</span>
-              <sc-if value="{{c.hol}}" hint-placeholder-val="{{ false }}"><span title="{{c.holFull}}" style="align-self: flex-start; padding: 1px 6px; border-radius: 999px; background: #FFF1B8; border: 1.5px solid #E0B600; color: #121417; font: 700 9.5px 'DM Mono', monospace; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap">{{c.hol}}</span></sc-if>
+              <sc-if value="{{c.hol}}" hint-placeholder-val="{{ false }}"><span title="{{c.holFull}}" style="align-self: flex-start; padding: 1px 6px; border-radius: 999px; background: rgba(241,242,245,.9); color: #5F6775; font: 600 11px 'Hanken Grotesk', sans-serif; white-space: nowrap">{{c.hol}}</span></sc-if>
             </button>
           </sc-for>
         </div>
@@ -568,7 +570,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       </div>
       <div class="fx-side" style="flex: 1 1 280px; background: #FFF6D1; border: 2px solid #F0D27A; color: #121417; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 4px; align-self: stretch">
         <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{sel.kicker}}</div>
-        <sc-if value="{{sel.flag}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 6px 4px 0; padding: 3px 10px; border-radius: 999px; background: #FFF1B8; border: 1.5px solid #E0B600; color: #121417; font: 700 11px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase">{{sel.flag}}</span></sc-if>
+        <sc-if value="{{sel.flag}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 6px 4px 0; padding: 3px 10px; border-radius: 999px; background: rgba(241,242,245,.9); color: #5F6775; font: 600 11px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase">{{sel.flag}}</span></sc-if>
         <div style="font-size: 30px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05">{{sel.title}}</div>
         <div style="font-size: 15px; color: #4A5260; margin-bottom: 10px">{{sel.sub}}</div>
         <sc-if value="{{sel.hasPie}}" hint-placeholder-val="{{ false }}">
@@ -720,7 +722,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
   <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">
     <div class="fx-tip" role="tooltip" style="position: fixed; left: {{tip.x}}px; top: {{tip.y}}px; z-index: 90; width: 290px; background: #FFFFFF; border: 2px solid #121417; border-radius: 20px; padding: 16px; pointer-events: none; box-shadow: 0 22px 40px -20px rgba(20,32,43,.65)">
       <div style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{tip.kicker}}</div>
-      <sc-if value="{{tip.flag}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 6px 4px 0; padding: 3px 10px; border-radius: 999px; background: #FFF1B8; border: 1.5px solid #E0B600; color: #121417; font: 700 11px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase">{{tip.flag}}</span></sc-if>
+      <sc-if value="{{tip.flag}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 6px 4px 0; padding: 3px 10px; border-radius: 999px; background: rgba(241,242,245,.9); color: #5F6775; font: 600 11px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase">{{tip.flag}}</span></sc-if>
       <sc-if value="{{tip.hasBadge}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 0 4px; padding: 3px 10px; border-radius: 999px; background: #EDE6FC; color: #4E2A9E; font: 700 11px 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase">{{tip.badge}}</span></sc-if>
       <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1">{{tip.title}}</div>
       <div style="font-size: 13px; color: #4A5260; margin-bottom: 6px">{{tip.sub}}</div>

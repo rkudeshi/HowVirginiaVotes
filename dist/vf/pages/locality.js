@@ -108,30 +108,25 @@ class Locality extends DCLogic {
     // County post/drop-box split, kept visible while the county report lags the state's newer days.
     const hasPBflow = req != null && fx && fx.post != null && fx.box != null && fx.post + fx.box > 0;
     const pbNote = hasPBflow && fx.through !== cur.through ? 'By mail vs. drop box comes from the county report through ' + dmd(fx.through) + '; the newer days are waiting on the next county report.' : '';
-    const flow = [
-      { kicker: 'Registered voters', title: f(reg), hasRib: true, a: 0, b: (engaged / reg * 100).toFixed(2), ribDelay: '.6s',
-        segs: [
-          { name: 'Voted early in person', val: f(ip), of: pc(ip, reg) + ' of registered', w: (ip / reg * 100).toFixed(2), bg: '#00A37A', fg: '#FFFFFF', inside: '', delay: '0s', outline: 'none' },
-          { name: req != null ? 'Requested a mail ballot' : 'Returned a mail ballot', val: f(req != null ? req : ret), of: pc(req != null ? req : ret, reg) + ' of registered', w: ((req != null ? req : ret) / reg * 100).toFixed(2), bg: '#7C4DDB', fg: '#121417', inside: '', delay: '.15s', outline: 'none' },
-          { name: noneName, val: f(none), of: pc(none, reg) + ' of registered', w: (none / reg * 100).toFixed(2), bg: '#DCDFE5', fg: '#121417', inside: noneName + ' · ' + pc(none, reg), delay: '.3s', outline: 'none' }
-        ] },
-      { kicker: 'Voted in person or asked for a mail ballot', title: f(engaged), hasRib: req != null, a: (ip / engaged * 100).toFixed(2), b: 100, ribDelay: '1.2s',
-        segs: [
-          { name: 'In person', val: f(ip), of: pc(ip, engaged) + ' of this group', w: (ip / engaged * 100).toFixed(2), bg: '#00A37A', fg: '#FFFFFF', inside: 'In person · ' + pc(ip, engaged), delay: '.8s', outline: 'none' },
-          { name: 'Mail', val: f(engaged - ip), of: pc(engaged - ip, engaged) + ' of this group', w: ((engaged - ip) / engaged * 100).toFixed(2), bg: '#7C4DDB', fg: '#121417', inside: 'Mail · ' + pc(engaged - ip, engaged), delay: '.95s', outline: req != null ? '2px solid #121417' : 'none' }
-        ] }
-    ];
-    if (req != null) {
-      const r3 = ret / req * 100;
-      flow.push({ kicker: 'Mail ballots requested', title: f(req), hasRib: false, a: 0, b: r3.toFixed(2), ribDelay: '1.8s',
-        segs: [
-          { name: 'Returned', val: f(ret), of: pc(ret, req) + ' of requested · ' + pc(ret, reg) + ' of registered', w: r3.toFixed(2), bg: '#5B2FB8', fg: '#FFFFFF', inside: 'Returned · ' + pc(ret, req), delay: '1.5s', outline: 'none' },
-          { name: live ? 'Outstanding' : 'Never returned', val: f(out), of: pc(out, req) + ' of requested', w: (100 - r3).toFixed(2), bg: '#E4D9FA', fg: '#121417', inside: (live ? 'Outstanding · ' : 'Not returned · ') + pc(out, req), delay: '1.65s', outline: 'none' }
-        ] });
-      // How returned ballots came back (post vs. drop box) is shown in the Fairfax panels below.
+    // Bars view: three plain bars on one palette (green in person, purple mail, light purple drop
+    // box, gray not yet), each with its total and a one-line legend.
+    const vseg = (name, v, of, bg, fg) => ({ name, val: f(v), share: pc(v, of), w: Math.max(0, v / of * 100).toFixed(2), bg, fg, inside: v / of >= 0.16 ? pc(v, of) : '' });
+    const cG = ['#00A37A', '#FFFFFF'], cP = ['#7C4DDB', '#FFFFFF'], cLP = ['#C4AEF6', '#121417'], cLG = ['#BFE9D9', '#121417'], cGR = ['#DCDFE5', '#121417'];
+    const vrows = [{ title: 'Registered voters', total: f(reg), unit: 'registered', segs: [vseg('Voted early in person', ip, reg, ...cG), vseg(req != null ? 'Requested a mail ballot' : 'Returned a mail ballot', req != null ? req : ret, reg, ...cP), vseg(noneName, none, reg, ...cGR)] }];
+    const boxShare = hasPBflow ? fx.box / (fx.post + fx.box) : 0, retBox = Math.round(ret * boxShare);
+    vrows.push({ title: 'Early ballots cast', total: f(ip + ret), unit: 'ballots', segs: [vseg('In person', ip, ip + ret, ...cG)].concat(hasPBflow
+      ? [vseg('By mail', ret - retBox, ip + ret, ...cP), vseg('Drop box', retBox, ip + ret, ...cLP)] : [vseg('By mail', ret, ip + ret, ...cP)]) });
+    const sw = fx && fx.extras ? fx.extras.switched : null;
+    if (hasPBflow && fx.sent) {
+      const back = fx.post + fx.box;
+      vrows.push({ title: 'Mail ballots sent', total: f(fx.sent), unit: 'mailed or emailed', segs: [vseg('Returned by mail', fx.post, fx.sent, ...cP), vseg('Drop box', fx.box, fx.sent, ...cLP)]
+        .concat(sw != null ? [vseg('Voted in person instead', sw, fx.sent, ...cLG)] : [])
+        .concat([vseg(live ? 'Not returned yet' : 'Never returned', Math.max(0, fx.sent - back - (sw || 0)), fx.sent, ...cGR)]) });
+    } else if (req != null) {
+      vrows.push({ title: 'Mail ballots requested', total: f(req), unit: 'requested', segs: [vseg('Returned', ret, req, ...cP), vseg(live ? 'Not returned yet' : 'Never returned', out, req, ...cGR)] });
     }
-    const flowNote = 'Each step zooms into the outlined slice above it.' + (fx ? ' County mail details are through ' + dmd(fx.through) + '; the latest totals use DAL until county figures are available for the same date.' : '') + (cur.out == null && fx ? ' Mail requests use the county’s count of ballots sent.' : '');
-
+    const undeliv = fx && fx.extras && fx.extras.undeliverable != null ? ' ' + f(fx.extras.undeliverable) + ' mail ballots were undeliverable.' : '';
+    const vb = { rows: vrows, note: hasPBflow ? 'By mail vs. drop box and mail ballots sent come from Fairfax County’s own report through ' + dmd(fx.through) + '.' + undeliv : '' };
     const fcView = this.state.flowView || 'chart';
     const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bars']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
     const fcW = (a, b) => Math.max(1.5, Math.min(100, a / b * 100)).toFixed(1);
@@ -147,26 +142,6 @@ class Locality extends DCLogic {
       out: { title: live ? 'Outstanding' : 'Never returned', val: f(out), w: req ? fcW(out || 0, req) : 0, pct: req ? pc(out || 0, req) : '', cap: 'of mail requests' },
       post: { title: 'By mail', val: hasPBflow ? f(fx.post) : '', w: hasPBflow ? fcW(fx.post, fcPB) : 0, pct: hasPBflow ? pc(fx.post, fcPB) : '', cap: 'of returned mail ballots' },
       box: { title: 'By dropbox', val: hasPBflow ? f(fx.box) : '', w: hasPBflow ? fcW(fx.box, fcPB) : 0, pct: hasPBflow ? pc(fx.box, fcPB) : '', cap: 'of returned mail ballots' } };
-    flow.forEach((lv) => lv.segs.forEach((sg) => { const fits = parseFloat(sg.w) >= 26; const share = (sg.of || '').split(' ')[0];
-      sg.inside = fits ? sg.name + ' · ' + sg.val + ' · ' + share : ''; sg.legCls = fits ? 'fx-leg-opt' : ''; }));
-    // Bars view, Fairfax only: the county report's split of how the early vote was cast (mail
-    // returns broken out under the mail slice) and what became of the mail ballots sent.
-    const mix = { on: false };
-    if (fx && fx.post != null && fx.box != null && fx.early != null && fx.post + fx.box + fx.early > 0) {
-      const mE = fx.early, mP = fx.post, mB = fx.box, mMail = mP + mB, mTot = mE + mMail, sw = fx.extras && fx.extras.switched;
-      const seg = (name, v, of, bg, fg) => ({ name, val: f(v), share: pc(v, of), w: (v / of * 100).toFixed(2), bg, fg, inside: v / of >= 0.14 ? pc(v, of) : '' });
-      const status = fx.sent ? [seg('Returned by mail', mP, fx.sent, '#7C4DDB', '#FFFFFF'), seg('Drop box', mB, fx.sent, '#C4AEF6', '#121417')]
-        .concat(sw != null ? [seg('Voted in person instead', sw, fx.sent, '#A8E3CC', '#121417')] : [])
-        .concat([seg(sw != null ? 'Not returned' : 'Other / not returned', Math.max(0, fx.sent - mMail - (sw || 0)), fx.sent, '#DCDFE5', '#121417')]) : [];
-      mix.on = true;
-      mix.through = 'Fairfax County report through ' + dmd(fx.through);
-      mix.total = f(mTot);
-      mix.main = [seg('Early in person', mE, mTot, '#00A37A', '#FFFFFF'), seg('By mail', mMail, mTot, '#7C4DDB', '#FFFFFF')];
-      mix.subL = (mE / mTot * 100).toFixed(2); mix.subW = (mMail / mTot * 100).toFixed(2);
-      mix.sub = [seg('Returned by mail', mP, mMail, '#7C4DDB', '#FFFFFF'), seg('Drop box', mB, mMail, '#C4AEF6', '#121417')];
-      mix.hasStatus = status.length > 0; mix.sent = f(fx.sent); mix.status = status;
-      mix.undeliv = fx.extras && fx.extras.undeliverable != null ? f(fx.extras.undeliverable) + ' more were undeliverable.' : '';
-    }
     // comparison
     const { method, measure, win, show, hi } = this.state;
     // Statewide 2026 for comparison, scaled to this locality's registered voters (so "% of
@@ -543,7 +518,7 @@ class Locality extends DCLogic {
     ];
 
     return {
-      fc, fcOpts, mix,
+      fc, fcOpts, vb,
       hdr: { eid, lid: D.id,
         elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })),
         locs: (() => { const all = D.names.map(([id, nm]) => ({ value: id, text: nm })); return [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(all, D.id), all); })(),
@@ -556,7 +531,7 @@ class Locality extends DCLogic {
           return { on: true, cx: ((x0 + x1) / 2).toFixed(1), cy: ((y0 + y1) / 2).toFixed(1), r: Math.max(22, Math.max(x1 - x0, y1 - y0) / 2 + 12).toFixed(1) }; })(), paths: Object.keys(this.state.vaMap.p).map((id) => ({ d: this.state.vaMap.p[id], fill: id === D.id ? '#41557F' : '#D3D7DE', stroke: id === D.id ? '#121417' : '#FFFFFF', sw: id === D.id ? 3 : 1, order: id === D.id ? 1 : 0 })).sort((a, b) => a.order - b.order) } : { vb: '0 0 1000 440', paths: [], ring: { on: false } },
       showSites: live && D.sites.length > 0, siteMany: D.sites.length > 1, showPrecincts: live && D.precincts.some((p) => p.r),
       fxr, loading: false, ready: true, backHref: eid === '2026' ? '/' : '/' + eid, L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
-      flow, flowNote, ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: VF.calLegend, sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Collapse all addresses & hours' : 'Expand all addresses & hours',
+      ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: VF.calLegend, sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Collapse all addresses & hours' : 'Expand all addresses & hours',
       ticker: ticker0.concat(ticker0, ticker0)
     };
   }

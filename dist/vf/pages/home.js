@@ -90,24 +90,14 @@ class Home extends DCLogic {
     const reg = D.reg, ip = last.e, ret = last.m, out = last.o, req = ret + out, none = reg - ip - req;
     const pc = (a, b) => (a / b * 100).toFixed(a / b < 0.1 ? 1 : 0) + '%';
     const eng = ip + req;
-    const flow = [
-      { kicker: 'Registered voters', title: f(reg), hasRib: true, a: 0, b: (eng / reg * 100).toFixed(2), ribDelay: '.6s',
-        segs: [
-          { name: 'Voted early in person', val: f(ip), of: pc(ip, reg) + ' of registered', w: (ip / reg * 100).toFixed(2), bg: '#00A37A', fg: '#FFFFFF', inside: '', delay: '0s', outline: 'none' },
-          { name: 'Requested a mail ballot', val: f(req), of: pc(req, reg) + ' of registered', w: (req / reg * 100).toFixed(2), bg: '#7C4DDB', fg: '#121417', inside: '', delay: '.15s', outline: 'none' },
-          { name: 'No early ballot yet', val: f(none), of: pc(none, reg) + ' of registered', w: (none / reg * 100).toFixed(2), bg: '#DCDFE5', fg: '#121417', inside: 'Not yet · ' + pc(none, reg), delay: '.3s', outline: 'none' }
-        ] },
-      { kicker: 'Voted in person or asked for a mail ballot', title: f(eng), hasRib: true, a: (ip / eng * 100).toFixed(2), b: 100, ribDelay: '1.2s',
-        segs: [
-          { name: 'Voted in person', val: f(ip), of: pc(ip, eng) + ' of this group', w: (ip / eng * 100).toFixed(2), bg: '#00A37A', fg: '#FFFFFF', inside: 'In person · ' + pc(ip, eng), delay: '.8s', outline: 'none' },
-          { name: 'Mail ballot requested', val: f(req), of: pc(req, eng) + ' of this group', w: (req / eng * 100).toFixed(2), bg: '#7C4DDB', fg: '#121417', inside: 'Mail · ' + pc(req, eng), delay: '.95s', outline: '2px solid #121417' }
-        ] },
-      { kicker: 'Mail ballots requested', title: f(req), hasRib: false,
-        segs: [
-          { name: 'Returned', val: f(ret), of: pc(ret, req) + ' of requested · ' + pc(ret, reg) + ' of registered', w: (ret / req * 100).toFixed(2), bg: '#5B2FB8', fg: '#FFFFFF', inside: 'Returned · ' + pc(ret, req), delay: '1.5s', outline: 'none' },
-          { name: 'Outstanding', val: f(out), of: pc(out, req) + ' of requested', w: (out / req * 100).toFixed(2), bg: '#E4D9FA', fg: '#121417', inside: 'Outstanding · ' + pc(out, req), delay: '1.65s', outline: 'none' }
-        ] }
-    ];
+    // Bars view: plain bars on one palette, each with its total and a one-line legend.
+    const vseg = (name, v, of, bg, fg) => ({ name, val: f(v), share: pc(v, of), w: Math.max(0, v / of * 100).toFixed(2), bg, fg, inside: v / of >= 0.16 ? pc(v, of) : '' });
+    const nyet = live ? 'Not returned yet' : 'Never returned';
+    const vb = { note: '', rows: [
+      { title: 'Registered voters', total: f(reg), unit: 'registered', segs: [vseg('Voted early in person', ip, reg, '#00A37A', '#FFFFFF'), vseg('Requested a mail ballot', req, reg, '#7C4DDB', '#FFFFFF'), vseg(live ? 'No early ballot yet' : 'Did not vote early', none, reg, '#DCDFE5', '#121417')] },
+      { title: 'Early ballots cast', total: f(ip + ret), unit: 'ballots', segs: [vseg('In person', ip, ip + ret, '#00A37A', '#FFFFFF'), vseg('By mail', ret, ip + ret, '#7C4DDB', '#FFFFFF')] },
+      { title: 'Mail ballots requested', total: f(req), unit: 'requested', segs: [vseg('Returned', ret, req, '#7C4DDB', '#FFFFFF'), vseg(nyet, out, req, '#DCDFE5', '#121417')] }
+    ] };
 
     const fcView = this.state.flowView || 'chart';
     const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bars']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
@@ -122,8 +112,6 @@ class Home extends DCLogic {
       ret: { title: 'Returned', val: f(ret), w: fcW(ret, req), pct: pc(ret, req), cap: 'of mail requests' },
       out: { title: 'Outstanding', val: f(out), w: fcW(out, req), pct: pc(out, req), cap: 'of mail requests' },
       post: { title: '', val: '', w: 0, pct: '', cap: '' }, box: { title: '', val: '', w: 0, pct: '', cap: '' } };
-    flow.forEach((lv) => lv.segs.forEach((sg) => { const fits = parseFloat(sg.w) >= 26; const share = (sg.of || '').split(' ')[0];
-      sg.inside = fits ? sg.name + ' · ' + sg.val + ' · ' + share : ''; sg.legCls = fits ? 'fx-leg-opt' : ''; }));
     // comparison
     const { method, measure, win, show, hi } = this.state;
     const order = ['2026', '2026-special', '2025', '2024', '2023', '2022', '2021', '2020'];
@@ -313,7 +301,7 @@ class Home extends DCLogic {
       band: { asOf: dmd(D.asOf) },
       mini: D.locs.map((o) => { const q = o.p, mh = this.state.miniHover === o.id; return { d: o.d, move: (ev) => this.setState({ miniHover: o.id, tip: this.tipAt(ev, 'mini', o.id) }), go: () => { location.href = linkOf(o.id); }, stroke: mh ? '#121417' : '#E6E8EC', fill: mh ? '#FFD23F' : q < pq[0] ? '#B3E6D3' : q < pq[1] ? '#5CC9A3' : q < pq[2] ? '#00A37A' : '#006B50', delay: Math.round(parseFloat(o.d.slice(1)) * 1.4 + 300) + 'ms' }; }),
       fc, fcOpts,
-      loading: false, ready: true, asOf: dmd(D.asOf), hero, cd, paceChips, satLine, flow, ctrls, years, ch, cal, sel, calOpts, calRamp: VF.calLegend,
+      loading: false, ready: true, asOf: dmd(D.asOf), hero, cd, paceChips, satLine, vb, ctrls, years, ch, cal, sel, calOpts, calRamp: VF.calLegend,
       maps, mapOpts, mapSel, mapPick, mapNotLean: mapSel !== 'lean',
       miniLeave: () => this.setState({ miniHover: null, tip: null }),
       mapClear: (ev) => { if (!ev || ev.target.tagName !== 'path') this.setState({ hover: null, pinned: null, tip: null }); }, mapLeave: () => this.setState({ hover: null, tip: null }), hov, tip, hideTip, cols, quick, rows: trows,
