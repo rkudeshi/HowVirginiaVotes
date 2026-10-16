@@ -7,6 +7,7 @@ import argparse,csv,io,json,re,zipfile,urllib.request,hashlib
 from pathlib import Path
 from datetime import datetime,timedelta
 from source_attribution import DAL_LABEL, DAL_DESCRIPTION, preserve_provenance
+from source_fetch import fetch_bytes
 ROOT=Path(__file__).resolve().parent
 URL='https://digitalpollwatchers.org/files/DALTracker/2026_November_General/metrics/2026_November_General-DAL-metrics.zip'
 def stamp(s):
@@ -31,7 +32,7 @@ def read_rows(z,p):
 
 def main():
  a=argparse.ArgumentParser();a.add_argument('--zip',type=Path);args=a.parse_args()
- raw=args.zip.read_bytes() if args.zip else urllib.request.urlopen(URL,timeout=90).read()
+ raw=args.zip.read_bytes() if args.zip else fetch_bytes(URL,timeout=90)
  z=zipfile.ZipFile(io.BytesIO(raw));p=ROOT/'dist/region.json';base=json.loads(p.read_text());e=base['elections']['2026'];changes=[];prepared={}
  for l in e['localities']:
   prefix='byLOCALITY_NAME/'+l['name'].upper()+'/'

@@ -4,17 +4,19 @@ archive content-addressed PDFs and replace corrected observations atomically.
 Unknown layouts or inconsistent totals fail closed, preserving the last report.
 """
 import argparse,hashlib,json,re,subprocess,tempfile,urllib.request,html
+from urllib.parse import urljoin, unquote
+from source_fetch import fetch_bytes
 from pathlib import Path
 from datetime import datetime
 R=Path(__file__).resolve().parent
 HOME='https://www.fairfaxcounty.gov/elections/'
 KEYS=['government_center','mt_vernon','north_county','burke','centreville','franconia','great_falls','herndon_fortnightly','jim_scott','lorton','mason','mclean','sully','thomas_jefferson','tysons_pimmit','west_springfield']
-def fetch(url):return urllib.request.urlopen(urllib.request.Request(url,headers={'Cache-Control':'no-cache'}),timeout=60).read()
+def fetch(url):return fetch_bytes(url)
 def parse(text,url,digest):
  pages=text.split('\f');assert len(pages)>=6,'Unexpected PDF layout'
  first=pages[0]
- match=re.search(r'\b(\d{1,2}/\d{1,2}/2026)\b',first);assert match
- report=datetime.strptime(match[1],'%m/%d/%Y').date().isoformat()
+ match=re.search(r'\b(\d{1,2}/\d{1,2}/(?:2026|26))\b',first);assert match,'Missing or unrecognized report date'
+ report=datetime.strptime(match[1],'%m/%d/%Y' if len(match[1].split('/')[-1])==4 else '%m/%d/%y').date().isoformat()
  assert 'November 3, 2026' in first
  def nums(s):return [int(n.replace(',','')) for n in re.findall(r'(?<![\w.])\d[\d,]*(?![\w.])',s)]
  head=next(line for line in first.splitlines() if line.strip().startswith('Total '));totals=nums(head)[:6];registered,sent,postal,dropbox,early=totals[:5]
@@ -31,7 +33,8 @@ def parse(text,url,digest):
    if not m:continue
    day=datetime.strptime(m[1]+'-2026','%d-%b-%Y').date().isoformat();vs=nums(m[2])
    # A lone template zero is not an observation. Full detail verifies activity.
-   if day>=report or len(vs)<2:continue
+   if len(vs)<2:continue
+   assert day<=report, ('Detailed activity after report date',day,report)
    row=by.setdefault(day,{'date':day,'sites':{}});row[metric]=vs[0];cutoffs.append(day)
    if metric=='early':
     assert len(vs)-1 in (3,16), 'Unexpected site columns; review the PDF layout'
@@ -49,11 +52,15 @@ def parse(text,url,digest):
  return {'source':url,'reportDate':report,'activityThrough':last,'contentHash':digest,'registered':registered,'siteKeys':KEYS,'history':history,'extras':extras}
 def main():
  a=argparse.ArgumentParser();a.add_argument('--file',type=Path);args=a.parse_args()
- page=fetch(HOME).decode();urls=[html.unescape(u) for u in re.findall(r'href=["\']([^"\']+)',page) if 'AB%20Daily' in u and '.pdf' in u];assert urls,'No report link found'
+ page=fetch(HOME).decode();urls=[urljoin(HOME,html.unescape(u)) for u in re.findall(r'href=["\']([^"\']+)',page) if 'ab daily' in unquote(u).lower() and '.pdf' in u.lower()];assert urls,'No report link found'
  url=urls[-1];raw=args.file.read_bytes() if args.file else fetch(url);digest=hashlib.sha256(raw).hexdigest()
+ assert raw.startswith(b'%PDF-'),'County report download is not a PDF'
+ p=R/'dist/region.json';d=json.loads(p.read_text());old=d['official']['2026']
+ if old.get('contentHash')==digest:
+  print(json.dumps({'changed':False,'reportDate':old['reportDate'],'activityThrough':old['activityThrough']}));return
  with tempfile.TemporaryDirectory() as td:
   pdf=Path(td)/'report.pdf';out=Path(td)/'report.txt';pdf.write_bytes(raw);subprocess.run(['pdftotext','-layout',str(pdf),str(out)],check=True,capture_output=True);text=out.read_text();o=parse(text,url,digest)
- p=R/'dist/region.json';d=json.loads(p.read_text());old=d['official']['2026']
+ assert o['activityThrough']>=old['activityThrough'],'Report coverage regressed; retain saved observations and review'
  if old.get('userReport'):o['userReport']=old['userReport']
  d['official']['2026']=o
  content=json.dumps(d,separators=(',',':'));changed=content!=p.read_text()

@@ -1,5 +1,25 @@
 # VA Vote data refresh
 
+## Automatic recovery and Fairfax checks
+Fetch Fairfax report contents on each hourly check. Identical PDF bytes exit
+without parsing, rebuilding, or writing status entries. DAL remains a daily
+refresh. Both fetchers retry transient network errors and HTTP 408/429/5xx
+failures up to three attempts with short backoff; permanent errors remain errors.
+Fairfax accepts two- or four-digit report years and detailed activity on the
+report date. Lone template zeros are not observations. All table totals, cover
+totals, and site sums must reconcile before any data is replaced; detailed
+activity after the report date and regressing coverage require review.
+
+Minor source-format changes may be diagnosed and repaired automatically in the
+data importers, with regression tests, without asking the user each time. Inspect
+the latest remote code first, preserve design and concurrent edits, and verify
+the actual source contents. Never guess missing numbers, bypass reconciliation,
+or label a failed import successful. Preserve last valid data if recovery fails.
+Notify the user of published changes, new failures, or recovery; suppress repeated
+unchanged checks and identical failure notifications. Never add a public error
+banner. ELECT schedule checks remain daily, not hourly; this supersedes the older
+on-demand-only schedule instructions below.
+
 ## URLs, charts, and weather
 Use clean routes such as `/2022/loudoun-county/`. The publishing workflow runs
 `python build_routes.py` to generate entry pages for every supported route;

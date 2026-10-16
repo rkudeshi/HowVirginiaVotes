@@ -17,7 +17,7 @@ class SourceRefreshTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
         self.addCleanup(self.temp.cleanup)
-        for name in ('source_attribution.py', 'status_log.py', 'refresh_dal.py', 'import_archived_voting.py'):
+        for name in ('source_attribution.py', 'source_fetch.py', 'status_log.py', 'refresh_dal.py', 'import_archived_voting.py'):
             shutil.copy2(ROOT / name, self.root / name)
 
     def run_script(self, name, *args):
