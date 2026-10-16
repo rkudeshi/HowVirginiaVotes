@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400..800&amp;family=Hanken+Grotesk:wght@400..800&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#E6E8EC}
+body{margin:0;background:#E6E8EC;font-variant-numeric:tabular-nums}
 a{color:#00694F}a:hover{color:#121417}
 @keyframes fxMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes fxRise{from{opacity:0;translate:0 28px;scale:.985}to{opacity:1;translate:0 0;scale:1}}
@@ -38,6 +38,9 @@ a{color:#00694F}a:hover{color:#121417}
 .fx-path{animation:fxFade .5s ease both;transition:fill .3s;cursor:pointer}
 .fx-path:hover{stroke:#121417;stroke-width:2.5}
 .fx-hit{cursor:crosshair}
+.vf-head{position:sticky;top:var(--vf-bandnow,48px);z-index:60;pointer-events:none}.vf-head>nav{pointer-events:auto}
+.vf-navlink{padding:8px 15px;border-radius:999px;font-weight:700;font-size:14px;color:#4A5260;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.vf-navlink:hover{color:#121417}.vf-navlink[aria-current=true]{background:#FFFFFF;color:#121417;box-shadow:0 1px 3px rgba(18,20,23,.16)}
 .fx-nav{position:relative}
 .fx-nav::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:#7C4DDB;transform:scaleX(0);transform-origin:left;transition:transform .2s}
 .fx-nav:hover::after{transform:scaleX(1)}
@@ -112,7 +115,7 @@ a{color:#00694F}a:hover{color:#121417}
   .vf-logotext{font-size:19px !important}
   .vf-picks{margin-left:0 !important;width:100%;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) !important;gap:8px !important}
   .vf-picks select{min-height:40px !important;font-size:14px !important;padding:0 26px 0 12px !important}
-  .vf-sections{font-size:14px !important;margin:0 -6px !important}.vf-sections a{padding:10px 8px !important}
+  .vf-sections{font-size:14px !important}.vf-sections a{padding:8px 11px !important}
   .vf-h1{font-size:40px !important;letter-spacing:-0.045em !important}
   .vf-kick{font-size:11px !important}
   .fx-main h2{font-size:21px !important}
@@ -161,14 +164,13 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
     </div>
   </div>
 
-  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 6px 24px 0; display: flex; justify-content: flex-end">
-    <nav class="vf-sections" aria-label="Page sections" style="display: flex; gap: 2px; font-size: 15px; font-weight: 600; margin-right: -12px; max-width: 100%">
-      <a class="fx-nav" href="#flow" style="padding: 12px; text-decoration: none; color: #121417">Breakdown</a>
-      <a class="fx-nav" href="#compare" style="padding: 12px; text-decoration: none; color: #121417">History</a>
-      <a class="fx-nav" href="#byday" style="padding: 12px; text-decoration: none; color: #121417">By day</a>
-      <a class="fx-nav" href="#calendar" style="padding: 12px; text-decoration: none; color: #121417">Calendar</a>
-      <a class="fx-nav" href="#map" style="padding: 12px; text-decoration: none; color: #121417">Map</a>
-      <a class="fx-nav" href="#localities" style="padding: 12px; text-decoration: none; color: #121417">Localities</a>
+  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 0; display: flex; justify-content: flex-end">
+    <nav class="vf-sections" aria-label="Page sections" style="display: inline-flex; gap: 3px; padding: 4px; border-radius: 999px; background: rgba(226,229,234,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); max-width: 100%; box-sizing: border-box">
+      <a class="vf-navlink" href="#flow" data-sec="flow">Overview</a>
+      <a class="vf-navlink" href="#compare" data-sec="compare">History</a>
+      <a class="vf-navlink" href="#byday" data-sec="byday calendar">Days</a>
+      <a class="vf-navlink" href="#map" data-sec="map">Map</a>
+      <a class="vf-navlink" href="#localities" data-sec="localities">Localities</a>
     </nav>
   </header>
 
@@ -224,7 +226,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       </div>
       <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
         <sc-for list="{{paceChips}}" as="pc" hint-placeholder-count="4">
-          <span class="fx-pill" style="padding: 8px 12px; border: 2px solid {{pc.border}}; border-radius: 10px; font-size: 14px; font-weight: 600"><b style="font-size: 17px">{{pc.ratio}}</b> of {{pc.label}} {{pc.tail}}</span>
+          <span class="fx-pill" style="padding: 8px 12px; background: #F1F2F5; border-radius: 10px; font-size: 14px; font-weight: 600"><b style="font-size: 16px">{{pc.ratio}}</b> vs. {{pc.label}} {{pc.tail}}</span>
         </sc-for>
       </div>
     </section>
@@ -248,7 +250,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
 
     <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px 16px; flex-wrap: wrap; margin-bottom: 22px">
-  <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where Virginia's voters stand</h2>
+  <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where Virginia's voters stand</h2><sc-if value="{{take.flow}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 6px 0 0; font-size: 17px; font-weight: 700; color: #121417">{{take.flow}}</p></sc-if>
       <div role="group" aria-label="Flow view" style="display: inline-flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden; flex-shrink: 0">
         <sc-for list="{{fcOpts}}" as="o" hint-placeholder-count="2">
           <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 16px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
@@ -374,7 +376,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
     </section>
 
     <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
-      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">How this election compares</h2>
+      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Election history</h2><sc-if value="{{take.compare}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 6px 0 0; font-size: 17px; font-weight: 700; color: #121417">{{take.compare}}</p></sc-if>
       <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px"></p>
       <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px">
         <sc-for list="{{ctrls}}" as="cg" hint-placeholder-count="3">
@@ -422,7 +424,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
           </sc-for>
           <sc-if value="{{ch.hasProj}}" hint-placeholder-val="{{ false }}">
             <clipPath id="vf-projclip"><rect class="{{ch.revCls}}" x="{{ch.todayX}}" y="0" width="1000" height="{{ch.b10}}"></rect></clipPath>
-            <path d="{{ch.proj}}" clip-path="url(#vf-projclip)" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round"></path>
+            <path d="{{ch.proj}}" clip-path="url(#vf-projclip)" fill="none" stroke="#121417" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"></path>
           </sc-if>
           <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
             <line x1="{{ch.hiX}}" y1="20" x2="{{ch.hiX}}" y2="{{ch.b}}" stroke="#121417" stroke-width="1.5"></line>
@@ -453,7 +455,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
     </section>
 
     <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
-      <div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Ballots by day</h2></div>
+      <div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Ballots by day</h2><sc-if value="{{take.byday}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 6px 0 0; font-size: 17px; font-weight: 700; color: #121417">{{take.byday}}</p></sc-if></div>
       <div style="height: 14px"></div>
       <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px">
         <sc-for list="{{bd.ctrls}}" as="cg" hint-placeholder-count="3">
@@ -540,7 +542,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       <div style="flex: 999 1 600px; min-width: 0">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px">
           <div>
-            <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">The calendar</h2>
+            <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">The calendar</h2><sc-if value="{{take.calendar}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 6px 0 0; font-size: 17px; font-weight: 700; color: #121417">{{take.calendar}}</p></sc-if>
             <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px"></p>
           </div>
           <div role="group" aria-label="Ballot method" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
@@ -600,7 +602,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
     <section id="map" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
         <div>
-          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Across Virginia</h2>
+          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Across Virginia</h2><sc-if value="{{take.map}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 6px 0 0; font-size: 17px; font-weight: 700; color: #121417">{{take.map}}</p></sc-if>
           <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px"></p>
         </div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap">

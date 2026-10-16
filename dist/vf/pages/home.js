@@ -66,7 +66,8 @@ class Home extends DCLogic {
     const emW = (s) => Array.from(s).reduce((a, ch) => a + (ch === ',' || ch === '.' ? 0.3 : ch === '%' ? 1.29 : ch === '1' ? 0.52 : 0.9) - 0.04, 0);
     const heroFs = (pct, n) => 'clamp(28px, calc((100cqi - var(--hg) - 8px) / ' + (emW(pct + '%') + emW(f(n))).toFixed(2) + '), 96px)';
     const hero = { fs: heroFs((total / D.reg * 100).toFixed(1), total), kicker: live ? 'Early votes cast · statewide · through ' + dmd(D.asOf) : 'Early votes cast · statewide · final', pctLbl: live ? 'turnout so far' : 'early turnout', votes: f(total * e), pct: (total / D.reg * 100 * e).toFixed(1), reg: f(D.reg), active: f(D.active), ip: f(last.e * e), m: f(last.m * e), ipW: (last.e / total * 100).toFixed(1), mW: (last.m / total * 100).toFixed(1) };
-    const COLORS = { '2026': '#00A37A', '2026-special': '#6B7F1A', '2025': '#7C4DDB', '2024': '#121417', '2023': '#B7791F', '2022': '#8C5A00', '2021': '#8A8F99', '2020': '#A68A00' };
+    const cmpId = EID !== '2025' ? '2025' : '2024';
+    const COLORS = {}; Object.keys(H).forEach((k) => { COLORS[k] = VF.elColor(k, EID, cmpId); });
     // Pace chips, newest election first. The live election compares at today's point; a past
     // election compares with the live one at today's point and with other past ones in total.
     const finalOf = (k) => { let v = null; for (let i = 0; i < 53; i++) { const x = at(k, i); if (x != null) v = x; } return v; };
@@ -75,7 +76,7 @@ class Home extends DCLogic {
       && (live ? at(k, tIdx) : k === '2026' ? at(EID, liveT) && at(k, liveT) : finalOf(k))).slice(0, 4);
     const paceChips = paceKeys.map((k) => { const sameDay = live || k === '2026';
       const ratio = live ? total / at(k, tIdx) : k === '2026' ? at(EID, liveT) / at(k, liveT) : total / finalOf(k);
-      return { ratio: Math.round(ratio * 100) + '%', label: H[k].label.replace(' special', ''), border: COLORS[k], tail: sameDay ? 'at this point' : 'overall' }; });
+      return { ratio: VF.vsText(ratio), label: H[k].label.replace(' special', ''), tail: sameDay ? 'at this point' : 'overall' }; });
     const satDates = Object.keys(D.satOpen).filter((d) => d > D.asOf).sort();
     const nextSat = satDates[0];
     const satNames = nextSat ? Object.keys(D.satOpen[nextSat].locs).sort() : [];
@@ -146,7 +147,7 @@ class Home extends DCLogic {
       hiTitle = (hi <= 46 ? 'E–' + (46 - hi) : 'E+' + (hi - 46)) + ' · ' + DOW[d26.getDay()] + ' ' + MON[d26.getMonth()] + ' ' + d26.getDate() + ', ' + EYR;
       const base = val(EID, hi);
       vis.forEach((k) => { const v = val(k, hi); hiRows.push({ color: COLORS[k], label: H[k].label, val: fmtV(v), rel: k !== EID && base != null && v ? Math.round(base / v * 100) + '%' : '' }); if (v != null) hiDots.push({ y: Y(v).toFixed(1), color: COLORS[k] }); });
-      if (hasProj && hi > tIdx) { const pv = projVal(hi); if (pv != null) { hiRows.unshift({ color: '#00A37A', label: EYR + ' projected', val: fmtV(pv), rel: '' }); hiDots.push({ y: Y(pv).toFixed(1), color: '#00A37A' }); } }
+      if (hasProj && hi > tIdx) { const pv = projVal(hi); if (pv != null) { hiRows.unshift({ color: '#121417', label: EYR + ' projected', val: fmtV(pv), rel: '' }); hiDots.push({ y: Y(pv).toFixed(1), color: '#121417' }); } }
     }
     const ends = [];
     vis.map((k) => ({ k, label: H[k].label, color: COLORS[k], cur: k === EID, v: (i) => val(k, i) })).forEach((L0) => { let li = -1; for (let i = 0; i < n; i++) if (L0.v(i) != null) li = i;
@@ -164,7 +165,7 @@ class Home extends DCLogic {
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
       leave: () => this.setState({ hi: null }),
-      note: 'Tooltip’s right column: ' + H[EID].label + ' as a share of that election on the same day.' + (hasProj ? ' Dotted green line: where ' + EYR + ' lands if it follows 2025’s pace from today.' : '') + (measure === 'pct' ? ' Shares use each election’s registered voters.' : '') };
+      note: 'Tooltip’s right column: ' + H[EID].label + ' as a share of that election on the same day.' + (hasProj ? ' Dotted line: where ' + EYR + ' lands if it follows 2025’s pace from today.' : '') + (measure === 'pct' ? ' Shares use each election’s registered voters.' : '') };
     const bump = { hi: null, chTick: this.state.chTick + 1 };
     const opt = (label, key, cur, list) => ({ label, opts: list.map(([v, l]) => Object.assign({ label: l, pick: () => this.setState(Object.assign({ [key]: v }, bump)) }, pill(cur, v))) });
     const ctrls = [
@@ -289,10 +290,19 @@ class Home extends DCLogic {
 
     const pqs = D.locs.map((o) => o.p).sort((a, b) => a - b), pq = [0.25, 0.5, 0.75].map((x) => pqs[Math.floor(x * (pqs.length - 1))]);
     // "Find your county or city": the full list opens on click; typing filters it
+    // Section headlines that state the finding.
+    const dl = VF.dayLines(D.rows.map((r) => ({ d: r.d, v: r.de + r.dm })), live);
+    const topLoc = D.locs.reduce((a, b) => (b.p > a.p ? b : a), D.locs[0]);
+    const take = {
+      flow: req ? Math.round(ret / req * 100) + '% of requested mail ballots ' + (live ? 'have come back so far' : 'came back') : '',
+      compare: H[cmpId] ? VF.paceLine(live ? total / at(cmpId, tIdx) : total / finalOf(cmpId), H[cmpId].label, live) : '',
+      byday: dl.busiest, calendar: dl.rhythm,
+      map: topLoc ? 'Highest turnout: ' + topLoc.n + ', at ' + topLoc.p.toFixed(1) + '%' : ''
+    };
     const allLocs = D.locs.slice().sort((a, b) => a.n.localeCompare(b.n)).map((o) => ({ value: o.id, text: o.n, sub: o.rg }));
     const find = { items: VF.recentItems(allLocs).concat(allLocs), pick: (v) => { location.href = linkOf(VF.unRecent(v)); } };
     return {
-      eid: EID, label: D.label, box, find, bd,
+      eid: EID, label: D.label, box, find, bd, take,
       hdr: { eid: EID, lid: '',
         elections: D.elections.map((o) => ({ value: o.id, text: o.label.replace('April 2026 special', 'April 2026') + ' · ' + o.type })),
         locs: [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(allLocs), allLocs.map((o) => ({ value: o.value, text: o.text }))),

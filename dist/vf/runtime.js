@@ -255,6 +255,28 @@
     if (!now) { measureBand.busy = true; clearTimeout(measureBand.t); measureBand.t = setTimeout(() => { measureBand.busy = false; measureBand(); }, 320); }
   };
   window.addEventListener('scroll', onScrollBand, { passive: true });
+  /* The section menu sticks just under the brand bar (--vf-bandnow tracks the bar's live height,
+     including while it slims) and marks the group the reader is in. Links carry data-sec, the
+     section ids in their group; the last group whose section has reached the menu is current. */
+  let bandRO = null, bandEl = null;
+  const trackBand = () => {
+    const b = document.querySelector('.vf-band'); if (!b || b === bandEl || !window.ResizeObserver) return;
+    if (bandRO) bandRO.disconnect(); bandEl = b;
+    bandRO = new ResizeObserver(() => document.documentElement.style.setProperty('--vf-bandnow', b.getBoundingClientRect().height + 'px')); bandRO.observe(b);
+  };
+  const spy = () => {
+    spy.r = 0; trackBand();
+    const links = Array.from(document.querySelectorAll('.vf-navlink[data-sec]')); if (!links.length) return;
+    const nav = document.querySelector('.vf-head'), line = (nav ? nav.getBoundingClientRect().bottom : 100) + 40;
+    let cur = links[0], best = -Infinity;
+    links.forEach((a) => a.dataset.sec.split(' ').forEach((id) => { const el = document.getElementById(id); if (!el) return;
+      const top = el.getBoundingClientRect().top; if (top <= line && top > best) { best = top; cur = a; } }));
+    links.forEach((a) => { const on = a === cur; if ((a.getAttribute('aria-current') === 'true') !== on) a.setAttribute('aria-current', on ? 'true' : 'false'); });
+  };
+  const spySoon = () => { if (!spy.r) spy.r = requestAnimationFrame(spy); };
+  window.addEventListener('scroll', spySoon, { passive: true });
+  window.addEventListener('resize', spySoon);
+  document.addEventListener('DOMContentLoaded', () => new MutationObserver(spySoon).observe(document.body, { childList: true, subtree: true }));
   window.addEventListener('resize', measureBand);
   window.addEventListener('load', measureBand);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureBand);
@@ -268,7 +290,7 @@
     const el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
     ev.preventDefault();
     let top = 0; for (let n = el; n; n = n.offsetParent) top += n.offsetTop;
-    const band = document.querySelector('.vf-band'), off = (band ? band.getBoundingClientRect().height : 0) + 16;
+    const band = document.querySelector('.vf-band'), nav = document.querySelector('.vf-head'), off = (band ? band.getBoundingClientRect().height : 0) + (nav ? nav.getBoundingClientRect().height : 0) + 16;
     window.scrollTo({ top: Math.max(0, top - off), behavior: 'smooth' });
     history.replaceState(null, '', a.getAttribute('href'));
   });
@@ -303,6 +325,30 @@
     return '';
   };
   window.VF = {
+    /* Pace chips read "▲ 12% vs. …": ratio of this election to another at the same point. */
+    vsText: (r) => r >= 1.95 && r <= 2.05 ? '▲ 2×' : r >= 1.5 ? '▲ ' + r.toFixed(1) + '×' : r >= 1.005 ? '▲ ' + Math.round((r - 1) * 100) + '%' : r <= 0.995 ? '▼ ' + Math.round((1 - r) * 100) + '%' : '= even',
+    /* Election lines: the one being viewed leads in ink, one comparison election in mid gray,
+       every other past election steps back in light gray. */
+    elColor: (id, cur, cmp) => id === cur ? '#121417' : id === cmp ? '#7A8291' : '#C9CDD4',
+    /* One-line section headlines that state the finding. */
+    paceLine: (r, label, sameDay) => {
+      const tail = sameDay ? ' at this point' : ' overall';
+      if (!r || !isFinite(r)) return '';
+      return (r >= 1.95 && r <= 2.05 ? 'About twice ' + label : r >= 1.5 ? r.toFixed(1) + '× ' + label : r >= 1.03 ? Math.round((r - 1) * 100) + '% ahead of ' + label
+        : r <= 0.97 ? Math.round((1 - r) * 100) + '% behind ' + label : 'About even with ' + label) + tail;
+    },
+    /* days: [{ d: 'YYYY-MM-DD', v: ballots that day }] → { busiest, rhythm } headline strings. */
+    dayLines: (days, live) => {
+      const DL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], MO = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const dt = (k) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10));
+      const n = (x) => Math.round(x).toLocaleString('en-US');
+      const open = days.filter((x) => x.v > 0); if (!open.length) return { busiest: '', rhythm: '' };
+      const top = open.reduce((a, b) => (b.v > a.v ? b : a)), td = dt(top.d);
+      const avg = (xs) => xs.length ? xs.reduce((a, b) => a + b.v, 0) / xs.length : null;
+      const wk = avg(open.filter((x) => { const g = dt(x.d).getDay(); return g >= 1 && g <= 5; })), sat = avg(open.filter((x) => dt(x.d).getDay() === 6));
+      return { busiest: 'Busiest day' + (live ? ' so far' : '') + ': ' + DL[td.getDay()] + ', ' + MO[td.getMonth()] + ' ' + td.getDate() + ', with ' + n(top.v) + ' ballots',
+        rhythm: wk ? 'Weekdays average ' + n(wk) + ' ballots' + (sat ? '; Saturdays ' + n(sat) : '') : '' };
+    },
     dayFlag, flagChip: (k, eDate) => { const t = dayFlag(k, eDate); return t === 'Election Day' ? '★ Election Day' : t ? 'Holiday · ' + t : ''; },
     recentLocs, addRecent, recentItems, unRecent: (v) => (v || '').replace(/^r:/, ''),
     dark: DARK, soft: SOFT, tc, calColor, calLegend: [0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 1].map((q) => calColor(q).bg),

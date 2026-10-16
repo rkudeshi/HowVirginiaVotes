@@ -66,7 +66,8 @@ class Locality extends DCLogic {
     const EL = D.elections;
     const cur = EL.find((x) => x.id === eid) || EL[0];
     const live = cur.id === '2026';
-    const COLORS = { va: '#41557F', '2026': '#00A37A', '2026-special': '#6B7F1A', '2025': '#7C4DDB', '2024': '#121417', '2023': '#B7791F', '2022': '#8C5A00', '2021': '#8A8F99', '2020': '#A68A00' };
+    const cmpId = eid !== '2025' ? '2025' : '2024';
+    const COLORS = { va: '#41557F' }; EL.forEach((x) => { COLORS[x.id] = VF.elColor(x.id, eid, cmpId); });
     if (this.recorded !== D.id) { this.recorded = D.id; VF.addRecent(D.id); }
     const L = { name: D.name, region: D.region, rankV: D.rankV, rankP: D.rankP, rankR: D.rankR };
     const eDate = parse(cur.date);
@@ -94,7 +95,7 @@ class Locality extends DCLogic {
       && (live ? x.atT : x.id === '2026' ? cur.atT && x.atT : x.total)).slice(0, 4);
     const paceChips = ref.map((x) => { const sameDay = live || x.id === '2026';
       const ratio = sameDay ? cur.atT / x.atT : cur.total / x.total;
-      return { ratio: Math.round(ratio * 100) + '%', label: 'of ' + x.label.replace(' special', '') + (sameDay ? ' at this point' : ' overall'), border: COLORS[x.id] }; });
+      return { ratio: VF.vsText(ratio), label: 'vs. ' + x.label.replace(' special', '') + (sameDay ? ' at this point' : ' overall') }; });
     const satLine = D.sat ? D.sat + (D.sat === 1 ? ' satellite site · ' : ' satellite sites · ') + (D.next === 'open' ? 'all open' : 'next open ' + dmd(D.next)) : '';
 
     // flow
@@ -185,7 +186,7 @@ class Locality extends DCLogic {
       hiTitle = (hi <= 46 ? 'E–' + (46 - hi) : 'E+' + (hi - 46)) + ' · ' + DOW[dd.getDay()] + ' ' + MON[dd.getMonth()] + ' ' + dd.getDate() + ', ' + dd.getFullYear();
       const base = val(cur, hi);
       visEl.forEach((x) => { const v = val(x, hi); hiRows.push({ color: COLORS[x.id], label: x.label, val: fmtV(v), rel: x.id !== eid && base != null && v ? Math.round(base / v * 100) + '%' : '' }); if (v != null) hiDots.push({ y: Y(v).toFixed(1), color: COLORS[x.id] }); });
-      if (hasProj && hi > T) { const pv = projVal(hi); if (pv != null) { hiRows.unshift({ color: '#00A37A', label: '2026 projected', val: fmtV(pv), rel: '' }); hiDots.push({ y: Y(pv).toFixed(1), color: '#00A37A' }); } }
+      if (hasProj && hi > T) { const pv = projVal(hi); if (pv != null) { hiRows.unshift({ color: '#121417', label: '2026 projected', val: fmtV(pv), rel: '' }); hiDots.push({ y: Y(pv).toFixed(1), color: '#121417' }); } }
     }
     const ends = [];
     visEl.map((x) => ({ k: x.id, label: x.label, color: COLORS[x.id], cur: x.id === eid, v: (i) => val(x, i) })).forEach((L0) => { let li = -1; for (let i = 0; i < n; i++) if (L0.v(i) != null) li = i;
@@ -203,7 +204,7 @@ class Locality extends DCLogic {
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
       leave: () => this.setState({ hi: null }),
-      note: 'Thick line: ' + cur.label + '.' + (stEl && show.va !== false ? ' Shaded slate area (“Virginia”): statewide in 2026, scaled to this locality’s registered voters.' : '') + ' Tooltip’s right column: ' + cur.label + ' as a share of that election on the same day.' + (hasProj ? ' Dotted green line: where 2026 lands if it follows 2025’s pace from today.' : '') };
+      note: 'Thick black line: ' + cur.label + '; gray: ' + (EL.find((x) => x.id === cmpId) || {}).label + '; light gray: other elections.' + (stEl && show.va !== false ? ' Shaded slate area (“Virginia”): statewide in 2026, scaled to this locality’s registered voters.' : '') + ' Tooltip’s right column: ' + cur.label + ' as a share of that election on the same day.' + (hasProj ? ' Dotted line: where 2026 lands if it follows 2025’s pace from today.' : '') };
     const bump = { hi: null, chTick: this.state.chTick + 1 };
     const opt = (label, key, cur2, list) => ({ label, opts: list.map(([v, l]) => Object.assign({ label: l, pick: () => this.setState(Object.assign({ [key]: v }, key.startsWith('p') ? {} : bump)) }, pill(cur2, v))) });
     const ctrls = [
@@ -397,6 +398,17 @@ class Locality extends DCLogic {
       }
       sd.note = 'Days line up by how many days remain before Election Day, so weekdays match. Days when neither election had any ballots are left out. Green is ahead of ' + sd.refLabel + ', red is behind.';
     }
+    // Section headlines that state the finding.
+    const cmpEl = EL.find((x) => x.id === cmpId);
+    const dayList = live ? D.rows.map((r) => ({ d: r.d, v: r.de + r.dm }))
+      : cur.series ? cur.series.e.map((v, i) => v == null || i === 0 || cur.series.e[i - 1] == null ? null : { d: VF.addDays(cur.date, i - 46), v: v + cur.series.m[i] - cur.series.e[i - 1] - cur.series.m[i - 1] }).filter(Boolean) : [];
+    const dl = VF.dayLines(dayList, live);
+    const take = {
+      flow: req ? Math.round(ret / req * 100) + '% of requested mail ballots ' + (live ? 'have come back so far' : 'came back') : '',
+      compare: cmpEl ? VF.paceLine(live ? cur.atT / cmpEl.atT : cur.total / cmpEl.total, cmpEl.label.replace('April 2026 special', 'April 2026'), live) : '',
+      byday: dl.busiest, calendar: dl.rhythm,
+      sameday: sd.on && sd.rows.length ? (() => { const last = sd.rows.slice(0, 10), up = last.filter((r) => r.diffFg === '#00694F').length; return 'Ahead of ' + sd.refLabel + ' on ' + up + ' of the last ' + last.length + ' voting days'; })() : ''
+    };
     // Trend notes for the live election, written at build time from the latest data (trends.py).
     const insight = { on: live && !!D.trend, text: D.trend || '' };
 
@@ -548,7 +560,7 @@ class Locality extends DCLogic {
     ];
 
     return {
-      fc, fcOpts, vb, insight, sd,
+      fc, fcOpts, vb, insight, sd, take,
       hdr: { eid, lid: D.id,
         elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })),
         locs: (() => { const all = D.names.map(([id, nm]) => ({ value: id, text: nm })); return [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(all, D.id), all); })(),
