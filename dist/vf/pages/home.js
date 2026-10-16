@@ -213,7 +213,7 @@ class Home extends DCLogic {
       else if (afterE && live) { bg = '#F8F9FB'; border = '2px dashed #B7BCC6'; kText = 'Mail'; }
       else if (inWin) { bg = '#F5F6F8'; border = '2px dashed #C6CBD4'; }
       const selected = this.state.cal === k; if (selected) border = '3px solid #121417';
-      cal.push({ day: d.getDate() === 1 || k === iso(start) ? MON[d.getMonth()] + ' ' + d.getDate() : String(d.getDate()), k: kText,
+      cal.push({ hol: k !== EDATE && VF.dayFlag(k, EDATE) ? (this.state.narrow ? 'Hol.' : 'Holiday') : '', holFull: VF.dayFlag(k, EDATE), day: d.getDate() === 1 || k === iso(start) ? MON[d.getMonth()] + ' ' + d.getDate() : String(d.getDate()), k: kText,
         mark: isE ? '★' : sat ? '▲' + sat.n : '', bg, fg, border, vis: inWin ? 'visible' : 'hidden', display: i >= 56 && !inWin ? 'none' : 'flex',
         pressed: selected ? 'true' : 'false', anim: this.state.calTick % 2 ? 'fx-pa' : 'fx-pb', delay: (i * 10) + 'ms',
         aria: dmd(k) + (r ? ': ' + f(dv(r)) + ' ballots' : ''),
@@ -231,7 +231,7 @@ class Home extends DCLogic {
       return Object.assign(base, { kicker: 'Upcoming · E–' + (47 - dayN), title: dmd(k), sub: 'No ballots reported yet', rows: [{ k: 'Satellite sites opening', v: so ? String(so.n) : '—' }, { k: 'Days until Election Day', v: String(Math.round((eDay - sd) / 864e5)) }] });
     };
     const pieOf = (r) => { if (!r || !(r.de + r.dm)) return { hasPie: false }; const pE = r.de / (r.de + r.dm) * 100; return { hasPie: true, pieE: pE.toFixed(1), pieRest: (100 - pE).toFixed(1), pctE: Math.round(pE) + '%', pctM: Math.round(100 - pE) + '%' }; };
-    const calInfo = (k) => Object.assign(calInfo0(k), pieOf(byDate[k]));
+    const calInfo = (k) => Object.assign(calInfo0(k), pieOf(byDate[k]), { flag: VF.flagChip(k, EDATE) });
     const sel = calInfo(this.state.cal || D.asOf);
     const calOpts = [['all', 'All'], ['early', 'In person'], ['mail', 'By mail']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ calM: v, calTick: this.state.calTick + 1 }) }, pill(calM, v)));
 

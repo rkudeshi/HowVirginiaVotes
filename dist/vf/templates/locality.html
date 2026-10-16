@@ -416,6 +416,56 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
           </div>
         </div>
       </sc-for>
+      <sc-if value="{{mix.on}}" hint-placeholder-val="{{ false }}">
+        <div class="vf-mix" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; margin-top: 8px; padding-top: 24px; border-top: 2px solid #ECEEF2">
+          <div>
+            <h3 style="margin: 0 0 4px; font-size: 19px; font-weight: 800; letter-spacing: -0.02em">How the early vote was cast</h3>
+            <p style="margin: 0 0 12px; color: #4A5260; font-size: 15px"><b style="color: #121417">{{mix.total}}</b> early ballots</p>
+            <div style="display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: #F1F2F5">
+              <sc-for list="{{mix.main}}" as="sg" hint-placeholder-count="3">
+                <div class="fx-meter" title="{{sg.name}} · {{sg.val}} · {{sg.share}}" style="width: {{sg.w}}%; background: {{sg.bg}}; color: {{sg.fg}}; display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: 14px; box-shadow: inset -2px 0 0 #FFFFFF">{{sg.inside}}</div>
+              </sc-for>
+            </div>
+            <div style="margin-left: {{mix.subL}}%; width: {{mix.subW}}%; margin-top: 6px">
+              <div style="height: 8px; border-left: 2px solid #7C4DDB; border-right: 2px solid #7C4DDB; border-bottom: 2px solid #7C4DDB; border-radius: 0 0 4px 4px; margin-bottom: 6px; opacity: .6"></div>
+              <div style="display: flex; height: 26px; border-radius: 10px; overflow: hidden; background: #F1F2F5">
+              <sc-for list="{{mix.sub}}" as="sg" hint-placeholder-count="3">
+                <div class="fx-meter" title="{{sg.name}} · {{sg.val}} · {{sg.share}}" style="width: {{sg.w}}%; background: {{sg.bg}}; color: {{sg.fg}}; display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: 14px; box-shadow: inset -2px 0 0 #FFFFFF">{{sg.inside}}</div>
+              </sc-for>
+            </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px 14px; margin-top: 12px">
+              <sc-for list="{{mix.main}}" as="sg" hint-placeholder-count="3">
+                <div style="display: flex; gap: 8px; align-items: flex-start"><span style="width: 14px; height: 14px; border-radius: 4px; background: {{sg.bg}}; margin-top: 3px; flex-shrink: 0; box-shadow: inset 0 0 0 1.5px rgba(20,32,43,.2)"></span><span style="display: flex; flex-direction: column; line-height: 1.25"><b style="font-size: 15px">{{sg.name}} · {{sg.share}}</b><span style="font-size: 13.5px; color: #4A5260">{{sg.val}}</span></span></div>
+              </sc-for>
+            </div>
+            <div style="font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-top: 14px">How mail ballots came back</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px 14px; margin-top: 12px">
+              <sc-for list="{{mix.sub}}" as="sg" hint-placeholder-count="3">
+                <div style="display: flex; gap: 8px; align-items: flex-start"><span style="width: 14px; height: 14px; border-radius: 4px; background: {{sg.bg}}; margin-top: 3px; flex-shrink: 0; box-shadow: inset 0 0 0 1.5px rgba(20,32,43,.2)"></span><span style="display: flex; flex-direction: column; line-height: 1.25"><b style="font-size: 15px">{{sg.name}} · {{sg.share}}</b><span style="font-size: 13.5px; color: #4A5260">{{sg.val}}</span></span></div>
+              </sc-for>
+            </div>
+          </div>
+          <sc-if value="{{mix.hasStatus}}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h3 style="margin: 0 0 4px; font-size: 19px; font-weight: 800; letter-spacing: -0.02em">What became of mail ballots</h3>
+            <p style="margin: 0 0 12px; color: #4A5260; font-size: 15px"><b style="color: #121417">{{mix.sent}}</b> ballots mailed or emailed</p>
+            <div style="display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: #F1F2F5">
+              <sc-for list="{{mix.status}}" as="sg" hint-placeholder-count="3">
+                <div class="fx-meter" title="{{sg.name}} · {{sg.val}} · {{sg.share}}" style="width: {{sg.w}}%; background: {{sg.bg}}; color: {{sg.fg}}; display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: 14px; box-shadow: inset -2px 0 0 #FFFFFF">{{sg.inside}}</div>
+              </sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px 14px; margin-top: 12px">
+              <sc-for list="{{mix.status}}" as="sg" hint-placeholder-count="3">
+                <div style="display: flex; gap: 8px; align-items: flex-start"><span style="width: 14px; height: 14px; border-radius: 4px; background: {{sg.bg}}; margin-top: 3px; flex-shrink: 0; box-shadow: inset 0 0 0 1.5px rgba(20,32,43,.2)"></span><span style="display: flex; flex-direction: column; line-height: 1.25"><b style="font-size: 15px">{{sg.name}} · {{sg.share}}</b><span style="font-size: 13.5px; color: #4A5260">{{sg.val}}</span></span></div>
+              </sc-for>
+            </div>
+            <p style="margin: 10px 0 0; font-size: 13.5px; color: #4A5260">{{mix.undeliv}}</p>
+          </div>
+          </sc-if>
+        </div>
+        <p style="margin: 14px 0 0; font-size: 13.5px; color: #4A5260">{{mix.through}}</p>
+      </sc-if>
       </sc-if>
     </section>
 
@@ -551,7 +601,8 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
             <sc-for list="{{bd.bars}}" as="b" hint-placeholder-count="0">
 <g>
               <rect class="fx-grow" x="{{b.x}}" y="{{b.yE}}" width="{{b.w}}" height="{{b.hE}}" fill="#00A37A" style="animation-delay: {{b.delay}}"></rect>
-              <rect class="fx-grow" x="{{b.x}}" y="{{b.yM}}" width="{{b.w}}" height="{{b.hM}}" rx="3" fill="#7C4DDB" style="animation-delay: {{b.delay}}"></rect></g>
+              <rect class="fx-grow" x="{{b.x}}" y="{{b.yM}}" width="{{b.w}}" height="{{b.hM}}" rx="3" fill="#7C4DDB" style="animation-delay: {{b.delay}}"></rect>
+              <rect class="fx-grow" x="{{b.x}}" y="{{b.yB}}" width="{{b.w}}" height="{{b.hB}}" rx="3" fill="#C4AEF6" style="animation-delay: {{b.delay}}"></rect></g>
 </sc-for>
           </sc-if>
           <sc-if value="{{bd.cum}}" hint-placeholder-val="{{ false }}">
@@ -576,7 +627,8 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
             <div class="fx-pill" style="padding: 12px 16px; border-radius: 16px; background: {{pc.bg}}; border: 2px solid {{pc.border}}; display: flex; flex-direction: column; gap: 3px">
               <span style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260">{{pc.k}}</span>
               <b style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em">{{pc.v}}</b>
-              <span style="font-size: 13px; color: #4A5260">{{pc.sub}}</span>
+              <span style="font-size: 13px; color: #121417; font-weight: 600">{{pc.sub}}</span>
+              <span style="font-size: 12.5px; color: #4A5260">{{pc.sub2}}</span>
             </div>
           </sc-for>
         </div>
@@ -606,6 +658,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
               <span style="font-family: 'DM Mono', monospace; font-size: 11px; display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 4px"><span>{{c.day}}</span>
               </span>
               <span style="font-weight: 800; font-size: 17px; letter-spacing: -0.02em">{{c.k}}</span>
+              <sc-if value="{{c.hol}}" hint-placeholder-val="{{ false }}"><span title="{{c.holFull}}" style="align-self: flex-start; padding: 1px 6px; border-radius: 999px; background: #FFF1B8; border: 1.5px solid #E0B600; color: #121417; font: 700 9.5px 'DM Mono', monospace; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap">{{c.hol}}</span></sc-if>
               <span style="font-family: 'DM Mono', monospace; font-size: 10px">{{c.mark}}</span>
             </button>
           </sc-for>
@@ -619,6 +672,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
       </div>
       <div class="fx-side" style="flex: 1 1 290px; background: #FFF6D1; border: 2px solid #F0D27A; color: #121417; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 4px; align-self: stretch">
         <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{sel.kicker}}</div>
+        <sc-if value="{{sel.flag}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 6px 4px 0; padding: 3px 10px; border-radius: 999px; background: #FFF1B8; border: 1.5px solid #E0B600; color: #121417; font: 700 11px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase">{{sel.flag}}</span></sc-if>
         <div style="font-size: 30px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05">{{sel.title}}</div>
         <div style="font-size: 15px; color: #4A5260; margin-bottom: 10px">{{sel.sub}}</div>
         <sc-if value="{{sel.hasPie}}" hint-placeholder-val="{{ false }}">
@@ -792,7 +846,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
           </div>
           <sc-for list="{{tbl.rows}}" as="tr" hint-placeholder-count="12">
             <div class="fx-row" style="display: grid; grid-template-columns: {{tbl.grid}}; padding: 0 26px; border-bottom: 1px solid #ECEEF2; align-items: stretch; font-size: 14px">
-              <b style="padding: 9px 10px; white-space: nowrap"><span class="dn-w">{{tr.date}}</span><span class="dn-n">{{tr.dateS}}</span></b>
+              <b style="padding: 9px 10px; white-space: nowrap"><span class="dn-w">{{tr.date}}</span><span class="dn-n">{{tr.dateS}}</span><sc-if value="{{tr.flag}}" hint-placeholder-val="{{ false }}"><span title="{{tr.flagFull}}" style="display: block; width: fit-content; max-width: 100%; white-space: normal; line-height: 1.35; margin-top: 4px; padding: 1px 7px; border-radius: 999px; background: #FFF1B8; border: 1.5px solid #E0B600; font: 700 9.5px 'DM Mono', monospace; letter-spacing: .04em; text-transform: uppercase">{{tr.flag}}</span></sc-if></b>
               <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; background: {{tr.deBg}}">{{tr.de}}</span>
               <span style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; background: {{tr.dmBg}}">{{tr.dm}}</span>
               <sc-if value="{{tbl.hasPB}}"><span class="dn-x" style="padding: 9px 10px; text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{tr.pb}}</span></sc-if>
@@ -885,6 +939,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
   <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">
     <div class="fx-tip" role="tooltip" style="position: fixed; left: {{tip.x}}px; top: {{tip.y}}px; z-index: 90; width: 300px; background: {{tip.bg}}; border: 2px solid #121417; border-radius: 20px; padding: 16px; pointer-events: none; box-shadow: 0 22px 40px -20px rgba(20,32,43,.65)">
       <div style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{tip.kicker}}</div>
+      <sc-if value="{{tip.flag}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 6px 4px 0; padding: 3px 10px; border-radius: 999px; background: #FFF1B8; border: 1.5px solid #E0B600; color: #121417; font: 700 11px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase">{{tip.flag}}</span></sc-if>
       <sc-if value="{{tip.hasBadge}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 0 4px; padding: 3px 10px; border-radius: 999px; background: #EDE6FC; color: #4E2A9E; font: 700 11px 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase">{{tip.badge}}</span></sc-if>
       <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1">{{tip.title}}</div>
       <div style="font-size: 13px; color: #4A5260; margin-bottom: 6px">{{tip.sub}}</div>

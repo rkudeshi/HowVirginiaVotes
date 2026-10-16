@@ -213,7 +213,18 @@
      put first; strip the prefix with VF.unRecent when one is picked. */
   const recentItems = (items, skip) => recentLocs().filter((id) => id !== skip).map((id) => items.find((o) => o.value === id)).filter(Boolean)
     .map((o) => ({ value: 'r:' + o.value, text: o.text, sub: 'Recent' }));
+  /* Days that run differently: Election Day and the state holidays inside the voting window
+     (Indigenous Peoples' Day, the second Monday in October, and Veterans Day, Nov 11). */
+  const dayFlag = (k, eDate) => {
+    if (!k) return '';
+    if (k === eDate) return 'Election Day';
+    const m = +k.slice(5, 7), d = +k.slice(8, 10), dow = new Date(+k.slice(0, 4), m - 1, d).getDay();
+    if (m === 10 && dow === 1 && d >= 8 && d <= 14) return 'Indigenous Peoples’ Day';
+    if (m === 11 && d === 11) return 'Veterans Day';
+    return '';
+  };
   window.VF = {
+    dayFlag, flagChip: (k, eDate) => { const t = dayFlag(k, eDate); return t === 'Election Day' ? '★ Election Day' : t ? 'Holiday · ' + t : ''; },
     recentLocs, addRecent, recentItems, unRecent: (v) => (v || '').replace(/^r:/, ''),
     calColor, calLegend: [0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 1].map((q) => calColor(q).bg),
     page(name, Logic) { pages[name] = Logic; },

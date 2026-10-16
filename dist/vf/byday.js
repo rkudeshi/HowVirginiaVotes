@@ -22,6 +22,14 @@
     const act = Array.from({ length: 53 }, (_, i) => { if (ser.e[i] == null) return null; const pe = i > 0 && ser.e[i - 1] != null ? ser.e[i - 1] : 0, pmm = i > 0 && ser.m[i - 1] != null ? ser.m[i - 1] : 0; return { de: ser.e[i] - pe, dm: ser.m[i] - pmm, e: ser.e[i], m: ser.m[i] }; });
     // Prefer the source's own daily counts where it publishes them.
     if (o.rowDaily) o.rowDaily.forEach((r) => { const i = VF.idxOf(o.date, r.d); if (act[i] && r.de != null) { act[i].de = r.de; act[i].dm = r.dm; } });
+    // Fairfax publishes how mail ballots came back (post vs. drop box); split each day's mail
+    // returns by that day's county shares so the bars still add up to the totals shown elsewhere.
+    const fx = o.fx && o.fx.p ? o.fx : null;
+    if (fx) act.forEach((r, i) => { if (!r || fx.p[i] == null) return;
+      const dP = Math.max(0, fx.p[i] - (i && fx.p[i - 1] != null ? fx.p[i - 1] : 0)), dB = Math.max(0, fx.b[i] - (i && fx.b[i - 1] != null ? fx.b[i - 1] : 0));
+      const share = dP + dB > 0 ? dB / (dP + dB) : fx.p[i] + fx.b[i] > 0 ? fx.b[i] / (fx.p[i] + fx.b[i]) : 0;
+      r.dmB = Math.round(Math.max(0, r.dm) * share); r.dmP = Math.max(0, r.dm) - r.dmB; });
+    const split = !!fx && act.some((r) => r && r.dmB != null);
     const refs = live ? o.refs.filter((x) => x.series && x.series.e[lastI]) : [];
     const med = (arr) => { const q = arr.slice().sort((x, y) => x - y); const L2 = q.length; return !L2 ? null : L2 % 2 ? q[(L2 - 1) / 2] : (q[L2 / 2 - 1] + q[L2 / 2]) / 2; };
     const estFor = (key, i) => { const v = refs.map((r) => { const s2 = r.series; if (s2[key][i] == null || s2[key][i - 1] == null || !s2[key][lastI]) return null; return Math.max(0, s2[key][i] - s2[key][i - 1]) * ser[key][lastI] / s2[key][lastI]; }).filter((x) => x != null); return med(v); };
@@ -61,7 +69,9 @@
     const BY = (v) => 400 - v / btop * 380;
     const bars = [], planBars = [];
     for (let i = 0; i < N; i++) { const r = act[i]; if (!r) continue; const ve = bdM === 'mail' ? 0 : r.de, vm = bdM === 'early' ? 0 : r.dm; const hE = Math.max(0, ve) / btop * 380, hM = Math.max(0, vm) / btop * 380; // corrections can be negative
-      bars.push({ x: (BX(i) - bw / 2).toFixed(1), w: bw.toFixed(1), yE: (400 - hE).toFixed(1), hE: hE.toFixed(1), yM: (400 - hE - hM).toFixed(1), hM: hM.toFixed(1), delay: (i * 18) + 'ms' }); }
+      const hB = r.dmB != null && vm > 0 ? r.dmB / Math.max(1, r.dm) * hM : 0;
+      bars.push({ x: (BX(i) - bw / 2).toFixed(1), w: bw.toFixed(1), yE: (400 - hE).toFixed(1), hE: hE.toFixed(1), yM: (400 - hE - hM).toFixed(1), hM: hM.toFixed(1),
+        yB: (400 - hE - hM).toFixed(1), hB: hB.toFixed(1), delay: (i * 18) + 'ms' }); }
     if (usePlan) for (let i = lastI + 1; i < N; i++) { const p = plan[i]; if (!p) continue; const v = pick3(p, 'e', 'm'); if (!v) continue; const hh = v / btop * 380;
       const ve2 = bdM === 'mail' ? 0 : p.e, vm2 = bdM === 'early' ? 0 : p.m, hE2 = ve2 / btop * 380, hM2 = vm2 / btop * 380;
       planBars.push({ x: (BX(i) - bw / 2).toFixed(1), w: bw.toFixed(1), y: (400 - hh).toFixed(1), h: hh.toFixed(1),
@@ -79,8 +89,7 @@
     const rnd = (v) => v >= 10000 ? Math.round(v / 1000) + 'K' : v >= 1000 ? (Math.round(v / 100) / 10) + 'K' : v >= 100 ? String(Math.round(v / 10) * 10) : String(Math.round(v));
     const sumPlan = (key) => plan.reduce((acc, p) => p ? acc + p[key] : acc, 0);
     const curE = lastI >= 0 ? act[lastI].e : 0, curM = lastI >= 0 ? act[lastI].m : 0;
-    const remE = sumPlan('e'), remELo = sumPlan('eLo'), remEHi = sumPlan('eHi'), remM = sumPlan('m');
-    let busiest = null; plan.forEach((p, i) => { if (p && (!busiest || p.e > busiest.v)) busiest = { i, v: p.e }; });
+    const remE = sumPlan('e'), remELo = sumPlan('eLo'), remEHi = sumPlan('eHi'), remM = sumPlan('m'), remMLo = sumPlan('mLo'), remMHi = sumPlan('mHi');
     const futX = BX(lastI) + 940 / N / 2;
     const bdOpt = (label, key, curv, list) => ({ label, opts: list.map(([v, l]) => Object.assign({ label: l, pick: () => set({ [key]: v, tip: null }) }, pill(curv, v))) });
     const xs = []; for (let i = 0; i < N; i += (N > 30 ? 7 : 4)) xs.push(i);
@@ -94,20 +103,26 @@
       eX: BX(46).toFixed(1), todayX: futX.toFixed(1), todayLX: (futX - 6).toFixed(1), futX: futX.toFixed(1), futW: Math.max(0, 1000 - futX).toFixed(1), futLX: (futX + 8).toFixed(1),
       bars, plan: planBars, line: bline, eLine, mLine, band, projLine,
       hits: Array.from({ length: N }, (_, i) => ({ x: (BX(i) - 940 / N / 2).toFixed(1), w: (940 / N).toFixed(1), fill: st.tip && st.tip.kind === 'bar' && st.tip.key === i ? 'rgba(18,20,23,.06)' : 'transparent', move: (ev) => set({ tip: tipAt(ev, 'bar', i) }) })),
-      chips: usePlan ? [
-        { k: 'In-person ballots to come', v: '≈ ' + rnd(remE), sub: 'Range ' + rnd(remELo) + '–' + rnd(remEHi) + ' · ≈ ' + rnd(curE + remE) + ' total in person', bg: '#F1FAF6', border: '#00A37A' },
-        { k: 'Mail ballots to arrive', v: '≈ ' + rnd(remM), sub: '≈ ' + rnd(curM + remM) + ' total by mail, through ' + dmd(iso(dayDate(endI))), bg: '#F4EFFD', border: '#7C4DDB' },
-        { k: 'All early ballots, projected', v: '≈ ' + rnd(curE + curM + remE + remM), sub: rnd(curE + curM) + ' so far · ≈ ' + ((curE + curM + remE + remM) / o.reg * 100).toFixed(0) + '% of registered', bg: '#FFFFFF', border: '#121417' },
-        { k: 'Busiest in-person day ahead', v: busiest ? dmd(iso(dayDate(busiest.i))) : '—', sub: busiest ? '≈ ' + rnd(busiest.v) + ' ballots expected' : '', bg: '#FFFFFF', border: '#121417' }
-      ] : [],
-      legend: [{ l: 'In person', bg: '#00A37A', border: '0' }, { l: 'By mail', bg: '#7C4DDB', border: '0' }].concat(usePlan ? [{ l: 'Estimate · in person', bg: '#EEF8F3', border: '1.5px dashed #86D9BA' }, { l: 'Estimate · by mail', bg: '#F5F1FD', border: '1.5px dashed #C3ADF1' }, { l: 'Line = likely range', bg: '#6B7380', border: '0' }] : []),
+      // Projected final totals (reported so far plus the estimates ahead), the old planning view's
+      // style: the total, its range, what is still to come, and the share of registered voters.
+      chips: usePlan ? (() => {
+        const pctR = (v) => (v / o.reg * 100).toFixed(1) + '%';
+        const finE = curE + remE, finM = curM + remM, lo = curE + curM + remELo + remMLo, hi = curE + curM + remEHi + remMHi;
+        return [
+          { k: 'In person, projected final', v: '≈ ' + rnd(finE), sub: 'Range ' + rnd(curE + remELo) + '–' + rnd(curE + remEHi), sub2: rnd(remE) + ' still to come · ' + rnd(curE) + ' so far', bg: '#F1FAF6', border: '#00A37A' },
+          { k: 'By mail, projected final', v: '≈ ' + rnd(finM), sub: 'Range ' + rnd(curM + remMLo) + '–' + rnd(curM + remMHi), sub2: rnd(remM) + ' still to arrive, through ' + dmd(iso(dayDate(endI))), bg: '#F4EFFD', border: '#7C4DDB' },
+          { k: 'All early, projected final', v: '≈ ' + rnd(finE + finM), sub: 'Range ' + rnd(lo) + '–' + rnd(hi), sub2: rnd(remE + remM) + ' still to come · ' + rnd(curE + curM) + ' so far', bg: '#FFFFFF', border: '#121417' },
+          { k: 'Early turnout, projected', v: '≈ ' + pctR(finE + finM), sub: 'Range ' + pctR(lo) + '–' + pctR(hi), sub2: pctR(curE + curM) + ' so far · of ' + f(o.reg) + ' registered', bg: '#FFF6D1', border: '#F0D27A' }
+        ]; })() : [],
+      legend: [{ l: 'In person', bg: '#00A37A', border: '0' }, { l: split ? 'Returned by mail' : 'By mail', bg: '#7C4DDB', border: '0' }].concat(split && bdM !== 'early' ? [{ l: 'Drop box', bg: '#C4AEF6', border: '0' }] : []).concat(usePlan ? [{ l: 'Estimate · in person', bg: '#EEF8F3', border: '1.5px dashed #86D9BA' }, { l: 'Estimate · by mail', bg: '#F5F1FD', border: '1.5px dashed #C3ADF1' }, { l: 'Line = likely range', bg: '#6B7380', border: '0' }] : []),
       note: live ? (usePlan ? 'Estimates: for each past November election (' + refs.map((r) => r.label.replace('November ', '')).join(', ') + '), the ballots it added on the same day before Election Day, scaled by how 2026 compares with it so far; each bar is the middle value, adjusted so the days ahead add up to the middle of those elections’ remaining totals. In-person estimates only fall on days a site is open' + (hasSched ? '' : ' (assumed: weekdays and the last two Saturdays)') + '. Hover a bar for the details.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
     };
+    if (split && bdM !== 'early') bd.note += ' Mail returns are split into returned by mail and drop box using Fairfax County’s own daily report.';
     const barInfo = (i) => {
       const dd = dayDate(i), r = act[i], p = plan[i], k5 = iso(dd), sc = live && o.sched ? o.sched[k5] : null;
       const eL = i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46);
       const rowsB = [];
-      if (r) rowsB.push({ k: 'In person', v: fz(r.de) }, { k: 'By mail', v: fz(r.dm) }, { k: 'Total that day', v: fz(r.de + r.dm) }, { k: 'Running total', v: f(r.e + r.m) }, { k: 'Turnout so far', v: ((r.e + r.m) / o.reg * 100).toFixed(2) + '%' });
+      if (r) rowsB.push({ k: 'In person', v: fz(r.de) }, ...(r.dmB != null ? [{ k: 'Returned by mail', v: fz(r.dmP) }, { k: 'Drop box', v: fz(r.dmB) }] : [{ k: 'By mail', v: fz(r.dm) }]), { k: 'Total that day', v: fz(r.de + r.dm) }, { k: 'Running total', v: f(r.e + r.m) }, { k: 'Turnout so far', v: ((r.e + r.m) / o.reg * 100).toFixed(2) + '%' });
       if (!r && p) rowsB.push({ k: 'Est. in person', v: '≈ ' + rnd(p.e) + (p.e ? ' (' + rnd(p.eLo) + '–' + rnd(p.eHi) + ')' : '') }, { k: 'Est. mail returns', v: '≈ ' + rnd(p.m) }, { k: 'Est. running total', v: '≈ ' + rnd((cumMid[i] || 0)) });
       // Plain-language note: the same day in past elections, scaled to this election's pace.
       let note = '';
@@ -117,7 +132,7 @@
           return ok ? v : null; }).filter((x) => x != null).sort((a, b) => a - b);
         if (vals.length) note = 'On this same day in ' + refs.length + ' past November elections, adjusted to this year’s pace, ' + (o.place || 'this place') + ' saw between ' + rnd(vals[0]) + ' and ' + rnd(vals[vals.length - 1]) + ' ballots. The estimate is about ' + rnd(p.e + p.m) + ', near the middle.';
       }
-      return { kicker: eL + (r ? ' · reported' : ''), title: DOWL[dd.getDay()] + ', ' + MON[dd.getMonth()] + ' ' + dd.getDate(), sub: o.label, rows: rowsB,
+      return { flag: VF.flagChip(k5, o.date), kicker: eL + (r ? ' · reported' : ''), title: DOWL[dd.getDay()] + ', ' + MON[dd.getMonth()] + ' ' + dd.getDate(), sub: o.label, rows: rowsB,
         hasBadge: !r && !!p, badge: 'Estimate · not reported yet',
         note, hasList: !!(sc && sc.open.length),
         listHead: sc ? (sc.n === 1 ? '1 site open' : sc.n + ' sites open') : '',

@@ -123,19 +123,12 @@ class Locality extends DCLogic {
     ];
     if (req != null) {
       const r3 = ret / req * 100;
-      flow.push({ kicker: 'Mail ballots requested', title: f(req), hasRib: hasPBflow, a: 0, b: r3.toFixed(2), ribDelay: '1.8s',
+      flow.push({ kicker: 'Mail ballots requested', title: f(req), hasRib: false, a: 0, b: r3.toFixed(2), ribDelay: '1.8s',
         segs: [
-          { name: 'Returned', val: f(ret), of: pc(ret, req) + ' of requested · ' + pc(ret, reg) + ' of registered', w: r3.toFixed(2), bg: '#5B2FB8', fg: '#FFFFFF', inside: 'Returned · ' + pc(ret, req), delay: '1.5s', outline: hasPBflow ? '2px solid #121417' : 'none' },
+          { name: 'Returned', val: f(ret), of: pc(ret, req) + ' of requested · ' + pc(ret, reg) + ' of registered', w: r3.toFixed(2), bg: '#5B2FB8', fg: '#FFFFFF', inside: 'Returned · ' + pc(ret, req), delay: '1.5s', outline: 'none' },
           { name: live ? 'Outstanding' : 'Never returned', val: f(out), of: pc(out, req) + ' of requested', w: (100 - r3).toFixed(2), bg: '#E4D9FA', fg: '#121417', inside: (live ? 'Outstanding · ' : 'Not returned · ') + pc(out, req), delay: '1.65s', outline: 'none' }
         ] });
-      if (hasPBflow) {
-        const pb = fx.post + fx.box;
-        flow.push({ kicker: 'How returned ballots came back · county report', title: f(pb), hasRib: false,
-          segs: [
-            { name: 'By post', val: f(fx.post), of: pc(fx.post, pb) + ' of returned', w: (fx.post / pb * 100).toFixed(2), bg: '#121417', fg: '#FFFFFF', inside: 'By post · ' + pc(fx.post, pb), delay: '2.1s', outline: 'none' },
-            { name: 'Drop box', val: f(fx.box), of: pc(fx.box, pb) + ' of returned', w: (fx.box / pb * 100).toFixed(2), bg: '#FFD23F', fg: '#121417', inside: 'Drop box · ' + pc(fx.box, pb), delay: '2.25s', outline: 'none' }
-          ] });
-      }
+      // How returned ballots came back (post vs. drop box) is shown in the Fairfax panels below.
     }
     const flowNote = 'Each step zooms into the outlined slice above it.' + (fx ? ' County mail details are through ' + dmd(fx.through) + '; the latest totals use DAL until county figures are available for the same date.' : '') + (cur.out == null && fx ? ' Mail requests use the county’s count of ballots sent.' : '');
 
@@ -156,6 +149,24 @@ class Locality extends DCLogic {
       box: { title: 'By dropbox', val: hasPBflow ? f(fx.box) : '', w: hasPBflow ? fcW(fx.box, fcPB) : 0, pct: hasPBflow ? pc(fx.box, fcPB) : '', cap: 'of returned mail ballots' } };
     flow.forEach((lv) => lv.segs.forEach((sg) => { const fits = parseFloat(sg.w) >= 26; const share = (sg.of || '').split(' ')[0];
       sg.inside = fits ? sg.name + ' · ' + sg.val + ' · ' + share : ''; sg.legCls = fits ? 'fx-leg-opt' : ''; }));
+    // Bars view, Fairfax only: the county report's split of how the early vote was cast (mail
+    // returns broken out under the mail slice) and what became of the mail ballots sent.
+    const mix = { on: false };
+    if (fx && fx.post != null && fx.box != null && fx.early != null && fx.post + fx.box + fx.early > 0) {
+      const mE = fx.early, mP = fx.post, mB = fx.box, mMail = mP + mB, mTot = mE + mMail, sw = fx.extras && fx.extras.switched;
+      const seg = (name, v, of, bg, fg) => ({ name, val: f(v), share: pc(v, of), w: (v / of * 100).toFixed(2), bg, fg, inside: v / of >= 0.14 ? pc(v, of) : '' });
+      const status = fx.sent ? [seg('Returned by mail', mP, fx.sent, '#7C4DDB', '#FFFFFF'), seg('Drop box', mB, fx.sent, '#C4AEF6', '#121417')]
+        .concat(sw != null ? [seg('Voted in person instead', sw, fx.sent, '#A8E3CC', '#121417')] : [])
+        .concat([seg(sw != null ? 'Not returned' : 'Other / not returned', Math.max(0, fx.sent - mMail - (sw || 0)), fx.sent, '#DCDFE5', '#121417')]) : [];
+      mix.on = true;
+      mix.through = 'Fairfax County report through ' + dmd(fx.through);
+      mix.total = f(mTot);
+      mix.main = [seg('Early in person', mE, mTot, '#00A37A', '#FFFFFF'), seg('By mail', mMail, mTot, '#7C4DDB', '#FFFFFF')];
+      mix.subL = (mE / mTot * 100).toFixed(2); mix.subW = (mMail / mTot * 100).toFixed(2);
+      mix.sub = [seg('Returned by mail', mP, mMail, '#7C4DDB', '#FFFFFF'), seg('Drop box', mB, mMail, '#C4AEF6', '#121417')];
+      mix.hasStatus = status.length > 0; mix.sent = f(fx.sent); mix.status = status;
+      mix.undeliv = fx.extras && fx.extras.undeliverable != null ? f(fx.extras.undeliverable) + ' more were undeliverable.' : '';
+    }
     // comparison
     const { method, measure, win, show, hi } = this.state;
     // Statewide 2026 for comparison, scaled to this locality's registered voters (so "% of
@@ -273,6 +284,7 @@ class Locality extends DCLogic {
       else if (inWin) { bg = '#F5F6F8'; border = '2px dashed #C6CBD4'; }
       if (selK === k2) border = '3px solid #121417';
       cal.push({ day: d.getDate() === 1 || k2 === firstK ? MON[d.getMonth()] + ' ' + d.getDate() : String(d.getDate()), k: kText,
+        hol: isE ? '' : VF.dayFlag(k2, eK) ? (this.state.narrow ? 'Hol.' : 'Holiday') : '', holFull: VF.dayFlag(k2, eK),
         mark: this.state.narrow ? (isE ? '★' : sc ? sc.n + (satOpens[k2] ? '▲' : '') : '') : isE ? '★ Election Day' : sc ? sc.n + (sc.n === 1 ? ' site' : ' sites') + (satOpens[k2] ? ' ▲' : '') : afterE ? 'mail arriving' : '', wet: !!(r && isWet(r.w)),
         bg, fg, border, vis: inWin ? 'visible' : 'hidden', display: i >= 56 && !inWin ? 'none' : 'flex', pressed: selK === k2 ? 'true' : 'false',
         anim: this.state.calTick % 2 ? 'fx-pa' : 'fx-pb', delay: (i * 10) + 'ms', aria: dmd(k2) + (r ? ': ' + f(dv(r)) + ' ballots' : ''),
@@ -300,7 +312,7 @@ class Locality extends DCLogic {
         rows: [{ k: 'Satellites opening', v: satOpens[kk] ? String(satOpens[kk]) : '—' }, { k: 'Days until Election Day', v: String(Math.round((eDate - sd) / 864e5)) }] });
     };
     const pieOf = (r) => { if (!r || !(r.de + r.dm)) return { hasPie: false }; const pE = r.de / (r.de + r.dm) * 100; return { hasPie: true, pieE: pE.toFixed(1), pieRest: (100 - pE).toFixed(1), pctE: Math.round(pE) + '%', pctM: Math.round(100 - pE) + '%' }; };
-    const calInfo = (k) => Object.assign(calInfo0(k), pieOf(byDate[k]));
+    const calInfo = (k) => Object.assign(calInfo0(k), pieOf(byDate[k]), { flag: VF.flagChip(k, eK) });
     const sel = calInfo(selK);
     const calOpts = [['all', 'All'], ['early', 'In person'], ['mail', 'By mail']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ calM: v, calTick: this.state.calTick + 1 }) }, pill(calM, v)));
 
@@ -336,7 +348,8 @@ class Locality extends DCLogic {
       const sc = live ? D.sched[r.d] : null; const w = r.w;
       const heavy = !!(w && w.p >= 0.25), wetish = isWet(w), sunny = !!(w && !wetish && /clear|sun/i.test(w.l));
       const q = (r.de + r.dm) / maxDT; const lv = q < 0.02 ? 0 : q < 0.3 ? 1 : q < 0.55 ? 2 : q < 0.8 ? 3 : 4;
-      return { date: dmd(r.d), dateS: DOW[parse(r.d).getDay()].slice(0, 2) + ' ' + (parse(r.d).getMonth() + 1) + '/' + parse(r.d).getDate(), wxS: w ? w.hi + '°' : '', de: fz(r.de), dm: fz(r.dm), pb: r.post != null ? fz(r.post) + ' · ' + fz(r.box) : '–', day: fz(r.de + r.dm), run: f(r.e + r.m),
+      const fl = VF.dayFlag(r.d, cur.date);
+      return { flag: fl === 'Election Day' ? 'Election Day' : fl ? (this.state.narrow ? 'Holiday' : fl) : '', flagFull: fl, date: dmd(r.d), dateS: DOW[parse(r.d).getDay()].slice(0, 2) + ' ' + (parse(r.d).getMonth() + 1) + '/' + parse(r.d).getDate(), wxS: w ? w.hi + '°' : '', de: fz(r.de), dm: fz(r.dm), pb: r.post != null ? fz(r.post) + ' · ' + fz(r.box) : '–', day: fz(r.de + r.dm), run: f(r.e + r.m),
         pct: ((r.e + r.m) / cur.reg * 100).toFixed(2) + '%', out: fz(r.o), sites: sc ? String(sc.n) : '–', wx: w ? wxOf(w) : '',
         icoRain: wetish, icoSun: sunny, icoCloud: !!(w && !wetish && !sunny),
         wBg: heavy ? '#EEF0F3' : 'transparent', wFg: heavy ? '#121417' : '#8A93A3', wPad: '3px 10px', wW: heavy ? 700 : 500, bg: '#FFFFFF',
@@ -380,7 +393,7 @@ class Locality extends DCLogic {
     // ---- ballots by day (+ planning)
     const { bd, barInfo } = VF.byDay({ place: D.name, ser: cur.series, live, endI, T, date: cur.date, reg: cur.reg, label: cur.label,
       refs: EL.filter((x) => ['2025', '2024', '2023', '2022', '2021'].includes(x.id)), sched: live ? D.sched : null, gate: 'sched', officeKnown: !!D.officeKnown,
-      rowDaily: live && D.id === 'fairfax-county' ? D.rows : null, st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
+      rowDaily: live && D.id === 'fairfax-county' ? D.rows : null, fx: D.fxMail && D.fxMail[cur.id] ? D.fxMail[cur.id].ser : null, st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
 
     // ---- site map + table
     const hoursBy = {}; Object.keys(D.sched).forEach((d5) => { D.sched[d5].open.forEach(([nm, sp, hh]) => { if (!hoursBy[nm]) hoursBy[nm] = {}; hoursBy[nm][d5] = hh; }); });
@@ -530,7 +543,7 @@ class Locality extends DCLogic {
     ];
 
     return {
-      fc, fcOpts,
+      fc, fcOpts, mix,
       hdr: { eid, lid: D.id,
         elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })),
         locs: (() => { const all = D.names.map(([id, nm]) => ({ value: id, text: nm })); return [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(all, D.id), all); })(),

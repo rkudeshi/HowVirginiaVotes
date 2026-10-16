@@ -158,6 +158,34 @@ APPROX_SITES = {'richmond-city': {"Registrar's office": (37.5935, -77.4741), 'Ri
                                   'Hickory Hill Community Center': (37.4987, -77.4573)}}
 
 
+def fx_series(hist, edate):
+    """Fairfax's own daily report as running totals by series index (0 = E-46 ... 52 = E+6):
+    in person (e), returned by mail (p), returned by drop box (b), ballots sent (s). Days the
+    report skips carry the previous total; days before the first row stay null."""
+    E = date(edate)
+    by = {}
+    for h in hist:
+        c = h.get('cumulative') or {}
+        if all(c.get(k) is not None for k in ('early', 'postal', 'dropbox')):
+            by[46 - (E - date(h['date'])).days] = c
+    if not by:
+        return None
+    first, last = min(by), max(by)
+    out = {k: [] for k in 'epbs'}
+    cur = None
+    for i in range(53):
+        cur = by.get(i, cur)
+        ok = cur is not None and first <= i <= last
+        for k, src in (('e', 'early'), ('p', 'postal'), ('b', 'dropbox'), ('s', 'sent')):
+            out[k].append(cur.get(src) if ok else None)
+    return out
+
+
+def fx_extras(x):
+    x = x or {}
+    return {'switched': x.get('switchedTotal'), 'undeliverable': x.get('undeliverable')}
+
+
 def tot(h):
     return h.get('total') or ((h.get('early') or 0) + (h.get('mail') or 0))
 
@@ -542,7 +570,8 @@ def main():
                 hh = D.get('official', {}).get(y, {}).get('history')
                 if hh:
                     c = hh[-1].get('cumulative') or {}
-                    fx_mail[y] = {'through': hh[-1]['date'], 'sent': c.get('sent'), 'post': c.get('postal'), 'box': c.get('dropbox'), 'early': c.get('early')}
+                    fx_mail[y] = {'through': hh[-1]['date'], 'sent': c.get('sent'), 'post': c.get('postal'), 'box': c.get('dropbox'), 'early': c.get('early'),
+                                  'ser': fx_series(hh, election_meta(y)['date']), 'extras': fx_extras(D['official'][y].get('extras'))}
         n, nxt = sat_summary(lid, today)
         b = {'id': lid, 'name': l['name'], 'asOf': l['history'][-1]['date'], 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
              'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1, 'rankR': by_reg.index(l) + 1,
