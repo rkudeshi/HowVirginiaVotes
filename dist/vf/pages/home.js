@@ -51,8 +51,9 @@ class Home extends DCLogic {
     const e = this.state.t >= 1 ? 1 : 1 - Math.pow(2, -10 * this.state.t);
     const EID = D.eid, live = D.live, EDATE = D.date, EYR = EDATE.slice(0, 4);
     const start = parse(VF.addDays(EDATE, -46)), eDay = parse(EDATE);
-    // Timelines end at the legal mail deadline; a past election also shows any later reported days.
-    const lastRow = D.rows.length ? D.rows[D.rows.length - 1].d : EDATE;
+    // Timelines end at the legal mail deadline; a past election also shows later days that added ballots.
+    const chg = D.rows.filter((r, i) => i && (r.e > D.rows[i - 1].e || r.m > D.rows[i - 1].m));
+    const lastRow = chg.length ? chg[chg.length - 1].d : EDATE;
     const dead = live || VF.deadline(EDATE) >= lastRow ? VF.deadline(EDATE) : lastRow;
     const endI = Math.min(52, VF.idxOf(EDATE, dead));
     const rows = D.rows, last = rows[rows.length - 1];
@@ -197,7 +198,6 @@ class Home extends DCLogic {
     const byDate = {}; rows.forEach((r) => { byDate[r.d] = r; });
     const dv = (r) => calM === 'all' ? r.de + r.dm : calM === 'early' ? r.de : r.dm;
     const maxDay = Math.max(1, ...rows.map(dv));
-    const ramp = ['#FFFFFF', '#DDE3EE', '#9AA9C4', '#41557F', '#1B2A6B'];
     const startCal = new Date(start); startCal.setDate(start.getDate() - start.getDay());
     const cal = [];
     for (let i = 0; i < 63; i++) {
@@ -207,8 +207,8 @@ class Home extends DCLogic {
       const isE = k === EDATE, afterE = k > EDATE;
       const sat = D.satOpen[k];
       let bg = '#FFFFFF', fg = '#121417', border = '2px solid #ECEEF2', kText = '';
-      if (r) { const v = dv(r); const q = v / maxDay; const lv = q < 0.02 ? 0 : q < 0.35 ? 1 : q < 0.65 ? 2 : q < 0.9 ? 3 : 4;
-        bg = ramp[lv]; fg = lv >= 3 ? '#FFFFFF' : '#121417'; border = lv === 0 ? '2px solid #D3D7DE' : '2px solid transparent'; kText = v ? f(v) : '–'; }
+      if (r) { const v = dv(r); const q = v / maxDay; const cc = v ? VF.calColor(q) : { bg: '#FFFFFF', fg: '#121417' };
+        bg = cc.bg; fg = cc.fg; border = !v ? '2px solid #D3D7DE' : '2px solid transparent'; kText = v ? f(v) : '–'; }
       else if (isE && live) { bg = '#FFD23F'; border = '2px solid #121417'; kText = 'Vote'; }
       else if (afterE && live) { bg = '#F8F9FB'; border = '2px dashed #B7BCC6'; kText = 'Mail'; }
       else if (inWin) { bg = '#F5F6F8'; border = '2px dashed #C6CBD4'; }
@@ -301,18 +301,19 @@ class Home extends DCLogic {
 
     const pqs = D.locs.map((o) => o.p).sort((a, b) => a - b), pq = [0.25, 0.5, 0.75].map((x) => pqs[Math.floor(x * (pqs.length - 1))]);
     // "Find your county or city": the full list opens on click; typing filters it
-    const find = { items: D.locs.slice().sort((a, b) => a.n.localeCompare(b.n)).map((o) => ({ value: o.id, text: o.n, sub: o.rg })), pick: (v) => { location.href = linkOf(v); } };
+    const allLocs = D.locs.slice().sort((a, b) => a.n.localeCompare(b.n)).map((o) => ({ value: o.id, text: o.n, sub: o.rg }));
+    const find = { items: VF.recentItems(allLocs).concat(allLocs), pick: (v) => { location.href = linkOf(VF.unRecent(v)); } };
     return {
       eid: EID, label: D.label, box, find, bd,
       hdr: { eid: EID, lid: '',
         elections: D.elections.map((o) => ({ value: o.id, text: o.label.replace('April 2026 special', 'April 2026') + ' · ' + o.type })),
-        locs: [{ value: '', text: 'All of Virginia' }].concat(D.locs.slice().sort((a, b) => a.n.localeCompare(b.n)).map((o) => ({ value: o.id, text: o.n }))),
+        locs: [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(allLocs), allLocs.map((o) => ({ value: o.value, text: o.text }))),
         pickE: (v) => { if (v !== EID) location.href = v === '2026' ? '/' : '/' + v; },
-        pickL: (v) => { if (v) location.href = linkOf(v); } },
+        pickL: (v) => { v = VF.unRecent(v); if (v) location.href = linkOf(v); } },
       band: { asOf: dmd(D.asOf) },
       mini: D.locs.map((o) => { const q = o.p, mh = this.state.miniHover === o.id; return { d: o.d, move: (ev) => this.setState({ miniHover: o.id, tip: this.tipAt(ev, 'mini', o.id) }), go: () => { location.href = linkOf(o.id); }, stroke: mh ? '#121417' : '#E6E8EC', fill: mh ? '#FFD23F' : q < pq[0] ? '#B3E6D3' : q < pq[1] ? '#5CC9A3' : q < pq[2] ? '#00A37A' : '#006B50', delay: Math.round(parseFloat(o.d.slice(1)) * 1.4 + 300) + 'ms' }; }),
       fc, fcOpts,
-      loading: false, ready: true, asOf: dmd(D.asOf), hero, cd, paceChips, satLine, flow, ctrls, years, ch, cal, sel, calOpts, calRamp: ramp.slice(1),
+      loading: false, ready: true, asOf: dmd(D.asOf), hero, cd, paceChips, satLine, flow, ctrls, years, ch, cal, sel, calOpts, calRamp: VF.calLegend,
       maps, mapOpts, mapSel, mapPick, mapNotLean: mapSel !== 'lean',
       miniLeave: () => this.setState({ miniHover: null, tip: null }),
       mapClear: (ev) => { if (!ev || ev.target.tagName !== 'path') this.setState({ hover: null, pinned: null, tip: null }); }, mapLeave: () => this.setState({ hover: null, tip: null }), hov, tip, hideTip, cols, quick, rows: trows,

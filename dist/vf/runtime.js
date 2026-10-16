@@ -160,9 +160,29 @@
 
   const pages = {};
   window.DCLogic = DCLogic;
-  /* The brand bar starts tall at the top of the page and slims down once you scroll. */
-  const onScrollBand = () => document.body.classList.toggle('vf-scrolled', window.scrollY > 24);
-  window.addEventListener('scroll', onScrollBand, { passive: true }); document.addEventListener('DOMContentLoaded', onScrollBand); onScrollBand();
+  /* The brand bar starts tall at the top of the page and slims down once you scroll. The bar is
+     fixed and the page keeps a constant gap for its tall height, so slimming it never moves the
+     page (a moving page used to flip the bar back and forth near the top). Two thresholds keep
+     it from flickering: slim past 56px, tall again only back near the top. */
+  const BAND_CSS = '.vf-band{position:fixed !important;top:0;left:0;right:0}body{padding-top:var(--vf-bandh,68px)}body.vf-full .vf-band{display:none !important}';
+  { const st = document.createElement('style'); st.textContent = BAND_CSS; document.head.appendChild(st); }
+  const measureBand = () => {
+    const b = document.querySelector('.vf-band');
+    if (b && !document.body.classList.contains('vf-scrolled') && !measureBand.busy) document.documentElement.style.setProperty('--vf-bandh', b.offsetHeight + 'px');
+  };
+  const onScrollBand = () => {
+    const y = window.scrollY, cl = document.body.classList, was = cl.contains('vf-scrolled');
+    const now = was ? y > 4 : y > 56;
+    if (now === was) return;
+    cl.toggle('vf-scrolled', now);
+    if (!now) { measureBand.busy = true; clearTimeout(measureBand.t); measureBand.t = setTimeout(() => { measureBand.busy = false; measureBand(); }, 320); }
+  };
+  window.addEventListener('scroll', onScrollBand, { passive: true });
+  window.addEventListener('resize', measureBand);
+  window.addEventListener('load', measureBand);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureBand);
+  document.addEventListener('DOMContentLoaded', () => { onScrollBand(); measureBand(); new MutationObserver(() => { cancelAnimationFrame(measureBand.f); measureBand.f = requestAnimationFrame(measureBand); }).observe(document.body, { childList: true, subtree: true }); });
+  onScrollBand();
   /* In-page menu jumps: boxes slide in as they scroll into view, which shifts where the browser
      thinks they are. Jump to the real layout position instead, just below the sticky bar. */
   document.addEventListener('click', (ev) => {
@@ -176,7 +196,26 @@
     history.replaceState(null, '', a.getAttribute('href'));
   });
   { const st = document.createElement('style'); st.textContent = COMBO_CSS; document.head.appendChild(st); }
+  /* Calendar shading: a continuous slate scale, so every daily total gets its own shade. */
+  const CAL_STOPS = [[0, [241, 244, 249]], [0.2, [205, 214, 230]], [0.45, [140, 158, 191]], [0.7, [65, 85, 127]], [1, [27, 42, 107]]];
+  const calColor = (q) => {
+    q = Math.max(0, Math.min(1, q || 0));
+    let j = 1; while (j < CAL_STOPS.length - 1 && q > CAL_STOPS[j][0]) j++;
+    const [qa, a] = CAL_STOPS[j - 1], [qb, b] = CAL_STOPS[j], t = (q - qa) / (qb - qa || 1);
+    const c = a.map((x, k) => Math.round(x + (b[k] - x) * t));
+    return { bg: 'rgb(' + c.join(',') + ')', fg: q > 0.5 ? '#FFFFFF' : '#121417' };
+  };
+  /* Recently opened localities (this browser only), listed first in the locality pickers. */
+  const RECENT_KEY = 'vf-recent-localities';
+  const recentLocs = () => { try { const a = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); return Array.isArray(a) ? a.filter((x) => typeof x === 'string').slice(0, 5) : []; } catch (e) { return []; } };
+  const addRecent = (id) => { try { localStorage.setItem(RECENT_KEY, JSON.stringify([id].concat(recentLocs().filter((x) => x !== id)).slice(0, 5))); } catch (e) { /* storage off */ } };
+  /* items: the full picker list ({ value: id, text }). Returns recent entries (value 'r:<id>') to
+     put first; strip the prefix with VF.unRecent when one is picked. */
+  const recentItems = (items, skip) => recentLocs().filter((id) => id !== skip).map((id) => items.find((o) => o.value === id)).filter(Boolean)
+    .map((o) => ({ value: 'r:' + o.value, text: o.text, sub: 'Recent' }));
   window.VF = {
+    recentLocs, addRecent, recentItems, unRecent: (v) => (v || '').replace(/^r:/, ''),
+    calColor, calLegend: [0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 1].map((q) => calColor(q).bg),
     page(name, Logic) { pages[name] = Logic; },
     /* Mail ballots must arrive by noon on the 3rd day after Election Day; a weekend or
        state holiday (Veterans Day, Nov 11) moves it to the next business day. */

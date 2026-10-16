@@ -27,6 +27,17 @@ D = json.loads((ROOT / 'region.json').read_text())
 ARCH = json.loads((ROOT / 'archived-voting-history.json').read_text())['localities']
 W26 = json.loads((ROOT / 'weather' / '2026.json').read_text())
 MANIFEST = json.loads((ROOT / 'map-manifest.json').read_text())
+def nice(name):
+    """Small words stay lowercase inside a place name: Isle of Wight County, King and Queen County."""
+    return re.sub(r'(?<=\S )(Of|And|The|At|In|On)(?= )', lambda m: m.group(1).lower(), name or '')
+
+
+for _n in D['names']:
+    _n['name'] = nice(_n['name'])
+for _e in D['elections'].values():
+    for _l in _e['localities']:
+        if 'name' in _l:
+            _l['name'] = nice(_l['name'])
 NAMES = {n['id']: n for n in D['names']}
 ALL_NAMES = [[n['id'], n['name']] for n in sorted(D['names'], key=lambda n: n['name'])]
 # Display-only merge. Never write county values over the saved DAL observations.
@@ -115,9 +126,25 @@ def monotonic(hist):
     return out
 
 
+def activity_dated(hist):
+    """Display-only: the DAL files saved before 2026 stamp each row with the morning it was
+    published, so a row dated Tuesday holds Monday's ballots. Move each row back to the day the
+    voting happened (keep the latest row per day). 2026 rows already carry activityDate."""
+    by = {}
+    for h in sorted(hist, key=lambda h: h.get('timestamp') or h['date']):
+        h = dict(h)
+        ts = h.get('timestamp') or ''
+        if 'activityDate' in h:
+            h['date'] = h['activityDate']
+        elif ts[:10] == h['date'] and ts[11:13] < '12':
+            h['date'] = (date(h['date']) - dt.timedelta(days=1)).isoformat()
+        by[h['date']] = h
+    return [by[k] for k in sorted(by)]
+
+
 for _e in D['elections'].values():
     for _l in _e['localities']:
-        _l['history'] = monotonic(_l['history'])
+        _l['history'] = monotonic(activity_dated(_l['history']))
 for _lid in ARCH:
     for _eid in ARCH[_lid]:
         if isinstance(ARCH[_lid][_eid], dict) and 'history' in ARCH[_lid][_eid]:
@@ -478,7 +505,7 @@ def main():
             pdates = [x for x in pd['dates'] if x >= '2026-09-18'] or pd['dates'][-1:]
             for code, p in pd['precincts'].items():
                 if code in pp:
-                    precincts.append({'c': code, 'n': p['name'].title(), 'd': pp[code],
+                    precincts.append({'c': code, 'n': nice(p['name'].title()), 'd': pp[code],
                                       'h': [p['history'].get(x, [0, 0, 0])[:2] for x in pdates], 'r': p['history'].get(pdates[-1], [0, 0, 0])[2]})
         if not precincts:
             precincts = [{'c': c, 'n': c, 'd': d, 'h': [[0, 0]], 'r': 0} for c, d in pp.items()]

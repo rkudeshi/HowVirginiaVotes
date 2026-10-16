@@ -29,7 +29,7 @@ class Locality extends DCLogic {
     const title = D.name + (cur && this.state.eid !== '2026' ? ' · ' + cur.label : '') + ' · VoteFlow';
     if (document.title !== title) document.title = title;
   }
-  componentWillUnmount() { cancelAnimationFrame(this.raf); clearInterval(this.clock); clearInterval(this.player); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize); }
+  componentWillUnmount() { document.body.classList.remove('vf-full'); cancelAnimationFrame(this.raf); clearInterval(this.clock); clearInterval(this.player); window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize); }
   tipAt(ev, kind, key) {
     const W = window.innerWidth, H = window.innerHeight;
     let x = ev.clientX + 18, y = ev.clientY + 18;
@@ -67,12 +67,11 @@ class Locality extends DCLogic {
     const cur = EL.find((x) => x.id === eid) || EL[0];
     const live = cur.id === '2026';
     const COLORS = { va: '#41557F', '2026': '#00A37A', '2026-special': '#6B7F1A', '2025': '#7C4DDB', '2024': '#121417', '2023': '#B7791F', '2022': '#8C5A00', '2021': '#8A8F99', '2020': '#A68A00' };
-    // Turnout rank colored by thirds: top third green, bottom third red.
-    const rpT = D.rankP <= 44 ? ['#00694F', '#E3F5ED'] : D.rankP >= 90 ? ['#B42318', '#FDECEA'] : ['#121417', '#FFFFFF'];
-    const L = { name: D.name, region: D.region, rankV: D.rankV, rankP: D.rankP, rankR: D.rankR, pFg: rpT[0], pBg: rpT[1] };
+    if (this.recorded !== D.id) { this.recorded = D.id; VF.addRecent(D.id); }
+    const L = { name: D.name, region: D.region, rankV: D.rankV, rankP: D.rankP, rankR: D.rankR };
     const eDate = parse(cur.date);
-    // Timelines end at the legal mail deadline; a past election also shows any later reported days.
-    let curLast = -1; if (cur.series) for (let i = 0; i < 53; i++) if (cur.series.e[i] != null) curLast = i;
+    // Timelines end at the legal mail deadline; a past election also shows later days that added ballots.
+    let curLast = -1; if (cur.series) { const S = cur.series; for (let i = 1; i < 53; i++) if ((S.e[i] || 0) > (S.e[i - 1] || 0) || (S.m[i] || 0) > (S.m[i - 1] || 0)) curLast = i; }
     const endI = Math.min(52, live ? VF.idxOf(cur.date, VF.deadline(cur.date)) : Math.max(VF.idxOf(cur.date, VF.deadline(cur.date)), curLast));
     const typeLabel = cur.type + ' election · ' + DOWL[eDate.getDay()] + ', ' + MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear();
 
@@ -182,6 +181,11 @@ class Locality extends DCLogic {
     const fmtT = (v) => measure === 'pct' ? (+v.toFixed(2)) + '%' : short(v);
     const pathOf = (fn) => { let d = ''; let pen = false; for (let i = 0; i < n; i++) { const v = fn(i); if (v == null) { pen = false; continue; } d += (pen ? ' L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); pen = true; } return d; };
     const lines = visEl.slice().sort((a, b) => (a.id === eid) - (b.id === eid)).map((x) => ({ d: pathOf((i) => val(x, i)), color: COLORS[x.id], w: x.id === eid ? (narrow ? 10 : 6) : (narrow ? 5 : 3) }));
+    // Statewide pace reads as a shaded backdrop (a filled area under its line), so it stands
+    // apart from the other elections' lines instead of being one more thin line among them.
+    let stArea = '';
+    if (stEl && show.va !== false) { let a = -1, b = -1; for (let i = 0; i < n; i++) if (val(stEl, i) != null) { if (a < 0) a = i; b = i; }
+      if (a >= 0) stArea = pathOf((i) => val(stEl, i)) + ' L' + X(b).toFixed(1) + ',' + CB + ' L' + X(a).toFixed(1) + ',' + CB + ' Z'; }
     const proj = hasProj ? pathOf((i) => i < T ? null : projVal(i)) : '';
     const yt = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((j) => ({ y: CB - j * (CB - 20) / 8, ty: CB + 4 - j * (CB - 20) / 8, l: fmtT(top * j / 8), stroke: j === 0 ? '#121417' : '#ECEEF2' }));
     const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= T) : [40, 30, 20, 10, 0].concat(endI > 50 ? [46 - endI] : []); // skip an after-label that would crowd Election Day
@@ -200,7 +204,7 @@ class Locality extends DCLogic {
     const ends = [];
     visEl.map((x) => ({ k: x.id, label: x.label, color: COLORS[x.id], cur: x.id === eid, v: (i) => val(x, i) })).forEach((L0) => { let li = -1; for (let i = 0; i < n; i++) if (L0.v(i) != null) li = i;
       const pe = hasProj && L0.k === '2026' ? projVal(n - 1) : null; if (pe != null) li = n - 1;
-      if (li >= 0 && L0.k !== 'va') ends.push({ x: X(li) + 10, y: Y(pe != null ? pe : L0.v(li)), t: L0.label.replace('November ', 'Nov ').replace('April ', 'Apr ').replace(' special', ''), color: L0.color, fw: L0.cur ? 700 : 500 }); });
+      if (li >= 0) ends.push({ x: X(li) + 10, y: Y(pe != null ? pe : L0.v(li)), t: L0.k === 'va' ? 'Virginia' : L0.label.replace('November ', 'Nov ').replace('April ', 'Apr ').replace(' special', ''), color: L0.color, fw: L0.cur || L0.k === 'va' ? 700 : 500 }); });
     // Spread labels that end at the same x so they don't overlap.
     const lgap = narrow ? 32 : 15;
     const groups = {}; ends.forEach((e2) => { (groups[Math.round(e2.x / 40)] = groups[Math.round(e2.x / 40)] || []).push(e2); });
@@ -208,12 +212,12 @@ class Locality extends DCLogic {
       for (let i = 1; i < g.length; i++) if (g[i].y - g[i - 1].y < lgap) g[i].y = g[i - 1].y + lgap;
       const over = g[g.length - 1].y - CB; if (over > 0) { g[g.length - 1].y = CB; for (let i = g.length - 2; i >= 0; i--) if (g[i + 1].y - g[i].y < lgap) g[i].y = g[i + 1].y - lgap; } });
     ends.forEach((e2) => { e2.x = e2.x.toFixed(1); e2.y = e2.y.toFixed(1); });
-    const ch = { revCls: this.state.chTick % 2 ? 'fx-ra' : 'fx-rb', fadeCls: this.state.chTick % 2 ? 'fx-fa' : 'fx-fb', todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, todayLbl: 'THROUGH ' + md(D.asOf).toUpperCase(), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
+    const ch = { stArea, revCls: this.state.chTick % 2 ? 'fx-ra' : 'fx-rb', fadeCls: this.state.chTick % 2 ? 'fx-fa' : 'fx-fb', todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, todayLbl: 'THROUGH ' + md(D.asOf).toUpperCase(), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
       todayX: todayX.toFixed(1), todayLX: (win === 'today' ? todayX - 8 : todayX + 8).toFixed(1), todayAnchor: win === 'today' ? 'end' : 'start',
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
       leave: () => this.setState({ hi: null }),
-      note: 'Thick line: ' + cur.label + '.' + (stEl && show.va !== false ? ' Slate line: Virginia statewide in 2026, scaled to this locality’s registered voters.' : '') + ' Tooltip’s right column: ' + cur.label + ' as a share of that election on the same day.' + (hasProj ? ' Dotted green line: where 2026 lands if it follows 2025’s pace from today.' : '') };
+      note: 'Thick line: ' + cur.label + '.' + (stEl && show.va !== false ? ' Shaded slate area (“Virginia”): statewide in 2026, scaled to this locality’s registered voters.' : '') + ' Tooltip’s right column: ' + cur.label + ' as a share of that election on the same day.' + (hasProj ? ' Dotted green line: where 2026 lands if it follows 2025’s pace from today.' : '') };
     const bump = { hi: null, chTick: this.state.chTick + 1 };
     const opt = (label, key, cur2, list) => ({ label, opts: list.map(([v, l]) => Object.assign({ label: l, pick: () => this.setState(Object.assign({ [key]: v }, key.startsWith('p') ? {} : bump)) }, pill(cur2, v))) });
     const ctrls = [
@@ -252,7 +256,6 @@ class Locality extends DCLogic {
     const endK = VF.addDays(cur.date, endI - 46);
     const calStart = new Date(startE); calStart.setDate(calStart.getDate() - calStart.getDay());
     const maxDay = Math.max(1, ...drows.map(dv));
-    const ramp = ['#FFFFFF', '#DDE3EE', '#9AA9C4', '#41557F', '#1B2A6B'];
     const firstK = iso(startE), eK = cur.date;
     const defaultK = live ? D.asOf : eK;
     const selK = this.state.cal || defaultK;
@@ -263,8 +266,8 @@ class Locality extends DCLogic {
       const inWin = k2 >= firstK && k2 <= endK, isE = k2 === eK, afterE = k2 > eK;
       const sc = live ? D.sched[k2] : null;
       let bg = '#FFFFFF', fg = '#121417', border = '2px solid #ECEEF2', kText = '';
-      if (r) { const v = dv(r); const q = v / maxDay; const lv = q < 0.02 ? 0 : q < 0.35 ? 1 : q < 0.65 ? 2 : q < 0.9 ? 3 : 4;
-        bg = ramp[lv]; fg = lv >= 3 ? '#FFFFFF' : '#121417'; border = afterE ? '2px dashed #5B2FB8' : lv === 0 ? '2px solid #D3D7DE' : '2px solid transparent'; kText = v ? f(v) : '–'; }
+      if (r) { const v = dv(r); const q = v / maxDay; const cc = v ? VF.calColor(q) : { bg: '#FFFFFF', fg: '#121417' };
+        bg = cc.bg; fg = cc.fg; border = afterE ? '2px dashed #5B2FB8' : !v ? '2px solid #D3D7DE' : '2px solid transparent'; kText = v ? f(v) : '–'; }
       else if (isE) { bg = '#FFD23F'; border = '2px solid #121417'; kText = 'Vote'; }
       else if (afterE) { bg = '#F8F9FB'; border = '2px dashed #B7BCC6'; kText = 'Mail'; }
       else if (inWin) { bg = '#F5F6F8'; border = '2px dashed #C6CBD4'; }
@@ -482,6 +485,7 @@ class Locality extends DCLogic {
     const pSel = this.state.pSel || 'all';
     const pLay = 'solo';
     const pFull = !!this.state.pFull;
+    document.body.classList.toggle('vf-full', pFull); // full-screen map hides the brand bar
     const pm = {
       lay: pLay, one: true, cols: 'minmax(0, 1fr)',
       lays: [['all', 'All 3 maps'], ['one', 'One map']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ pLay: v }) }, pill(pLay, v))),
@@ -529,9 +533,9 @@ class Locality extends DCLogic {
       fc, fcOpts,
       hdr: { eid, lid: D.id,
         elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })),
-        locs: [{ value: '', text: 'All of Virginia' }].concat(D.names.map(([id, nm]) => ({ value: id, text: nm }))),
+        locs: (() => { const all = D.names.map(([id, nm]) => ({ value: id, text: nm })); return [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(all, D.id), all); })(),
         pickE: (v) => { if (v === eid) return; this.setState({ eid: v, show: Object.assign({}, this.state.show, { [v]: true }), cal: null, hi: null, tip: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }); },
-        pickL: (v) => { if (v === D.id) return; location.href = v ? '/' + eid + '/' + v : (eid === '2026' ? '/' : '/' + eid); } },
+        pickL: (v) => { v = VF.unRecent(v); if (v === D.id) return; location.href = v ? '/' + eid + '/' + v : (eid === '2026' ? '/' : '/' + eid); } },
       where: this.state.vaMap ? { vb: '0 0 1000 ' + this.state.vaMap.h,
         // a ring around the locality so small cities are easy to spot
         ring: (() => { const nums = (this.state.vaMap.p[D.id] || '').match(/-?\d+(\.\d+)?/g) || []; if (nums.length < 2) return { on: false };
@@ -539,7 +543,7 @@ class Locality extends DCLogic {
           return { on: true, cx: ((x0 + x1) / 2).toFixed(1), cy: ((y0 + y1) / 2).toFixed(1), r: Math.max(22, Math.max(x1 - x0, y1 - y0) / 2 + 12).toFixed(1) }; })(), paths: Object.keys(this.state.vaMap.p).map((id) => ({ d: this.state.vaMap.p[id], fill: id === D.id ? '#41557F' : '#D3D7DE', stroke: id === D.id ? '#121417' : '#FFFFFF', sw: id === D.id ? 3 : 1, order: id === D.id ? 1 : 0 })).sort((a, b) => a.order - b.order) } : { vb: '0 0 1000 440', paths: [], ring: { on: false } },
       showSites: live && D.sites.length > 0, siteMany: D.sites.length > 1, showPrecincts: live && D.precincts.some((p) => p.r),
       fxr, loading: false, ready: true, backHref: eid === '2026' ? '/' : '/' + eid, L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
-      flow, flowNote, ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: ramp.slice(1), sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Collapse all addresses & hours' : 'Expand all addresses & hours',
+      flow, flowNote, ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: VF.calLegend, sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Collapse all addresses & hours' : 'Expand all addresses & hours',
       ticker: ticker0.concat(ticker0, ticker0)
     };
   }

@@ -145,7 +145,7 @@ section[id]{scroll-margin-top:62px !important}
 .vf-elchip{transition:transform .18s cubic-bezier(.3,1.4,.5,1),box-shadow .18s}
 .vf-elchip:hover{transform:translateY(-3px);box-shadow:0 0 0 4px rgba(255,210,63,.6),0 12px 22px -14px rgba(18,20,23,.55)}
 *{scrollbar-width:thin;scrollbar-color:#9AA9C4 transparent}
-*::-webkit-scrollbar{width:10px;height:10px}*::-webkit-scrollbar-thumb{background:#9AA9C4;border-radius:999px;border:2px solid transparent;background-clip:padding-box}*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar{width:10px;height:10px}*::-webkit-scrollbar-thumb{background:#9AA9C4;border-radius:999px;border:2px solid transparent;background-clip:padding-box}*::-webkit-scrollbar-track{background:transparent}*::-webkit-scrollbar-button{display:none;width:0;height:0}
 /* the projection draws left to right, picking up where the line ends */
 @keyframes vfRevA{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes vfRevB{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .fx-ra,.fx-rb{transform-box:fill-box;transform-origin:left center}.fx-ra{animation:vfRevA .9s cubic-bezier(.4,0,.3,1) 1.45s both}.fx-rb{animation:vfRevB .9s cubic-bezier(.4,0,.3,1) 1.45s both}
@@ -210,8 +210,8 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
           <sc-if value="{{where.ring.on}}"><circle class="fx-live2" cx="{{where.ring.cx}}" cy="{{where.ring.cy}}" r="{{where.ring.r}}" fill="none" stroke="#41557F" stroke-width="5"></circle></sc-if>
         </svg>
         <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end">
-          <span class="fx-pill" title="Rank by registered voters" style="padding: 8px 12px; background: #EEF1F8; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 600; font-size: 14px"><b style="color: #41557F; font-size: 16px">#{{L.rankR}}</b> of 133 in size</span>
-          <span class="fx-pill" title="Rank by early turnout so far" style="padding: 8px 12px; background: {{L.pBg}}; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 600; font-size: 14px"><b style="color: {{L.pFg}}; font-size: 16px">#{{L.rankP}}</b> of 133 in turnout %</span>
+          <span class="fx-pill" title="Rank by registered voters" style="padding: 8px 12px; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 600; font-size: 14px"><b style="font-size: 16px">#{{L.rankR}}</b> of 133 in size</span>
+          <span class="fx-pill" title="Rank by early turnout so far" style="padding: 8px 12px; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 600; font-size: 14px"><b style="font-size: 16px">#{{L.rankP}}</b> of 133 in turnout %</span>
         </div>
       </div>
     </div>
@@ -460,11 +460,14 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
 </sc-for>
           <line x1="{{ch.todayX}}" y1="10" x2="{{ch.todayX}}" y2="{{ch.b}}" stroke="#5B2FB8" stroke-width="2" stroke-dasharray="2 4"></line>
           <text x="{{ch.todayLX}}" y="{{ch.todayY}}" text-anchor="{{ch.todayAnchor}}" class="fx-axis" style="font-family: 'DM Mono', monospace; font-weight: 600" fill="#5B2FB8">{{ch.todayLbl}}</text>
+          <sc-if value="{{ch.stArea}}" hint-placeholder-val="{{ false }}">
+            <path class="{{ch.fadeCls}}" d="{{ch.stArea}}" fill="#41557F" fill-opacity="0.18" stroke="none"></path>
+          </sc-if>
           <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="4">
             <path class="{{ch.anim}}" d="{{ln.d}}" pathLength="1" fill="none" stroke="{{ln.color}}" stroke-width="{{ln.w}}" stroke-linejoin="round" stroke-linecap="round"></path>
           </sc-for>
           <sc-for list="{{ch.ends}}" as="el" hint-placeholder-count="4">
-            <text class="fx-axis {{ch.fadeCls}}" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s" fill="{{el.color}}">{{el.t}}</text>
+            <text class="fx-axis {{ch.fadeCls}}" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s; paint-order: stroke" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round" fill="{{el.color}}">{{el.t}}</text>
           </sc-for>
           <sc-if value="{{ch.hasProj}}" hint-placeholder-val="{{ false }}">
             <clipPath id="vf-projclip"><rect class="{{ch.revCls}}" x="{{ch.todayX}}" y="0" width="1000" height="{{ch.b10}}"></rect></clipPath>
