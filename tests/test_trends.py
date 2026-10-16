@@ -34,6 +34,12 @@ class TrendNotesTest(unittest.TestCase):
         sat = [self.today + dt.timedelta(days=4)]
         text = trend_notes('Sample City', self.edate, cur, ref, cur, ref, self.today, sat, 50, 50)
         self.assertIn('satellite site opens here on', text)
+        self.assertNotIn('0 days before Election Day', text)  # Election Day itself is not an early-voting day
+
+    def test_holiday_mail_dip(self):
+        cur = series([400] * 27, [300] * 20 + [100] * 7)
+        ref = series([400] * 47, [300] * 47)
+        text = trend_notes('Sample City', self.edate, cur, ref, cur, ref, self.today, [], 50, 50)
         self.assertIn("Indigenous Peoples' Day", text)
 
     def test_too_early_returns_nothing(self):

@@ -19,35 +19,49 @@
          mode (data ramps on maps, the brand bar). An all-digit color needs a letter to opt out,
          so the near-black is written #12141a there. */
   const pref = (k, d) => { try { return localStorage.getItem(k) || d; } catch (e) { return d; } };
-  const THEME = pref('vf-theme', 'auto'), BORDERS = pref('vf-borders', 'soft');
-  const DARK = THEME === 'dark' || (THEME === 'auto' && !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches));
-  const SOFT = BORDERS === 'soft';
+  /* Theme: bold (black frames), balanced (gray frames, black selections), soft (pale frames,
+     segmented toggles) or calm (soft plus a quieter palette: only the in-person/mail colors and
+     the brand yellow stay colorful). Appearance: auto / light / dark. */
+  const MODE = pref('vf-theme', 'auto');
+  const LOOK = (() => { const v = pref('vf-look', ''); if (/^(bold|balanced|soft|calm)$/.test(v)) return v; return pref('vf-borders', 'soft') === 'bold' ? 'bold' : 'soft'; })();
+  const DARK = MODE === 'dark' || (MODE === 'auto' && !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches));
+  const SOFT = LOOK === 'soft' || LOOK === 'calm', BAL = LOOK === 'balanced', CALM = LOOK === 'calm';
   document.documentElement.classList.toggle('vf-dark', DARK);
   document.documentElement.classList.toggle('vf-soft', SOFT);
+  document.documentElement.classList.toggle('vf-balanced', BAL);
+  document.documentElement.classList.toggle('vf-calm', CALM);
   document.documentElement.style.colorScheme = DARK ? 'dark' : 'light';
-  const DARK_MAP = { FFFFFF: '1B1E24', E6E8EC: '0F1115', '121417': 'E9EBEF', '4A5260': 'A4ABB7', '3A3F48': '5A616D', ECEEF2: '2A2E36', F1F2F5: '23272E',
-    F5F6F8: '20242B', F8F9FB: '1F2329', D3D7DE: '3A3F48', DCDFE5: '343943', E4D9FA: '3B2F5C', EEEEEE: '2A2E36', '2A2F38': 'D3D7DE', '5F6775': 'A4ABB7',
-    '8A93A3': '8A93A3', B7BCC6: '5F6775', FFD23F: 'C9A227', FFF6D1: '2E2814', F0D27A: '6B5A22', '5B2FB8': 'B49BF2', '4E2A9E': 'C4AEF6', '7C4DDB': '9673E6',
-    '00A37A': '1DB98C', '00694F': '5CD3AA', '41557F': '8EA2CC', '1B2A6B': 'AFC0EA', '121A3A': 'C9D2EA' };
+  // Dark mode is a soft charcoal, not black: surfaces sit in the 20–30% lightness range.
+  const DARK_MAP = { FFFFFF: '33373E', E6E8EC: '2A2D33', '121417': 'ECEEF1', '4A5260': 'B3B9C3', '3A3F48': '6B727D', ECEEF2: '41464E', F1F2F5: '3B3F47',
+    F5F6F8: '393D44', F8F9FB: '373B42', D3D7DE: '4D535C', DCDFE5: '484D56', E4D9FA: '4A3F68', EEEEEE: '41464E', '2A2F38': 'DADDE2', '5F6775': 'B3B9C3',
+    '8A93A3': '9AA1AD', B7BCC6: '6B727D', FFD23F: 'D4AE2C', FFF6D1: '403A27', F0D27A: '75653A', '5B2FB8': 'BBA4F4', '4E2A9E': 'C9B5F6', '7C4DDB': '9D7CE8',
+    '00A37A': '22BE91', '00694F': '6BD8B3', '41557F': '9DB0D6', '1B2A6B': 'B7C6EE', '121A3A': 'D0D8EE', C9CDD4: '5C626C', '7A8291': 'A6ADB8' };
+  // Calm: flow-chart blues and amber, red/green status, purple labels and yellow panels go neutral.
+  const CALM_MAP = { '2F6FD6': '5B6270', '3B82F6': '7A8291', '6FA6EA': 'B9BEC7', D9E4F2: 'E6E8EC', F5F9FF: 'F7F8FA', F3F8FF: 'F7F8FA', F6F8FD: 'F7F8FA', DCE3EF: 'E6E8EC',
+    '4A5672': '4A5260', '5A6E8C': '5B6270', F5A524: '9AA1AD', FBEBC8: 'ECEEF2', FFFBEF: 'F7F8FA', F2C14E: 'B9BEC7', C98A0B: '5B6270', B4400F: '4A5260',
+    B42318: '121417', '00694F': '121417', FDECEA: 'F1F2F5', '5B2FB8': '4A5260', '4E2A9E': '4A5260', F0592A: '121417', FFF6D1: 'FFFFFF', F0D27A: 'E6E8EC',
+    '41557F': '4A5260', '1B2A6B': '121417', '121A3A': '121417', EDE6FC: 'F1F2F5', F6F2FE: 'F4F5F7', F7F4FE: 'F4F5F7', F5F1FD: 'F4F5F7', C3ADF1: 'C9CDD4', '86D9BA': 'C9CDD4', '4A8FE7': '9AA1AD', '1E3FA0': '121417' };
   const hsl = (r, g, b) => { r /= 255; g /= 255; b /= 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2; let hh = 0, ss = 0;
     if (mx !== mn) { const d = mx - mn; ss = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); hh = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; hh /= 6; } return [hh, ss, l]; };
   const rgbOf = (hh, ss, l) => { if (!ss) return [l, l, l].map((v) => Math.round(v * 255)); const q = l < 0.5 ? l * (1 + ss) : l + ss - l * ss, pp = 2 * l - q;
     const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? pp + (q - pp) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? pp + (q - pp) * (2 / 3 - t) * 6 : pp; }; return [f(hh + 1 / 3), f(hh), f(hh - 1 / 3)].map((v) => Math.round(v * 255)); };
   const darkRGB = (r, g, b) => {
     const [hh, ss, l] = hsl(r, g, b); let l2 = l, s2 = ss;
-    if (ss < 0.12) l2 = Math.min(0.94, Math.max(0.08, 1.02 - l * 0.93));          // grays flip
-    else if (l >= 0.85) { l2 = 0.15 + (1 - l) * 0.7; s2 = ss * 0.5; }               // pale tints → dark tints
-    else if (l <= 0.3) l2 = 0.74;                                                    // dark ink → light ink
+    if (ss < 0.12) l2 = Math.min(0.94, Math.max(0.2, 0.96 - l * 0.76));           // grays flip onto charcoal
+    else if (l >= 0.85) { l2 = 0.24 + (1 - l) * 0.6; s2 = ss * 0.5; }               // pale tints → dark tints
+    else if (l <= 0.3) l2 = 0.78;                                                    // dark ink → light ink
     return rgbOf(hh, s2, l2);
   };
   const memo = {};
   const darkHex = (hx) => { if (DARK_MAP[hx]) return '#' + DARK_MAP[hx]; if (memo[hx]) return memo[hx];
     const c = darkRGB(parseInt(hx.slice(0, 2), 16), parseInt(hx.slice(2, 4), 16), parseInt(hx.slice(4, 6), 16));
     return (memo[hx] = '#' + c.map((v) => v.toString(16).padStart(2, '0')).join('').toUpperCase()); };
-  const SOFT_RE = /(border(?:-top|-right|-bottom|-left)?\s*:\s*[^;"]*?)#(3A3F48|121417|D3D7DE)\b/g;
+  const FRAME_RE = /(border(?:-top|-right|-bottom|-left)?\s*:\s*[^;"]*?)#(3A3F48|121417|D3D7DE)\b/g;
+  const FRAME = SOFT ? '#EEEEEE' : BAL ? '#C3C8D0' : null;
   const tc = (v) => {
-    if (typeof v !== 'string' || (!DARK && !SOFT)) return v;
-    if (SOFT) v = v.replace(SOFT_RE, '$1#EEEEEE');
+    if (typeof v !== 'string' || (!DARK && !FRAME && !CALM)) return v;
+    if (FRAME) v = v.replace(FRAME_RE, '$1' + FRAME);
+    if (CALM) v = v.replace(/#([0-9A-F]{6})\b/g, (m, hx) => CALM_MAP[hx] ? '#' + CALM_MAP[hx] : m);
     if (DARK) v = v.replace(/#([0-9A-F]{6})\b/g, (m, hx) => darkHex(hx))
       .replace(/rgba?\((\d+),\s*(\d+),\s*(\d+)((?:,\s*[\d.]+)?)\)/g, (m, r, g, b, a) => { const c = darkRGB(+r, +g, +b); return (a ? 'rgba(' : 'rgb(') + c.join(',') + a + ')'; });
     return v;
@@ -67,8 +81,8 @@
     const wrap = document.createElement('div'); wrap.className = 'vf-look'; wrap.setAttribute('role', 'dialog'); wrap.setAttribute('aria-label', 'Look settings');
     const row = (label, key, cur, opts) => '<div class="row"><b>' + label + '</b><span class="seg">' + opts.map(([v, t]) => '<button data-k="' + key + '" data-v="' + v + '" aria-pressed="' + (cur === v) + '">' + t + '</button>').join('') + '</span></div>';
     wrap.innerHTML = '<div><h2>Super secret mode</h2><p>Look settings for this browser.</p>'
-      + row('Borders', 'vf-borders', BORDERS, [['soft', 'Soft gray'], ['bold', 'Bold black']])
-      + row('Theme', 'vf-theme', THEME, [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']])
+      + row('Theme', 'vf-look', LOOK, [['bold', 'Bold'], ['balanced', 'Balanced'], ['soft', 'Soft'], ['calm', 'Calm']])
+      + row('Appearance', 'vf-theme', MODE, [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']])
       + '<small>Press ? or Esc to close.</small></div>';
     const close = () => { wrap.remove(); st.remove(); };
     wrap.addEventListener('click', (ev) => { const b = ev.target.closest('button[data-k]');
@@ -81,7 +95,7 @@
     if (ev.key === '?' && !typing) { ev.preventDefault(); if (document.querySelector('.vf-look')) openLook.close(); else openLook(); }
     else if (ev.key === 'Escape' && document.querySelector('.vf-look')) openLook.close();
   });
-  if (THEME === 'auto' && window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => location.reload());
+  if (MODE === 'auto' && window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => location.reload());
 
   /* <vf-combo items="{{list}}" value="{{v}}" onpick="{{fn}}" placeholder="…" search="true" label="…">
      A custom dropdown: opens the whole list on click/focus, typing filters it (search="true"),
@@ -241,7 +255,7 @@
     + 'html.vf-soft [role=group]>button{background:transparent !important;color:#586477 !important;border-radius:999px !important;min-height:36px !important}'
     + 'html.vf-soft [role=group]>button[aria-pressed=true]{background:#FFFFFF !important;color:#121417 !important;box-shadow:0 1px 3px rgba(18,20,23,.16),0 0 0 1px rgba(18,20,23,.04)}'
     + 'html.vf-soft [role=group]>button:not([aria-pressed=true]):hover{color:#121417 !important}'
-    + '.vf-band{position:fixed !important;top:0;left:0;right:0}body{padding-top:var(--vf-bandh,68px)}body.vf-full .vf-band{display:none !important}';
+    + '.vf-band{position:fixed !important;top:0;left:0;right:0}body{padding-top:var(--vf-bandh,68px)}body.vf-full .vf-band,body.vf-full .vf-head>nav{display:none !important}';
   { const st = document.createElement('style'); st.textContent = tc(BAND_CSS); document.head.appendChild(st); }
   const measureBand = () => {
     const b = document.querySelector('.vf-band');
@@ -255,6 +269,36 @@
     if (!now) { measureBand.busy = true; clearTimeout(measureBand.t); measureBand.t = setTimeout(() => { measureBand.busy = false; measureBand(); }, 320); }
   };
   window.addEventListener('scroll', onScrollBand, { passive: true });
+  /* Gentle motion everywhere: toggle bars get a highlight that slides to the picked option;
+     chart bars and lines ease to new values when a view, method or timeline changes; colors fade. */
+  const ANIM_CSS = '[role=group].vf-seg{position:relative;isolation:isolate}'
+    + '[role=group].vf-seg::before{content:"";position:absolute;left:var(--ix,0);top:var(--iy,0);width:var(--iw,0);height:var(--ih,0);border-radius:999px;background:#121417;z-index:-1;pointer-events:none}'
+    + '[role=group].vf-seg.vf-seg-on::before{transition:left .34s cubic-bezier(.3,.9,.3,1),width .34s cubic-bezier(.3,.9,.3,1),top .34s,height .34s}'
+    + 'html.vf-soft [role=group].vf-seg::before{background:#FFFFFF;box-shadow:0 1px 3px rgba(18,20,23,.16),0 0 0 1px rgba(18,20,23,.04)}'
+    + 'html [role=group].vf-seg>button,html [role=group].vf-seg>button[aria-pressed]{background:transparent !important;box-shadow:none !important;transition:color .28s ease}'
+    + '#byday svg rect,#compare svg rect,#where svg rect{transition:y .5s cubic-bezier(.3,.9,.3,1),height .5s cubic-bezier(.3,.9,.3,1),x .5s cubic-bezier(.3,.9,.3,1),width .5s cubic-bezier(.3,.9,.3,1),fill .3s}'
+    + '#byday svg path,#byday svg polyline,#compare svg path{transition:d .55s cubic-bezier(.3,.9,.3,1)}'
+    + 'svg path[fill],svg circle{transition:fill .4s ease,stroke .3s ease}'
+    + '.fx-cell,.fx-heat{transition:background-color .35s ease,color .35s ease,border-color .35s ease}'
+    + '#daily [style*="background"],#sameday [style*="color"]{transition:background-color .35s ease,color .35s ease}'
+    + ':where(button,a,.fx-pill){transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease}';
+  { const st = document.createElement('style'); st.textContent = tc(ANIM_CSS); document.head.appendChild(st); }
+  const syncSegs = () => {
+    syncSegs.r = 0;
+    document.querySelectorAll('[role=group]').forEach((g) => {
+      const b = g.querySelector(':scope > button[aria-pressed="true"]');
+      if (!b) { g.classList.remove('vf-seg'); return; }
+      const first = !g.classList.contains('vf-seg');
+      if (first) g.classList.add('vf-seg');
+      g.style.setProperty('--ix', b.offsetLeft + 'px'); g.style.setProperty('--iy', b.offsetTop + 'px');
+      g.style.setProperty('--iw', b.offsetWidth + 'px'); g.style.setProperty('--ih', b.offsetHeight + 'px');
+      if (first) requestAnimationFrame(() => requestAnimationFrame(() => g.classList.add('vf-seg-on')));
+    });
+  };
+  const segsSoon = () => { if (!syncSegs.r) syncSegs.r = requestAnimationFrame(syncSegs); };
+  window.addEventListener('resize', segsSoon);
+  document.addEventListener('DOMContentLoaded', () => { new MutationObserver(segsSoon).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['aria-pressed'] }); segsSoon(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(segsSoon);
   /* The section menu sticks just under the brand bar (--vf-bandnow tracks the bar's live height,
      including while it slims) and marks the group the reader is in. Links carry data-sec, the
      section ids in their group; the last group whose section has reached the menu is current. */
@@ -267,7 +311,7 @@
   const spy = () => {
     spy.r = 0; trackBand();
     const links = Array.from(document.querySelectorAll('.vf-navlink[data-sec]')); if (!links.length) return;
-    const nav = document.querySelector('.vf-head'), line = (nav ? nav.getBoundingClientRect().bottom : 100) + 40;
+    const nav = document.querySelector('.vf-head > nav'), line = Math.max(nav ? nav.getBoundingClientRect().bottom : 0, 60) + 40;
     let cur = links[0], best = -Infinity;
     links.forEach((a) => a.dataset.sec.split(' ').forEach((id) => { const el = document.getElementById(id); if (!el) return;
       const top = el.getBoundingClientRect().top; if (top <= line && top > best) { best = top; cur = a; } }));
@@ -290,14 +334,16 @@
     const el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
     ev.preventDefault();
     let top = 0; for (let n = el; n; n = n.offsetParent) top += n.offsetTop;
-    const band = document.querySelector('.vf-band'), nav = document.querySelector('.vf-head'), off = (band ? band.getBoundingClientRect().height : 0) + (nav ? nav.getBoundingClientRect().height : 0) + 16;
+    // Land below the slim brand bar (and the menu strip under it on narrow screens).
+    const off = 44 + (window.innerWidth < 980 && document.querySelector('.vf-head > nav') ? 44 : 0) + 16;
     window.scrollTo({ top: Math.max(0, top - off), behavior: 'smooth' });
     history.replaceState(null, '', a.getAttribute('href'));
   });
   { const st = document.createElement('style'); st.textContent = tc(COMBO_CSS); document.head.appendChild(st); }
   /* Calendar shading: a continuous slate scale, so every daily total gets its own shade. */
   // Lowercase hex output keeps these out of the theme rewrite; dark mode has its own scale.
-  const CAL_STOPS = DARK ? [[0, [38, 43, 54]], [0.2, [50, 62, 88]], [0.45, [72, 96, 146]], [0.7, [112, 140, 198]], [1, [170, 192, 240]]]
+  const CAL_STOPS = CALM ? (DARK ? [[0, [58, 63, 70]], [0.25, [40, 92, 74]], [0.6, [40, 150, 112]], [1, [120, 220, 180]]] : [[0, [240, 247, 244]], [0.25, [191, 233, 217]], [0.55, [79, 196, 155]], [0.8, [0, 137, 95]], [1, [0, 90, 64]]])
+    : DARK ? [[0, [60, 65, 74]], [0.2, [66, 78, 104]], [0.45, [86, 110, 160]], [0.7, [124, 152, 208]], [1, [178, 199, 244]]]
     : [[0, [241, 244, 249]], [0.2, [205, 214, 230]], [0.45, [140, 158, 191]], [0.7, [65, 85, 127]], [1, [27, 42, 107]]];
   const calColor = (q) => {
     q = Math.max(0, Math.min(1, q || 0));
@@ -351,7 +397,7 @@
     },
     dayFlag, flagChip: (k, eDate) => { const t = dayFlag(k, eDate); return t === 'Election Day' ? '★ Election Day' : t ? 'Holiday · ' + t : ''; },
     recentLocs, addRecent, recentItems, unRecent: (v) => (v || '').replace(/^r:/, ''),
-    dark: DARK, soft: SOFT, tc, calColor, calLegend: [0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 1].map((q) => calColor(q).bg),
+    dark: DARK, soft: SOFT, calm: CALM, look: LOOK, tc, calColor, calLegend: [0.05, 0.2, 0.35, 0.5, 0.65, 0.8, 1].map((q) => calColor(q).bg),
     page(name, Logic) { pages[name] = Logic; },
     /* Mail ballots must arrive by noon on the 3rd day after Election Day; a weekend or
        state holiday (Veterans Day, Nov 11) moves it to the next business day. */

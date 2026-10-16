@@ -93,17 +93,17 @@ def trend_notes(name, edate, cur, ref, state_cur, state_ref, today, sat_dates, r
     if w1 and rw1 and w1 >= MIN_WEEK and season:
         r = w1 / rw1
         if r > season * 1.08:
-            out.append(f"Early voting in {name} picked up this past week compared with last November, running {vs(r)} the same week before the November 2025 election, a better showing than the season so far and a sign turnout may keep climbing.")
+            out.append(f"Early voting in {name} picked up this past week, running {vs(r)} the same week before the November 2025 election, a better pace than the season so far.")
         elif r < season / 1.08:
-            out.append(f"Early voting in {name} slowed this past week, running {vs(r)} the same week before the November 2025 election, a step down from the pace for the season so far.")
+            out.append(f"Early voting in {name} slowed this past week, running {vs(r)} the same week before the November 2025 election, below the pace for the season so far.")
         else:
-            out.append(f"Early voting in {name} is holding a steady pace: this past week ran {vs(r)} the same week before the November 2025 election, in line with the season so far.")
+            out.append(f"Early voting in {name} is holding steady, running {vs(r)} the same week before the November 2025 election.")
         if sw1 and srw1:
             sr = sw1 / srw1
             if r > sr * 1.12:
-                out.append(f"That is stronger than the trend across Virginia, where the past week ran {vs(sr)} the same week before the November 2025 election.")
+                out.append(f"That beats the statewide trend ({vs(sr)} last November).")
             elif r < sr / 1.12:
-                out.append(f"That trails the trend across Virginia, where the past week ran {vs(sr)} the same week before the November 2025 election.")
+                out.append(f"That trails the statewide trend ({vs(sr)} last November).")
 
     extra = []
     # 2. In person vs. mail, this week against the season.
@@ -111,9 +111,9 @@ def trend_notes(name, edate, cur, ref, state_cur, state_ref, today, sat_dates, r
     if w1 and w1 >= MIN_WEEK and e1 is not None:
         sh1, shc = e1 / w1, cur['e'][li] / _tot(cur, li)
         if sh1 - shc >= 0.06:
-            extra.append((sh1 - shc, f"More voters here are choosing to vote in person: {pct(sh1)} of this past week's ballots were cast in person, up from {pct(shc)} for the season so far."))
+            extra.append((sh1 - shc, f"More voters here are choosing to vote in person: {pct(sh1)} of this past week's ballots, up from {pct(shc)} for the season."))
         elif shc - sh1 >= 0.06:
-            extra.append((shc - sh1, f"Mail is making up a growing share of the vote here: {pct(1 - sh1)} of this past week's ballots came by mail, up from {pct(1 - shc)} for the season so far."))
+            extra.append((shc - sh1, f"Mail is a growing share of the vote here: {pct(1 - sh1)} of this past week's ballots, up from {pct(1 - shc)} for the season."))
 
     # 3. Mail returns week over week, allowing for a holiday with no mail delivery.
     m1, m0 = _added(cur, li - 7, li, 'm'), _added(cur, li - 14, li - 7, 'm')
@@ -122,13 +122,13 @@ def trend_notes(name, edate, cur, ref, state_cur, state_ref, today, sat_dates, r
         g = m1 / m0 - 1
         sg = sm1 / sm0 - 1 if sm0 else None
         if g < -0.1 and hol and sg is not None and g < sg - 0.12:
-            extra.append((0.3, f"Mail returns here fell {pct(g)} from the week before. Part of that is {hol[0]} on {day_name(hol[1])}, when there was no mail delivery, but the drop was steeper than the {pct(sg)} decline statewide, so it is worth watching whether outstanding mail ballots are coming back more slowly."))
+            extra.append((0.3, f"Mail returns here fell {pct(g)} from the week before, more than the {hol[0]} holiday explains ({pct(sg)} statewide), so watch whether outstanding mail ballots are coming back more slowly."))
         elif g < -0.1 and hol:
-            extra.append((0.12, f"Mail returns here dipped this past week, largely because there was no mail delivery on {hol[0]} ({day_name(hol[1])}); expect them to recover this week."))
+            extra.append((0.12, f"Mail returns dipped this past week, mostly because there was no mail delivery on {hol[0]}."))
         elif g < -0.15 and sg is not None and g < sg - 0.12:
-            extra.append((0.25, f"Mail returns here fell {pct(g)} from the week before, a steeper drop than statewide, so outstanding mail ballots may be coming back more slowly."))
+            extra.append((0.25, f"Mail returns here fell {pct(g)} from the week before, more than statewide, so outstanding mail ballots may be coming back more slowly."))
         elif g > 0.15:
-            extra.append((min(g, 0.5) * 0.6, f"Mail returns here are building: {pct(g)} more mail ballots came back this past week than the week before."))
+            extra.append((min(g, 0.5) * 0.6, f"Mail returns here are building, up {pct(g)} from the week before."))
 
     # 4. Satellite sites opening soon, and what that stretch looked like last November.
     upcoming = sorted(d for d in sat_dates if d > today)
@@ -138,21 +138,22 @@ def trend_notes(name, edate, cur, ref, state_cur, state_ref, today, sat_dates, r
         k = (nd - today).days
         i0 = 46 - (edate - nd).days
         before, after = _added(ref, i0 - 7, i0, 'e'), _added(ref, i0, min(i0 + 7, 46), 'e')
-        s = f"{'One new satellite site opens' if n == 1 else f'{n} more satellite sites open'} here on {day_name(nd)}, {k} {'day' if k == 1 else 'days'} after the latest ballot report"
+        s = f"{'One new satellite site opens' if n == 1 else f'{n} more satellite sites open'} here on {day_name(nd)}"
         if before and after and after / before >= 1.25:
-            s += f"; over the same stretch before the November 2025 election, in-person voting here was {after / before:.1f} times higher the week after that date than the week before"
+            s += f"; at the same point last November, in-person voting here was {after / before:.1f} times higher the following week"
         s += '.'
         extra.append((0.4, s))
 
     # 5. Turnout rank among Virginia's localities, when it moved.
     if rank_now and rank_week_ago and abs(rank_now - rank_week_ago) >= 5:
         up = rank_now < rank_week_ago
-        extra.append((abs(rank_now - rank_week_ago) / 40, f"In turnout, {name} moved {'up' if up else 'down'} from {ordinal(rank_week_ago)} to {ordinal(rank_now)} of Virginia's 133 localities over the past week."))
+        extra.append((abs(rank_now - rank_week_ago) / 40, f"In turnout, {name} moved {'up' if up else 'down'} from {ordinal(rank_week_ago)} to {ordinal(rank_now)} of Virginia's 133 localities this week."))
 
-    # Keep the note to five sentences: the pace, the strongest of the rest, and what is ahead.
+    # Keep the note short: the pace, the strongest of the rest, and what is ahead, in at most
+    # four sentences and about 520 characters.
     n_sent = lambda t: t.count('. ') + 1
     for _, t in sorted(extra, key=lambda x: -x[0]):
-        if sum(map(n_sent, out)) + n_sent(t) <= 4:
+        if sum(map(n_sent, out)) + n_sent(t) <= 3 and len(' '.join(out + [t])) <= 400:
             out.append(t)
 
     # 6. What is still ahead, from November 2025.
@@ -160,13 +161,14 @@ def trend_notes(name, edate, cur, ref, state_cur, state_ref, today, sat_dates, r
     final = _tot(ref, min(last, 49))
     if final and _tot(ref, li):
         ahead = 1 - _tot(ref, li) / final
-        days = [(_added(ref, i - 1, i), i) for i in range(li + 1, 47) if _added(ref, i - 1, i) is not None]
-        s = f"Looking ahead: before the November 2025 election, {pct(ahead)} of the early ballots here came in after this point"
+        days = [(_added(ref, i - 1, i), i) for i in range(li + 1, 46) if _added(ref, i - 1, i) is not None]
+        s = f"Looking ahead: last November, {pct(ahead)} of early ballots here came in after this point"
         if days:
             big, bi = max(days)
             bd = edate - DAY * (46 - bi)
-            s += f", and the busiest day was the {DOWL[bd.weekday()]} {46 - bi} days before Election Day"
+            when = 'final Saturday' if 46 - bi == 3 else f"{DOWL[bd.weekday()]} {46 - bi} days before Election Day"
+            s += f", and the busiest day was the {when}"
             if w1 and w1 >= MIN_WEEK and big / (w1 / 5) >= 1.5:
-                s += f", with about {big / (w1 / 5):.0f} times this past week's average weekday"
+                s += f", about {big / (w1 / 5):.0f} times this past week's average weekday"
         out.append(s + '.')
     return ' '.join(out)

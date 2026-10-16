@@ -42,7 +42,15 @@ a{color:#00694F}a:hover{color:#121417}
 .fx-path{animation:fxFade .5s ease both;transition:fill .3s;cursor:pointer}
 .fx-path:hover{stroke:#121417;stroke-width:2}
 .fx-hit{cursor:crosshair}
-.vf-head{position:sticky;top:var(--vf-bandnow,48px);z-index:60;pointer-events:none}.vf-head>nav{pointer-events:auto}
+.vf-head{min-height:52px}
+@keyframes vfNavIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+body.vf-scrolled .vf-head>nav{position:fixed;z-index:85;top:calc((var(--vf-bandnow,42px) - 38px) / 2);right:max(24px, calc((100vw - 1240px) / 2 + 24px));padding:3px !important;background:transparent !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;animation:vfNavIn .28s ease both}
+body.vf-scrolled .vf-navlink{color:#b7bcc6;padding:7px 13px}
+body.vf-scrolled .vf-navlink:hover{color:#ffffff}
+body.vf-scrolled .vf-navlink[aria-current=true]{background:hsla(0,0%,100%,.14);color:#ffffff;box-shadow:none}
+body.vf-scrolled .vf-bandtxt{opacity:0;pointer-events:none}
+.vf-bandtxt{transition:opacity .2s}
+@media (max-width: 979px){body.vf-scrolled .vf-head>nav{left:0;right:0;top:calc(var(--vf-bandnow,42px) - 1px);border-radius:0 !important;background:#12141a !important;padding:2px 12px 6px !important;max-width:none !important;overflow-x:auto;scrollbar-width:none}body.vf-scrolled .vf-bandtxt{opacity:1}}
 .vf-navlink{padding:8px 15px;border-radius:999px;font-weight:700;font-size:14px;color:#4A5260;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
 .vf-navlink:hover{color:#121417}.vf-navlink[aria-current=true]{background:#FFFFFF;color:#121417;box-shadow:0 1px 3px rgba(18,20,23,.16)}
 .fx-nav{position:relative}
@@ -432,7 +440,7 @@ body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
     </section>
 
     <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
-      <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Election history</h2><sc-if value="{{take.compare}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 6px 0 0; font-size: 17px; font-weight: 700; color: #121417">{{take.compare}}</p></sc-if></div>
+      <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">How this election compares</h2><sc-if value="{{take.compare}}" hint-placeholder-val="{{ false }}"><p class="vf-take" style="margin: 6px 0 0; font-size: 17px; font-weight: 700; color: #121417">{{take.compare}}</p></sc-if></div>
       <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px"></p>
       <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px">
         <sc-for list="{{ctrls}}" as="cg" hint-placeholder-count="3">

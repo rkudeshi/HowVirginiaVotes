@@ -320,9 +320,9 @@ class Locality extends DCLogic {
     const maxDe = Math.max(1, ...drows.map((r) => r.de)), maxDm = Math.max(1, ...drows.map((r) => r.dm));
     const lvlOf = (v, m) => { const q = v / m; return !v ? 0 : q < 0.25 ? 1 : q < 0.5 ? 2 : q < 0.75 ? 3 : 4; };
     // Dark mode gets its own (lowercase, so not rewritten) shading that keeps light text readable.
-    const GSH = VF.dark ? ['transparent', '#173a2f', '#1d5541', '#257556', '#2f9a71'] : ['transparent', '#E3F5ED', '#BDEBD6', '#86D9BA', '#4CC49B'],
-      PSH = VF.dark ? ['transparent', '#2a2342', '#3a2d63', '#4b3a85', '#5d48a8'] : ['transparent', '#F0EAFC', '#DCCEF7', '#BFA6F0', '#9E7DE6'],
-      TSH = VF.dark ? ['transparent', '#23272e', '#2c313a', '#373d48', '#454c59'] : ['transparent', '#EEF0F3', '#DDE1E7', '#C7CDD6', '#AAB2BF'];
+    const GSH = VF.dark ? ['transparent', '#2b4d42', '#2f604f', '#357a64', '#3e987c'] : ['transparent', '#E3F5ED', '#BDEBD6', '#86D9BA', '#4CC49B'],
+      PSH = VF.dark ? ['transparent', '#3d3658', '#4a4070', '#5a4c8a', '#6b59a6'] : ['transparent', '#F0EAFC', '#DCCEF7', '#BFA6F0', '#9E7DE6'],
+      TSH = VF.dark ? ['transparent', '#3b3f47', '#454a53', '#50565f', '#5d646e'] : ['transparent', '#EEF0F3', '#DDE1E7', '#C7CDD6', '#AAB2BF'];
     const tRows = drows.slice().reverse().map((r) => {
       const sc = live ? D.sched[r.d] : null; const w = r.w;
       const heavy = !!(w && w.p >= 0.25), wetish = isWet(w), sunny = !!(w && !wetish && /clear|sun/i.test(w.l));
@@ -465,7 +465,7 @@ class Locality extends DCLogic {
     const cellOf = (s5, j, ri, ci) => { const c = rVal[s5.name][j]; let bg, fg = '#121417', border = '0', txt = '';
       if (!c.past) { if (c.h) { bg = '#FFFFFF'; border = '1.5px dashed #C6CBD4'; } else bg = '#F8F9FB'; }
       else if (!c.h && !c.raw) bg = '#F1F2F5';
-      else { const q = (c.v || 0) / (rMax || 1); /* lighter greens keep dark text readable */ const RG = VF.dark ? ['#173a2f', '#1d5541', '#257556', '#2f9a71'] : ['#E3F5ED', '#C2EBDB', '#93DCC0', '#5CC9A3']; bg = !c.v ? '#F1F2F5' : RG[q < 0.25 ? 0 : q < 0.5 ? 1 : q < 0.75 ? 2 : 3]; if (!rhFit && c.v) txt = fmtR(c.v); }
+      else { const q = (c.v || 0) / (rMax || 1); /* lighter greens keep dark text readable */ const RG = VF.dark ? ['#2b4d42', '#2f604f', '#357a64', '#3e987c'] : ['#E3F5ED', '#C2EBDB', '#93DCC0', '#5CC9A3']; bg = !c.v ? '#F1F2F5' : RG[q < 0.25 ? 0 : q < 0.5 ? 1 : q < 0.75 ? 2 : 3]; if (!rhFit && c.v) txt = fmtR(c.v); }
       return { bg, fg, border, txt, delay: (ri * 30 + ci * 6) + 'ms',
         tip: shortName(s5) + ' · ' + dmd(c.d) + ': ' + (!c.past ? (c.h ? 'scheduled, ' + c.h + ' h' : 'closed') : !c.h && !c.raw ? 'closed' : fz(c.raw) + ' ballots' + (c.h ? ' in ' + c.h + ' h (' + Math.round(c.raw / c.h) + '/h)' : '')) }; };
     const totOf = (arr) => { const pastA = arr.filter((c) => c.past); const sum = pastA.reduce((x, c) => x + c.raw, 0); const hh = pastA.reduce((x, c) => x + c.h, 0);
