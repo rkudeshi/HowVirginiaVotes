@@ -4,7 +4,7 @@ class Status extends DCLogic {
     this.state = { log: null, now: Date.now() };
   }
   componentDidMount() {
-    document.title = 'Status · VoteFlow';
+    if (this.constructor === Status) document.title = 'Status · VoteFlow';
     this.clock = setInterval(() => this.setState({ now: Date.now() }), 60000);
     fetch('/status.json').then((r) => r.json()).then((log) => this.setState({ log })).catch(() => this.setState({ log: [] }));
   }

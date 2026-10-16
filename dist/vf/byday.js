@@ -16,7 +16,7 @@
   VF.byDay = function (o) {
     const { ser, live, endI, T, st, set, tipAt } = o;
     const eDate = parse(o.date);
-    const bdView = st.bdView || 'daily', bdM = st.bdM || 'all', bdWin = st.bdWin || 'today';
+    const bdView = st.bdView || 'daily', bdM = st.bdM || 'all', bdWin = st.bdWin || 'deadline';
     let lastI = -1; for (let i = 0; i < 53; i++) if (ser.e[i] != null) lastI = i;
     const dayDate = (i) => { const x = new Date(eDate); x.setDate(x.getDate() - (46 - i)); return x; };
     const act = Array.from({ length: 53 }, (_, i) => { if (ser.e[i] == null) return null; const pe = i > 0 && ser.e[i - 1] != null ? ser.e[i - 1] : 0, pmm = i > 0 && ser.m[i - 1] != null ? ser.m[i - 1] : 0; return { de: ser.e[i] - pe, dm: ser.m[i] - pmm, e: ser.e[i], m: ser.m[i] }; });
@@ -39,7 +39,8 @@
       // Without a published site schedule, assume the registrar's office: weekdays, plus the
       // two Saturdays before Election Day; in-person early voting ends that last Saturday (E–3).
       const k3 = iso(dayDate(i)), dow = dayDate(i).getDay();
-      const open = o.gate === 'none' ? i <= 43 : hasSched ? o.sched[k3] : i <= 43 && (dow >= 1 && dow <= 5 || i === 36 || i === 43);
+      const officeDay = i <= 43 && (dow >= 1 && dow <= 5 || i === 36 || i === 43);
+      const open = o.gate === 'none' ? i <= 43 : (hasSched && o.sched[k3]) || (!o.officeKnown && officeDay);
       const pe = (i < 46 && open ? (estFor('e', i) || 0) * (estLevel.e || 1) : 0), pmail = (estFor('m', i) || 0) * (estLevel.m || 1);
       const err = i <= 36 ? 0.21 : 0.30;
       return { e: pe, m: pmail, eLo: pe * Math.exp(-err), eHi: pe * Math.exp(err), mLo: pmail * Math.exp(-err), mHi: pmail * Math.exp(err) };
@@ -62,7 +63,9 @@
     for (let i = 0; i < N; i++) { const r = act[i]; if (!r) continue; const ve = bdM === 'mail' ? 0 : r.de, vm = bdM === 'early' ? 0 : r.dm; const hE = Math.max(0, ve) / btop * 380, hM = Math.max(0, vm) / btop * 380; // corrections can be negative
       bars.push({ x: (BX(i) - bw / 2).toFixed(1), w: bw.toFixed(1), yE: (400 - hE).toFixed(1), hE: hE.toFixed(1), yM: (400 - hE - hM).toFixed(1), hM: hM.toFixed(1), delay: (i * 18) + 'ms' }); }
     if (usePlan) for (let i = lastI + 1; i < N; i++) { const p = plan[i]; if (!p) continue; const v = pick3(p, 'e', 'm'); if (!v) continue; const hh = v / btop * 380;
-      planBars.push({ x: (BX(i) - bw / 2).toFixed(1), w: bw.toFixed(1), y: (400 - hh).toFixed(1), h: hh.toFixed(1), cx: BX(i).toFixed(1), lo: BY(pick3(p, 'eLo', 'mLo')).toFixed(1), hi: BY(pick3(p, 'eHi', 'mHi')).toFixed(1), delay: (300 + (i - lastI) * 25) + 'ms' }); }
+      const ve2 = bdM === 'mail' ? 0 : p.e, vm2 = bdM === 'early' ? 0 : p.m, hE2 = ve2 / btop * 380, hM2 = vm2 / btop * 380;
+      planBars.push({ x: (BX(i) - bw / 2).toFixed(1), w: bw.toFixed(1), y: (400 - hh).toFixed(1), h: hh.toFixed(1),
+        yE: (400 - hE2).toFixed(1), hE: hE2.toFixed(1), yM: (400 - hE2 - hM2).toFixed(1), hM: hM2.toFixed(1), hasE: hE2 > 0.5, hasM: hM2 > 0.5, cx: BX(i).toFixed(1), lo: BY(pick3(p, 'eLo', 'mLo')).toFixed(1), hi: BY(pick3(p, 'eHi', 'mHi')).toFixed(1), delay: (300 + (i - lastI) * 25) + 'ms' }); }
     const linePts = (fnv, from, to) => { let d = '', pen = false; for (let i = from; i <= to; i++) { const v = fnv(i); if (v == null) { pen = false; continue; } d += (pen ? ' L' : 'M') + BX(i).toFixed(1) + ',' + BY(v).toFixed(1); pen = true; } return d; };
     const bline = linePts(cumAct, 0, N - 1);
     const eLine = bdM === 'all' ? linePts((i) => act[i] ? act[i].e : null, 0, N - 1) : '';
@@ -97,8 +100,8 @@
         { k: 'All early ballots, projected', v: '≈ ' + rnd(curE + curM + remE + remM), sub: rnd(curE + curM) + ' so far · ≈ ' + ((curE + curM + remE + remM) / o.reg * 100).toFixed(0) + '% of registered', bg: '#FFFFFF', border: '#121417' },
         { k: 'Busiest in-person day ahead', v: busiest ? dmd(iso(dayDate(busiest.i))) : '—', sub: busiest ? '≈ ' + rnd(busiest.v) + ' ballots expected' : '', bg: '#FFFFFF', border: '#121417' }
       ] : [],
-      legend: [{ l: 'In person', bg: '#00A37A', border: '0' }, { l: 'By mail', bg: '#7C4DDB', border: '0' }].concat(usePlan ? [{ l: 'Estimate (bar = middle, line = range)', bg: '#FFFFFF', border: '1.5px dashed #7C4DDB' }] : []),
-      note: live ? (usePlan ? 'Shaded area shows planning estimates: how ' + refs.map((r) => r.label.replace('November ', '')).join(', ') + ' unfolded from this point, scaled to 2026’s pace' + (hasSched ? ' and the site schedule' : '') + '. A staffing guide, not a forecast of results.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
+      legend: [{ l: 'In person', bg: '#00A37A', border: '0' }, { l: 'By mail', bg: '#7C4DDB', border: '0' }].concat(usePlan ? [{ l: 'Estimate · in person', bg: '#EEF8F3', border: '1.5px dashed #86D9BA' }, { l: 'Estimate · by mail', bg: '#F5F1FD', border: '1.5px dashed #C3ADF1' }, { l: 'Line = likely range', bg: '#6B7380', border: '0' }] : []),
+      note: live ? (usePlan ? 'Estimates: for each past November election (' + refs.map((r) => r.label.replace('November ', '')).join(', ') + '), the ballots it added on the same day before Election Day, scaled by how 2026 compares with it so far; each bar is the middle value, adjusted so the days ahead add up to the middle of those elections’ remaining totals. In-person estimates only fall on days a site is open' + (hasSched ? '' : ' (assumed: weekdays and the last two Saturdays)') + '. Hover a bar for the details.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
     };
     const barInfo = (i) => {
       const dd = dayDate(i), r = act[i], p = plan[i], k5 = iso(dd), sc = live && o.sched ? o.sched[k5] : null;
@@ -106,9 +109,20 @@
       const rowsB = [];
       if (r) rowsB.push({ k: 'In person', v: fz(r.de) }, { k: 'By mail', v: fz(r.dm) }, { k: 'Total that day', v: fz(r.de + r.dm) }, { k: 'Running total', v: f(r.e + r.m) }, { k: 'Turnout so far', v: ((r.e + r.m) / o.reg * 100).toFixed(2) + '%' });
       if (!r && p) rowsB.push({ k: 'Est. in person', v: '≈ ' + rnd(p.e) + (p.e ? ' (' + rnd(p.eLo) + '–' + rnd(p.eHi) + ')' : '') }, { k: 'Est. mail returns', v: '≈ ' + rnd(p.m) }, { k: 'Est. running total', v: '≈ ' + rnd((cumMid[i] || 0)) });
+      // How this estimate was built: each past election's same-day ballots, scaled to 2026's pace.
+      let how = [];
+      if (!r && p) {
+        how = refs.map((ref) => { const s2 = ref.series; const one = (key) => { if (s2[key][i] == null || s2[key][i - 1] == null || !s2[key][lastI]) return null;
+            const sc = ser[key][lastI] / s2[key][lastI]; return { raw: Math.max(0, s2[key][i] - s2[key][i - 1]), sc }; };
+          const e1 = one('e'), m1 = one('m'); if (!e1 && !m1) return null;
+          return { k: ref.label.replace('November ', 'Nov ') + ': ' + (e1 ? f(e1.raw) + ' × ' + e1.sc.toFixed(2) : '–') + ' in person', v: (e1 && p.e ? rnd(e1.raw * e1.sc) : '–') + ' · ' + (m1 ? rnd(m1.raw * m1.sc) : '–') }; }).filter(Boolean);
+        how.push({ k: 'Middle value, adjusted to the expected remaining total (×' + (estLevel.e || 1).toFixed(2) + ' in person, ×' + (estLevel.m || 1).toFixed(2) + ' mail)', v: rnd(p.e) + ' · ' + rnd(p.m) });
+      }
       return { kicker: eL + (r ? ' · reported' : ''), title: DOWL[dd.getDay()] + ', ' + MON[dd.getMonth()] + ' ' + dd.getDate(), sub: o.label, rows: rowsB,
-        hasBadge: !r && !!p, badge: 'Planning estimate · not reported yet',
-        hasList: !!(sc && sc.open.length), listHead: sc ? (sc.n === 1 ? '1 site open' : sc.n + ' sites open') : '', list: sc ? sc.open.map(([nm, hrs]) => ({ k: nm + ' (' + hrs + ')', v: '' })) : [] };
+        hasBadge: !r && !!p, badge: 'Estimate · not reported yet',
+        hasList: how.length > 0 || !!(sc && sc.open.length),
+        listHead: how.length ? 'How it was estimated (in person · mail)' : sc ? (sc.n === 1 ? '1 site open' : sc.n + ' sites open') : '',
+        list: how.length ? how : sc ? sc.open.map(([nm, hrs]) => ({ k: nm + ' (' + hrs + ')', v: '' })) : [] };
     };
 
     return { bd, barInfo };

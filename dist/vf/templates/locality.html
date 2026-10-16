@@ -56,7 +56,7 @@ a{color:#00694F}a:hover{color:#121417}
 details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover{box-shadow:0 12px 22px -16px rgba(20,32,43,.5)}
 @media (max-width: 900px){.fx-side{display:none !important}}
 .fx-narrow{display:none}
-@media (max-width: 1000px){.fx-narrow{display:flex}.fx-maps .fx-mapbox{display:none}.fx-maps.sel-all .m-all,.fx-maps.sel-e .m-e,.fx-maps.sel-m .m-m{display:block}}
+@media (max-width: 1000px){.fx-narrow{display:flex}}
 @keyframes fxGrowY{from{scale:1 0}to{scale:1 1}}
 .fx-grow{transform-box:fill-box;transform-origin:bottom;animation:fxGrowY .6s cubic-bezier(.2,1.1,.4,1) both}
 @keyframes fxRing{0%{scale:1;opacity:.8}100%{scale:2.2;opacity:0}}
@@ -116,7 +116,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
   .vf-head{padding:10px 12px 0 !important;gap:10px !important}
   .vf-logomark{width:34px !important;height:34px !important;border-radius:8px !important}.vf-logomark svg{width:18px;height:18px}
   .vf-logotext{font-size:19px !important}
-  .vf-picks{margin-left:0 !important;width:100%;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) !important;gap:8px !important}
+  .vf-picks{margin-left:0 !important;width:100%;grid-template-columns:minmax(0,1fr) !important;gap:8px !important}
   .vf-picks select{min-height:40px !important;font-size:14px !important;padding:0 26px 0 12px !important}
   .vf-sections{font-size:14px !important;margin:0 -6px !important}.vf-sections a{padding:10px 8px !important}
   .vf-h1{font-size:40px !important;letter-spacing:-0.045em !important}
@@ -131,34 +131,28 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
   .dn > div:first-child{font-size:9.5px !important;letter-spacing:.02em !important}
 }
 section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
+.vf-short{display:none}
+section[id]{scroll-margin-top:76px !important}
+@media (max-width: 700px){.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:21px !important}.vf-logomark{width:32px !important;height:32px !important}}
+@media (max-width: 700px){.vf-head{justify-content:flex-start !important}}
+@keyframes fxFadeA{from{opacity:0}to{opacity:1}}@keyframes fxFadeB{from{opacity:0}to{opacity:1}}.fx-fa{animation:fxFadeA .6s ease both}.fx-fb{animation:fxFadeB .6s ease both}
+@media (max-width: 700px){.vf-where{align-items:center !important;width:100%}.vf-where > div{justify-content:center !important}}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
 
-  <div class="vf-band" style="background: #121417; color: #FFFFFF">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 8px 24px; display: flex; align-items: center; gap: 6px 16px; flex-wrap: wrap">
-      <div role="group" aria-label="State" style="display: flex; gap: 6px; align-items: center">
-        <span class="vf-wide" style="font: 600 11px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B7BCC6; margin-right: 4px">State</span>
-        <button aria-pressed="true" style="min-height: 30px; padding: 0 12px; border-radius: 999px; border: 0; background: #00A37A; color: #FFFFFF; font: 700 13px 'Hanken Grotesk', sans-serif; display: flex; align-items: center; gap: 7px; cursor: default"><span class="fx-live" style="width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF"></span>Virginia</button>
-      </div>
-      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right">Ideas or requests to improve this site? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20feedback" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send an email</a></span>
+  <div class="vf-band" style="position: sticky; top: 0; z-index: 80; background: #121417; color: #FFFFFF">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 8px 18px">
+      <a class="vf-logo" href="/" aria-label="VoteFlow Virginia home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF; flex-shrink: 0">
+        <span class="fx-bob vf-logomark" style="width: 38px; height: 38px; background: #FFD23F; border-radius: 9px; display: grid; place-items: center"><span style="font: 800 15px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
+        <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 25px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
+      </a>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea, a question, or something you'd like to see added that would be helpful for you? </span><span class="vf-short">Ideas or questions? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send me an email</a></span>
     </div>
   </div>
 
-  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 18px 24px 6px; display: flex; align-items: flex-end; gap: 14px 24px; flex-wrap: wrap">
-    <a class="vf-logo" href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #121417; align-self: center">
-      <span class="fx-bob vf-logomark" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center"><span style="font: 800 17px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
-      <span class="vf-logotext" style="font-family: 'Hanken Grotesk', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">VoteFlow</span>
-    </a>
-    <div class="vf-picks" style="margin-left: auto; display: grid; grid-template-columns: minmax(220px, 270px) minmax(200px, 260px); gap: 10px">
-      <label style="display: flex; flex-direction: column; gap: 4px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; min-width: 0">Election
-        <select sc-options="{{hdr.elections}}" value="{{hdr.eid}}" onChange="{{hdr.pickE}}" style="min-height: 42px; width: 100%; padding: 0 34px 0 14px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 700 15px 'Hanken Grotesk', sans-serif; color: #121417; cursor: pointer"></select>
-      </label>
-      <label style="display: flex; flex-direction: column; gap: 4px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; min-width: 0">Locality
-        <select sc-options="{{hdr.locs}}" value="{{hdr.lid}}" onChange="{{hdr.pickL}}" style="min-height: 42px; width: 100%; padding: 0 34px 0 14px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 700 15px 'Hanken Grotesk', sans-serif; color: #121417; cursor: pointer"></select>
-      </label>
-    </div>
-    <nav class="vf-sections" aria-label="Page sections" style="flex-basis: 100%; display: flex; gap: 2px; font-size: 16px; font-weight: 600; margin: 0 -12px">
+  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 6px 24px 0; display: flex; justify-content: flex-end">
+    <nav class="vf-sections" aria-label="Page sections" style="display: flex; gap: 2px; font-size: 15px; font-weight: 600; margin-right: -12px; max-width: 100%">
       <a class="fx-nav" href="#flow" style="padding: 12px; text-decoration: none; color: #121417">Breakdown</a>
       <a class="fx-nav" href="#compare" style="padding: 12px; text-decoration: none; color: #121417">History</a>
       <a class="fx-nav" href="#byday" style="padding: 12px; text-decoration: none; color: #121417">By day</a>
@@ -185,14 +179,24 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
         <a href="{{backHref}}" style="font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; min-height: 32px">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Virginia · {{L.region}}</a>
         <h1 class="vf-h1" style="margin: 4px 0 0; font-size: clamp(48px, 7vw, 92px); font-weight: 800; letter-spacing: -0.055em; line-height: .95">{{L.name}}</h1>
+        <div class="vf-picks" style="display: grid; grid-template-columns: minmax(200px, 270px) minmax(200px, 270px); gap: 10px; margin-top: 16px">
+          <vf-combo items="{{hdr.elections}}" value="{{hdr.eid}}" onpick="{{hdr.pickE}}" label="Election"></vf-combo>
+          <vf-combo items="{{hdr.locs}}" value="{{hdr.lid}}" onpick="{{hdr.pickL}}" label="Locality" placeholder="Find a county or city…" search="true"></vf-combo>
+        </div>
       </div>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap">
-        <span class="fx-pill" style="padding: 10px 14px; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 12px; font-weight: 700; font-size: 15px">#{{L.rankV}} of 133 in ballots</span>
-        <span class="fx-pill" style="padding: 10px 14px; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 12px; font-weight: 700; font-size: 15px">#{{L.rankP}} of 133 in turnout %</span>
+      <div class="vf-where" style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px">
+        <svg viewBox="{{where.vb}}" width="300" role="img" aria-label="{{L.name}} on a map of Virginia" style="max-width: 100%; display: block">
+          <sc-for list="{{where.paths}}" as="p" hint-placeholder-count="0"><path d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="{{p.sw}}" stroke-linejoin="round"></path></sc-for>
+          <sc-if value="{{where.ring.on}}"><circle class="fx-live2" cx="{{where.ring.cx}}" cy="{{where.ring.cy}}" r="{{where.ring.r}}" fill="none" stroke="#41557F" stroke-width="5"></circle></sc-if>
+        </svg>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end">
+          <span class="fx-pill" style="padding: 8px 12px; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 700; font-size: 14px">#{{L.rankV}} of 133 in ballots</span>
+          <span class="fx-pill" style="padding: 8px 12px; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 700; font-size: 14px">#{{L.rankP}} of 133 in turnout %</span>
+        </div>
       </div>
     </div>
 
-    <nav aria-label="Jump to an election" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 18px 20px">
+    <nav aria-label="Jump to an election" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 18px 20px">
       <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; margin: 0 4px 12px">Jump to an election in {{L.name}}</div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px">
         <sc-for list="{{elChips}}" as="ec" hint-placeholder-count="8">
@@ -205,7 +209,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </div>
     </nav>
 
-    <section class="fx-card fx-hero" style="grid-column: span 8; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 36px 40px; min-width: 280px">
+    <section class="fx-card fx-hero" style="grid-column: span 8; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 36px 40px; min-width: 280px">
       <div style="display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; flex-wrap: wrap">
         <sc-if value="{{hero.live}}" hint-placeholder-val="{{ true }}"><span class="fx-live" style="width: 10px; height: 10px; border-radius: 50%; background: #7C4DDB"></span></sc-if>
         {{hero.kicker}}
@@ -213,11 +217,11 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       <div style="display: flex; flex-wrap: wrap; gap: 16px 44px; align-items: flex-end; margin: 40px 0 36px">
         <div style="display: flex; flex-direction: column; gap: 8px">
           <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95">{{hero.pct}}%</span>
-          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #C9F2E4; color: #00694F; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
+          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #121417">{{hero.votes}}</span>
-          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #EDE6FC; color: #4E2A9E; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #41557F">{{hero.votes}}</span>
+          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
         </div>
       </div>
       <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters{{hero.regNote}}</p>
@@ -236,12 +240,12 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </div>
     </section>
 
-    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
+    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
       <sc-if value="{{hero.live}}" hint-placeholder-val="{{ true }}">
         <div style="position: relative; width: 200px; height: 200px">
           <svg width="200" height="200" viewBox="0 0 120 120" aria-hidden="true">
             <circle cx="60" cy="60" r="54" fill="none" stroke="#ECEEF2" stroke-width="12"></circle>
-            <circle cx="60" cy="60" r="54" fill="none" stroke="#7C4DDB" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{cd.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle>
+            <circle cx="60" cy="60" r="54" fill="none" stroke="#41557F" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{cd.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle>
             
           </svg>
           <div style="position: absolute; inset: 0; display: grid; place-items: center; align-content: center">
@@ -254,7 +258,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </sc-if>
       <sc-if value="{{hero.past}}" hint-placeholder-val="{{ false }}">
         <div style="position: relative; width: 200px; height: 200px">
-          <svg width="200" height="200" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#7C4DDB" stroke-width="12"></circle></svg>
+          <svg width="200" height="200" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#41557F" stroke-width="12"></circle></svg>
           <div style="position: absolute; inset: 0; display: grid; place-items: center; align-content: center">
             <div style="font-size: 64px; font-weight: 800; line-height: 1">✓</div>
             <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em">Completed</div>
@@ -266,13 +270,14 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </sc-if>
     </section>
 
-    <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 36px">
-      <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where voters stand</h2></div>
-      <p style="margin: 6px 0 26px; color: #4A5260; font-size: 16px"></p>
-      <div role="group" aria-label="Flow view" style="display: inline-flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden; margin: 0 0 22px">
+    <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px 16px; flex-wrap: wrap; margin-bottom: 22px">
+  <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where voters stand</h2></div>
+      <div role="group" aria-label="Flow view" style="display: inline-flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden; flex-shrink: 0">
         <sc-for list="{{fcOpts}}" as="o" hint-placeholder-count="2">
           <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 16px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
         </sc-for>
+      </div>
       </div>
       <sc-if value="{{fc.on}}" hint-placeholder-val="{{ true }}">
         <div class="fx-tree {{fc.bigCls}}" onClick="{{fc.tap}}" role="button" aria-label="{{fc.tapHint}}" style="display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 0; row-gap: 0; align-items: stretch">
@@ -367,6 +372,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
         </div>
         <p class="fx-taphint" style="margin: 12px 0 0; font: 600 13px 'DM Mono', monospace; color: #4A5260; text-align: center">{{fc.tapHint}}</p>
         <p style="margin: 16px 0 0; text-align: center; font-size: 14px; color: #5A6E8C">Outstanding requests are not votes cast. Mail requests can include voters who later vote in person.</p>
+        <sc-if value="{{fc.pbNote}}"><p style="margin: 6px 0 0; text-align: center; font-size: 13px; color: #5A6E8C">{{fc.pbNote}}</p></sc-if>
       </sc-if>
       <sc-if value="{{fc.off}}" hint-placeholder-val="{{ false }}">
       <sc-for list="{{flow}}" as="lv" hint-placeholder-count="4">
@@ -393,7 +399,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </sc-if>
     </section>
 
-    <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
+    <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">How this election compares</h2></div>
       <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px"></p>
       <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px">
@@ -438,10 +444,10 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
             <path class="{{ch.anim}}" d="{{ln.d}}" pathLength="1" fill="none" stroke="{{ln.color}}" stroke-width="{{ln.w}}" stroke-linejoin="round" stroke-linecap="round"></path>
           </sc-for>
           <sc-for list="{{ch.ends}}" as="el" hint-placeholder-count="4">
-            <text class="fx-axis fx-fade" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s" fill="{{el.color}}">{{el.t}}</text>
+            <text class="fx-axis {{ch.fadeCls}}" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s" fill="{{el.color}}">{{el.t}}</text>
           </sc-for>
           <sc-if value="{{ch.hasProj}}" hint-placeholder-val="{{ false }}">
-            <path class="fx-fade" d="{{ch.proj}}" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round" style="animation-delay: 1.9s"></path>
+            <path class="{{ch.fadeCls}}" d="{{ch.proj}}" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round" style="animation-delay: 1.9s"></path>
           </sc-if>
           <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
             <line x1="{{ch.hiX}}" y1="20" x2="{{ch.hiX}}" y2="{{ch.b}}" stroke="#121417" stroke-width="1.5"></line>
@@ -471,7 +477,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       <p style="margin: 12px 0 0; font-size: 14px; color: #4A5260">{{ch.note}}</p>
     </section>
 
-    <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px">
+    <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Ballots by day</h2></div>
       <div style="height: 14px"></div>
       <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px">
@@ -514,8 +520,9 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
           <sc-if value="{{bd.daily}}" hint-placeholder-val="{{ true }}">
             <sc-for list="{{bd.plan}}" as="pb" hint-placeholder-count="0">
 <g>
-              <rect class="fx-grow" x="{{pb.x}}" y="{{pb.y}}" width="{{pb.w}}" height="{{pb.h}}" rx="3" fill="#FFFFFF" stroke="#7C4DDB" stroke-width="1.5" stroke-dasharray="4 3" style="animation-delay: {{pb.delay}}"></rect>
-              <line x1="{{pb.cx}}" y1="{{pb.lo}}" x2="{{pb.cx}}" y2="{{pb.hi}}" stroke="#5B2FB8" stroke-width="1.5"></line></g>
+              <sc-if value="{{pb.hasE}}"><rect class="fx-grow" x="{{pb.x}}" y="{{pb.yE}}" width="{{pb.w}}" height="{{pb.hE}}" fill="#EEF8F3" stroke="#86D9BA" stroke-width="1.5" stroke-dasharray="4 3" style="animation-delay: {{pb.delay}}"></rect></sc-if>
+              <sc-if value="{{pb.hasM}}"><rect class="fx-grow" x="{{pb.x}}" y="{{pb.yM}}" width="{{pb.w}}" height="{{pb.hM}}" rx="3" fill="#F5F1FD" stroke="#C3ADF1" stroke-width="1.5" stroke-dasharray="4 3" style="animation-delay: {{pb.delay}}"></rect></sc-if>
+              <line x1="{{pb.cx}}" y1="{{pb.lo}}" x2="{{pb.cx}}" y2="{{pb.hi}}" stroke="#6B7380" stroke-width="1.5"></line></g>
 </sc-for>
             <sc-for list="{{bd.bars}}" as="b" hint-placeholder-count="0">
 <g>
@@ -553,7 +560,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       <p style="margin: 12px 0 0; color: #4A5260; font-size: 13px">{{bd.note}}</p>
     </section>
 
-    <section id="calendar" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; display: flex; flex-wrap: wrap; gap: 28px">
+    <section id="calendar" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px; display: flex; flex-wrap: wrap; gap: 28px">
       <div style="flex: 999 1 600px; min-width: 0">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px">
           <div>
@@ -615,8 +622,8 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
     </section>
 
     <sc-if value="{{showSites}}">
-    <section id="sites" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
+    <section id="sites" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap">
         <div>
           <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · November 2026</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Early voting sites</h2></div>
           <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">{{siteSummary}}</p>
@@ -624,6 +631,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
         <button class="fx-pill" onClick="{{siteAllToggle}}" aria-pressed="{{siteAllPressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{siteAllBg}}; color: {{siteAllFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer">{{siteAllLabel}}</button>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; margin-top: 20px">
+        <sc-if value="{{sm.has}}">
         <div style="flex: 1 1 340px; min-width: 0; max-width: 520px">
           <svg onMouseLeave="{{hideTip}}" viewBox="{{pmView}}" width="100%" role="img" aria-label="Map of early voting sites" style="display: block; max-height: 620px">
             <sc-for list="{{sm.base}}" as="p" hint-placeholder-count="0">
@@ -643,27 +651,27 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
             <span>{{sm.sizeNote}}</span>
           </div>
         </div>
+        </sc-if>
         <div style="flex: 999 1 520px; min-width: 0; overflow-x: auto">
           <div style="min-width: 600px">
-            <div style="display: grid; grid-template-columns: 34px 2.4fr 1.1fr 0.9fr 0.9fr 0.7fr 0.8fr; gap: 10px; padding: 10px 12px; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em">
-              <span>#</span><span>Site</span><span>Status</span><span style="text-align: right">In person</span><span style="text-align: right">Share</span><span style="text-align: right">Per hour</span><span style="text-align: right">Hours so far</span>
+            <div style="display: grid; grid-template-columns: 34px 2.6fr 1.1fr 0.9fr 0.8fr 0.9fr; gap: 10px; padding: 10px 12px; border-bottom: 2px solid #121417; font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em">
+              <span>#</span><span>Site</span><span>Status</span><span style="text-align: right">In person</span><span style="text-align: right">Share</span><span style="text-align: right">Ballots per hour</span>
             </div>
             <sc-for list="{{siteTable}}" as="st" hint-placeholder-count="6">
               <div style="border-bottom: 1.5px solid #ECEEF2">
-                <button class="fx-strow" onClick="{{st.toggle}}" aria-expanded="{{st.expanded}}" style="width: 100%; display: grid; grid-template-columns: 34px 2.4fr 1.1fr 0.9fr 0.9fr 0.7fr 0.8fr; gap: 10px; padding: 10px 12px; align-items: center; font: inherit; font-size: 14px; color: #121417; text-align: left; background: {{st.rowBg}}; border: 0; cursor: pointer">
+                <button class="fx-strow" onClick="{{st.toggle}}" aria-expanded="{{st.expanded}}" style="width: 100%; display: grid; grid-template-columns: 34px 2.6fr 1.1fr 0.9fr 0.8fr 0.9fr; gap: 10px; padding: 10px 12px; align-items: center; font: inherit; font-size: 14px; color: #121417; text-align: left; background: {{st.rowBg}}; border: 0; cursor: pointer">
                   <span style="width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 600 12px 'DM Mono', monospace; background: {{st.dotBg}}; color: {{st.dotFg}}; border: 2px solid {{st.dotBorder}}">{{st.n}}</span>
                   <span style="display: flex; flex-direction: column; line-height: 1.2"><b>{{st.name}} <span style="font-weight: 400; color: #4A5260">{{st.caret}}</span></b><span style="font-size: 12px; color: #4A5260">{{st.kind}}</span></span>
                   <span style="display: flex; flex-direction: column; gap: 2px; align-items: flex-start"><span style="font: 700 11px 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{st.chipBg}}; color: {{st.chipFg}}">{{st.status}}</span><span style="font: 500 11px 'DM Mono', monospace; color: #4A5260">{{st.opens}}</span></span>
                   <b style="text-align: right; font-family: 'DM Mono', monospace">{{st.ballots}}</b>
                   <span style="display: flex; align-items: center; gap: 6px; justify-content: flex-end"><span style="width: 44px; height: 8px; border-radius: 999px; background: #ECEEF2; overflow: hidden"><span class="fx-meter" style="display: block; height: 100%; width: {{st.w}}%; background: #00A37A"></span></span><span style="font-family: 'DM Mono', monospace; font-size: 13px; width: 40px; text-align: right">{{st.share}}</span></span>
-                  <span style="text-align: right; font-family: 'DM Mono', monospace">{{st.rate}}</span>
-                  <span style="text-align: right; font-family: 'DM Mono', monospace; color: #4A5260">{{st.hrs}}</span>
+                  <span onMouseMove="{{st.rateMove}}" onMouseLeave="{{hideTip}}" style="text-align: right; font-family: 'DM Mono', monospace; text-decoration: underline dotted #9AA9C4; text-underline-offset: 4px; cursor: help">{{st.rate}}</span>
                 </button>
                 <sc-if value="{{st.showDetail}}" hint-placeholder-val="{{ false }}">
                   <div class="fx-fade" style="padding: 4px 12px 14px 56px; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 14px">
-                    <div style="min-width: 200px"><div style="font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">Address</div>{{st.address}}</div>
+                    <div style="min-width: 200px"><div style="font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">Address</div>{{st.address}}<sc-if value="{{st.noAddr}}">Not listed yet. <sc-if value="{{st.url}}"><a href="{{st.url}}" target="_blank" rel="noopener">Registrar contact page ↗</a></sc-if></sc-if></div>
                     <div><div style="font: 600 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">Hours</div>
-                      <ul style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 2px"><sc-for list="{{st.rules}}" as="ru" hint-placeholder-count="3"><li>{{ru}}</li></sc-for></ul>
+                      <sc-if value="{{st.noRules}}">Not listed yet</sc-if><ul style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 2px"><sc-for list="{{st.rules}}" as="ru" hint-placeholder-count="3"><li>{{ru}}</li></sc-for></ul>
                     </div>
                   </div>
                 </sc-if>
@@ -708,10 +716,13 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
     </section>
     </sc-if>
 
-    <section id="daily" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 0 20px">
+    <section id="daily" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 0 20px">
       <div style="padding: 0 36px 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
         <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Daily numbers</h2></div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap">
         <button class="fx-pill" onClick="{{tbl.toggleShade}}" aria-pressed="{{tbl.shadePressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{tbl.shadeBg}}; color: {{tbl.shadeFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px"><span style="display: flex; gap: 2px"><span style="width: 8px; height: 14px; border-radius: 2px; background: #DDF3EA"></span><span style="width: 8px; height: 14px; border-radius: 2px; background: #A6E0CA"></span><span style="width: 8px; height: 14px; border-radius: 2px; background: #5CC9A3"></span></span>Shade by volume</button>
+        <button class="fx-pill" onClick="{{tbl.csv}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: #FFFFFF; color: #121417; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"></path></svg>Download CSV</button>
+        </div>
       </div>
       <div style="overflow: auto; max-height: 580px; border-top: 2px solid #121417">
         <div class="dn" style="min-width: {{tbl.minW}}">
@@ -746,42 +757,40 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
     </section>
 
     <sc-if value="{{showPrecincts}}">
-    <section id="precincts" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; {{pm.fs}}">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+    <section id="precincts" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px; {{pm.fs}}">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap">
         <div>
           <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · November 2026</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Precinct maps</h2></div>
           <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">{{pm.note}}</p>
         </div>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap">
-          <div role="group" aria-label="Layout" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
-            <sc-for list="{{pm.lays}}" as="o" hint-placeholder-count="2">
-              <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 12px; border: 0; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
-            </sc-for>
-          </div>
-          <sc-if value="{{pm.one}}" hint-placeholder-val="{{ false }}">
+        <button class="fx-pill" onClick="{{pm.toggleFull}}" aria-pressed="{{pm.fullPressed}}" style="min-height: 44px; padding: 0 14px; border: 2px solid #121417; border-radius: 999px; background: {{pm.fullBg}}; color: {{pm.fullFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg>{{pm.fullLabel}}</button>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px">
+          <sc-if value="{{pm.one}}">
           <div role="group" aria-label="Map shown" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
             <sc-for list="{{pm.pick}}" as="o" hint-placeholder-count="3">
               <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 12px; border: 0; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
             </sc-for>
           </div>
           </sc-if>
-          <button class="fx-pill" onClick="{{pm.toggleFull}}" aria-pressed="{{pm.fullPressed}}" style="min-height: 44px; padding: 0 14px; border: 2px solid #121417; border-radius: 999px; background: {{pm.fullBg}}; color: {{pm.fullFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg>{{pm.fullLabel}}</button>
-          <sc-for list="{{pm.ctrls}}" as="cg" hint-placeholder-count="1">
+          <sc-if value="{{pm.notLean}}"><sc-for list="{{pm.ctrls}}" as="cg" hint-placeholder-count="1">
             <div role="group" aria-label="{{cg.label}}" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
               <sc-for list="{{cg.opts}}" as="o" hint-placeholder-count="3">
                 <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
               </sc-for>
             </div>
-          </sc-for>
-        </div>
+          </sc-for></sc-if>
       </div>
-      <div class="fx-pmaps lay-{{pm.lay}} sel-{{pm.sel}}" onMouseLeave="{{hideTip}}" style="display: grid; grid-template-columns: {{pm.cols}}; gap: 18px; margin-top: 18px">
+      <div class="fx-pmaps lay-{{pm.lay}} sel-{{pm.sel}}" onMouseLeave="{{pm.leave}}" style="display: grid; grid-template-columns: {{pm.cols}}; gap: 18px; margin-top: 18px">
         <sc-for list="{{pm.maps}}" as="mp" hint-placeholder-count="3">
           <div class="fx-mapbox m-{{mp.id}}" style="border: 2px solid {{mp.border}}; border-radius: 20px; padding: 14px">
             <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px"><b style="font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 700">{{mp.title}}</b><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260">{{mp.total}}</span></div>
-            <svg viewBox="{{pmView}}" width="100%" role="img" aria-label="{{mp.title}} by precinct" style="display: block; max-height: {{pm.mapMax}}; margin: 0 auto">
+            <svg viewBox="{{pmView}}" width="100%" role="img" aria-label="{{mp.title}} by precinct" onClick="{{pm.clear}}" style="display: block; max-height: {{pm.mapMax}}; margin: 0 auto">
               <sc-for list="{{mp.paths}}" as="p" hint-placeholder-count="0">
                 <path class="fx-path" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="{{p.sw}}" stroke-linejoin="round" onMouseMove="{{p.move}}" onClick="{{p.move}}" style="animation-delay: {{p.delay}}"></path>
+              </sc-for>
+              <sc-for list="{{pm.pins}}" as="pin" hint-placeholder-count="0">
+                <g onMouseMove="{{pin.move}}" style="cursor: pointer"><circle cx="{{pin.x}}" cy="{{pin.y}}" r="{{pin.r}}" fill="#121417" stroke="#FFFFFF" stroke-width="2"></circle><text x="{{pin.x}}" y="{{pin.ty}}" text-anchor="middle" fill="#FFFFFF" style="font: 700 {{pin.fs}}px 'Hanken Grotesk', sans-serif; pointer-events: none">{{pin.n}}</text></g>
               </sc-for>
             </svg>
             <div style="display: flex; gap: 3px; margin-top: 8px">
@@ -810,7 +819,8 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
   </sc-if>
 
   <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
-    <span>This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
+    <span>© 2026</span>
+    <span><a href="/about" style="font-weight: 700">About</a> · This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
   </footer>
 
   <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">

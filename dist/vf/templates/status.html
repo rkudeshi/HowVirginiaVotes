@@ -51,7 +51,7 @@ a{color:#00694F}a:hover{color:#121417}
 @media (max-width: 700px){.fx-strow{grid-template-columns:1fr 1fr !important}.fx-strow > :last-child{grid-column:1 / -1}}
 @media (max-width: 900px){.fx-side{display:none !important}}
 .fx-narrow{display:none}
-@media (max-width: 1000px){.fx-narrow{display:flex}.fx-maps .fx-mapbox{display:none}.fx-maps.sel-all .m-all,.fx-maps.sel-e .m-e,.fx-maps.sel-m .m-m{display:block}}
+@media (max-width: 1000px){.fx-narrow{display:flex}}
 
 .fx-mini input{width:15px;height:15px;accent-color:#4A5260}
 .fx-strow{transition:background .15s}.fx-strow:hover{background:#F1FAF6}
@@ -116,28 +116,28 @@ a{color:#00694F}a:hover{color:#121417}
   .vf-kick{font-size:11px !important}
   .fx-main h2{font-size:21px !important}
 }
+.vf-short{display:none}
+section[id]{scroll-margin-top:76px !important}
+@media (max-width: 700px){.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:21px !important}.vf-logomark{width:32px !important;height:32px !important}}
+@media (max-width: 700px){.vf-head{justify-content:flex-start !important}}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
 
-  <div class="vf-band" style="background: #121417; color: #FFFFFF">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 8px 24px; display: flex; align-items: center; gap: 6px 16px; flex-wrap: wrap">
-      <div role="group" aria-label="State" style="display: flex; gap: 6px; align-items: center">
-        <span class="vf-wide" style="font: 600 11px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B7BCC6; margin-right: 4px">State</span>
-        <button aria-pressed="true" style="min-height: 30px; padding: 0 12px; border-radius: 999px; border: 0; background: #00A37A; color: #FFFFFF; font: 700 13px 'Hanken Grotesk', sans-serif; display: flex; align-items: center; gap: 7px; cursor: default"><span class="fx-live" style="width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF"></span>Virginia</button>
-      </div>
-      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right">Ideas or requests to improve this site? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20feedback" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send an email</a></span>
+  <div class="vf-band" style="position: sticky; top: 0; z-index: 80; background: #121417; color: #FFFFFF">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 8px 18px">
+      <a class="vf-logo" href="/" aria-label="VoteFlow Virginia home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF; flex-shrink: 0">
+        <span class="fx-bob vf-logomark" style="width: 38px; height: 38px; background: #FFD23F; border-radius: 9px; display: grid; place-items: center"><span style="font: 800 15px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
+        <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 25px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
+      </a>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea, a question, or something you'd like to see added that would be helpful for you? </span><span class="vf-short">Ideas or questions? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send me an email</a></span>
     </div>
   </div>
 
-  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 18px 24px 6px; display: flex; align-items: flex-end; gap: 14px 24px; flex-wrap: wrap">
-    <a class="vf-logo" href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #121417; align-self: center">
-      <span class="fx-bob vf-logomark" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center"><span style="font: 800 17px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
-      <span class="vf-logotext" style="font-family: 'Hanken Grotesk', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">VoteFlow</span>
-    </a>
-    <nav class="vf-sections" aria-label="Page sections" style="flex-basis: 100%; display: flex; gap: 2px; font-size: 16px; font-weight: 600; margin: 0 -12px">
+  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 6px 24px 0; display: flex; justify-content: flex-end">
+    <nav class="vf-sections" aria-label="Page sections" style="display: flex; gap: 2px; font-size: 15px; font-weight: 600; margin-right: -12px; max-width: 100%">
       <a class="fx-nav" href="/" style="padding: 12px; text-decoration: none; color: #121417">Virginia</a>
-      <a class="fx-nav" href="/status" style="padding: 12px; text-decoration: none; color: #121417">Status</a>
+      <a class="fx-nav" href="/about" style="padding: 12px; text-decoration: none; color: #121417">About</a>
     </nav>
   </header>
 
@@ -148,23 +148,23 @@ a{color:#00694F}a:hover{color:#121417}
     </div>
 
     <sc-if value="{{ready}}">
-    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 240px">
+    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 240px">
       <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #00694F; display: flex; align-items: center; gap: 8px"><span class="fx-live" style="width: 10px; height: 10px; border-radius: 50%; background: #00A37A"></span>Ballot data through</div>
       <div style="font-family: 'Unbounded', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.03em">{{through}}</div>
       <div style="font-size: 15px; color: #4A5260">{{lastLoad}}</div>
     </section>
-    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 240px">
+    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 240px">
       <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">Last site update</div>
       <div style="font-family: 'Unbounded', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.03em">{{lastAt}}</div>
       <div style="font-size: 15px; color: #4A5260">{{lastAgo}}</div>
     </section>
-    <section class="fx-card" style="grid-column: span 4; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 240px">
+    <section class="fx-card" style="grid-column: span 4; background: #FFF6D1; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 240px">
       <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">Schedule</div>
       <div style="font-family: 'Unbounded', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.03em">7 AM ET</div>
       <div style="font-size: 15px; color: #4A5260">New ballot files are loaded every morning. Weekends and holidays may have no new data.</div>
     </section>
 
-    <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 36px">
+    <section class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <h2 style="margin: 0 0 6px; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Update log</h2>
       <p style="margin: 0 0 22px; color: #4A5260; font-size: 16px">Every data load and site change, newest first. Times are Eastern.</p>
       <div style="display: grid; gap: 0">
@@ -181,6 +181,7 @@ a{color:#00694F}a:hover{color:#121417}
   </main>
 
   <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
-    <span>This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
+    <span>© 2026</span>
+    <span><a href="/about" style="font-weight: 700">About</a> · This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
   </footer>
 </div>

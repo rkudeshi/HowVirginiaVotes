@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 root=Path(__file__).resolve().parent/'dist'
 data=json.loads((root/'region.json').read_text())
-paths=['status']
+paths=['status','about']
 for year in data['elections']:
  paths.append(year)
  for loc in data['names']:

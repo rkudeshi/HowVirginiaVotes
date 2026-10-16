@@ -33,6 +33,33 @@ ALL_NAMES = [[n['id'], n['name']] for n in sorted(D['names'], key=lambda n: n['n
 for locality in D['elections']['2026']['localities']:
     if locality['id'] == 'fairfax-county':
         locality['history'] = merged_history(locality['history'], D.get('official', {}).get('2026', {}))
+
+
+def monotonic(hist):
+    """Display-only: running totals never go down. A missing day or a dip (a bad report, or a
+    later downward correction) carries the previous high; the saved data is untouched."""
+    out, hi = [], {}
+    for h in sorted(hist, key=lambda h: h['date']):
+        h = dict(h)
+        for key in ('early', 'mail'):
+            v = h.get(key)
+            hi[key] = max(hi.get(key, 0), v or 0)
+            if v is not None or hi[key]:
+                h[key] = hi[key]
+        if h.get('total') is not None:
+            hi['total'] = max(hi.get('total', 0), h['total'], (h.get('early') or 0) + (h.get('mail') or 0))
+            h['total'] = hi['total']
+        out.append(h)
+    return out
+
+
+for _e in D['elections'].values():
+    for _l in _e['localities']:
+        _l['history'] = monotonic(_l['history'])
+for _lid in ARCH:
+    for _eid in ARCH[_lid]:
+        if isinstance(ARCH[_lid][_eid], dict) and 'history' in ARCH[_lid][_eid]:
+            ARCH[_lid][_eid]['history'] = monotonic(ARCH[_lid][_eid]['history'])
 EL = D['elections']
 LIVE = '2026'
 ORDER = ['2026', '2026-special', '2025', '2024', '2023', '2022', '2021', '2020']
@@ -129,7 +156,7 @@ def statewide(eid):
             continue
         a = agg[k]
         d = (E - dt.timedelta(days=k)).isoformat()
-        rows.append({'d': d, 'e': a[0], 'm': a[1], 'de': a[3], 'dm': a[4], 'o': a[2] or None})
+        rows.append({'d': d, 'e': a[0], 'm': a[1], 'de': max(0, a[3]), 'dm': max(0, a[4]), 'o': a[2] or None})
         prev = a
     return {'e': e_, 'm': m_, 'r': reg}, rows, reg, active
 
@@ -289,6 +316,8 @@ def main():
     regional = json.loads((ROOT / 'regional.geojson').read_text())
     VP, vh = projector(regional['features'])
     va_paths = {f['properties']['id']: path_of(f, VP, 1.6, drop_small=True) for f in regional['features']}
+    # Shared state outline for the locality pages' "where is it" map.
+    (OUT / 'va-map.json').write_text(json.dumps({'h': vh, 'p': va_paths}, separators=(',', ':')))
 
     hist, rows_by, regs = {}, {}, {}
     for eid in ORDER:
@@ -344,6 +373,12 @@ def main():
     for l in e26['localities']:
         lid = l['id']
         days_sched, sites = site_schedule(lid, start, end)
+        # Every registrar's office offers early voting from day one. When the schedule source
+        # doesn't list it, show it without address or hours (those come from the registrar).
+        office_known = any(not s['satellite'] for s in sites)
+        if not office_known:
+            sites.insert(0, {'name': "Registrar's office", 'address': '', 'firstOpen': start.isoformat(), 'satellite': False,
+                             'rules': [], 'placeholder': True, 'url': NAMES[lid].get('officeSource')})
         rows, prev = [], None
         for h in l['history']:
             if h['date'] < '2026-09-18':
@@ -353,8 +388,9 @@ def main():
                  'dm': h['mail'] - (prev['mail'] if prev else 0), 'o': h.get('outstanding'), 'pv': h.get('provisional') or 0,
                  'w': {'l': w['label'], 'hi': round(w['tempMax']), 'lo': round(w['tempMin']), 'p': round(w.get('precip') or 0, 2), 'wet': bool(w.get('wet'))} if w else None}
             if lid == 'fairfax-county':
-                r['de'] = h.get('daily', {}).get('early')
-                r['dm'] = h.get('daily', {}).get('mail')
+                de, dm = h.get('daily', {}).get('early'), h.get('daily', {}).get('mail')
+                if de is not None: r['de'] = max(0, de)
+                if dm is not None: r['dm'] = max(0, dm)
             if lid == 'fairfax-county' and h['date'] in official:
                 x = official[h['date']]
                 r['site'] = {k: v for k, v in x['sites'].items() if v}
@@ -412,7 +448,7 @@ def main():
         n, nxt = sat_summary(lid, today)
         b = {'id': lid, 'name': l['name'], 'asOf': l['history'][-1]['date'], 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
              'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1,
-             'rows': rows, 'sched': days_sched, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
+             'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
              'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
         (OUT / 'loc' / f'{lid}.json').write_text(json.dumps(b, separators=(',', ':')))
     print(f'Built {len(ORDER)} statewide bundles and {len(e26["localities"])} locality bundles in {OUT}')

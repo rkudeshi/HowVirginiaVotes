@@ -52,7 +52,7 @@ a{color:#00694F}a:hover{color:#121417}
 .fx-check input{width:20px;height:20px;accent-color:#121417;margin:0;cursor:pointer}
 @media (max-width: 900px){.fx-side{display:none !important}}
 .fx-narrow{display:none}
-@media (max-width: 1000px){.fx-narrow{display:flex}.fx-maps .fx-mapbox{display:none}.fx-maps.sel-all .m-all,.fx-maps.sel-e .m-e,.fx-maps.sel-m .m-m{display:block}}
+@media (max-width: 1000px){.fx-narrow{display:flex}}
 
 .fx-mini input{width:15px;height:15px;accent-color:#4A5260}
 .fx-strow{transition:background .15s}.fx-strow:hover{background:#F1FAF6}
@@ -119,26 +119,27 @@ a{color:#00694F}a:hover{color:#121417}
 @media (max-width: 700px){.vf-titlerow{justify-content:center !important}.vf-titleblock{flex-basis:100% !important}.vf-mini{margin:0 auto;display:block}}
 @media (max-width: 900px){.fx-side2{position:static !important}}
 section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
+.vf-short{display:none}
+section[id]{scroll-margin-top:76px !important}
+@media (max-width: 700px){.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:21px !important}.vf-logomark{width:32px !important;height:32px !important}}
+@media (max-width: 700px){.vf-head{justify-content:flex-start !important}}
+@keyframes fxFadeA{from{opacity:0}to{opacity:1}}@keyframes fxFadeB{from{opacity:0}to{opacity:1}}.fx-fa{animation:fxFadeA .6s ease both}.fx-fb{animation:fxFadeB .6s ease both}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
 
-  <div class="vf-band" style="background: #121417; color: #FFFFFF">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 8px 24px; display: flex; align-items: center; gap: 6px 16px; flex-wrap: wrap">
-      <div role="group" aria-label="State" style="display: flex; gap: 6px; align-items: center">
-        <span class="vf-wide" style="font: 600 11px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B7BCC6; margin-right: 4px">State</span>
-        <button aria-pressed="true" style="min-height: 30px; padding: 0 12px; border-radius: 999px; border: 0; background: #00A37A; color: #FFFFFF; font: 700 13px 'Hanken Grotesk', sans-serif; display: flex; align-items: center; gap: 7px; cursor: default"><span class="fx-live" style="width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF"></span>Virginia</button>
-      </div>
-      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right">Ideas or requests to improve this site? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20feedback" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send an email</a></span>
+  <div class="vf-band" style="position: sticky; top: 0; z-index: 80; background: #121417; color: #FFFFFF">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 8px 18px">
+      <a class="vf-logo" href="/" aria-label="VoteFlow Virginia home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF; flex-shrink: 0">
+        <span class="fx-bob vf-logomark" style="width: 38px; height: 38px; background: #FFD23F; border-radius: 9px; display: grid; place-items: center"><span style="font: 800 15px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
+        <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 25px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
+      </a>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea, a question, or something you'd like to see added that would be helpful for you? </span><span class="vf-short">Ideas or questions? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send me an email</a></span>
     </div>
   </div>
 
-  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 18px 24px 6px; display: flex; align-items: flex-end; gap: 14px 24px; flex-wrap: wrap">
-    <a class="vf-logo" href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #121417; align-self: center">
-      <span class="fx-bob vf-logomark" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center"><span style="font: 800 17px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
-      <span class="vf-logotext" style="font-family: 'Hanken Grotesk', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">VoteFlow</span>
-    </a>
-    <nav class="vf-sections" aria-label="Page sections" style="flex-basis: 100%; display: flex; gap: 2px; font-size: 16px; font-weight: 600; margin: 0 -12px">
+  <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 6px 24px 0; display: flex; justify-content: flex-end">
+    <nav class="vf-sections" aria-label="Page sections" style="display: flex; gap: 2px; font-size: 15px; font-weight: 600; margin-right: -12px; max-width: 100%">
       <a class="fx-nav" href="#flow" style="padding: 12px; text-decoration: none; color: #121417">Breakdown</a>
       <a class="fx-nav" href="#compare" style="padding: 12px; text-decoration: none; color: #121417">History</a>
       <a class="fx-nav" href="#byday" style="padding: 12px; text-decoration: none; color: #121417">By day</a>
@@ -161,31 +162,20 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
     <div class="vf-titlerow" style="grid-column: span 12; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 4px 4px 0">
       <div class="vf-titleblock" style="flex: 1 1 420px; min-width: 0">
         <h1 class="vf-h1" style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: clamp(44px, 6.5vw, 84px); font-weight: 800; letter-spacing: -0.04em; line-height: .95">Virginia</h1>
-        <div class="vf-findrow" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; max-width: 640px">
-          <div style="position: relative; flex: 2 1 260px; min-width: 0">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A5260" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px; pointer-events: none"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
-            <input type="search" aria-label="Find your county or city" placeholder="Find your county or city…" autocomplete="off" value="{{find.q}}" onInput="{{find.onInput}}" onKeyDown="{{find.onKey}}" onFocus="{{find.onFocus}}" onBlur="{{find.onBlur}}" style="min-height: 50px; width: 100%; box-sizing: border-box; padding: 0 16px 0 44px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 600 17px 'Hanken Grotesk', sans-serif; color: #121417">
-            <sc-if value="{{find.open}}">
-              <div role="listbox" style="position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 60; background: #FFFFFF; border: 2px solid #121417; border-radius: 16px; max-height: 330px; overflow-y: auto; box-shadow: 0 22px 40px -24px rgba(20,32,43,.6)">
-                <sc-for list="{{find.items}}" as="it" hint-placeholder-count="6">
-                  <a role="option" href="{{it.href}}" onMouseDown="{{it.go}}" style="display: flex; justify-content: space-between; gap: 12px; padding: 11px 16px; text-decoration: none; color: #121417; background: {{it.bg}}; border-bottom: 1px solid #ECEEF2"><b style="font-size: 16px">{{it.name}}</b><span style="font-size: 13px; color: #4A5260; text-align: right">{{it.region}}</span></a>
-                </sc-for>
-                <sc-if value="{{find.none}}"><div style="padding: 12px 16px; color: #4A5260">No match. Try a county or city name.</div></sc-if>
-              </div>
-            </sc-if>
-          </div>
-          <select aria-label="Election" sc-options="{{hdr.elections}}" value="{{hdr.eid}}" onChange="{{hdr.pickE}}" style="flex: 1 1 200px; min-height: 50px; padding: 0 14px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 700 15px 'Hanken Grotesk', sans-serif; color: #121417; cursor: pointer"></select>
+        <div class="vf-findrow" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; max-width: 660px">
+          <div style="flex: 2 1 260px; min-width: 0"><vf-combo items="{{find.items}}" value="" onpick="{{find.pick}}" placeholder="Find your county or city…" label="Find your county or city" search="true" icon="search" big="true"></vf-combo></div>
+          <div style="flex: 1 1 210px; min-width: 0"><vf-combo items="{{hdr.elections}}" value="{{hdr.eid}}" onpick="{{hdr.pickE}}" label="Election" big="true"></vf-combo></div>
         </div>
       </div>
-      <svg class="vf-mini" viewBox="0 0 1000 440" width="300" role="img" aria-label="Virginia, localities shaded by turnout so far" style="max-width: 100%">
+      <svg class="vf-mini" viewBox="0 0 1000 440" width="300" role="img" aria-label="Virginia, localities shaded by turnout so far" style="max-width: 100%" onMouseLeave="{{miniLeave}}">
         <sc-for list="{{mini}}" as="p" hint-placeholder-count="0">
-          <path class="fx-sweep" d="{{p.d}}" fill="{{p.fill}}" stroke="#E6E8EC" stroke-width="2" style="animation-delay: {{p.delay}}"></path>
+          <path class="fx-sweep" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="2" onMouseMove="{{p.move}}" onClick="{{p.go}}" style="animation-delay: {{p.delay}}; cursor: pointer"></path>
         </sc-for>
       </svg>
     </div>
 
 
-    <section class="fx-card fx-hero" style="grid-column: span 8; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 36px 40px; min-width: 280px">
+    <section class="fx-card fx-hero" style="grid-column: span 8; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 36px 40px; min-width: 280px">
       <div style="display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; flex-wrap: wrap">
         <span class="fx-live" style="width: 10px; height: 10px; border-radius: 50%; background: #7C4DDB"></span>
         {{hero.kicker}}
@@ -193,11 +183,11 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       <div style="display: flex; flex-wrap: wrap; gap: 16px 44px; align-items: flex-end; margin: 40px 0 36px">
         <div style="display: flex; flex-direction: column; gap: 8px">
           <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95">{{hero.pct}}%</span>
-          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #C9F2E4; color: #00694F; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
+          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #121417">{{hero.votes}}</span>
-          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #EDE6FC; color: #4E2A9E; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #41557F">{{hero.votes}}</span>
+          <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
         </div>
       </div>
       <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters ({{hero.active}} active).</p>
@@ -216,11 +206,11 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </div>
     </section>
 
-    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
+    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
       <div style="position: relative; width: 200px; height: 200px">
         <svg width="200" height="200" viewBox="0 0 120 120" aria-hidden="true">
           <circle cx="60" cy="60" r="54" fill="none" stroke="#ECEEF2" stroke-width="12"></circle>
-          <circle cx="60" cy="60" r="54" fill="none" stroke="#7C4DDB" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{box.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle>
+          <circle cx="60" cy="60" r="54" fill="none" stroke="#41557F" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{box.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle>
           
         </svg>
         <div style="position: absolute; inset: 0; display: grid; place-items: center; align-content: center">
@@ -233,13 +223,14 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       <sc-if value="{{satLine}}"><div class="fx-bob" style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{satLine}}</div></sc-if>
     </section>
 
-    <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 36px">
-      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where Virginia's voters stand</h2>
-      <p style="margin: 6px 0 26px; color: #4A5260; font-size: 16px"></p>
-      <div role="group" aria-label="Flow view" style="display: inline-flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden; margin: 0 0 22px">
+    <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px 16px; flex-wrap: wrap; margin-bottom: 22px">
+  <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where Virginia's voters stand</h2>
+      <div role="group" aria-label="Flow view" style="display: inline-flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden; flex-shrink: 0">
         <sc-for list="{{fcOpts}}" as="o" hint-placeholder-count="2">
           <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 16px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
         </sc-for>
+      </div>
       </div>
       <sc-if value="{{fc.on}}" hint-placeholder-val="{{ true }}">
         <div class="fx-tree {{fc.bigCls}}" onClick="{{fc.tap}}" role="button" aria-label="{{fc.tapHint}}" style="display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 0; row-gap: 0; align-items: stretch">
@@ -360,7 +351,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </sc-if>
     </section>
 
-    <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
+    <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">How this election compares</h2>
       <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px"></p>
       <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px">
@@ -405,10 +396,10 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
             <path class="{{ch.anim}}" d="{{ln.d}}" pathLength="1" fill="none" stroke="{{ln.color}}" stroke-width="{{ln.w}}" stroke-linejoin="round" stroke-linecap="round"></path>
           </sc-for>
           <sc-for list="{{ch.ends}}" as="el" hint-placeholder-count="4">
-            <text class="fx-axis fx-fade" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s" fill="{{el.color}}">{{el.t}}</text>
+            <text class="fx-axis {{ch.fadeCls}}" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s" fill="{{el.color}}">{{el.t}}</text>
           </sc-for>
           <sc-if value="{{ch.hasProj}}" hint-placeholder-val="{{ false }}">
-            <path class="fx-fade" d="{{ch.proj}}" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round" style="animation-delay: 1.9s"></path>
+            <path class="{{ch.fadeCls}}" d="{{ch.proj}}" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round" style="animation-delay: 1.9s"></path>
           </sc-if>
           <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
             <line x1="{{ch.hiX}}" y1="20" x2="{{ch.hiX}}" y2="{{ch.b}}" stroke="#121417" stroke-width="1.5"></line>
@@ -438,7 +429,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       <p style="margin: 12px 0 0; font-size: 14px; color: #4A5260">{{ch.note}}</p>
     </section>
 
-    <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px">
+    <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Ballots by day</h2></div>
       <div style="height: 14px"></div>
       <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px">
@@ -481,8 +472,9 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
           <sc-if value="{{bd.daily}}" hint-placeholder-val="{{ true }}">
             <sc-for list="{{bd.plan}}" as="pb" hint-placeholder-count="0">
 <g>
-              <rect class="fx-grow" x="{{pb.x}}" y="{{pb.y}}" width="{{pb.w}}" height="{{pb.h}}" rx="3" fill="#FFFFFF" stroke="#7C4DDB" stroke-width="1.5" stroke-dasharray="4 3" style="animation-delay: {{pb.delay}}"></rect>
-              <line x1="{{pb.cx}}" y1="{{pb.lo}}" x2="{{pb.cx}}" y2="{{pb.hi}}" stroke="#5B2FB8" stroke-width="1.5"></line></g>
+              <sc-if value="{{pb.hasE}}"><rect class="fx-grow" x="{{pb.x}}" y="{{pb.yE}}" width="{{pb.w}}" height="{{pb.hE}}" fill="#EEF8F3" stroke="#86D9BA" stroke-width="1.5" stroke-dasharray="4 3" style="animation-delay: {{pb.delay}}"></rect></sc-if>
+              <sc-if value="{{pb.hasM}}"><rect class="fx-grow" x="{{pb.x}}" y="{{pb.yM}}" width="{{pb.w}}" height="{{pb.hM}}" rx="3" fill="#F5F1FD" stroke="#C3ADF1" stroke-width="1.5" stroke-dasharray="4 3" style="animation-delay: {{pb.delay}}"></rect></sc-if>
+              <line x1="{{pb.cx}}" y1="{{pb.lo}}" x2="{{pb.cx}}" y2="{{pb.hi}}" stroke="#6B7380" stroke-width="1.5"></line></g>
 </sc-for>
             <sc-for list="{{bd.bars}}" as="b" hint-placeholder-count="0">
 <g>
@@ -520,7 +512,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       <p style="margin: 12px 0 0; color: #4A5260; font-size: 13px">{{bd.note}}</p>
     </section>
 
-    <section id="calendar" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; display: flex; flex-wrap: wrap; gap: 28px">
+    <section id="calendar" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px; display: flex; flex-wrap: wrap; gap: 28px">
       <div style="flex: 999 1 600px; min-width: 0">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px">
           <div>
@@ -579,31 +571,31 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </div>
     </section>
 
-    <section id="map" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
+    <section id="map" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 36px">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
         <div>
           <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Across Virginia</h2>
           <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px"></p>
         </div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap">
-          <div class="fx-narrow" role="group" aria-label="Map shown" style="border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+          <div role="group" aria-label="Map shown" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
             <sc-for list="{{mapPick}}" as="o" hint-placeholder-count="3">
               <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 12px; border: 0; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
             </sc-for>
           </div>
-          <div role="group" aria-label="Map measure" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+          <sc-if value="{{mapNotLean}}"><div role="group" aria-label="Map measure" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
             <sc-for list="{{mapOpts}}" as="o" hint-placeholder-count="2">
               <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
             </sc-for>
-          </div>
+          </div></sc-if>
         </div>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-top: 18px; align-items: flex-start">
-      <div class="fx-maps sel-{{mapSel}}" onMouseLeave="{{hideTip}}" style="flex: 999 1 560px; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px">
+      <div class="fx-maps" onMouseLeave="{{mapLeave}}" style="flex: 999 1 560px; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px">
         <sc-for list="{{maps}}" as="mp" hint-placeholder-count="3">
           <div class="fx-mapbox m-{{mp.id}}" style="border: 2px solid {{mp.border}}; border-radius: 20px; padding: 14px">
             <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px"><b style="font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 700">{{mp.title}}</b><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260">{{mp.total}}</span></div>
-            <svg viewBox="0 0 1000 440" width="100%" role="img" aria-label="{{mp.aria}}" style="display: block">
+            <svg viewBox="0 0 1000 440" width="100%" role="img" aria-label="{{mp.aria}}" onClick="{{mapClear}}" style="display: block">
               <sc-for list="{{mp.paths}}" as="p" hint-placeholder-count="0">
                 <path class="fx-path" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="{{p.sw}}" stroke-linejoin="round" onMouseMove="{{p.move}}" onClick="{{p.move}}" style="animation-delay: {{p.delay}}"></path>
               </sc-for>
@@ -631,7 +623,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
       </div>
     </section>
 
-    <section id="localities" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 0 20px">
+    <section id="localities" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 32px 0 20px">
       <div style="padding: 0 36px 18px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
         <div>
           <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Every locality</h2>
@@ -697,7 +689,8 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
   </sc-if>
 
   <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
-    <span>This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
+    <span>© 2026</span>
+    <span><a href="/about" style="font-weight: 700">About</a> · This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
   </footer>
 
   <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">
@@ -727,6 +720,7 @@ section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
           <div style="display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; font-size: 12px"><span>{{tl.k}}</span><b style="font-family: 'DM Mono', monospace">{{tl.v}}</b></div>
         </sc-for>
       </sc-if>
+      <sc-if value="{{tip.hint}}"><div style="margin-top: 8px; font-size: 13px; font-weight: 700; color: #41557F">{{tip.hint}} →</div></sc-if>
     </div>
   </sc-if>
 </div>
