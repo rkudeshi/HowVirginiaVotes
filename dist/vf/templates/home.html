@@ -105,7 +105,7 @@ a{color:#00694F}a:hover{color:#121417}
 @media (max-width: 700px){
   .vf-wide{display:none}
   .vf-band > div{padding:6px 12px !important;gap:4px 10px !important}
-  .vf-bandtxt{font-size:10.5px !important}
+  .vf-bandtxt{font-size:11.5px !important}
   .vf-head{padding:10px 12px 0 !important;gap:10px !important}
   .vf-logomark{width:34px !important;height:34px !important;border-radius:8px !important}.vf-logomark svg{width:18px;height:18px}
   .vf-logotext{font-size:19px !important}
@@ -116,6 +116,9 @@ a{color:#00694F}a:hover{color:#121417}
   .vf-kick{font-size:11px !important}
   .fx-main h2{font-size:21px !important}
 }
+@media (max-width: 700px){.vf-titlerow{justify-content:center !important}.vf-titleblock{flex-basis:100% !important}.vf-mini{margin:0 auto;display:block}}
+@media (max-width: 900px){.fx-side2{position:static !important}}
+section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
@@ -126,28 +129,19 @@ a{color:#00694F}a:hover{color:#121417}
         <span class="vf-wide" style="font: 600 11px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B7BCC6; margin-right: 4px">State</span>
         <button aria-pressed="true" style="min-height: 30px; padding: 0 12px; border-radius: 999px; border: 0; background: #00A37A; color: #FFFFFF; font: 700 13px 'Hanken Grotesk', sans-serif; display: flex; align-items: center; gap: 7px; cursor: default"><span class="fx-live" style="width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF"></span>Virginia</button>
       </div>
-      <span class="vf-bandtxt" style="font: 500 12px 'DM Mono', monospace; color: #B7BCC6">Data through {{band.asOf}} · refreshed daily at 7 AM ET</span>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right">Ideas or requests to improve this site? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20feedback" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send an email</a></span>
     </div>
   </div>
 
   <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 18px 24px 6px; display: flex; align-items: flex-end; gap: 14px 24px; flex-wrap: wrap">
     <a class="vf-logo" href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #121417; align-self: center">
-      <span class="fx-bob vf-logomark" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#121417" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l8 13 8-13"></path></svg>
-      </span>
-      <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">vote<span style="color: #7C4DDB">flow</span><span style="color: #00A37A">.</span></span>
+      <span class="fx-bob vf-logomark" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center"><span style="font: 800 17px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
+      <span class="vf-logotext" style="font-family: 'Hanken Grotesk', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">VoteFlow</span>
     </a>
-    <div class="vf-picks" style="margin-left: auto; display: grid; grid-template-columns: minmax(220px, 270px) minmax(200px, 260px); gap: 10px">
-      <label style="display: flex; flex-direction: column; gap: 4px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; min-width: 0">Election
-        <select sc-options="{{hdr.elections}}" value="{{hdr.eid}}" onChange="{{hdr.pickE}}" style="min-height: 42px; width: 100%; padding: 0 34px 0 14px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 700 15px 'Hanken Grotesk', sans-serif; color: #121417; cursor: pointer"></select>
-      </label>
-      <label style="display: flex; flex-direction: column; gap: 4px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; min-width: 0">Locality
-        <select sc-options="{{hdr.locs}}" value="{{hdr.lid}}" onChange="{{hdr.pickL}}" style="min-height: 42px; width: 100%; padding: 0 34px 0 14px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 700 15px 'Hanken Grotesk', sans-serif; color: #121417; cursor: pointer"></select>
-      </label>
-    </div>
     <nav class="vf-sections" aria-label="Page sections" style="flex-basis: 100%; display: flex; gap: 2px; font-size: 16px; font-weight: 600; margin: 0 -12px">
       <a class="fx-nav" href="#flow" style="padding: 12px; text-decoration: none; color: #121417">Breakdown</a>
       <a class="fx-nav" href="#compare" style="padding: 12px; text-decoration: none; color: #121417">History</a>
+      <a class="fx-nav" href="#byday" style="padding: 12px; text-decoration: none; color: #121417">By day</a>
       <a class="fx-nav" href="#calendar" style="padding: 12px; text-decoration: none; color: #121417">Calendar</a>
       <a class="fx-nav" href="#map" style="padding: 12px; text-decoration: none; color: #121417">Map</a>
       <a class="fx-nav" href="#localities" style="padding: 12px; text-decoration: none; color: #121417">Localities</a>
@@ -164,12 +158,26 @@ a{color:#00694F}a:hover{color:#121417}
 
   <sc-if value="{{ready}}" hint-placeholder-val="{{ true }}">
   <main class="fx-main" style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px">
-    <div style="grid-column: span 12; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 4px 4px 0">
-      <div>
-        <div style="font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260">Statewide · all 133 localities · {{label}}</div>
-        <h1 class="vf-h1" style="margin: 6px 0 0; font-family: 'Unbounded', sans-serif; font-size: clamp(44px, 6.5vw, 84px); font-weight: 800; letter-spacing: -0.04em; line-height: .95">Virginia</h1>
+    <div class="vf-titlerow" style="grid-column: span 12; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 4px 4px 0">
+      <div class="vf-titleblock" style="flex: 1 1 420px; min-width: 0">
+        <h1 class="vf-h1" style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: clamp(44px, 6.5vw, 84px); font-weight: 800; letter-spacing: -0.04em; line-height: .95">Virginia</h1>
+        <div class="vf-findrow" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; max-width: 640px">
+          <div style="position: relative; flex: 2 1 260px; min-width: 0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A5260" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" style="position: absolute; left: 16px; top: 16px; pointer-events: none"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+            <input type="search" aria-label="Find your county or city" placeholder="Find your county or city…" autocomplete="off" value="{{find.q}}" onInput="{{find.onInput}}" onKeyDown="{{find.onKey}}" onFocus="{{find.onFocus}}" onBlur="{{find.onBlur}}" style="min-height: 50px; width: 100%; box-sizing: border-box; padding: 0 16px 0 44px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 600 17px 'Hanken Grotesk', sans-serif; color: #121417">
+            <sc-if value="{{find.open}}">
+              <div role="listbox" style="position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 60; background: #FFFFFF; border: 2px solid #121417; border-radius: 16px; max-height: 330px; overflow-y: auto; box-shadow: 0 22px 40px -24px rgba(20,32,43,.6)">
+                <sc-for list="{{find.items}}" as="it" hint-placeholder-count="6">
+                  <a role="option" href="{{it.href}}" onMouseDown="{{it.go}}" style="display: flex; justify-content: space-between; gap: 12px; padding: 11px 16px; text-decoration: none; color: #121417; background: {{it.bg}}; border-bottom: 1px solid #ECEEF2"><b style="font-size: 16px">{{it.name}}</b><span style="font-size: 13px; color: #4A5260; text-align: right">{{it.region}}</span></a>
+                </sc-for>
+                <sc-if value="{{find.none}}"><div style="padding: 12px 16px; color: #4A5260">No match. Try a county or city name.</div></sc-if>
+              </div>
+            </sc-if>
+          </div>
+          <select aria-label="Election" sc-options="{{hdr.elections}}" value="{{hdr.eid}}" onChange="{{hdr.pickE}}" style="flex: 1 1 200px; min-height: 50px; padding: 0 14px; background: #FFFFFF; border: 2px solid #121417; border-radius: 999px; font: 700 15px 'Hanken Grotesk', sans-serif; color: #121417; cursor: pointer"></select>
+        </div>
       </div>
-      <svg viewBox="0 0 1000 440" width="300" role="img" aria-label="Virginia, localities shaded by turnout so far" style="max-width: 100%">
+      <svg class="vf-mini" viewBox="0 0 1000 440" width="300" role="img" aria-label="Virginia, localities shaded by turnout so far" style="max-width: 100%">
         <sc-for list="{{mini}}" as="p" hint-placeholder-count="0">
           <path class="fx-sweep" d="{{p.d}}" fill="{{p.fill}}" stroke="#E6E8EC" stroke-width="2" style="animation-delay: {{p.delay}}"></path>
         </sc-for>
@@ -188,7 +196,7 @@ a{color:#00694F}a:hover{color:#121417}
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #C9F2E4; color: #00694F; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #7C4DDB">{{hero.votes}}</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #121417">{{hero.votes}}</span>
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #EDE6FC; color: #4E2A9E; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
         </div>
       </div>
@@ -222,12 +230,12 @@ a{color:#00694F}a:hover{color:#121417}
       </div>
       <div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">{{box.title}}</div>
       <sc-if value="{{box.sub}}"><div style="font-size: 15px; color: #4A5260">{{box.sub}}</div></sc-if>
-      <div class="fx-bob" style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{satLine}}</div>
+      <sc-if value="{{satLine}}"><div class="fx-bob" style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{satLine}}</div></sc-if>
     </section>
 
     <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 36px">
       <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where Virginia's voters stand</h2>
-      <p style="margin: 6px 0 26px; color: #4A5260; font-size: 16px">Each step zooms into the slice above it.</p>
+      <p style="margin: 6px 0 26px; color: #4A5260; font-size: 16px"></p>
       <div role="group" aria-label="Flow view" style="display: inline-flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden; margin: 0 0 22px">
         <sc-for list="{{fcOpts}}" as="o" hint-placeholder-count="2">
           <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 16px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
@@ -354,7 +362,7 @@ a{color:#00694F}a:hover{color:#121417}
 
     <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
       <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">How this election compares</h2>
-      <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px">Statewide running totals by days before Election Day. Hover the chart for any day.</p>
+      <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px"></p>
       <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px">
         <sc-for list="{{ctrls}}" as="cg" hint-placeholder-count="3">
           <div style="display: flex; flex-direction: column; gap: 6px">
@@ -413,12 +421,12 @@ a{color:#00694F}a:hover{color:#121417}
           </sc-for>
         </svg>
         <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
-          <div class="fx-tip fx-chtip" style="position: absolute; top: 8px; left: {{ch.tipLeft}}%; transform: translateX({{ch.tipShift}}); background: #FFFFFF; color: #121417; border: 2px solid #121417; border-radius: 12px; padding: 14px 16px; min-width: 250px; pointer-events: none; box-shadow: 0 18px 32px -18px rgba(20,32,43,.6)">
+          <div class="fx-tip fx-chtip" style="position: absolute; top: 8px; left: {{ch.tipLeft}}%; transform: translateX({{ch.tipShift}}); background: #FFFFFF; color: #121417; border: 2px solid #121417; border-radius: 12px; padding: 14px 16px; min-width: 290px; white-space: nowrap; pointer-events: none; box-shadow: 0 18px 32px -18px rgba(20,32,43,.6)">
             <div style="font-family: 'DM Mono', monospace; font-size: 12px; color: #5B2FB8; text-transform: uppercase; letter-spacing: .08em">{{ch.hiTitle}}</div>
             <sc-for list="{{ch.hiRows}}" as="hr" hint-placeholder-count="3">
               <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 14px">
                 <span style="width: 10px; height: 10px; border-radius: 50%; background: {{hr.color}}"></span>
-                <span style="flex: 1">{{hr.label}}</span>
+                <span style="flex: 1; white-space: nowrap">{{hr.label}}</span>
                 <b style="font-family: 'DM Mono', monospace">{{hr.val}}</b>
                 <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260; width: 52px; text-align: right">{{hr.rel}}</span>
               </div>
@@ -430,12 +438,94 @@ a{color:#00694F}a:hover{color:#121417}
       <p style="margin: 12px 0 0; font-size: 14px; color: #4A5260">{{ch.note}}</p>
     </section>
 
+    <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px">
+      <div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Ballots by day</h2></div>
+      <div style="height: 14px"></div>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px">
+        <sc-for list="{{bd.ctrls}}" as="cg" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #4A5260">{{cg.label}}</span>
+            <div role="group" aria-label="{{cg.label}}" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
+              <sc-for list="{{cg.opts}}" as="o" hint-placeholder-count="3">
+                <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; font: 700 13px 'Hanken Grotesk', sans-serif; color: #121417; margin: 4px 0 2px"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M2 5l4-4 4 4" fill="none" stroke="#121417" stroke-width="1.8"></path></svg>{{bd.yTitle}}</div>
+      <div onMouseLeave="{{hideTip}}">
+        <svg viewBox="-20 0 1020 430" width="100%" role="img" aria-label="Ballots by day" style="display: block; overflow: visible">
+          <sc-if value="{{bd.hasPlan}}" hint-placeholder-val="{{ false }}">
+            <rect x="{{bd.futX}}" y="20" width="{{bd.futW}}" height="380" fill="#F7F4FE"></rect>
+            <text x="{{bd.futLX}}" y="40" class="fx-axis" style="font-family: 'DM Mono', monospace; font-weight: 600; letter-spacing: 1px" fill="#5B2FB8">ESTIMATES →</text>
+          </sc-if>
+          <sc-for list="{{bd.yt}}" as="t" hint-placeholder-count="5">
+<g>
+            <line x1="60" y1="{{t.y}}" x2="1000" y2="{{t.y}}" stroke="{{t.stroke}}" stroke-width="1.5"></line>
+            <text x="54" y="{{t.ty}}" text-anchor="end" class="fx-axis" style="font-family: 'DM Mono', monospace" fill="#4A5260">{{t.l}}</text></g>
+</sc-for>
+          <sc-for list="{{bd.xt}}" as="t" hint-placeholder-count="8">
+<g>
+            <line x1="{{t.x}}" y1="400" x2="{{t.x}}" y2="406" stroke="#121417" stroke-width="1.5"></line>
+            <text x="{{t.x}}" y="424" text-anchor="middle" class="fx-axis" style="font-family: 'DM Mono', monospace" fill="#4A5260">{{t.l}}</text></g>
+</sc-for>
+          <sc-if value="{{bd.showE}}" hint-placeholder-val="{{ false }}">
+            <line x1="{{bd.eX}}" y1="14" x2="{{bd.eX}}" y2="400" stroke="#121417" stroke-width="1.5" stroke-dasharray="2 4"></line>
+            <text x="{{bd.eX}}" y="10" text-anchor="middle" class="fx-axis" style="font-family: 'DM Mono', monospace; font-weight: 600" fill="#121417">ELECTION DAY</text>
+          </sc-if>
+          <sc-if value="{{bd.showToday}}" hint-placeholder-val="{{ true }}">
+            <line x1="{{bd.todayX}}" y1="20" x2="{{bd.todayX}}" y2="400" stroke="#F0592A" stroke-width="2" stroke-dasharray="2 4"></line>
+            <text x="{{bd.todayLX}}" y="40" text-anchor="end" class="fx-axis" style="font-family: 'DM Mono', monospace; font-weight: 600" fill="#B4400F">TODAY</text>
+          </sc-if>
+          <sc-if value="{{bd.daily}}" hint-placeholder-val="{{ true }}">
+            <sc-for list="{{bd.plan}}" as="pb" hint-placeholder-count="0">
+<g>
+              <rect class="fx-grow" x="{{pb.x}}" y="{{pb.y}}" width="{{pb.w}}" height="{{pb.h}}" rx="3" fill="#FFFFFF" stroke="#7C4DDB" stroke-width="1.5" stroke-dasharray="4 3" style="animation-delay: {{pb.delay}}"></rect>
+              <line x1="{{pb.cx}}" y1="{{pb.lo}}" x2="{{pb.cx}}" y2="{{pb.hi}}" stroke="#5B2FB8" stroke-width="1.5"></line></g>
+</sc-for>
+            <sc-for list="{{bd.bars}}" as="b" hint-placeholder-count="0">
+<g>
+              <rect class="fx-grow" x="{{b.x}}" y="{{b.yE}}" width="{{b.w}}" height="{{b.hE}}" fill="#00A37A" style="animation-delay: {{b.delay}}"></rect>
+              <rect class="fx-grow" x="{{b.x}}" y="{{b.yM}}" width="{{b.w}}" height="{{b.hM}}" rx="3" fill="#7C4DDB" style="animation-delay: {{b.delay}}"></rect></g>
+</sc-for>
+          </sc-if>
+          <sc-if value="{{bd.cum}}" hint-placeholder-val="{{ false }}">
+            <path class="fx-fade" d="{{bd.band}}" fill="#ECE5FC"></path>
+            <path class="fx-fade" d="{{bd.projLine}}" fill="none" stroke="#7C4DDB" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" style="animation-delay: .8s"></path>
+            <path class="fx-a" d="{{bd.mLine}}" pathLength="1" fill="none" stroke="#7C4DDB" stroke-width="3" stroke-linejoin="round"></path>
+            <path class="fx-a" d="{{bd.eLine}}" pathLength="1" fill="none" stroke="#00A37A" stroke-width="3" stroke-linejoin="round"></path>
+            <path class="fx-a" d="{{bd.line}}" pathLength="1" fill="none" stroke="#121417" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"></path>
+          </sc-if>
+          <sc-for list="{{bd.hits}}" as="h" hint-placeholder-count="0">
+            <rect class="fx-hit" x="{{h.x}}" y="0" width="{{h.w}}" height="410" fill="{{h.fill}}" onMouseMove="{{h.move}}" onClick="{{h.move}}"></rect>
+          </sc-for>
+        </svg>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 6px; font: 700 13px 'Hanken Grotesk', sans-serif; color: #121417; margin-top: 2px">Date<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4" fill="none" stroke="#121417" stroke-width="1.8"></path></svg></div>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260; align-items: center">
+        <sc-for list="{{bd.legend}}" as="lg" hint-placeholder-count="4"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 18px; height: 10px; border-radius: 3px; background: {{lg.bg}}; border: {{lg.border}}"></span>{{lg.l}}</span></sc-for>
+      </div>
+      <sc-if value="{{bd.hasPlan}}" hint-placeholder-val="{{ false }}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 18px">
+          <sc-for list="{{bd.chips}}" as="pc" hint-placeholder-count="4">
+            <div class="fx-pill" style="padding: 12px 16px; border-radius: 16px; background: {{pc.bg}}; border: 2px solid {{pc.border}}; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260">{{pc.k}}</span>
+              <b style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em">{{pc.v}}</b>
+              <span style="font-size: 13px; color: #4A5260">{{pc.sub}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <p style="margin: 12px 0 0; color: #4A5260; font-size: 13px">{{bd.note}}</p>
+    </section>
+
     <section id="calendar" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; display: flex; flex-wrap: wrap; gap: 28px">
       <div style="flex: 999 1 600px; min-width: 0">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px">
           <div>
             <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">The calendar</h2>
-            <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">Ballots cast each day, statewide. Darker means busier. Hover or tap a day.</p>
+            <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px"></p>
           </div>
           <div role="group" aria-label="Ballot method" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
             <sc-for list="{{calOpts}}" as="o" hint-placeholder-count="3">
@@ -493,7 +583,7 @@ a{color:#00694F}a:hover{color:#121417}
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
         <div>
           <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Across Virginia</h2>
-          <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">Three views of the same 133 localities. Hover one to light it up in all three.</p>
+          <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px"></p>
         </div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap">
           <div class="fx-narrow" role="group" aria-label="Map shown" style="border: 2px solid #121417; border-radius: 999px; overflow: hidden">
@@ -508,7 +598,8 @@ a{color:#00694F}a:hover{color:#121417}
           </div>
         </div>
       </div>
-      <div class="fx-maps sel-{{mapSel}}" onMouseLeave="{{hideTip}}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 18px">
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-top: 18px; align-items: flex-start">
+      <div class="fx-maps sel-{{mapSel}}" onMouseLeave="{{hideTip}}" style="flex: 999 1 560px; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px">
         <sc-for list="{{maps}}" as="mp" hint-placeholder-count="3">
           <div class="fx-mapbox m-{{mp.id}}" style="border: 2px solid {{mp.border}}; border-radius: 20px; padding: 14px">
             <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px"><b style="font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 700">{{mp.title}}</b><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260">{{mp.total}}</span></div>
@@ -525,14 +616,18 @@ a{color:#00694F}a:hover{color:#121417}
           </div>
         </sc-for>
       </div>
-      <div style="margin-top: 18px; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 20px; padding: 16px 20px; display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center">
-        <div style="min-width: 200px"><div style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{hov.kicker}}</div><div style="font-family: 'Unbounded', sans-serif; font-size: 20px; font-weight: 700">{{hov.title}}</div><div style="font-size: 14px; color: #4A5260">{{hov.sub}}</div></div>
+      <aside class="fx-side2" style="flex: 1 1 260px; position: sticky; top: 16px; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 2px">
+        <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{hov.kicker}}</div>
+        <div style="font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05">{{hov.title}}</div>
+        <div style="font-size: 15px; color: #4A5260; margin-bottom: 10px">{{hov.sub}}</div>
         <sc-for list="{{hov.rows}}" as="hr" hint-placeholder-count="8">
-          <div style="display: flex; flex-direction: column; font-size: 13px"><span style="color: #4A5260">{{hr.k}}</span><b style="font-family: 'DM Mono', monospace; font-size: 15px">{{hr.v}}</b></div>
+          <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid #F0E2B0; font-size: 15px"><span style="color: #4A5260">{{hr.k}}</span><b style="font-family: 'DM Mono', monospace; text-align: right">{{hr.v}}</b></div>
         </sc-for>
         <sc-if value="{{hov.hasLink}}" hint-placeholder-val="{{ false }}">
-          <a href="{{hov.href}}" style="margin-left: auto; min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; background: #121417; color: #FFFFFF; font-weight: 700; text-decoration: none">Open {{hov.title}} →</a>
+          <a href="{{hov.href}}" style="margin-top: 12px; min-height: 44px; padding: 0 18px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #121417; color: #FFFFFF; font-weight: 700; text-decoration: none">Open {{hov.title}} →</a>
         </sc-if>
+        <sc-if value="{{hov.hint}}"><div style="margin-top: 10px; font-size: 13px; color: #4A5260">{{hov.hint}}</div></sc-if>
+      </aside>
       </div>
     </section>
 
@@ -540,7 +635,7 @@ a{color:#00694F}a:hover{color:#121417}
       <div style="padding: 0 36px 18px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
         <div>
           <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Every locality</h2>
-          <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">Shares of registered voters, with counts underneath. Click a column to sort.</p>
+          <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px"></p>
         </div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end">
           <div role="group" aria-label="Quick sort" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
@@ -580,7 +675,7 @@ a{color:#00694F}a:hover{color:#121417}
               <span style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right">{{r.reg}}</span>
               <span style="display: flex; flex-direction: column; gap: 5px">
                 <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap"><b style="font-size: 15px">{{r.p}}%</b><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #4A5260">{{r.v}}</span></span>
-                <span style="height: 4px; background: #ECEEF2; border-radius: 999px; overflow: hidden"><span class="fx-meter" style="display: block; height: 100%; width: {{r.w}}%; background: #00A37A; border-radius: 999px"></span></span>
+                <span style="height: 4px; background: #ECEEF2; border-radius: 999px; overflow: hidden; display: flex; justify-content: flex-end"><span class="fx-meter" style="display: block; height: 100%; width: {{r.w}}%; background: #00A37A; border-radius: 999px; transform-origin: right"></span></span>
               </span>
               <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap"><b style="font-size: 15px">{{r.ep}}%</b><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #4A5260">{{r.e}}</span></span>
               <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.25; white-space: nowrap"><b style="font-size: 15px">{{r.mp}}%</b><span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #4A5260">{{r.m}}</span></span>
@@ -603,7 +698,6 @@ a{color:#00694F}a:hover{color:#121417}
 
   <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
     <span>This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
-    <span style="font-family: 'DM Mono', monospace; font-size: 13px">Data: Virginia Department of Elections and local registrars · <a href="/status">Update status</a></span>
   </footer>
 
   <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">

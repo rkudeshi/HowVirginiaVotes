@@ -112,7 +112,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
 @media (max-width: 700px){
   .vf-wide{display:none}
   .vf-band > div{padding:6px 12px !important;gap:4px 10px !important}
-  .vf-bandtxt{font-size:10.5px !important}
+  .vf-bandtxt{font-size:11.5px !important}
   .vf-head{padding:10px 12px 0 !important;gap:10px !important}
   .vf-logomark{width:34px !important;height:34px !important;border-radius:8px !important}.vf-logomark svg{width:18px;height:18px}
   .vf-logotext{font-size:19px !important}
@@ -130,6 +130,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
   .dn > div > *{padding-left:5px !important;padding-right:5px !important}
   .dn > div:first-child{font-size:9.5px !important;letter-spacing:.02em !important}
 }
+section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
@@ -140,16 +141,14 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
         <span class="vf-wide" style="font: 600 11px 'DM Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: #B7BCC6; margin-right: 4px">State</span>
         <button aria-pressed="true" style="min-height: 30px; padding: 0 12px; border-radius: 999px; border: 0; background: #00A37A; color: #FFFFFF; font: 700 13px 'Hanken Grotesk', sans-serif; display: flex; align-items: center; gap: 7px; cursor: default"><span class="fx-live" style="width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF"></span>Virginia</button>
       </div>
-      <span class="vf-bandtxt" style="font: 500 12px 'DM Mono', monospace; color: #B7BCC6">Data through {{band.asOf}} · refreshed daily at 7 AM ET</span>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right">Ideas or requests to improve this site? <a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20feedback" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send an email</a></span>
     </div>
   </div>
 
   <header class="vf-head" style="max-width: 1240px; margin: 0 auto; padding: 18px 24px 6px; display: flex; align-items: flex-end; gap: 14px 24px; flex-wrap: wrap">
     <a class="vf-logo" href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #121417; align-self: center">
-      <span class="fx-bob vf-logomark" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#121417" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l8 13 8-13"></path></svg>
-      </span>
-      <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">vote<span style="color: #7C4DDB">flow</span><span style="color: #00A37A">.</span></span>
+      <span class="fx-bob vf-logomark" style="width: 44px; height: 44px; background: #FFD23F; border: 2px solid #121417; border-radius: 10px; display: grid; place-items: center"><span style="font: 800 17px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
+      <span class="vf-logotext" style="font-family: 'Hanken Grotesk', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">VoteFlow</span>
     </a>
     <div class="vf-picks" style="margin-left: auto; display: grid; grid-template-columns: minmax(220px, 270px) minmax(200px, 260px); gap: 10px">
       <label style="display: flex; flex-direction: column; gap: 4px; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; min-width: 0">Election
@@ -217,7 +216,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #C9F2E4; color: #00694F; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #7C4DDB">{{hero.votes}}</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #121417">{{hero.votes}}</span>
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #EDE6FC; color: #4E2A9E; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
         </div>
       </div>
@@ -251,21 +250,25 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
           </div>
         </div>
         <div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Election Day · Tue Nov 3</div>
-        <div style="font-size: 15px; color: #4A5260">Mail ballots count through Mon Nov 9.</div>
         <div class="fx-bob" style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{satLine}}</div>
       </sc-if>
       <sc-if value="{{hero.past}}" hint-placeholder-val="{{ false }}">
-        <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em">Final early vote</div>
-        <div style="font-size: 44px; font-weight: 800; letter-spacing: -0.04em; line-height: 1">{{hero.dateLabel}}</div>
-        <div style="font-size: 15px; color: #4A5260">{{hero.typeLabel}}</div>
-        <div style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{hero.atT}} ballots by this point in early voting</div>
+        <div style="position: relative; width: 200px; height: 200px">
+          <svg width="200" height="200" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#7C4DDB" stroke-width="12"></circle></svg>
+          <div style="position: absolute; inset: 0; display: grid; place-items: center; align-content: center">
+            <div style="font-size: 64px; font-weight: 800; line-height: 1">✓</div>
+            <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em">Completed</div>
+          </div>
+        </div>
+        <div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Election Day · {{hero.eDayLabel}}</div>
+        <div style="font-size: 15px; color: #4A5260">Past election</div>
         <button class="fx-pill" onClick="{{backToNow}}" style="min-height: 44px; padding: 0 18px; border: 2px solid #121417; border-radius: 999px; background: #121417; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">Back to November 2026</button>
       </sc-if>
     </section>
 
     <section id="flow" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 36px">
-      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where {{L.name}}'s voters stand · {{elLabel}}</h2>
-      <p style="margin: 6px 0 26px; color: #4A5260; font-size: 16px">{{flowNote}}</p>
+      <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Where voters stand</h2></div>
+      <p style="margin: 6px 0 26px; color: #4A5260; font-size: 16px"></p>
       <div role="group" aria-label="Flow view" style="display: inline-flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden; margin: 0 0 22px">
         <sc-for list="{{fcOpts}}" as="o" hint-placeholder-count="2">
           <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 16px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
@@ -391,8 +394,8 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
     </section>
 
     <section id="compare" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
-      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">{{L.name}} against past elections</h2>
-      <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px">Running totals by days before Election Day. Hover the chart for any day.</p>
+      <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">How this election compares</h2></div>
+      <p style="margin: 6px 0 18px; color: #4A5260; font-size: 16px"></p>
       <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px">
         <sc-for list="{{ctrls}}" as="cg" hint-placeholder-count="3">
           <div style="display: flex; flex-direction: column; gap: 6px">
@@ -451,12 +454,12 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
           </sc-for>
         </svg>
         <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
-          <div class="fx-tip fx-chtip" style="position: absolute; top: 8px; left: {{ch.tipLeft}}%; transform: translateX({{ch.tipShift}}); background: #FFFFFF; color: #121417; border: 2px solid #121417; border-radius: 12px; padding: 14px 16px; min-width: 260px; pointer-events: none; box-shadow: 0 18px 32px -18px rgba(20,32,43,.6)">
+          <div class="fx-tip fx-chtip" style="position: absolute; top: 8px; left: {{ch.tipLeft}}%; transform: translateX({{ch.tipShift}}); background: #FFFFFF; color: #121417; border: 2px solid #121417; border-radius: 12px; padding: 14px 16px; min-width: 290px; white-space: nowrap; pointer-events: none; box-shadow: 0 18px 32px -18px rgba(20,32,43,.6)">
             <div style="font-family: 'DM Mono', monospace; font-size: 12px; color: #5B2FB8; text-transform: uppercase; letter-spacing: .08em">{{ch.hiTitle}}</div>
             <sc-for list="{{ch.hiRows}}" as="hr" hint-placeholder-count="3">
               <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 14px">
                 <span style="width: 10px; height: 10px; border-radius: 50%; background: {{hr.color}}"></span>
-                <span style="flex: 1">{{hr.label}}</span>
+                <span style="flex: 1; white-space: nowrap">{{hr.label}}</span>
                 <b style="font-family: 'DM Mono', monospace">{{hr.val}}</b>
                 <span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260; width: 52px; text-align: right">{{hr.rel}}</span>
               </div>
@@ -469,8 +472,8 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
     </section>
 
     <section id="byday" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px">
-      <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Ballots by day · {{elLabel}}</h2>
-      <p style="margin: 6px 0 16px; color: #4A5260; font-size: 16px">{{bd.note}}</p>
+      <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Ballots by day</h2></div>
+      <div style="height: 14px"></div>
       <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px">
         <sc-for list="{{bd.ctrls}}" as="cg" hint-placeholder-count="3">
           <div style="display: flex; flex-direction: column; gap: 6px">
@@ -483,17 +486,6 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
           </div>
         </sc-for>
       </div>
-      <sc-if value="{{bd.hasPlan}}" hint-placeholder-val="{{ false }}">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 16px">
-          <sc-for list="{{bd.chips}}" as="pc" hint-placeholder-count="4">
-            <div class="fx-pill" style="padding: 12px 16px; border-radius: 16px; background: {{pc.bg}}; border: 2px solid {{pc.border}}; display: flex; flex-direction: column; gap: 3px">
-              <span style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260">{{pc.k}}</span>
-              <b style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em">{{pc.v}}</b>
-              <span style="font-size: 13px; color: #4A5260">{{pc.sub}}</span>
-            </div>
-          </sc-for>
-        </div>
-      </sc-if>
       <div style="display: flex; align-items: center; gap: 6px; font: 700 13px 'Hanken Grotesk', sans-serif; color: #121417; margin: 4px 0 2px"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M2 5l4-4 4 4" fill="none" stroke="#121417" stroke-width="1.8"></path></svg>{{bd.yTitle}}</div>
       <div onMouseLeave="{{hideTip}}">
         <svg viewBox="-20 0 1020 430" width="100%" role="img" aria-label="Ballots by day" style="display: block; overflow: visible">
@@ -547,14 +539,26 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
       <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260; align-items: center">
         <sc-for list="{{bd.legend}}" as="lg" hint-placeholder-count="4"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 18px; height: 10px; border-radius: 3px; background: {{lg.bg}}; border: {{lg.border}}"></span>{{lg.l}}</span></sc-for>
       </div>
+      <sc-if value="{{bd.hasPlan}}" hint-placeholder-val="{{ false }}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 18px">
+          <sc-for list="{{bd.chips}}" as="pc" hint-placeholder-count="4">
+            <div class="fx-pill" style="padding: 12px 16px; border-radius: 16px; background: {{pc.bg}}; border: 2px solid {{pc.border}}; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #4A5260">{{pc.k}}</span>
+              <b style="font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em">{{pc.v}}</b>
+              <span style="font-size: 13px; color: #4A5260">{{pc.sub}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <p style="margin: 12px 0 0; color: #4A5260; font-size: 13px">{{bd.note}}</p>
     </section>
 
     <section id="calendar" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; display: flex; flex-wrap: wrap; gap: 28px">
       <div style="flex: 999 1 600px; min-width: 0">
         <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px">
           <div>
-            <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">The calendar · {{elLabel}}</h2>
-            <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">Darker means busier. Hover or tap a day for sites, hours, weather and numbers.</p>
+            <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">The calendar</h2></div>
+            <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px"></p>
           </div>
           <div role="group" aria-label="Ballot method" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
             <sc-for list="{{calOpts}}" as="o" hint-placeholder-count="3">
@@ -614,7 +618,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
     <section id="sites" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #00A37A; border-radius: 28px; padding: 32px 36px">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
         <div>
-          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Early voting sites · Nov 2026</h2>
+          <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · November 2026</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Early voting sites</h2></div>
           <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">{{siteSummary}}</p>
         </div>
         <button class="fx-pill" onClick="{{siteAllToggle}}" aria-pressed="{{siteAllPressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{siteAllBg}}; color: {{siteAllFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer">{{siteAllLabel}}</button>
@@ -706,7 +710,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
 
     <section id="daily" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #121417; border-radius: 28px; padding: 32px 0 20px">
       <div style="padding: 0 36px 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap">
-        <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Daily numbers · {{elLabel}}</h2>
+        <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · {{elLabel}}</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Daily numbers</h2></div>
         <button class="fx-pill" onClick="{{tbl.toggleShade}}" aria-pressed="{{tbl.shadePressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{tbl.shadeBg}}; color: {{tbl.shadeFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px"><span style="display: flex; gap: 2px"><span style="width: 8px; height: 14px; border-radius: 2px; background: #DDF3EA"></span><span style="width: 8px; height: 14px; border-radius: 2px; background: #A6E0CA"></span><span style="width: 8px; height: 14px; border-radius: 2px; background: #5CC9A3"></span></span>Shade by volume</button>
       </div>
       <div style="overflow: auto; max-height: 580px; border-top: 2px solid #121417">
@@ -745,7 +749,7 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
     <section id="precincts" class="fx-card" style="grid-column: span 12; background: #FFFFFF; border: 2px solid #7C4DDB; border-radius: 28px; padding: 32px 36px; {{pm.fs}}">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
         <div>
-          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Precinct maps</h2>
+          <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · November 2026</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Precinct maps</h2></div>
           <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">{{pm.note}}</p>
         </div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap">
@@ -807,7 +811,6 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
 
   <footer style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 48px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; color: #4A5260">
     <span>This site was made by <a href="https://www.linkedin.com/in/raviudeshi" style="font-weight: 700">Ravi Udeshi</a>.</span>
-    <span style="font-family: 'DM Mono', monospace; font-size: 13px">Data: Virginia Department of Elections and local registrars · <a href="/status">Update status</a></span>
   </footer>
 
   <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">

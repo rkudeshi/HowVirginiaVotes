@@ -68,6 +68,9 @@ class Locality extends DCLogic {
     const COLORS = { '2026': '#00A37A', '2026-special': '#6B7F1A', '2025': '#7C4DDB', '2024': '#121417', '2023': '#B7791F', '2022': '#8C5A00', '2021': '#8A8F99', '2020': '#A68A00' };
     const L = { name: D.name, region: D.region, rankV: D.rankV, rankP: D.rankP };
     const eDate = parse(cur.date);
+    // Timelines end at the legal mail deadline; a past election also shows any later reported days.
+    let curLast = -1; if (cur.series) for (let i = 0; i < 53; i++) if (cur.series.e[i] != null) curLast = i;
+    const endI = Math.min(52, live ? VF.idxOf(cur.date, VF.deadline(cur.date)) : Math.max(VF.idxOf(cur.date, VF.deadline(cur.date)), curLast));
     const typeLabel = cur.type + ' election · ' + DOWL[eDate.getDay()] + ', ' + MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear();
 
     const elChips = EL.map((x) => { const on = x.id === eid; return { label: x.label.replace('November ', 'Nov ').replace('April 2026 special', 'Apr 2026 · special'), sub: f(x.total) + (x.final ? ' final' : ' so far'), sub2: (x.total / x.reg * 100).toFixed(1) + '% turnout',
@@ -81,7 +84,7 @@ class Locality extends DCLogic {
     const hero = { pctLbl: live ? 'turnout so far' : 'early turnout', fs: heroFs((tot / cur.reg * 100).toFixed(1), tot), live, past: !live, kicker: live ? 'Early votes cast · through ' + dmd(D.rows[D.rows.length - 1].d) : cur.label + ' · final early vote',
       votes: f(tot * k), pct: (tot / cur.reg * 100 * k).toFixed(1), reg: f(cur.reg), regNote: '.',
       ip: f(cur.early * k), m: f(cur.mail * k), ipW: (cur.early / tot * 100).toFixed(1), mW: (cur.mail / tot * 100).toFixed(1),
-      dateLabel: MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear(), typeLabel, atT: f(cur.atT), TL };
+      dateLabel: MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear(), typeLabel, atT: f(cur.atT), TL, eDayLabel: DOW[eDate.getDay()] + ' ' + MON[eDate.getMonth()] + ' ' + eDate.getDate() + ', ' + eDate.getFullYear() };
     // Pace chips, newest election first. The live election compares at today's point; a past
     // election compares with the live one at today's point and with other past ones in total.
     const refOrder = ['2026', '2026-special', '2025', '2024', '2022', '2021', '2020'];
@@ -153,7 +156,7 @@ class Locality extends DCLogic {
     const { method, measure, win, show, hi } = this.state;
     const visEl = EL.filter((x) => x.series && (show[x.id] || x.id === eid));
     const val = (x, i) => { const s = x.series; if (!s || s.e[i] == null) return null; const v = method === 'all' ? s.e[i] + s.m[i] : method === 'early' ? s.e[i] : s.m[i]; return measure === 'pct' ? v / s.r * 100 : v; };
-    const n = win === 'today' ? T + 1 : win === 'election' ? 47 : 53;
+    const n = win === 'today' ? T + 1 : endI + 1;
     const e26 = EL.find((x) => x.id === '2026'), e25 = EL.find((x) => x.id === '2025');
     const projVal = (i) => { const r23 = val(e25, T), ri = val(e25, i), b = val(e26, T); return r23 && ri != null && b != null ? b * ri / r23 : null; };
     const hasProj = win !== 'today' && e25 && visEl.includes(e26) && !!val(e25, T);
@@ -171,7 +174,7 @@ class Locality extends DCLogic {
     const lines = visEl.slice().sort((a, b) => (a.id === eid) - (b.id === eid)).map((x) => ({ d: pathOf((i) => val(x, i)), color: COLORS[x.id], w: x.id === eid ? (narrow ? 10 : 6) : (narrow ? 5 : 3) }));
     const proj = hasProj ? pathOf((i) => i < T ? null : projVal(i)) : '';
     const yt = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((j) => ({ y: CB - j * (CB - 20) / 8, ty: CB + 4 - j * (CB - 20) / 8, l: fmtT(top * j / 8), stroke: j === 0 ? '#121417' : '#ECEEF2' }));
-    const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= T) : win === 'election' ? [40, 30, 20, 10, 0] : [40, 30, 20, 10, 0, -6];
+    const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= T) : [40, 30, 20, 10, 0].concat(endI > 46 ? [46 - endI] : []);
     const xt = dset.map((d) => ({ x: X(46 - d).toFixed(1), l: d === 0 ? 'Election Day' : d < 0 ? (-d) + ' days after' : d + ' days' }));
     const todayX = X(T);
     const hits = Array.from({ length: n }, (_, i) => ({ x: (X(i) - (XR - 60) / (n - 1) / 2).toFixed(1), w: ((XR - 60) / (n - 1)).toFixed(1), enter: () => this.setState({ hi: i }) }));
@@ -205,7 +208,7 @@ class Locality extends DCLogic {
     const ctrls = [
       opt('Method', 'method', method, [['all', 'All early'], ['early', 'In person'], ['mail', 'By mail']]),
       opt('Measure', 'measure', measure, [['count', 'Ballots'], ['pct', '% of registered']]),
-      opt('Timeline', 'win', win, [['today', live ? 'Through today' : 'Through same point'], ['election', 'Through Election Day'], ['deadline', 'Through mail deadline']])
+      opt('Timeline', 'win', win, [['today', live ? 'Through today' : 'Through same point'], ['deadline', 'Through election end']])
     ];
     const years = EL.filter((x) => x.series).map((x) => { const on = show[x.id] || x.id === eid; return { label: (x.label).replace('November ', 'Nov ').replace('April 2026 special', 'Apr 2026'), type: x.type, color: COLORS[x.id], on, locked: x.id === eid, border: on ? COLORS[x.id] : '#D3D7DE', bg: on ? '#FFFFFF' : '#F5F6F8', op: on ? 1 : 0.6,
       toggle: () => { if (x.id !== eid) this.setState(Object.assign({ show: Object.assign({}, show, { [x.id]: !show[x.id] }) }, bump)); } }; });
@@ -233,10 +236,10 @@ class Locality extends DCLogic {
     const calM = this.state.calM;
     const dv = (r) => calM === 'all' ? r.de + r.dm : calM === 'early' ? r.de : r.dm;
     const startE = new Date(eDate); startE.setDate(startE.getDate() - 46);
-    const endK = (() => { const x = new Date(eDate); x.setDate(x.getDate() + 6); return iso(x); })();
+    const endK = VF.addDays(cur.date, endI - 46);
     const calStart = new Date(startE); calStart.setDate(calStart.getDate() - calStart.getDay());
     const maxDay = Math.max(1, ...drows.map(dv));
-    const ramp = calM === 'mail' ? ['#FFFFFF', '#E9E1FB', '#BBA2F0', '#7C4DDB', '#4E2A9E'] : calM === 'early' ? ['#FFFFFF', '#D3F1E6', '#86D9BA', '#00A37A', '#006B50'] : ['#FFFFFF', '#DDE3EE', '#9AA9C4', '#41557F', '#1B2A6B'];
+    const ramp = ['#FFFFFF', '#DDE3EE', '#9AA9C4', '#41557F', '#1B2A6B'];
     const firstK = iso(startE), eK = cur.date;
     const defaultK = live ? D.asOf : eK;
     const selK = this.state.cal || defaultK;
@@ -276,7 +279,7 @@ class Locality extends DCLogic {
           listHead: base.hasList ? base.listHead + (sr.site ? ' · ballots' : '') : '' });
       }
       if (kk === eK) return Object.assign(base, { kicker: 'Election Day', title: DOWL[sd.getDay()] + ', ' + md(kk), sub: 'Polls open 6 AM – 7 PM at every precinct', rows: [] });
-      if (kk > eK) return Object.assign(base, { kicker: eLabel, title: DOWL[sd.getDay()] + ', ' + md(kk), sub: 'Mail ballots postmarked by Election Day still count', rows: [{ k: 'Mail deadline', v: dmd(endK) }] });
+      if (kk > eK) return Object.assign(base, { kicker: eLabel, title: DOWL[sd.getDay()] + ', ' + md(kk), sub: 'Mail ballots postmarked by Election Day still count', rows: [{ k: 'Mail ballots due', v: dmd(VF.deadline(cur.date)) + ', noon' }] });
       return Object.assign(base, { kicker: 'Upcoming · ' + eLabel, title: DOWL[sd.getDay()] + ', ' + md(kk), sub: ssc ? 'Scheduled in-person voting' : 'No in-person voting scheduled',
         rows: [{ k: 'Satellites opening', v: satOpens[kk] ? String(satOpens[kk]) : '—' }, { k: 'Days until Election Day', v: String(Math.round((eDate - sd) / 864e5)) }] });
     };
@@ -329,88 +332,9 @@ class Locality extends DCLogic {
       grid: narrowT ? (live ? '1.1fr 1fr 1fr 1fr 0.95fr 0.75fr' : '1.1fr 1fr 1fr 1fr 0.95fr') : live ? (hasPB ? '1fr 0.8fr 0.8fr 1fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr' : '1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr') : '1.2fr 1fr 1fr 1fr 1fr 0.8fr' };
 
     // ---- ballots by day (+ planning)
-    const bdView = this.state.bdView || 'daily', bdM = this.state.bdM || 'all', bdWin = this.state.bdWin || 'today';
-    const ser = cur.series;
-    let lastI = -1; for (let i = 0; i < 53; i++) if (ser.e[i] != null) lastI = i;
-    const dayDate = (i) => { const x = new Date(eDate); x.setDate(x.getDate() - (46 - i)); return x; };
-    const act = Array.from({ length: 53 }, (_, i) => { if (ser.e[i] == null) return null; const pe = i > 0 && ser.e[i - 1] != null ? ser.e[i - 1] : 0, pmm = i > 0 && ser.m[i - 1] != null ? ser.m[i - 1] : 0; return { de: ser.e[i] - pe, dm: ser.m[i] - pmm, e: ser.e[i], m: ser.m[i] }; });
-    if (live && D.id === 'fairfax-county') D.rows.forEach((r) => { const i = Math.round((parse(r.d) - parse(cur.date)) / 864e5) + 46; if (act[i]) { act[i].de = r.de; act[i].dm = r.dm; } });
-    const refs = live ? EL.filter((x) => ['2025', '2024', '2023', '2022', '2021'].includes(x.id) && x.series && x.series.e[lastI]) : [];
-    const med = (arr) => { const q = arr.slice().sort((x, y) => x - y); const L2 = q.length; return !L2 ? null : L2 % 2 ? q[(L2 - 1) / 2] : (q[L2 / 2 - 1] + q[L2 / 2]) / 2; };
-    const estFor = (key, i) => { const v = refs.map((r) => { const s2 = r.series; if (s2[key][i] == null || s2[key][i - 1] == null || !s2[key][lastI]) return null; return Math.max(0, s2[key][i] - s2[key][i - 1]) * ser[key][lastI] / s2[key][lastI]; }).filter((x) => x != null); return med(v); };
-    const plan = Array.from({ length: 53 }, (_, i) => {
-      if (!live || i <= lastI || !refs.length) return null;
-      const k3 = iso(dayDate(i)); const open = D.sched[k3];
-      const pe = (i < 46 && open ? estFor('e', i) : 0) || 0, pmail = estFor('m', i) || 0;
-      const err = i <= 36 ? 0.21 : 0.30;
-      return { e: pe, m: pmail, eLo: pe * Math.exp(-err), eHi: pe * Math.exp(err), mLo: pmail * Math.exp(-err), mHi: pmail * Math.exp(err) };
-    });
-    const N = bdWin === 'today' ? (live ? lastI + 1 : T + 1) : bdWin === 'election' ? 47 : 53;
-    const usePlan = live && bdWin !== 'today' && refs.length > 0;
-    const pick3 = (o, ke, km) => bdM === 'all' ? o[ke] + o[km] : bdM === 'early' ? o[ke] : o[km];
-    const BX = (i) => 60 + (i + 0.5) / N * 940;
-    const bw = 940 / N * 0.72;
-    const cumAct = (i) => act[i] ? (bdM === 'all' ? act[i].e + act[i].m : bdM === 'early' ? act[i].e : act[i].m) : null;
-    const cumLo = [], cumHi = [], cumMid = [];
-    if (usePlan) { let c = cumAct(lastI), lo = c, hi = c; for (let i = lastI + 1; i < 53; i++) { const p = plan[i]; c += pick3(p, 'e', 'm'); lo += pick3(p, 'eLo', 'mLo'); hi += pick3(p, 'eHi', 'mHi'); cumMid[i] = c; cumLo[i] = lo; cumHi[i] = hi; } }
-    let bdPeak = 1;
-    if (bdView === 'daily') { for (let i = 0; i < N; i++) { if (act[i]) bdPeak = Math.max(bdPeak, pick3(act[i], 'de', 'dm')); if (usePlan && plan[i]) bdPeak = Math.max(bdPeak, pick3(plan[i], 'eHi', 'mHi')); } }
-    else { for (let i = 0; i < N; i++) { const v = cumAct(i); if (v != null) bdPeak = Math.max(bdPeak, v); if (usePlan && cumHi[i]) bdPeak = Math.max(bdPeak, cumHi[i]); } }
-    const bunits = [50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000];
-    const btop = Math.min(...bunits.map((u) => Math.ceil(bdPeak * 1.05 / (4 * u)) * 4 * u));
-    const BY = (v) => 400 - v / btop * 380;
-    const bars = [], planBars = [];
-    for (let i = 0; i < N; i++) { const r = act[i]; if (!r) continue; const ve = bdM === 'mail' ? 0 : r.de, vm = bdM === 'early' ? 0 : r.dm; const hE = ve / btop * 380, hM = vm / btop * 380;
-      bars.push({ x: (BX(i) - bw / 2).toFixed(1), w: bw.toFixed(1), yE: (400 - hE).toFixed(1), hE: hE.toFixed(1), yM: (400 - hE - hM).toFixed(1), hM: hM.toFixed(1), delay: (i * 18) + 'ms' }); }
-    if (usePlan) for (let i = lastI + 1; i < N; i++) { const p = plan[i]; if (!p) continue; const v = pick3(p, 'e', 'm'); if (!v) continue; const hh = v / btop * 380;
-      planBars.push({ x: (BX(i) - bw / 2).toFixed(1), w: bw.toFixed(1), y: (400 - hh).toFixed(1), h: hh.toFixed(1), cx: BX(i).toFixed(1), lo: BY(pick3(p, 'eLo', 'mLo')).toFixed(1), hi: BY(pick3(p, 'eHi', 'mHi')).toFixed(1), delay: (300 + (i - lastI) * 25) + 'ms' }); }
-    const linePts = (fnv, from, to) => { let d = '', pen = false; for (let i = from; i <= to; i++) { const v = fnv(i); if (v == null) { pen = false; continue; } d += (pen ? ' L' : 'M') + BX(i).toFixed(1) + ',' + BY(v).toFixed(1); pen = true; } return d; };
-    const bline = linePts(cumAct, 0, N - 1);
-    const eLine = bdM === 'all' ? linePts((i) => act[i] ? act[i].e : null, 0, N - 1) : '';
-    const mLine = bdM === 'all' ? linePts((i) => act[i] ? act[i].m : null, 0, N - 1) : '';
-    let band = '', projLine = '';
-    if (usePlan) {
-      const up = [], dn = []; for (let i = lastI; i < N; i++) { const hi2 = i === lastI ? cumAct(i) : cumHi[i], lo2 = i === lastI ? cumAct(i) : cumLo[i]; up.push(BX(i).toFixed(1) + ',' + BY(hi2).toFixed(1)); dn.unshift(BX(i).toFixed(1) + ',' + BY(lo2).toFixed(1)); }
-      band = 'M' + up.join(' L') + ' L' + dn.join(' L') + ' Z';
-      projLine = linePts((i) => i === lastI ? cumAct(i) : i > lastI ? cumMid[i] : null, lastI, N - 1);
-    }
-    const rnd = (v) => v >= 10000 ? Math.round(v / 1000) + 'K' : v >= 1000 ? (Math.round(v / 100) / 10) + 'K' : v >= 100 ? String(Math.round(v / 10) * 10) : String(Math.round(v));
-    const sumPlan = (key) => plan.reduce((acc, p) => p ? acc + p[key] : acc, 0);
-    const curE = lastI >= 0 ? act[lastI].e : 0, curM = lastI >= 0 ? act[lastI].m : 0;
-    const remE = sumPlan('e'), remELo = sumPlan('eLo'), remEHi = sumPlan('eHi'), remM = sumPlan('m');
-    let busiest = null; plan.forEach((p, i) => { if (p && (!busiest || p.e > busiest.v)) busiest = { i, v: p.e }; });
-    const futX = BX(lastI) + 940 / N / 2;
-    const bdOpt = (label, key, curv, list) => ({ label, opts: list.map(([v, l]) => Object.assign({ label: l, pick: () => this.setState({ [key]: v, tip: null }) }, pill(curv, v))) });
-    const xs = []; for (let i = 0; i < N; i += (N > 30 ? 7 : 4)) xs.push(i);
-    const bd = {
-      daily: bdView === 'daily', cum: bdView !== 'daily', hasPlan: usePlan, showE: N > 46, showToday: live && N > lastI + 1,
-      ctrls: [bdOpt('View', 'bdView', bdView, [['daily', 'Daily ballots'], ['cum', 'Cumulative']]), bdOpt('Method', 'bdM', bdM, [['all', 'All early'], ['early', 'In person'], ['mail', 'By mail']]),
-        bdOpt('Timeline', 'bdWin', bdWin, [['today', live ? 'Through today' : 'Through same point'], ['election', 'Through Election Day'], ['deadline', 'Through mail deadline']])],
-      yTitle: bdView === 'daily' ? 'Ballots per day' : 'Ballots, running total',
-      yt: [0, 1, 2, 3, 4].map((j) => ({ y: 400 - j * 95, ty: 404 - j * 95, l: short(btop * j / 4), stroke: j === 0 ? '#121417' : '#ECEEF2' })),
-      xt: xs.map((i) => { const x = dayDate(i); return { x: BX(i).toFixed(1), l: MON[x.getMonth()] + ' ' + x.getDate() }; }),
-      eX: BX(46).toFixed(1), todayX: futX.toFixed(1), todayLX: (futX - 6).toFixed(1), futX: futX.toFixed(1), futW: Math.max(0, 1000 - futX).toFixed(1), futLX: (futX + 8).toFixed(1),
-      bars, plan: planBars, line: bline, eLine, mLine, band, projLine,
-      hits: Array.from({ length: N }, (_, i) => ({ x: (BX(i) - 940 / N / 2).toFixed(1), w: (940 / N).toFixed(1), fill: this.state.tip && this.state.tip.kind === 'bar' && this.state.tip.key === i ? 'rgba(18,20,23,.06)' : 'transparent', move: (ev) => this.setState({ tip: this.tipAt(ev, 'bar', i) }) })),
-      chips: usePlan ? [
-        { k: 'In-person ballots to come', v: '≈ ' + rnd(remE), sub: 'Range ' + rnd(remELo) + '–' + rnd(remEHi) + ' · ≈ ' + rnd(curE + remE) + ' total in person', bg: '#F1FAF6', border: '#00A37A' },
-        { k: 'Mail ballots to arrive', v: '≈ ' + rnd(remM), sub: '≈ ' + rnd(curM + remM) + ' total by mail, through ' + dmd(iso(dayDate(52))), bg: '#F4EFFD', border: '#7C4DDB' },
-        { k: 'All early ballots, projected', v: '≈ ' + rnd(curE + curM + remE + remM), sub: rnd(curE + curM) + ' so far · ≈ ' + ((curE + curM + remE + remM) / cur.reg * 100).toFixed(0) + '% of registered', bg: '#FFFFFF', border: '#121417' },
-        { k: 'Busiest in-person day ahead', v: busiest ? dmd(iso(dayDate(busiest.i))) : '—', sub: busiest ? '≈ ' + rnd(busiest.v) + ' ballots expected' : '', bg: '#FFFFFF', border: '#121417' }
-      ] : [],
-      legend: [{ l: 'In person', bg: '#00A37A', border: '0' }, { l: 'By mail', bg: '#7C4DDB', border: '0' }].concat(usePlan ? [{ l: 'Estimate (bar = middle, line = range)', bg: '#FFFFFF', border: '1.5px dashed #7C4DDB' }] : []),
-      note: live ? (usePlan ? 'Shaded area shows planning estimates: how ' + refs.map((r) => r.label.replace('November ', '')).join(', ') + ' unfolded from this point, scaled to 2026’s pace and the site schedule. A staffing guide, not a forecast of results.' : 'Ballots added each day. Switch the timeline to see planning estimates for the days ahead.') : 'Ballots added each day, derived from the running totals.'
-    };
-    const barInfo = (i) => {
-      const dd = dayDate(i), r = act[i], p = plan[i], k5 = iso(dd), sc = live ? D.sched[k5] : null;
-      const eL = i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46);
-      const rowsB = [];
-      if (r) rowsB.push({ k: 'In person', v: fz(r.de) }, { k: 'By mail', v: fz(r.dm) }, { k: 'Total that day', v: fz(r.de + r.dm) }, { k: 'Running total', v: f(r.e + r.m) }, { k: 'Turnout so far', v: ((r.e + r.m) / cur.reg * 100).toFixed(2) + '%' });
-      if (!r && p) rowsB.push({ k: 'Est. in person', v: '≈ ' + rnd(p.e) + (p.e ? ' (' + rnd(p.eLo) + '–' + rnd(p.eHi) + ')' : '') }, { k: 'Est. mail returns', v: '≈ ' + rnd(p.m) }, { k: 'Est. running total', v: '≈ ' + rnd((cumMid[i] || 0)) });
-      return { kicker: eL + (r ? ' · reported' : ''), title: DOWL[dd.getDay()] + ', ' + MON[dd.getMonth()] + ' ' + dd.getDate(), sub: cur.label, rows: rowsB,
-        hasBadge: !r && !!p, badge: 'Planning estimate · not reported yet',
-        hasList: !!(sc && sc.open.length), listHead: sc ? (sc.n === 1 ? '1 site open' : sc.n + ' sites open') : '', list: sc ? sc.open.map(([nm, hrs]) => ({ k: nm + ' (' + hrs + ')', v: '' })) : [] };
-    };
+    const { bd, barInfo } = VF.byDay({ ser: cur.series, live, endI, T, date: cur.date, reg: cur.reg, label: cur.label,
+      refs: EL.filter((x) => ['2025', '2024', '2023', '2022', '2021'].includes(x.id)), sched: live ? D.sched : null, gate: 'sched',
+      rowDaily: live && D.id === 'fairfax-county' ? D.rows : null, st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
 
     // ---- site map + table
     const hoursBy = {}; Object.keys(D.sched).forEach((d5) => { D.sched[d5].open.forEach(([nm, sp, hh]) => { if (!hoursBy[nm]) hoursBy[nm] = {}; hoursBy[nm][d5] = hh; }); });

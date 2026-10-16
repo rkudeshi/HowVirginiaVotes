@@ -47,10 +47,14 @@ class Home extends DCLogic {
     const frac = Math.min(1, Math.max(0, (this.state.now - evStart) / (target - evStart)));
     const cd = { label: left > 0 ? 'Election Day polls open in' : 'Polls are open', days: cdDays, h: String(cdH).padStart(2, '0'), m: String(cdM).padStart(2, '0'), s: String(cdS).padStart(2, '0'), anim: cdS % 2 ? 'fx-pa' : 'fx-pb', offset: (339.3 * (1 - frac)).toFixed(1), dayN: Math.min(46, Math.floor((this.state.now - evStart) / 864e5) + 1) };
 
-    if (!D) return { loading: true, ready: false, ticker: [], tip: { on: false }, cd, band: { asOf: '…' }, mini: [], hdr: { elections: [], locs: [] }, box: {}, eid: this.props.eid };
+    if (!D) return { loading: true, ready: false, ticker: [], tip: { on: false }, cd, band: { asOf: '…' }, mini: [], hdr: { elections: [], locs: [] }, find: { items: [] }, bd: {}, box: {}, eid: this.props.eid };
     const e = this.state.t >= 1 ? 1 : 1 - Math.pow(2, -10 * this.state.t);
     const EID = D.eid, live = D.live, EDATE = D.date, EYR = EDATE.slice(0, 4);
-    const start = parse(VF.addDays(EDATE, -46)), eDay = parse(EDATE), dead = VF.addDays(EDATE, 6);
+    const start = parse(VF.addDays(EDATE, -46)), eDay = parse(EDATE);
+    // Timelines end at the legal mail deadline; a past election also shows any later reported days.
+    const lastRow = D.rows.length ? D.rows[D.rows.length - 1].d : EDATE;
+    const dead = live || VF.deadline(EDATE) >= lastRow ? VF.deadline(EDATE) : lastRow;
+    const endI = Math.min(52, VF.idxOf(EDATE, dead));
     const rows = D.rows, last = rows[rows.length - 1];
     const tIdx = live ? Math.round((parse(D.asOf) - start) / 864e5) : 52;
     const total = last.e + last.m;
@@ -73,11 +77,13 @@ class Home extends DCLogic {
       return { ratio: Math.round(ratio * 100) + '%', label: H[k].label.replace(' special', ''), border: COLORS[k], tail: sameDay ? 'at this point' : 'overall' }; });
     const satDates = Object.keys(D.satOpen).filter((d) => d > D.asOf).sort();
     const nextSat = satDates[0];
-    const satLine = !live ? 'Mail ballots counted through ' + dmd(dead) : nextSat ? D.satOpen[nextSat].n + (D.satOpen[nextSat].n === 1 ? ' satellite site opens ' : ' satellite sites open ') + dmd(nextSat) : 'All satellite sites are open';
+    const satNames = nextSat ? Object.keys(D.satOpen[nextSat].locs).sort() : [];
+    const satWhere = satNames.length > 3 ? satNames.slice(0, 3).join(', ') + ' and ' + (satNames.length - 3) + ' more' : satNames.join(', ');
+    const satLine = !live ? '' : nextSat ? D.satOpen[nextSat].n + (D.satOpen[nextSat].n === 1 ? ' satellite site opens ' : ' satellite sites open ') + dmd(nextSat) + ' · ' + satWhere : 'All satellite sites are open';
 
     const evDays = 46;
     const box = live ? { big: cdDays, small: cdDays === 1 ? 'day left' : 'days left', offset: cd.offset, title: 'Election Day · ' + dmd(EDATE), sub: '' }
-      : { big: evDays, small: 'early-vote days', offset: 0, title: 'Election Day · ' + dmd(EDATE) + ', ' + EYR, sub: 'Final early-vote totals for ' + D.label + '.' };
+      : { big: '✓', small: 'Completed', offset: 0, title: 'Election Day · ' + dmd(EDATE) + ', ' + EYR, sub: 'Past election' };
 
     // flow
     const reg = D.reg, ip = last.e, ret = last.m, out = last.o, req = ret + out, none = reg - ip - req;
@@ -121,7 +127,7 @@ class Home extends DCLogic {
     const { method, measure, win, show, hi } = this.state;
     const order = ['2026', '2026-special', '2025', '2024', '2023', '2022', '2021', '2020'];
     const val = (k, i) => { const s = H[k]; if (s.e[i] == null) return null; const v = method === 'all' ? s.e[i] + s.m[i] : method === 'early' ? s.e[i] : s.m[i]; return measure === 'pct' ? v / s.r * 100 : v; };
-    const n = win === 'today' ? tIdx + 1 : win === 'election' ? 47 : 53;
+    const n = win === 'today' ? tIdx + 1 : endI + 1;
     const vis = order.filter((k) => show[k] !== false || k === EID);
     const projVal = (i) => { const r23 = val('2025', tIdx), ri = val('2025', i), b = val(EID, tIdx); return r23 && ri != null ? b * ri / r23 : null; };
     let peak = 0;
@@ -140,7 +146,7 @@ class Home extends DCLogic {
     const hasProj = live && win !== 'today' && !!val('2025', tIdx);
     const proj = hasProj ? pathOf((i) => i < tIdx ? null : projVal(i)) : '';
     const yt = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((j) => ({ y: CB - j * (CB - 20) / 8, ty: CB + 4 - j * (CB - 20) / 8, l: fmtT(top * j / 8), stroke: j === 0 ? '#121417' : '#ECEEF2' }));
-    const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= tIdx) : win === 'election' ? [40, 30, 20, 10, 0] : [40, 30, 20, 10, 0, -6];
+    const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= tIdx) : [40, 30, 20, 10, 0].concat(endI > 46 ? [46 - endI] : []);
     const xt = dset.map((d) => ({ x: X(46 - d).toFixed(1), l: d === 0 ? 'Election Day' : d < 0 ? (-d) + ' days after' : d + ' days' }));
     const todayX = X(tIdx);
     const hits = Array.from({ length: n }, (_, i) => ({ x: (X(i) - (XR - 60) / (n - 1) / 2).toFixed(1), w: ((XR - 60) / (n - 1)).toFixed(1), enter: () => this.setState({ hi: i }) }));
@@ -174,17 +180,23 @@ class Home extends DCLogic {
     const ctrls = [
       opt('Method', 'method', method, [['all', 'All early'], ['early', 'In person'], ['mail', 'By mail']]),
       opt('Measure', 'measure', measure, [['count', 'Ballots'], ['pct', '% of registered']]),
-      opt('Timeline', 'win', win, (live ? [['today', 'Through today']] : []).concat([['election', 'Through Election Day'], ['deadline', 'Through mail deadline']]))
+      opt('Timeline', 'win', win, [['today', 'Through today'], ['deadline', 'Through election end']])
     ];
+    if (!live) ctrls.pop();
     const years = order.map((k) => { const on = show[k] !== false || k === EID; return { label: (H[k].label).replace('November ', 'Nov ').replace('April 2026 special', 'Apr 2026'), type: H[k].type, color: COLORS[k], on, locked: k === EID, border: on ? COLORS[k] : '#D3D7DE', bg: on ? '#FFFFFF' : '#F5F6F8', op: on ? 1 : 0.6,
       toggle: () => { if (k !== EID) this.setState(Object.assign({ show: Object.assign({}, show, { [k]: !on }) }, bump)); } }; });
+
+    // ballots by day (statewide); estimates skip the open-day check since some site is open most days
+    const { bd, barInfo } = VF.byDay({ ser: H[EID], live, endI, T: live ? tIdx : liveT, date: EDATE, reg: D.reg, label: D.label,
+      refs: ['2025', '2024', '2023', '2022', '2021'].filter((k) => H[k]).map((k) => ({ id: k, label: H[k].label, series: H[k] })),
+      sched: null, gate: 'none', rowDaily: live ? D.rows : null, st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
 
     // calendar
     const calM = this.state.calM;
     const byDate = {}; rows.forEach((r) => { byDate[r.d] = r; });
     const dv = (r) => calM === 'all' ? r.de + r.dm : calM === 'early' ? r.de : r.dm;
     const maxDay = Math.max(1, ...rows.map(dv));
-    const ramp = calM === 'mail' ? ['#FFFFFF', '#E9E1FB', '#BBA2F0', '#7C4DDB', '#4E2A9E'] : calM === 'early' ? ['#FFFFFF', '#D3F1E6', '#86D9BA', '#00A37A', '#006B50'] : ['#FFFFFF', '#DDE3EE', '#9AA9C4', '#41557F', '#1B2A6B'];
+    const ramp = ['#FFFFFF', '#DDE3EE', '#9AA9C4', '#41557F', '#1B2A6B'];
     const startCal = new Date(start); startCal.setDate(start.getDate() - start.getDay());
     const cal = [];
     for (let i = 0; i < 63; i++) {
@@ -241,26 +253,28 @@ class Home extends DCLogic {
     const mapOpts = [['p', '% of registered'], ['v', 'Ballots']].map(([k, label]) => Object.assign({ label, pick: () => this.setState({ mapMeasure: k }) }, pill(mm, k)));
     const mapSel = this.state.mapSel || 'all';
     const mapPick = [['all', 'All'], ['e', 'In person'], ['m', 'Mail']].map(([k, label]) => Object.assign({ label, pick: () => this.setState({ mapSel: k }) }, pill(mapSel, k)));
+    // 2026 vs. 2025 on the same day, as a change: +14% ▲ / −13% ▼
+    const vsTxt = (c) => !c ? '—' : c >= 100 ? '+' + (c - 100) + '% ▲' : '−' + (100 - c) + '% ▼';
     const nextTxt = (x) => x === 'open' ? 'Open now' : x ? dmd(x) : '—';
     const linkOf = (id) => '/' + EID + '/' + id;
     const locInfo = (ho) => ({ kicker: ho.rg, title: ho.n, sub: ho.p.toFixed(1) + (live ? '% turnout so far' : '% early turnout'), hasLink: true, href: linkOf(ho.id), hasList: false, list: [],
-      rows: [{ k: 'Registered voters', v: f(ho.r) }, { k: 'Active voters', v: f(ho.ac) }, { k: 'Early ballots', v: f(ho.v) }, { k: 'In person', v: f(ho.e) + ' · ' + (ho.e / ho.r * 100).toFixed(1) + '%' }, { k: 'By mail', v: f(ho.m) + ' · ' + (ho.m / ho.r * 100).toFixed(1) + '%' }, { k: 'Mail outstanding', v: f(ho.o) } ].concat(live ? [{ k: 'vs. 2025, same day', v: ho.c ? ho.c + '%' : '—' }, { k: 'Satellite sites', v: ho.sat ? String(ho.sat) : 'None' }, { k: 'Next satellites open', v: nextTxt(ho.next) }] : []) });
+      rows: [{ k: 'Registered voters', v: f(ho.r) }, { k: 'Active voters', v: f(ho.ac) }, { k: 'Early ballots', v: f(ho.v) }, { k: 'In person', v: f(ho.e) + ' · ' + (ho.e / ho.r * 100).toFixed(1) + '%' }, { k: 'By mail', v: f(ho.m) + ' · ' + (ho.m / ho.r * 100).toFixed(1) + '%' }, { k: 'Mail outstanding', v: f(ho.o) } ].concat(live ? [{ k: 'vs. 2025, same day', v: vsTxt(ho.c) }, { k: 'Satellite sites', v: ho.sat ? String(ho.sat) : 'None' }, { k: 'Next satellites open', v: nextTxt(ho.next) }] : []) });
     const ho = D.locs.find((o) => o.id === this.state.hover);
-    const hov = ho ? locInfo(ho) : { kicker: 'Statewide', title: 'Virginia', sub: (total / D.reg * 100).toFixed(1) + (live ? '% turnout so far' : '% early turnout'), hasLink: false, href: '#',
+    const hov = ho ? locInfo(ho) : { hint: 'Hover or tap a locality on a map to see its numbers here.', kicker: 'Statewide', title: 'Virginia', sub: (total / D.reg * 100).toFixed(1) + (live ? '% turnout so far' : '% early turnout'), hasLink: false, href: '#',
       rows: [{ k: 'Registered voters', v: f(D.reg) }, { k: 'Active voters', v: f(D.active) }, { k: 'Early ballots', v: f(total) }, { k: 'In person · by mail', v: f(last.e) + ' · ' + f(last.m) }, { k: 'Mail outstanding', v: f(last.o) } ].concat(live ? [{ k: 'Satellite sites', v: String(D.locs.reduce((a, o) => a + o.sat, 0)) }, { k: 'Next satellites open', v: nextSat ? dmd(nextSat) : '—' }] : []) };
 
     // floating tooltip
     const tp = this.state.tip;
     let tip = { on: false };
     if (tp) {
-      const info = tp.kind === 'cal' ? calInfo(tp.key) : locInfo(D.locs.find((o) => o.id === tp.key));
+      const info = tp.kind === 'cal' ? calInfo(tp.key) : tp.kind === 'bar' ? barInfo(tp.key) : locInfo(D.locs.find((o) => o.id === tp.key));
       tip = Object.assign({ on: true, x: tp.x, y: tp.y }, info, { list: (info.list || []).slice(0, 8) });
     }
 
     // table
     const { sortKey, sortDir, all, q, region } = this.state;
     const L2 = D.locs.map((o) => Object.assign({}, o, { ep: o.e / o.r * 100, mp: o.m / o.r * 100, rr: o.m + o.o ? o.m / (o.m + o.o) * 100 : null }));
-    const colDefs = [['n', 'Locality', 'left'], ['r', 'Registered', 'right'], ['p', 'Turnout', 'right'], ['ep', 'In person', 'right'], ['mp', 'By mail', 'right'], ['rr', 'Mail return rate', 'right'], ['c', live ? 'vs. 2025' : 'vs. 2025', 'right'], ['sat', 'Satellites', 'center'], ['next', 'Next opens', 'right']];
+    const colDefs = [['n', 'Locality', 'left'], ['r', 'Registered', 'right'], ['p', 'Turnout', 'right'], ['ep', 'In person', 'right'], ['mp', 'By mail', 'right'], ['rr', 'Mail return rate', 'right'], ['c', live ? 'vs. 2025' : 'vs. 2025', 'right'], ['sat', 'Satellites', 'center'], ['next', 'Next satellite opens', 'right']];
     const cols = colDefs.map(([k, label, align]) => ({ label, align, arrow: sortKey === k ? (sortDir < 0 ? '↓' : '↑') : '', pick: () => this.setState({ sortKey: k, sortDir: sortKey === k ? -sortDir : (k === 'n' || k === 'next' ? 1 : -1) }) }));
     const quick = [['n', 1, 'A–Z'], ['r', -1, 'Size'], ['p', -1, 'Turnout']].map(([k, dir, label]) => Object.assign({ label, pick: () => this.setState({ sortKey: k, sortDir: dir }) }, pill(sortKey, k)));
     const filtered = L2.filter((o) => (!q || o.n.toLowerCase().includes(q.toLowerCase())) && (!region || o.rg === region));
@@ -269,8 +283,8 @@ class Home extends DCLogic {
     const maxP = Math.max(...L2.map((o) => o.p));
     const shown = all || q || region ? sorted : sorted.slice(0, 15);
     const trows = shown.map((o) => ({ name: o.n, region: o.rg, reg: f(o.r), p: o.p.toFixed(1), v: f(o.v), w: (o.p / maxP * 100).toFixed(1), ep: o.ep.toFixed(1), e: f(o.e), mp: o.mp.toFixed(1), m: f(o.m),
-      rr: o.rr == null ? '—' : o.rr.toFixed(0) + '%', out: f(o.o), c: o.c ? o.c + '%' : '—',
-      cbg: o.c == null ? '#F1F2F5' : o.c >= 100 ? '#D3F1E6' : '#E4D9FA', cfg: o.c == null ? '#4A5260' : o.c >= 100 ? '#00694F' : '#4E2A9E',
+      rr: o.rr == null ? '—' : o.rr.toFixed(0) + '%', out: f(o.o), c: vsTxt(o.c),
+      cbg: !o.c ? '#F1F2F5' : o.c >= 100 ? '#E3F5ED' : '#FDECEA', cfg: !o.c ? '#4A5260' : o.c >= 100 ? '#00694F' : '#B42318',
       sat: o.sat ? String(o.sat) : '—', next: live ? nextTxt(o.next) : '—', href: linkOf(o.id) }));
 
     const top6 = D.locs.slice().sort((a, b) => b.v - a.v).slice(0, 6);
@@ -279,8 +293,22 @@ class Home extends DCLogic {
     ticker0.push({ name: 'Mail ballots outstanding', val: f(last.o), dot: '#7C4DDB' });
 
     const pqs = D.locs.map((o) => o.p).sort((a, b) => a - b), pq = [0.25, 0.5, 0.75].map((x) => pqs[Math.floor(x * (pqs.length - 1))]);
+    // "Find your county or city" type-ahead
+    const fq = (this.state.findQ || '').trim().toLowerCase();
+    const fm = fq ? D.locs.filter((o) => o.n.toLowerCase().includes(fq)).sort((a, b) => (b.n.toLowerCase().startsWith(fq) - a.n.toLowerCase().startsWith(fq)) || a.n.localeCompare(b.n)).slice(0, 8) : [];
+    const fi = Math.min(this.state.findIdx || 0, Math.max(0, fm.length - 1));
+    const find = { q: this.state.findQ || '', open: !!(this.state.findOpen && fq), none: fq && !fm.length,
+      items: fm.map((o, i) => ({ name: o.n, region: o.rg, href: linkOf(o.id), bg: i === fi ? '#FFF6D1' : '#FFFFFF', go: (ev) => { ev.preventDefault(); location.href = linkOf(o.id); } })),
+      onInput: (ev) => this.setState({ findQ: ev.target.value, findOpen: true, findIdx: 0 }),
+      onFocus: () => this.setState({ findOpen: true }),
+      onBlur: () => setTimeout(() => this.setState({ findOpen: false }), 150),
+      onKey: (ev) => {
+        if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') { ev.preventDefault(); this.setState({ findIdx: Math.max(0, Math.min(fm.length - 1, fi + (ev.key === 'ArrowDown' ? 1 : -1))) }); }
+        else if (ev.key === 'Enter' && fm[fi]) { ev.preventDefault(); location.href = linkOf(fm[fi].id); }
+        else if (ev.key === 'Escape') this.setState({ findOpen: false });
+      } };
     return {
-      eid: EID, label: D.label, box,
+      eid: EID, label: D.label, box, find, bd,
       hdr: { eid: EID, lid: '',
         elections: D.elections.map((o) => ({ value: o.id, text: o.label.replace('April 2026 special', 'April 2026') + ' · ' + o.type })),
         locs: [{ value: '', text: 'All of Virginia' }].concat(D.locs.slice().sort((a, b) => a.n.localeCompare(b.n)).map((o) => ({ value: o.id, text: o.n }))),

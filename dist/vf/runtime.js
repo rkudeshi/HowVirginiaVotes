@@ -105,6 +105,19 @@
   window.DCLogic = DCLogic;
   window.VF = {
     page(name, Logic) { pages[name] = Logic; },
+    /* Mail ballots must arrive by noon on the 3rd day after Election Day; a weekend or
+       state holiday (Veterans Day, Nov 11) moves it to the next business day. */
+    deadline(eday) {
+      let d = VF.addDays(eday, 3);
+      const off = (iso) => { const x = new Date(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)).getDay(); return x === 0 || x === 6 || iso.slice(5) === '11-11'; };
+      while (off(d)) d = VF.addDays(d, 1);
+      return d;
+    },
+    /* Series index (0 = 46 days before Election Day) of a date. */
+    idxOf(eday, iso) {
+      const p = (s) => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+      return 46 + Math.round((p(iso) - p(eday)) / 864e5);
+    },
     /* 'YYYY-MM-DD' + n days, in local calendar terms */
     addDays(iso, n) {
       const d = new Date(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10) + n);
