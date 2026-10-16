@@ -143,9 +143,12 @@ def activity_dated(hist):
     return [by[k] for k in sorted(by)]
 
 
-for _e in D['elections'].values():
+for _eid, _e in D['elections'].items():
     for _l in _e['localities']:
-        _l['history'] = monotonic(activity_dated(_l['history']))
+        _history = activity_dated(_l['history'])
+        # Current source observations, including county-to-DAL transitions and
+        # downward corrections, must reach the page bundles unchanged.
+        _l['history'] = _history if _eid == '2026' else monotonic(_history)
 for _lid in ARCH:
     for _eid in ARCH[_lid]:
         if isinstance(ARCH[_lid][_eid], dict) and 'history' in ARCH[_lid][_eid]:
@@ -274,7 +277,7 @@ def statewide(eid):
             continue
         a = agg[k]
         d = (E - dt.timedelta(days=k)).isoformat()
-        rows.append({'d': d, 'e': a[0], 'm': a[1], 'de': max(0, a[3]), 'dm': max(0, a[4]), 'o': a[2] or None})
+        rows.append({'d': d, 'e': a[0], 'm': a[1], 'de': a[3] if eid == LIVE else max(0, a[3]), 'dm': a[4] if eid == LIVE else max(0, a[4]), 'o': a[2] or None})
         prev = a
     return {'e': e_, 'm': m_, 'r': reg}, rows, reg, active
 
@@ -523,8 +526,8 @@ def main():
                  'w': {'l': w['label'], 'hi': round(w['tempMax']), 'lo': round(w['tempMin']), 'p': round(w.get('precip') or 0, 2), 'wet': bool(w.get('wet'))} if w else None}
             if lid == 'fairfax-county':
                 de, dm = h.get('daily', {}).get('early'), h.get('daily', {}).get('mail')
-                if de is not None: r['de'] = max(0, de)
-                if dm is not None: r['dm'] = max(0, dm)
+                if de is not None: r['de'] = de
+                if dm is not None: r['dm'] = dm
             if lid == 'fairfax-county' and h['date'] in official:
                 x = official[h['date']]
                 r['site'] = {k: v for k, v in x['sites'].items() if v}
