@@ -241,10 +241,10 @@ class Home extends DCLogic {
     const mdefs = [['all', 'All early votes', (o) => o.v, GR, '#D3D7DE'], ['e', 'In person', (o) => o.e, GR, '#D3D7DE'], ['m', 'By mail', (o) => o.m, GR, '#D3D7DE']];
     const mapSel = this.state.mapSel || 'all';
     const sBase = total ? last.e / total : 0.5;
-    const hovId = this.state.hover;
+    const hovId = this.state.hover || this.state.pinned; // hover previews; a click pins
     const leanMap = { id: 'lean', title: 'In person vs. mail', border: '#D3D7DE', aria: 'In person vs. mail by locality', total: Math.round(sBase * 100) + '% in person statewide', bins: VF.leanBins(),
       paths: D.locs.map((o) => { const h = hovId === o.id; return { d: o.d, fill: h ? '#FFD23F' : VF.leanColor(o.e, o.m, sBase), stroke: h ? '#121417' : '#FFFFFF', sw: h ? 2.5 : 0.8,
-        delay: Math.round(parseFloat(o.d.slice(1)) * 0.9) + 'ms', move: (ev) => this.setState({ hover: o.id, tip: this.tipAt(ev, 'map', o.id) }) }; }) };
+        delay: Math.round(parseFloat(o.d.slice(1)) * 0.9) + 'ms', move: (ev) => this.setState({ hover: o.id, tip: this.tipAt(ev, 'map', o.id) }), pin: () => this.setState({ pinned: o.id, hover: o.id }) }; }) };
     const maps = mapSel === 'lean' ? [leanMap] : mdefs.filter(([id]) => id === mapSel).map(([id, title, get, pal, border]) => {
       const mv = (o) => mm === 'p' ? get(o) / o.r * 100 : get(o);
       const vs = D.locs.map(mv).sort((a, b) => a - b);
@@ -254,8 +254,8 @@ class Home extends DCLogic {
       const sum = D.locs.reduce((a, o) => a + get(o), 0);
       return { id, title, border, aria: title + ' by locality', total: mm === 'p' ? (sum / D.reg * 100).toFixed(1) + '% statewide' : f(sum) + ' statewide',
         bins: pal.map((c, i) => ({ c, l: i === 0 ? '≤' + fq(qs[0]) : i === 6 ? '>' + fq(qs[5]) : fq(qs[i]) })),
-        paths: D.locs.map((o) => { const h = this.state.hover === o.id; return { d: o.d, fill: h ? '#FFD23F' : pal[bin(mv(o))], stroke: h ? '#121417' : '#FFFFFF', sw: h ? 2.5 : 0.8,
-          delay: Math.round(parseFloat(o.d.slice(1)) * 0.9) + 'ms', move: (ev) => this.setState({ hover: o.id, tip: this.tipAt(ev, 'map', o.id) }) }; }) };
+        paths: D.locs.map((o) => { const h = hovId === o.id; return { d: o.d, fill: h ? '#FFD23F' : pal[bin(mv(o))], stroke: h ? '#121417' : '#FFFFFF', sw: h ? 2.5 : 0.8,
+          delay: Math.round(parseFloat(o.d.slice(1)) * 0.9) + 'ms', move: (ev) => this.setState({ hover: o.id, tip: this.tipAt(ev, 'map', o.id) }), pin: () => this.setState({ pinned: o.id, hover: o.id }) }; }) };
     });
     const mapOpts = [['p', '% of registered'], ['v', 'Ballots']].map(([k, label]) => Object.assign({ label, pick: () => this.setState({ mapMeasure: k }) }, pill(mm, k)));
     const mapPick = [['all', 'All'], ['e', 'In person'], ['m', 'By mail'], ['lean', 'In person vs. mail']].map(([k, label]) => Object.assign({ label, pick: () => this.setState({ mapSel: k }) }, pill(mapSel, k)));
@@ -265,7 +265,7 @@ class Home extends DCLogic {
     const linkOf = (id) => '/' + EID + '/' + id;
     const locInfo = (ho) => ({ kicker: ho.rg, title: ho.n, sub: ho.p.toFixed(1) + (live ? '% turnout so far' : '% early turnout'), hasLink: true, href: linkOf(ho.id), hasList: false, list: [],
       rows: [{ k: 'Registered voters', v: f(ho.r) }, { k: 'Active voters', v: f(ho.ac) }, { k: 'Early ballots', v: f(ho.v) }, { k: 'In person', v: f(ho.e) + ' · ' + (ho.e / ho.r * 100).toFixed(1) + '%' }, { k: 'By mail', v: f(ho.m) + ' · ' + (ho.m / ho.r * 100).toFixed(1) + '%' }, { k: 'Mail outstanding', v: f(ho.o) } ].concat(live ? [{ k: 'vs. 2025, same day', v: vsTxt(ho.c) }, { k: 'Satellite sites', v: ho.sat ? String(ho.sat) : 'None' }, { k: 'Next satellites open', v: nextTxt(ho.next) }] : []) });
-    const ho = D.locs.find((o) => o.id === this.state.hover);
+    const ho = D.locs.find((o) => o.id === hovId);
     const hov = ho ? locInfo(ho) : { hint: 'Hover or tap a locality on a map to see its numbers here.', kicker: 'Statewide', title: 'Virginia', sub: (total / D.reg * 100).toFixed(1) + (live ? '% turnout so far' : '% early turnout'), hasLink: false, href: '#',
       rows: [{ k: 'Registered voters', v: f(D.reg) }, { k: 'Active voters', v: f(D.active) }, { k: 'Early ballots', v: f(total) }, { k: 'In person · by mail', v: f(last.e) + ' · ' + f(last.m) }, { k: 'Mail outstanding', v: f(last.o) } ].concat(live ? [{ k: 'Satellite sites', v: String(D.locs.reduce((a, o) => a + o.sat, 0)) }, { k: 'Next satellites open', v: nextSat ? dmd(nextSat) : '—' }] : []) };
 
@@ -315,7 +315,7 @@ class Home extends DCLogic {
       loading: false, ready: true, asOf: dmd(D.asOf), hero, cd, paceChips, satLine, flow, ctrls, years, ch, cal, sel, calOpts, calRamp: ramp.slice(1),
       maps, mapOpts, mapSel, mapPick, mapNotLean: mapSel !== 'lean',
       miniLeave: () => this.setState({ miniHover: null, tip: null }),
-      mapClear: (ev) => { if (!ev || ev.target.tagName !== 'path') this.setState({ hover: null, tip: null }); }, mapLeave: () => this.setState({ hover: null, tip: null }), hov, tip, hideTip, cols, quick, rows: trows,
+      mapClear: (ev) => { if (!ev || ev.target.tagName !== 'path') this.setState({ hover: null, pinned: null, tip: null }); }, mapLeave: () => this.setState({ hover: null, tip: null }), hov, tip, hideTip, cols, quick, rows: trows,
       countLabel: 'Showing ' + trows.length + ' of ' + filtered.length, allLabel: all ? 'Show top 15' : 'Show all 133', toggleAll: () => this.setState({ all: !all }),
       onSearch: (ev) => this.setState({ q: ev.target.value }), onRegion: (ev) => this.setState({ region: ev.target.value }),
       ticker: ticker0.concat(ticker0, ticker0)

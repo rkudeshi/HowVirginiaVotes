@@ -340,10 +340,30 @@ class Locality extends DCLogic {
         deBg: shade ? GSH[lvlOf(r.de, maxDe)] : 'transparent', dmBg: shade ? PSH[lvlOf(r.dm, maxDm)] : 'transparent', dayBg: shade ? TSH[lvlOf(r.de + r.dm, maxDT)] : 'transparent' };
     });
     const narrowT = this.state.narrow;
+    // Fairfax: every table from the county's absentee/early voting daily report
+    const FR = live && D.fxReport, dnTab = FR ? (this.state.dnTab || 'sum') : 'sum';
+    const frSel = FR ? (this.state.dnTable && FR.tables.find((x) => x.id === this.state.dnTable) ? this.state.dnTable : FR.tables[0].id) : '';
+    const frT = FR ? FR.tables.find((x) => x.id === frSel) : null;
+    const frKeep = frT ? frT.cols.map((_, k) => k).filter((k) => k === 0 || frT.id !== 'early' || (frT.total && frT.total[k])) : [];
+    const frMax = frT ? frKeep.map((k) => Math.max(1, ...frT.rows.map((r) => r[k + 1] || 0))) : [];
+    const fxr = { has: !!FR, on: dnTab === 'county', off: dnTab !== 'county', through: FR ? dmd(FR.through) : '',
+      tabs: FR ? [['sum', 'Daily summary'], ['county', 'County report']].map(([v, l]) => Object.assign({ label: l, pick: () => this.setState({ dnTab: v }) }, pill(dnTab, v))) : [],
+      items: FR ? FR.tables.map((x) => ({ value: x.id, text: x.title })) : [], sel: frSel, pickTable: (v) => this.setState({ dnTable: v }),
+      summary: FR ? FR.summary.map(([k, v]) => ({ k, v })) : [],
+      cols: frT ? frKeep.map((k) => frT.cols[k]) : [], total: frT && frT.total ? frKeep.map((k) => fz(frT.total[k])) : [],
+      grid: frT ? 'minmax(100px, 1fr) repeat(' + frKeep.length + ', minmax(96px, 1fr))' : '1fr', minW: frT ? (110 + frKeep.length * 100) + 'px' : '0',
+      rows: frT ? frT.rows.slice().reverse().map((r) => ({ date: dmd(r[0]), cells: frKeep.map((k, ci) => { const v = r[k + 1] || 0, q = v / frMax[ci];
+        return { v: fz(v), bg: !shade || !v ? 'transparent' : q < 0.4 ? 'transparent' : q < 0.6 ? '#EEF1F8' : q < 0.8 ? '#DDE3EE' : '#C5CFE3' }; }) })) : [] };
     const downloadCsv = () => {
       const q = (v) => v == null ? '' : /[",\n]/.test(String(v)) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v);
       const head = ['date', 'in_person_that_day', 'mail_that_day', 'total_that_day', 'in_person_running_total', 'mail_running_total', 'running_total', 'turnout_pct_of_registered', 'mail_outstanding']
         .concat(hasPB ? ['county_postal_returns', 'county_drop_box_returns'] : []).concat(live ? ['sites_open', 'weather', 'high_f', 'low_f', 'precip_in'] : []);
+      if (fxr.on && frT) {  // the county report table currently shown
+        const out = [['date'].concat(frKeep.map((k) => frT.cols[k])).map(q).join(',')].concat(frT.rows.map((r) => [r[0]].concat(frKeep.map((k) => r[k + 1] || 0)).map(q).join(',')));
+        const url2 = URL.createObjectURL(new Blob([out.join('\n') + '\n'], { type: 'text/csv' }));
+        const a2 = document.createElement('a'); a2.href = url2; a2.download = 'fairfax-county-report-' + frT.id + '.csv'; document.body.appendChild(a2); a2.click(); a2.remove(); setTimeout(() => URL.revokeObjectURL(url2), 1000);
+        return;
+      }
       const lines = [head.join(',')].concat(drows.map((r) => { const sc = live ? D.sched[r.d] : null, w = r.w;
         return [r.d, r.de, r.dm, (r.de || 0) + (r.dm || 0), r.e, r.m, r.e + r.m, ((r.e + r.m) / cur.reg * 100).toFixed(2), r.o]
           .concat(hasPB ? [r.post, r.box] : []).concat(live ? [sc ? sc.n : 0, w ? w.l : '', w ? w.hi : '', w ? w.lo : '', w ? w.p : ''] : []).map(q).join(','); }));
@@ -438,13 +458,13 @@ class Locality extends DCLogic {
 
     // ---- precinct maps (three)
     const P = D.precincts; const lastIdx = D.pdates.length - 1; const pIdx = this.state.pIdx == null ? lastIdx : this.state.pIdx;
-    const { pMeasure, pHover } = this.state;
+    const { pMeasure } = this.state; const pHover = this.state.pHover || this.state.pPinned; // hover previews; a click pins
     const GRN = ['#F0FAF6', '#D3F1E6', '#A8E3CC', '#6FCFAC', '#2FB58A', '#00895F', '#005A40'], PUR = ['#F6F2FE', '#E4D9FA', '#C9B6F2', '#A98BE8', '#8B63DD', '#6A3FC4', '#4A2696'];
     const pdefs = [['all', 'All early votes', (h) => h[0] + h[1], GRN, '#D3D7DE'], ['e', 'In person', (h) => h[0], GRN, '#D3D7DE'], ['m', 'By mail', (h) => h[1], PUR, '#D3D7DE']];
     const pSel0 = this.state.pSel || 'all';
     const pBase = (() => { const e7 = P.reduce((x, p) => x + p.h[pIdx][0], 0), m7 = P.reduce((x, p) => x + p.h[pIdx][1], 0); return e7 + m7 ? e7 / (e7 + m7) : 0.5; })();
     const leanMap = { id: 'lean', title: 'In person vs. mail', border: '#D3D7DE', total: Math.round(pBase * 100) + '% in person overall', bins: VF.leanBins(),
-      paths: P.map((p) => { const h = p.c === pHover; return { d: p.d, fill: h ? '#FFD23F' : VF.leanColor(p.h[pIdx][0], p.h[pIdx][1], pBase), stroke: h ? '#121417' : '#FFFFFF', sw: h ? 3 : 0.7, delay: Math.round(parseFloat(p.d.slice(1)) * 0.6) + 'ms', move: (ev) => this.setState({ pHover: p.c, tip: this.tipAt(ev, 'prec', p.c) }) }; }) };
+      paths: P.map((p) => { const h = p.c === pHover; return { d: p.d, fill: h ? '#FFD23F' : VF.leanColor(p.h[pIdx][0], p.h[pIdx][1], pBase), stroke: h ? '#121417' : '#FFFFFF', sw: h ? 3 : 0.7, delay: Math.round(parseFloat(p.d.slice(1)) * 0.6) + 'ms', move: (ev) => this.setState({ pHover: p.c, tip: this.tipAt(ev, 'prec', p.c) }), pin: () => this.setState({ pPinned: p.c, pHover: p.c }) }; }) };
     const pmaps = pSel0 === 'lean' ? [leanMap] : pdefs.filter(([id]) => id === pSel0).map(([id, title, get, pal, border]) => {
       const mv = (p, j) => pMeasure === 'p' ? (p.r ? get(p.h[j]) / p.r * 100 : 0) : get(p.h[j]);
       const vs = P.map((p) => mv(p, lastIdx)).sort((x, y) => x - y);
@@ -454,7 +474,7 @@ class Locality extends DCLogic {
       const sum = P.reduce((x, p) => x + get(p.h[pIdx]), 0), regSum = P.reduce((x, p) => x + p.r, 0);
       return { id, title, border, total: pMeasure === 'p' ? (sum / regSum * 100).toFixed(1) + '%' : f(sum),
         bins: pal.map((c, i) => ({ c, l: i === 0 ? '≤' + fq(qs[0]) : i === 6 ? '>' + fq(qs[5]) : fq(qs[i]) })),
-        paths: P.map((p) => { const h = p.c === pHover; return { d: p.d, fill: h ? '#FFD23F' : pal[bin(mv(p, pIdx))], stroke: h ? '#121417' : '#FFFFFF', sw: h ? 3 : 0.7, delay: Math.round(parseFloat(p.d.slice(1)) * 0.6) + 'ms', move: (ev) => this.setState({ pHover: p.c, tip: this.tipAt(ev, 'prec', p.c) }) }; }) };
+        paths: P.map((p) => { const h = p.c === pHover; return { d: p.d, fill: h ? '#FFD23F' : pal[bin(mv(p, pIdx))], stroke: h ? '#121417' : '#FFFFFF', sw: h ? 3 : 0.7, delay: Math.round(parseFloat(p.d.slice(1)) * 0.6) + 'ms', move: (ev) => this.setState({ pHover: p.c, tip: this.tipAt(ev, 'prec', p.c) }), pin: () => this.setState({ pPinned: p.c, pHover: p.c }) }; }) };
     });
     const precInfo = (p) => Object.assign(pieOf({ de: p.h[pIdx][0], dm: p.h[pIdx][1] }), { kicker: 'Precinct ' + p.c, title: p.n, sub: (p.r ? (p.h[pIdx][0] + p.h[pIdx][1]) / p.r * 100 : 0).toFixed(1) + '% turnout as of ' + dmd(D.pdates[pIdx]), hasList: false, list: [],
       rows: [{ k: 'Registered', v: f(p.r) }, { k: 'In person', v: fz(p.h[pIdx][0]) + ' · ' + (p.r ? (p.h[pIdx][0] / p.r * 100).toFixed(1) : 0) + '%' }, { k: 'By mail', v: fz(p.h[pIdx][1]) + ' · ' + (p.r ? (p.h[pIdx][1] / p.r * 100).toFixed(1) : 0) + '%' }, { k: 'Total', v: fz(p.h[pIdx][0] + p.h[pIdx][1]) }] });
@@ -473,7 +493,7 @@ class Locality extends DCLogic {
       pick: [['all', 'All'], ['e', 'In person'], ['m', 'By mail'], ['lean', 'In person vs. mail']].map(([k6, label]) => Object.assign({ label, pick: () => this.setState({ pSel: k6 }) }, pill(pSel, k6))),
       lean: pSel === 'lean', notLean: pSel !== 'lean', measureStyle: pSel === 'lean' ? 'opacity: .35; pointer-events: none' : '',
       pins: sm.dots.map((d6) => ({ x: d6.x, y: d6.y, r: (8 * Math.max(1, scaleR * 0.9)).toFixed(1), fs: Math.round(9 * Math.max(1, scaleR * 0.9)), ty: (d6.y + 3.2 * Math.max(1, scaleR * 0.9)).toFixed(1), n: d6.n, move: d6.move })),
-      clear: (ev) => { if (!ev || ev.target.tagName !== 'path') this.setState({ pHover: null, tip: null }); },
+      clear: (ev) => { if (!ev || ev.target.tagName !== 'path') this.setState({ pHover: null, pPinned: null, tip: null }); },
       leave: () => this.setState({ pHover: null, tip: null }),
       onSlide: (ev) => this.setState({ pIdx: +ev.target.value }),
       playLabel: this.state.playing ? 'Pause' : '▶ Play',
@@ -518,7 +538,7 @@ class Locality extends DCLogic {
           let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9; for (let k = 0; k + 1 < nums.length; k += 2) { const x = +nums[k], y = +nums[k + 1]; x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
           return { on: true, cx: ((x0 + x1) / 2).toFixed(1), cy: ((y0 + y1) / 2).toFixed(1), r: Math.max(22, Math.max(x1 - x0, y1 - y0) / 2 + 12).toFixed(1) }; })(), paths: Object.keys(this.state.vaMap.p).map((id) => ({ d: this.state.vaMap.p[id], fill: id === D.id ? '#41557F' : '#D3D7DE', stroke: id === D.id ? '#121417' : '#FFFFFF', sw: id === D.id ? 3 : 1, order: id === D.id ? 1 : 0 })).sort((a, b) => a.order - b.order) } : { vb: '0 0 1000 440', paths: [], ring: { on: false } },
       showSites: live && D.sites.length > 0, siteMany: D.sites.length > 1, showPrecincts: live && D.precincts.some((p) => p.r),
-      loading: false, ready: true, backHref: eid === '2026' ? '/' : '/' + eid, L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
+      fxr, loading: false, ready: true, backHref: eid === '2026' ? '/' : '/' + eid, L, elChips, hero, cd, paceChips, satLine, backToNow: () => this.setState({ eid: '2026', cal: null, hi: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }),
       flow, flowNote, ctrls, years, ch, elLabel: cur.label, cal, sel, calOpts, calRamp: ramp.slice(1), sites, siteSummary, heat, tbl, pm, tip, hideTip, bd, sm, siteTable, siteTableNote, rh, pmView: '0 0 1000 ' + D.mapH, band: { asOf: dmd(D.rows[D.rows.length - 1].d) }, siteAllToggle, siteAllPressed: siteAll ? 'true' : 'false', siteAllBg: siteAll ? '#121417' : '#FFFFFF', siteAllFg: siteAll ? '#FFFFFF' : '#121417', siteAllLabel: siteAll ? 'Collapse all addresses & hours' : 'Expand all addresses & hours',
       ticker: ticker0.concat(ticker0, ticker0)
     };

@@ -35,6 +35,68 @@ for locality in D['elections']['2026']['localities']:
         locality['history'] = merged_history(locality['history'], D.get('official', {}).get('2026', {}))
 
 
+FX_MON = {'Sep': 9, 'Oct': 10, 'Nov': 11}
+FX_TABLES = [  # (id, title, phrase that starts the section, column labels, columns kept)
+    ('mailed', 'Ballots mailed or emailed', 'Ballots Mailed', ['Total', 'Mailed (domestic)', 'Mailed (overseas & military)', 'Emailed (overseas & military)'], [0, 1, 2, 3]),
+    ('mail', 'Returned by mail', 'Returned by Mail', ['Returned by mail', 'Undeliverable'], [0, 2]),
+    ('dropbox', 'Returned by drop box', 'Returned by Dropbox', ['Total', '24-hour drop boxes', 'Drop boxes at early-voting sites'], [0, 1, 2]),
+    ('early', 'Early in-person voting by site', 'Early In Person Voting', ['Total', 'Government Center', 'Mt. Vernon', 'North County', 'Burke', 'Centreville', 'Franconia', 'Great Falls',
+     'Herndon Fortnightly', 'Jim Scott', 'Lorton', 'Mason', 'McLean', 'Sully', 'Thomas Jefferson', 'Tysons-Pimmit', 'West Springfield'], list(range(17))),
+    ('switched', 'Mail applicants who voted in person instead', 'Who Voted Early In Person Instead', ['Total', 'Mail ballot not surrendered', 'Mail ballot surrendered'], [0, 1, 2]),
+]
+
+
+def fairfax_report():
+    """Display-only parse of the newest saved Fairfax AB daily report text: every daily table plus
+    the first-page summary. Returns None when no saved report text exists."""
+    snaps = sorted((ROOT.parent / 'sources' / 'fairfax-snapshots').glob('2026-*.txt'))
+    if not snaps:
+        return None
+    text = snaps[-1].read_text()
+    through = snaps[-1].name[:10]
+    num = lambda x: int(x.replace(',', '')) if re.fullmatch(r'[\d,]+', x) else None
+    summary = []
+    for label, pat in [('Total ballots cast', r'Total Ballots Cast\s+([\d,]+)'), ('Mail ballots returned', r'Total Returned Absentee Ballots\s+([\d,]+)'),
+                       ('Share of mail ballots returned', r'% Total Returned\s+(\d+%)'), ('Returned by mail', r'% Returned by Mail\s+(\d+%)'),
+                       ('Returned by drop box', r'% Returned by Drop Box\s+(\d+%)'), ('Mail applicants who voted in person instead', r'voting Early In Person instead\s+([\d,]+)'),
+                       ('Early voters who had requested a mail ballot', r'% Early voters who requested an AB\s+(\d+%)'),
+                       ('Voting by mail', r'% Voting Absentee by Mail\s+(\d+%)'), ('Voting early in person', r'% Voting Early In Person\s+(\d+%)')]:
+        m = re.search(pat, text)
+        if m:
+            summary.append([label, m.group(1)])
+    tables = []
+    for tid, title, phrase, cols, keep in FX_TABLES:
+        m0 = re.search(r'^\s*' + re.escape(phrase) + r'\s*$', text, re.M)  # the table's own title line
+        if not m0:
+            continue
+        i = m0.start()
+        nxt = min([j for j in (text.find('Page ', i),) if j > 0] or [len(text)])
+        body = text[i:nxt]
+        rows, total = [], None
+        for line in body.splitlines():
+            m = re.match(r'\s*(\d{1,2})-(Sep|Oct|Nov)\s+(.*)$', line)
+            t = re.match(r'\s*Total\s+(.*)$', line)
+            vals = None
+            if m:
+                d = dt.date(2026, FX_MON[m.group(2)], int(m.group(1))).isoformat()
+                if d > through:
+                    continue
+                vals = [num(x) for x in m.group(3).split()]
+            elif t and total is None:
+                vals = [num(x) for x in t.group(1).split()]
+            if not vals or all(v is None for v in vals):
+                continue
+            vals = [v if v is not None else 0 for v in vals]
+            vals = [vals[k] if k < len(vals) else 0 for k in keep]
+            if m:
+                rows.append([d] + vals)
+            else:
+                total = vals
+        if rows:
+            tables.append({'id': tid, 'title': title, 'cols': cols, 'rows': rows, 'total': total})
+    return {'through': through, 'summary': summary, 'tables': tables} if tables else None
+
+
 def monotonic(hist):
     """Display-only: running totals never go down. A missing day or a dip (a bad report, or a
     later downward correction) carries the previous high; the saved data is untouched."""
@@ -459,7 +521,7 @@ def main():
              'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1, 'rankR': by_reg.index(l) + 1,
              'state26': {'e': hist[LIVE]['e'], 'm': hist[LIVE]['m'], 'r': hist[LIVE]['r']},
              'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
-             'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
+             'fxReport': fairfax_report() if lid == 'fairfax-county' else None, 'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
         (OUT / 'loc' / f'{lid}.json').write_text(json.dumps(b, separators=(',', ':')))
     print(f'Built {len(ORDER)} statewide bundles and {len(e26["localities"])} locality bundles in {OUT}')
 

@@ -137,6 +137,13 @@ section[id]{scroll-margin-top:62px !important}
 @keyframes vfRevA{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes vfRevB{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .fx-ra,.fx-rb{transform-box:fill-box;transform-origin:left center}.fx-ra{animation:vfRevA .9s cubic-bezier(.4,0,.3,1) 1.45s both}.fx-rb{animation:vfRevB .9s cubic-bezier(.4,0,.3,1) 1.45s both}
 .vf-heronums{--hg:76px}@media (max-width: 600px){.vf-heronums{--hg:22px}}
+.vf-seg1{clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}.vf-seg2{margin-left:-9px;clip-path:polygon(12px 0,100% 0,100% 100%,0 100%);flex-grow:1}
+.vf-band > div,.vf-logomark,.vf-logomark > span,.vf-logotext{transition:padding .25s ease,width .25s ease,height .25s ease,font-size .25s ease}
+body:not(.vf-scrolled) .vf-band > div{padding-top:14px !important;padding-bottom:14px !important}
+body:not(.vf-scrolled) .vf-logomark{width:40px !important;height:40px !important;border-radius:9px !important}
+body:not(.vf-scrolled) .vf-logomark > span{font-size:16px !important}
+body:not(.vf-scrolled) .vf-logotext{font-size:28px !important}
+@media (max-width: 700px){body:not(.vf-scrolled) .vf-logotext{font-size:22px !important}body:not(.vf-scrolled) .vf-logomark{width:34px !important;height:34px !important}}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
@@ -147,7 +154,7 @@ section[id]{scroll-margin-top:62px !important}
         <span class="vf-logomark" style="width: 30px; height: 30px; background: #FFD23F; border-radius: 7px; display: grid; place-items: center"><span style="font: 800 12.5px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
         <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
       </a>
-      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea, a question, or something you'd like to see added that would be helpful for you? </span><span class="vf-short">Ideas or questions? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send me an email</a></span>
+      <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea or a question? </span><span class="vf-short">Ideas or questions? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send me an email</a></span>
     </div>
   </div>
 
@@ -199,18 +206,18 @@ section[id]{scroll-margin-top:62px !important}
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #E8590C">{{hero.votes}}</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #121417">{{hero.votes}}</span>
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
         </div>
       </div>
       <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters ({{hero.active}} active).</p>
       <div style="display: flex; height: 22px; border-radius: 999px; overflow: hidden; background: #E6E8EC">
-        <div class="fx-meter" style="width: {{hero.ipW}}%; background: #8FD9BD"></div>
-        <div class="fx-meter" style="width: {{hero.mW}}%; background: #C2AEF0; animation-delay: .25s"></div>
+        <div class="fx-meter vf-seg1" style="width: {{hero.ipW}}%; background: #00A37A"></div>
+        <div class="fx-meter vf-seg2" style="width: {{hero.mW}}%; background: #7C4DDB; animation-delay: .25s"></div>
       </div>
       <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 16px; font-weight: 600">
-        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #8FD9BD; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
-        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #C2AEF0; border-radius: 3px"></span>By mail · {{hero.m}} · {{hero.mW}}%</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #00A37A; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #7C4DDB; border-radius: 3px"></span>By mail · {{hero.m}} · {{hero.mW}}%</span>
       </div>
       <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
         <sc-for list="{{paceChips}}" as="pc" hint-placeholder-count="4">
@@ -289,13 +296,13 @@ section[id]{scroll-margin-top:62px !important}
               <path d="M516,30 L521,37 L526,30" vector-effect="non-scaling-stroke"></path><path d="M828,30 L833,37 L838,30" vector-effect="non-scaling-stroke"></path>
             </g>
           </svg>
-          <div class="fx-fcbox fx-pa" style="grid-column: 10 / 17; grid-row: 5; background: #F5F9FF; border: 2.5px solid #8DB6EC; border-radius: 14px; padding: 12px 16px; animation-delay: .9s">
+          <div class="fx-fcbox fx-pa" style="grid-column: 10 / 17; grid-row: 5; background: #F6F2FE; border: 2.5px solid #7C4DDB; border-radius: 14px; padding: 12px 16px; animation-delay: .9s">
             <div style="display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; align-items: center">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2F6FD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="3" y="5.5" width="18" height="13" rx="2"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7C4DDB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="grid-row: span 2"><rect x="3" y="5.5" width="18" height="13" rx="2"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg>
               <b style="font-size: 16px; letter-spacing: -0.01em; color: #121A3A; line-height: 1.2">{{fc.ret.title}}</b>
               <span style="font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #121A3A">{{fc.ret.val}}</span>
             </div>
-            <div style="height: 9px; border-radius: 999px; background: #D9E4F2; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.ret.w}}%; background: #3B82F6; border-radius: 999px; animation-delay: .9s"></div></div>
+            <div style="height: 9px; border-radius: 999px; background: #E4D9FA; margin: 10px 0 7px; overflow: hidden"><div class="fx-meter" style="height: 100%; width: {{fc.ret.w}}%; background: #7C4DDB; border-radius: 999px; animation-delay: .9s"></div></div>
             <div style="font-size: 14px; color: #4A5672"><b style="color: #121A3A; font-size: 15px">{{fc.ret.pct}}</b> {{fc.ret.cap}}</div>
           </div>
           <div class="fx-fcbox fx-pa" style="grid-column: 18 / 24; grid-row: 5; background: #FFFBEF; border: 2.5px solid #F2C14E; border-radius: 14px; padding: 12px 16px; animation-delay: 1s">
@@ -611,7 +618,7 @@ section[id]{scroll-margin-top:62px !important}
             <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px"><b style="font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 700">{{mp.title}}</b><span style="font-family: 'DM Mono', monospace; font-size: 12px; color: #4A5260">{{mp.total}}</span></div>
             <svg viewBox="0 0 1000 440" width="100%" role="img" aria-label="{{mp.aria}}" onClick="{{mapClear}}" style="display: block">
               <sc-for list="{{mp.paths}}" as="p" hint-placeholder-count="0">
-                <path class="fx-path" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="{{p.sw}}" stroke-linejoin="round" onMouseMove="{{p.move}}" onClick="{{p.move}}" style="animation-delay: {{p.delay}}"></path>
+                <path class="fx-path" d="{{p.d}}" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="{{p.sw}}" stroke-linejoin="round" onMouseMove="{{p.move}}" onClick="{{p.pin}}" style="animation-delay: {{p.delay}}"></path>
               </sc-for>
             </svg>
             <div style="display: flex; gap: 3px; margin-top: 8px">

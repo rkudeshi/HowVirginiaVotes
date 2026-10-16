@@ -160,6 +160,9 @@
 
   const pages = {};
   window.DCLogic = DCLogic;
+  /* The brand bar starts tall at the top of the page and slims down once you scroll. */
+  const onScrollBand = () => document.body.classList.toggle('vf-scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScrollBand, { passive: true }); document.addEventListener('DOMContentLoaded', onScrollBand); onScrollBand();
   /* In-page menu jumps: boxes slide in as they scroll into view, which shifts where the browser
      thinks they are. Jump to the real layout position instead, just below the sticky bar. */
   document.addEventListener('click', (ev) => {
