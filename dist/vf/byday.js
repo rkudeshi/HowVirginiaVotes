@@ -109,20 +109,19 @@
       const rowsB = [];
       if (r) rowsB.push({ k: 'In person', v: fz(r.de) }, { k: 'By mail', v: fz(r.dm) }, { k: 'Total that day', v: fz(r.de + r.dm) }, { k: 'Running total', v: f(r.e + r.m) }, { k: 'Turnout so far', v: ((r.e + r.m) / o.reg * 100).toFixed(2) + '%' });
       if (!r && p) rowsB.push({ k: 'Est. in person', v: '≈ ' + rnd(p.e) + (p.e ? ' (' + rnd(p.eLo) + '–' + rnd(p.eHi) + ')' : '') }, { k: 'Est. mail returns', v: '≈ ' + rnd(p.m) }, { k: 'Est. running total', v: '≈ ' + rnd((cumMid[i] || 0)) });
-      // How this estimate was built: each past election's same-day ballots, scaled to 2026's pace.
-      let how = [];
+      // Plain-language note: the same day in past elections, scaled to this election's pace.
+      let note = '';
       if (!r && p) {
-        how = refs.map((ref) => { const s2 = ref.series; const one = (key) => { if (s2[key][i] == null || s2[key][i - 1] == null || !s2[key][lastI]) return null;
-            const sc = ser[key][lastI] / s2[key][lastI]; return { raw: Math.max(0, s2[key][i] - s2[key][i - 1]), sc }; };
-          const e1 = one('e'), m1 = one('m'); if (!e1 && !m1) return null;
-          return { k: ref.label.replace('November ', 'Nov ') + ': ' + (e1 ? f(e1.raw) + ' × ' + e1.sc.toFixed(2) : '–') + ' in person', v: (e1 && p.e ? rnd(e1.raw * e1.sc) : '–') + ' · ' + (m1 ? rnd(m1.raw * m1.sc) : '–') }; }).filter(Boolean);
-        how.push({ k: 'Middle value, adjusted to the expected remaining total (×' + (estLevel.e || 1).toFixed(2) + ' in person, ×' + (estLevel.m || 1).toFixed(2) + ' mail)', v: rnd(p.e) + ' · ' + rnd(p.m) });
+        const vals = refs.map((ref) => { const s2 = ref.series; let v = 0, ok = false;
+          ['e', 'm'].forEach((key) => { if (key === 'e' && !p.e) return; if (s2[key][i] != null && s2[key][i - 1] != null && s2[key][lastI]) { v += Math.max(0, s2[key][i] - s2[key][i - 1]) * ser[key][lastI] / s2[key][lastI]; ok = true; } });
+          return ok ? v : null; }).filter((x) => x != null).sort((a, b) => a - b);
+        if (vals.length) note = 'On this same day in ' + refs.length + ' past November elections, adjusted to this year’s pace, ' + (o.place || 'this place') + ' saw between ' + rnd(vals[0]) + ' and ' + rnd(vals[vals.length - 1]) + ' ballots. The estimate is about ' + rnd(p.e + p.m) + ', near the middle.';
       }
       return { kicker: eL + (r ? ' · reported' : ''), title: DOWL[dd.getDay()] + ', ' + MON[dd.getMonth()] + ' ' + dd.getDate(), sub: o.label, rows: rowsB,
         hasBadge: !r && !!p, badge: 'Estimate · not reported yet',
-        hasList: how.length > 0 || !!(sc && sc.open.length),
-        listHead: how.length ? 'How it was estimated (in person · mail)' : sc ? (sc.n === 1 ? '1 site open' : sc.n + ' sites open') : '',
-        list: how.length ? how : sc ? sc.open.map(([nm, hrs]) => ({ k: nm + ' (' + hrs + ')', v: '' })) : [] };
+        note, hasList: !!(sc && sc.open.length),
+        listHead: sc ? (sc.n === 1 ? '1 site open' : sc.n + ' sites open') : '',
+        list: sc ? sc.open.map(([nm, hrs]) => ({ k: nm + ' (' + hrs + ')', v: '' })) : [] };
     };
 
     return { bd, barInfo };

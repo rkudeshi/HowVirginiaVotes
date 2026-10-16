@@ -17,7 +17,7 @@
   const COMBO_CSS = `.vfc{position:relative;min-width:0}.vfc-btn{display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;min-height:46px;padding:0 40px 0 16px;background:#FFFFFF;border:2px solid #121417;border-radius:999px;font:700 15px 'Hanken Grotesk',sans-serif;color:#121417;cursor:pointer;text-align:left;position:relative}
 .vfc-btn input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;color:inherit;padding:0}
 .vfc-btn input::placeholder{color:#6B7380;font-weight:600}.vfc-btn:focus-within{box-shadow:0 0 0 3px #C9D2EC}
-.vfc-car{position:absolute;right:16px;top:50%;width:9px;height:9px;border-right:2.5px solid #121417;border-bottom:2.5px solid #121417;transform:translateY(-70%) rotate(45deg);transition:transform .15s}
+.vfc-car{position:absolute;right:16px;top:50%;width:9px;height:9px;cursor:pointer;border-right:2.5px solid #121417;border-bottom:2.5px solid #121417;transform:translateY(-70%) rotate(45deg);transition:transform .15s}
 .vfc.open .vfc-car{transform:translateY(-25%) rotate(-135deg)}
 .vfc-list{position:absolute;top:calc(100% + 6px);left:0;right:0;min-width:240px;z-index:90;background:#FFFFFF;border:2px solid #121417;border-radius:16px;max-height:340px;overflow-y:auto;box-shadow:0 22px 40px -24px rgba(20,32,43,.6);padding:4px;scrollbar-width:thin;scrollbar-color:#9AA9C4 transparent}
 .vfc-list::-webkit-scrollbar{width:10px}.vfc-list::-webkit-scrollbar-thumb{background:#9AA9C4;border-radius:999px;border:3px solid #FFFFFF}.vfc-list::-webkit-scrollbar-track{background:transparent}
@@ -32,7 +32,7 @@
     list() { const q = this.state.q.trim().toLowerCase(), items = this.props.items || [];
       if (!q) return items;
       return items.filter((o) => o.text.toLowerCase().includes(q)).sort((a, b) => (b.text.toLowerCase().startsWith(q) - a.text.toLowerCase().startsWith(q))); }
-    pick(o) { this.setState({ open: false, q: '' }); if (this.props.onpick) this.props.onpick(o.value); }
+    pick(o) { this.setState({ open: false, q: '' }); const a = document.activeElement; if (a && this.root && this.root.contains(a)) a.blur(); if (this.props.onpick) this.props.onpick(o.value); }
     componentDidUpdate(pp, ps) { if (this.state.open && !ps.open && this.root) { const el = this.root.querySelector('.vfc-opt.on'); if (el) el.scrollIntoView({ block: 'nearest' }); } }
     render(p, st) {
       const items = this.list(), cur = (p.items || []).find((o) => o.value === p.value), search = p.search === 'true' || p.search === true;
@@ -45,11 +45,16 @@
       const open = () => this.setState({ open: true, idx: Math.max(0, items.findIndex((o) => o.value === p.value)) });
       const field = search
         ? h('input', { type: 'text', 'aria-label': p.label || p.placeholder, placeholder: cur && !st.open ? cur.text : p.placeholder, value: st.q, autocomplete: 'off',
-            onFocus: open, onClick: open, onInput: (ev) => this.setState({ q: ev.target.value, open: true, idx: 0 }), onKeyDown: key })
+            onFocus: open, onInput: (ev) => this.setState({ q: ev.target.value, open: true, idx: 0 }), onKeyDown: key })
         : h('span', { style: 'flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis' }, cur ? cur.text : p.placeholder);
       return h('div', { class: 'vfc' + (st.open ? ' open' : '') + (p.big === 'true' ? ' vfc-big' : ''), ref: (r) => { this.root = r; } },
         h('div', { class: 'vfc-btn', role: 'combobox', 'aria-expanded': st.open ? 'true' : 'false', 'aria-label': p.label || p.placeholder, tabIndex: search ? -1 : 0,
-          onClick: search ? null : () => (st.open ? this.setState({ open: false }) : open()), onKeyDown: search ? null : key },
+          // The whole box (arrow included) opens the list; the arrow closes it again.
+          onClick: (ev) => { const car = ev.target.classList && ev.target.classList.contains('vfc-car');
+            if (st.open && (car || !search)) { this.setState({ open: false, q: '' }); return; }
+            if (search) { const inp = this.root && this.root.querySelector('input'); if (inp && document.activeElement !== inp) inp.focus(); }
+            open(); },
+          onKeyDown: search ? null : key },
           p.icon === 'search' ? h('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#4A5260', 'stroke-width': 2.6, 'stroke-linecap': 'round', 'aria-hidden': 'true' }, h('circle', { cx: 11, cy: 11, r: 7 }), h('path', { d: 'M20 20l-4-4' })) : null,
           field, h('span', { class: 'vfc-car', 'aria-hidden': 'true' })),
         st.open ? h('div', { class: 'vfc-list', role: 'listbox' },
@@ -155,6 +160,18 @@
 
   const pages = {};
   window.DCLogic = DCLogic;
+  /* In-page menu jumps: boxes slide in as they scroll into view, which shifts where the browser
+     thinks they are. Jump to the real layout position instead, just below the sticky bar. */
+  document.addEventListener('click', (ev) => {
+    const a = ev.target.closest && ev.target.closest('a[href^="#"]');
+    if (!a || ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey) return;
+    const el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
+    ev.preventDefault();
+    let top = 0; for (let n = el; n; n = n.offsetParent) top += n.offsetTop;
+    const band = document.querySelector('.vf-band'), off = (band ? band.getBoundingClientRect().height : 0) + 16;
+    window.scrollTo({ top: Math.max(0, top - off), behavior: 'smooth' });
+    history.replaceState(null, '', a.getAttribute('href'));
+  });
   { const st = document.createElement('style'); st.textContent = COMBO_CSS; document.head.appendChild(st); }
   window.VF = {
     page(name, Logic) { pages[name] = Logic; },

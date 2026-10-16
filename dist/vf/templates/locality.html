@@ -132,20 +132,33 @@ details.fx-site{transition:border-color .2s,box-shadow .2s}details.fx-site:hover
 }
 section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
 .vf-short{display:none}
-section[id]{scroll-margin-top:76px !important}
-@media (max-width: 700px){.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:21px !important}.vf-logomark{width:32px !important;height:32px !important}}
+section[id]{scroll-margin-top:62px !important}
+@media (max-width: 700px){.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:18px !important}.vf-logomark{width:28px !important;height:28px !important}}
 @media (max-width: 700px){.vf-head{justify-content:flex-start !important}}
 @keyframes fxFadeA{from{opacity:0}to{opacity:1}}@keyframes fxFadeB{from{opacity:0}to{opacity:1}}.fx-fa{animation:fxFadeA .6s ease both}.fx-fb{animation:fxFadeB .6s ease both}
 @media (max-width: 700px){.vf-where{align-items:center !important;width:100%}.vf-where > div{justify-content:center !important}}
+@keyframes vfGlow{0%,100%{stroke-opacity:1;stroke-width:5}50%{stroke-opacity:.35;stroke-width:13}}
+.fx-live2{animation:vfGlow 1.8s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(65,85,127,.85))}
+@keyframes vfSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.vf-spin{transform-box:view-box;transform-origin:60px 60px}
+.vf-daysbox:hover .vf-spin{animation:vfSpin .9s cubic-bezier(.3,1.1,.5,1)}
+.vf-elchip{transition:transform .18s cubic-bezier(.3,1.4,.5,1),box-shadow .18s}
+.vf-elchip:hover{transform:translateY(-3px);box-shadow:0 0 0 4px rgba(255,210,63,.6),0 12px 22px -14px rgba(18,20,23,.55)}
+*{scrollbar-width:thin;scrollbar-color:#9AA9C4 transparent}
+*::-webkit-scrollbar{width:10px;height:10px}*::-webkit-scrollbar-thumb{background:#9AA9C4;border-radius:999px;border:2px solid transparent;background-clip:padding-box}*::-webkit-scrollbar-track{background:transparent}
+/* the projection draws left to right, picking up where the line ends */
+@keyframes vfRevA{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes vfRevB{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fx-ra,.fx-rb{transform-box:fill-box;transform-origin:left center}.fx-ra{animation:vfRevA .9s cubic-bezier(.4,0,.3,1) 1.45s both}.fx-rb{animation:vfRevB .9s cubic-bezier(.4,0,.3,1) 1.45s both}
+.vf-heronums{--hg:76px}@media (max-width: 600px){.vf-heronums{--hg:22px}}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
 
   <div class="vf-band" style="position: sticky; top: 0; z-index: 80; background: #121417; color: #FFFFFF">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 8px 18px">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 6px 24px; display: flex; align-items: center; gap: 8px 18px">
       <a class="vf-logo" href="/" aria-label="VoteFlow Virginia home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF; flex-shrink: 0">
-        <span class="fx-bob vf-logomark" style="width: 38px; height: 38px; background: #FFD23F; border-radius: 9px; display: grid; place-items: center"><span style="font: 800 15px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
-        <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 25px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
+        <span class="vf-logomark" style="width: 30px; height: 30px; background: #FFD23F; border-radius: 7px; display: grid; place-items: center"><span style="font: 800 12.5px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
+        <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
       </a>
       <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea, a question, or something you'd like to see added that would be helpful for you? </span><span class="vf-short">Ideas or questions? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send me an email</a></span>
     </div>
@@ -179,9 +192,9 @@ section[id]{scroll-margin-top:76px !important}
         <a href="{{backHref}}" style="font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; min-height: 32px">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Virginia · {{L.region}}</a>
         <h1 class="vf-h1" style="margin: 4px 0 0; font-size: clamp(48px, 7vw, 92px); font-weight: 800; letter-spacing: -0.055em; line-height: .95">{{L.name}}</h1>
-        <div class="vf-picks" style="display: grid; grid-template-columns: minmax(200px, 270px) minmax(200px, 270px); gap: 10px; margin-top: 16px">
+        <div class="vf-picks" style="display: grid; grid-template-columns: minmax(220px, 300px) minmax(200px, 260px); gap: 10px; margin-top: 16px">
+          <vf-combo items="{{hdr.locs}}" value="{{hdr.lid}}" onpick="{{hdr.pickL}}" label="Locality" placeholder="Find a county or city…" search="true" icon="search"></vf-combo>
           <vf-combo items="{{hdr.elections}}" value="{{hdr.eid}}" onpick="{{hdr.pickE}}" label="Election"></vf-combo>
-          <vf-combo items="{{hdr.locs}}" value="{{hdr.lid}}" onpick="{{hdr.pickL}}" label="Locality" placeholder="Find a county or city…" search="true"></vf-combo>
         </div>
       </div>
       <div class="vf-where" style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px">
@@ -190,8 +203,8 @@ section[id]{scroll-margin-top:76px !important}
           <sc-if value="{{where.ring.on}}"><circle class="fx-live2" cx="{{where.ring.cx}}" cy="{{where.ring.cy}}" r="{{where.ring.r}}" fill="none" stroke="#41557F" stroke-width="5"></circle></sc-if>
         </svg>
         <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end">
-          <span class="fx-pill" style="padding: 8px 12px; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 700; font-size: 14px">#{{L.rankV}} of 133 in ballots</span>
-          <span class="fx-pill" style="padding: 8px 12px; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 700; font-size: 14px">#{{L.rankP}} of 133 in turnout %</span>
+          <span class="fx-pill" title="Rank by registered voters" style="padding: 8px 12px; background: #EEF1F8; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 600; font-size: 14px"><b style="color: #41557F; font-size: 16px">#{{L.rankR}}</b> of 133 in size</span>
+          <span class="fx-pill" title="Rank by early turnout so far" style="padding: 8px 12px; background: {{L.pBg}}; border: 2px solid #3A3F48; border-radius: 12px; font-weight: 600; font-size: 14px"><b style="color: {{L.pFg}}; font-size: 16px">#{{L.rankP}}</b> of 133 in turnout %</span>
         </div>
       </div>
     </div>
@@ -200,7 +213,7 @@ section[id]{scroll-margin-top:76px !important}
       <div style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; margin: 0 4px 12px">Jump to an election in {{L.name}}</div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px">
         <sc-for list="{{elChips}}" as="ec" hint-placeholder-count="8">
-          <button class="fx-pill" onClick="{{ec.pick}}" aria-pressed="{{ec.pressed}}" style="min-height: 58px; padding: 8px 12px; border: 2px solid {{ec.border}}; border-radius: 12px; background: {{ec.bg}}; color: {{ec.fg}}; font: inherit; cursor: pointer; text-align: left; display: flex; flex-direction: column; justify-content: center; gap: 2px">
+          <button class="fx-pill vf-elchip" onClick="{{ec.pick}}" aria-pressed="{{ec.pressed}}" style="min-height: 58px; padding: 8px 12px; border: 2px solid {{ec.border}}; border-radius: 12px; background: {{ec.bg}}; color: {{ec.fg}}; font: inherit; cursor: pointer; text-align: left; display: flex; flex-direction: column; justify-content: center; gap: 2px">
             <b style="font-size: 14px">{{ec.label}}</b>
             <span style="font-family: 'DM Mono', monospace; font-size: 12px; opacity: .85">{{ec.sub}}</span>
             <span style="font-family: 'DM Mono', monospace; font-size: 12px; opacity: .85">{{ec.sub2}}</span>
@@ -214,24 +227,24 @@ section[id]{scroll-margin-top:76px !important}
         <sc-if value="{{hero.live}}" hint-placeholder-val="{{ true }}"><span class="fx-live" style="width: 10px; height: 10px; border-radius: 50%; background: #7C4DDB"></span></sc-if>
         {{hero.kicker}}
       </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 16px 44px; align-items: flex-end; margin: 40px 0 36px">
+      <div class="vf-heronums" style="display: flex; flex-wrap: wrap; gap: 16px var(--hg); align-items: flex-end; margin: 40px 0 36px">
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95">{{hero.pct}}%</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; padding: 0 .05em; background: linear-gradient(transparent 60%, #FFD23F 60%, #FFD23F 90%, transparent 90%)">{{hero.pct}}%</span>
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #41557F">{{hero.votes}}</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #E8590C">{{hero.votes}}</span>
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
         </div>
       </div>
       <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters{{hero.regNote}}</p>
       <div style="display: flex; height: 22px; border-radius: 999px; overflow: hidden; background: #E6E8EC">
-        <div class="fx-meter" style="width: {{hero.ipW}}%; background: #00A37A"></div>
-        <div class="fx-meter" style="width: {{hero.mW}}%; background: #7C4DDB; animation-delay: .25s"></div>
+        <div class="fx-meter" style="width: {{hero.ipW}}%; background: #8FD9BD"></div>
+        <div class="fx-meter" style="width: {{hero.mW}}%; background: #C2AEF0; animation-delay: .25s"></div>
       </div>
       <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 16px; font-weight: 600">
-        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #00A37A; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
-        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #7C4DDB; border-radius: 3px"></span>By mail · {{hero.m}} · {{hero.mW}}%</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #8FD9BD; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #C2AEF0; border-radius: 3px"></span>By mail · {{hero.m}} · {{hero.mW}}%</span>
       </div>
       <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
         <sc-for list="{{paceChips}}" as="pc" hint-placeholder-count="3">
@@ -240,12 +253,12 @@ section[id]{scroll-margin-top:76px !important}
       </div>
     </section>
 
-    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
+    <section class="fx-card vf-daysbox" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
       <sc-if value="{{hero.live}}" hint-placeholder-val="{{ true }}">
         <div style="position: relative; width: 200px; height: 200px">
           <svg width="200" height="200" viewBox="0 0 120 120" aria-hidden="true">
             <circle cx="60" cy="60" r="54" fill="none" stroke="#ECEEF2" stroke-width="12"></circle>
-            <circle cx="60" cy="60" r="54" fill="none" stroke="#41557F" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{cd.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle>
+            <g class="vf-spin"><circle cx="60" cy="60" r="54" fill="none" stroke="#41557F" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{cd.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle></g>
             
           </svg>
           <div style="position: absolute; inset: 0; display: grid; place-items: center; align-content: center">
@@ -254,7 +267,7 @@ section[id]{scroll-margin-top:76px !important}
           </div>
         </div>
         <div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Election Day · Tue Nov 3</div>
-        <div class="fx-bob" style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{satLine}}</div>
+        <sc-if value="{{satLine}}"><div class="fx-bob" style="font-size: 15px; font-weight: 600; background: #FFF6D1; border: 2px solid #F0D27A; border-radius: 10px; padding: 8px 12px">{{satLine}}</div></sc-if>
       </sc-if>
       <sc-if value="{{hero.past}}" hint-placeholder-val="{{ false }}">
         <div style="position: relative; width: 200px; height: 200px">
@@ -447,7 +460,8 @@ section[id]{scroll-margin-top:76px !important}
             <text class="fx-axis {{ch.fadeCls}}" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s" fill="{{el.color}}">{{el.t}}</text>
           </sc-for>
           <sc-if value="{{ch.hasProj}}" hint-placeholder-val="{{ false }}">
-            <path class="{{ch.fadeCls}}" d="{{ch.proj}}" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round" style="animation-delay: 1.9s"></path>
+            <clipPath id="vf-projclip"><rect class="{{ch.revCls}}" x="{{ch.todayX}}" y="0" width="1000" height="{{ch.b10}}"></rect></clipPath>
+            <path d="{{ch.proj}}" clip-path="url(#vf-projclip)" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round"></path>
           </sc-if>
           <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
             <line x1="{{ch.hiX}}" y1="20" x2="{{ch.hiX}}" y2="{{ch.b}}" stroke="#121417" stroke-width="1.5"></line>
@@ -628,7 +642,7 @@ section[id]{scroll-margin-top:76px !important}
           <div><div class="vf-kick2" style="font: 500 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; color: #4A5260; margin-bottom: 4px">{{L.name}} · November 2026</div><h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Early voting sites</h2></div>
           <p style="margin: 6px 0 0; color: #4A5260; font-size: 16px">{{siteSummary}}</p>
         </div>
-        <button class="fx-pill" onClick="{{siteAllToggle}}" aria-pressed="{{siteAllPressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{siteAllBg}}; color: {{siteAllFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer">{{siteAllLabel}}</button>
+        <sc-if value="{{siteMany}}"><button class="fx-pill" onClick="{{siteAllToggle}}" aria-pressed="{{siteAllPressed}}" style="min-height: 44px; padding: 0 16px; border: 2px solid #121417; border-radius: 999px; background: {{siteAllBg}}; color: {{siteAllFg}}; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer">{{siteAllLabel}}</button></sc-if>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; margin-top: 20px">
         <sc-if value="{{sm.has}}">
@@ -665,7 +679,7 @@ section[id]{scroll-margin-top:76px !important}
                   <span style="display: flex; flex-direction: column; gap: 2px; align-items: flex-start"><span style="font: 700 11px 'DM Mono', monospace; padding: 3px 8px; border-radius: 6px; background: {{st.chipBg}}; color: {{st.chipFg}}">{{st.status}}</span><span style="font: 500 11px 'DM Mono', monospace; color: #4A5260">{{st.opens}}</span></span>
                   <b style="text-align: right; font-family: 'DM Mono', monospace">{{st.ballots}}</b>
                   <span style="display: flex; align-items: center; gap: 6px; justify-content: flex-end"><span style="width: 44px; height: 8px; border-radius: 999px; background: #ECEEF2; overflow: hidden"><span class="fx-meter" style="display: block; height: 100%; width: {{st.w}}%; background: #00A37A"></span></span><span style="font-family: 'DM Mono', monospace; font-size: 13px; width: 40px; text-align: right">{{st.share}}</span></span>
-                  <span onMouseMove="{{st.rateMove}}" onMouseLeave="{{hideTip}}" style="text-align: right; font-family: 'DM Mono', monospace; text-decoration: underline dotted #9AA9C4; text-underline-offset: 4px; cursor: help">{{st.rate}}</span>
+                  <span style="text-align: right; font-family: 'DM Mono', monospace">{{st.rate}}</span>
                 </button>
                 <sc-if value="{{st.showDetail}}" hint-placeholder-val="{{ false }}">
                   <div class="fx-fade" style="padding: 4px 12px 14px 56px; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 14px">
@@ -702,7 +716,7 @@ section[id]{scroll-margin-top:76px !important}
           <div style="display: grid; grid-template-columns: {{rh.grid}}; gap: 3px; min-width: {{rh.minW}}; align-items: stretch">
             <span></span>
             <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: #4A5260; text-align: right; padding-right: 6px">{{rh.totLabel}}</span>
-            <sc-for list="{{rh.head}}" as="hc" hint-placeholder-count="10"><span style="font-family: 'DM Mono', monospace; font-size: 10px; color: #4A5260; text-align: center; padding: 0 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" title="{{hc.full}}">{{hc.l}}</span></sc-for>
+            <sc-for list="{{rh.head}}" as="hc" hint-placeholder-count="10"><span style="font-family: 'DM Mono', monospace; font-size: 10px; color: #4A5260; text-align: center; padding: 0 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.25" title="{{hc.full}}">{{hc.l}}<sc-if value="{{hc.l2}}"><br><b style="color: #121417; font-weight: 600">{{hc.l2}}</b></sc-if></span></sc-for>
             <sc-for list="{{rh.rows}}" as="rr" hint-placeholder-count="3">
               <span style="font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; align-self: center" title="{{rr.name}}">{{rr.name}}</span>
               <b style="font-family: 'DM Mono', monospace; font-size: 13px; text-align: right; align-self: center; padding-right: 6px">{{rr.total}}</b>
@@ -773,13 +787,13 @@ section[id]{scroll-margin-top:76px !important}
             </sc-for>
           </div>
           </sc-if>
-          <sc-if value="{{pm.notLean}}"><sc-for list="{{pm.ctrls}}" as="cg" hint-placeholder-count="1">
+          <div title="Not used for the in person vs. mail view" style="{{pm.measureStyle}}; transition: opacity .2s"><sc-for list="{{pm.ctrls}}" as="cg" hint-placeholder-count="1">
             <div role="group" aria-label="{{cg.label}}" style="display: flex; border: 2px solid #121417; border-radius: 999px; overflow: hidden">
               <sc-for list="{{cg.opts}}" as="o" hint-placeholder-count="3">
                 <button class="fx-pill" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 42px; padding: 0 14px; border: 0; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}">{{o.label}}</button>
               </sc-for>
             </div>
-          </sc-for></sc-if>
+          </sc-for></div>
       </div>
       <div class="fx-pmaps lay-{{pm.lay}} sel-{{pm.sel}}" onMouseLeave="{{pm.leave}}" style="display: grid; grid-template-columns: {{pm.cols}}; gap: 18px; margin-top: 18px">
         <sc-for list="{{pm.maps}}" as="mp" hint-placeholder-count="3">
@@ -824,7 +838,7 @@ section[id]{scroll-margin-top:76px !important}
   </footer>
 
   <sc-if value="{{tip.on}}" hint-placeholder-val="{{ false }}">
-    <div class="fx-tip" role="tooltip" style="position: fixed; left: {{tip.x}}px; top: {{tip.y}}px; z-index: 90; width: 300px; background: #FFFFFF; border: 2px solid #121417; border-radius: 20px; padding: 16px; pointer-events: none; box-shadow: 0 22px 40px -20px rgba(20,32,43,.65)">
+    <div class="fx-tip" role="tooltip" style="position: fixed; left: {{tip.x}}px; top: {{tip.y}}px; z-index: 90; width: 300px; background: {{tip.bg}}; border: 2px solid #121417; border-radius: 20px; padding: 16px; pointer-events: none; box-shadow: 0 22px 40px -20px rgba(20,32,43,.65)">
       <div style="font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #5B2FB8">{{tip.kicker}}</div>
       <sc-if value="{{tip.hasBadge}}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; margin: 6px 0 4px; padding: 3px 10px; border-radius: 999px; background: #EDE6FC; color: #4E2A9E; font: 700 11px 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase">{{tip.badge}}</span></sc-if>
       <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1">{{tip.title}}</div>
@@ -850,6 +864,7 @@ section[id]{scroll-margin-top:76px !important}
           <div style="display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; font-size: 12px"><span>{{tl.k}}</span><b style="font-family: 'DM Mono', monospace">{{tl.v}}</b></div>
         </sc-for>
       </sc-if>
+      <sc-if value="{{tip.note}}"><p style="margin: 10px 0 0; font-size: 13px; line-height: 1.45; color: #2A2F38; white-space: normal">{{tip.note}}</p></sc-if>
     </div>
   </sc-if>
 </div>

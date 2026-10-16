@@ -368,6 +368,7 @@ def main():
     start, end = dt.date(2026, 9, 18), dt.date(2026, 11, 2)
     by_total = sorted(e26['localities'], key=lambda x: -tot(x['history'][-1]))
     by_pct = sorted(e26['localities'], key=lambda x: -tot(x['history'][-1]) / x['registered'])
+    by_reg = sorted(e26['localities'], key=lambda x: -x['registered'])
     official = {x['date']: x for x in D.get('official', {}).get(LIVE, {}).get('history', [])}
     geocoded = {x['name'].lower(): (x['lat'], x['lon']) for x in D.get('sites', [])}
     for l in e26['localities']:
@@ -375,6 +376,14 @@ def main():
         days_sched, sites = site_schedule(lid, start, end)
         # Every registrar's office offers early voting from day one. When the schedule source
         # doesn't list it, show it without address or hours (those come from the registrar).
+        if lid == 'fairfax-county':  # the county's main early-voting site goes by its building name
+            for s0 in sites:
+                if not s0['satellite'] and s0['name'].lower().startswith('registrar'):
+                    old_name, s0['name'] = s0['name'], 'Fairfax County Government Center'
+                    for day in days_sched.values():
+                        for o in day['open']:
+                            if o[0] == old_name:
+                                o[0] = s0['name']
         office_known = any(not s['satellite'] for s in sites)
         if not office_known:
             sites.insert(0, {'name': "Registrar's office", 'address': '', 'firstOpen': start.isoformat(), 'satellite': False,
@@ -447,7 +456,8 @@ def main():
                     fx_mail[y] = {'through': hh[-1]['date'], 'sent': c.get('sent'), 'post': c.get('postal'), 'box': c.get('dropbox'), 'early': c.get('early')}
         n, nxt = sat_summary(lid, today)
         b = {'id': lid, 'name': l['name'], 'asOf': l['history'][-1]['date'], 'tIdx': 46 - tdb, 'region': NAMES[lid]['region'], 'reg': l['registered'], 'active': l.get('active'),
-             'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1,
+             'inactive': l.get('inactive'), 'rankV': by_total.index(l) + 1, 'rankP': by_pct.index(l) + 1, 'rankR': by_reg.index(l) + 1,
+             'state26': {'e': hist[LIVE]['e'], 'm': hist[LIVE]['m'], 'r': hist[LIVE]['r']},
              'rows': rows, 'sched': days_sched, 'officeKnown': office_known, 'sites': sites, 'sat': n, 'next': nxt, 'elections': elections, 'fxMail': fx_mail,
              'names': ALL_NAMES, 'mapH': ph, 'pdates': pdates, 'precincts': precincts, 'boundary': MANIFEST[lid].get('vintage')}
         (OUT / 'loc' / f'{lid}.json').write_text(json.dumps(b, separators=(',', ':')))

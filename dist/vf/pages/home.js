@@ -63,7 +63,7 @@ class Home extends DCLogic {
 
     // Size both hero numbers so they share one line when the card is wide enough (Unbounded 700 glyph widths, in em).
     const emW = (s) => Array.from(s).reduce((a, ch) => a + (ch === ',' || ch === '.' ? 0.3 : ch === '%' ? 1.29 : ch === '1' ? 0.52 : 0.9) - 0.04, 0);
-    const heroFs = (pct, n) => 'clamp(28px, calc((100cqi - 52px) / ' + (emW(pct + '%') + emW(f(n))).toFixed(2) + '), 96px)';
+    const heroFs = (pct, n) => 'clamp(28px, calc((100cqi - var(--hg) - 8px) / ' + (emW(pct + '%') + emW(f(n))).toFixed(2) + '), 96px)';
     const hero = { fs: heroFs((total / D.reg * 100).toFixed(1), total), kicker: live ? 'Early votes cast · statewide · through ' + dmd(D.asOf) : 'Early votes cast · statewide · final', pctLbl: live ? 'turnout so far' : 'early turnout', votes: f(total * e), pct: (total / D.reg * 100 * e).toFixed(1), reg: f(D.reg), active: f(D.active), ip: f(last.e * e), m: f(last.m * e), ipW: (last.e / total * 100).toFixed(1), mW: (last.m / total * 100).toFixed(1) };
     const COLORS = { '2026': '#00A37A', '2026-special': '#6B7F1A', '2025': '#7C4DDB', '2024': '#121417', '2023': '#B7791F', '2022': '#8C5A00', '2021': '#8A8F99', '2020': '#A68A00' };
     // Pace chips, newest election first. The live election compares at today's point; a past
@@ -146,7 +146,7 @@ class Home extends DCLogic {
     const hasProj = live && win !== 'today' && !!val('2025', tIdx);
     const proj = hasProj ? pathOf((i) => i < tIdx ? null : projVal(i)) : '';
     const yt = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((j) => ({ y: CB - j * (CB - 20) / 8, ty: CB + 4 - j * (CB - 20) / 8, l: fmtT(top * j / 8), stroke: j === 0 ? '#121417' : '#ECEEF2' }));
-    const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= tIdx) : [40, 30, 20, 10, 0].concat(endI > 46 ? [46 - endI] : []);
+    const dset = win === 'today' ? [45, 40, 35, 30, 25].filter((d) => 46 - d <= tIdx) : [40, 30, 20, 10, 0].concat(endI > 50 ? [46 - endI] : []); // skip an after-label that would crowd Election Day
     const xt = dset.map((d) => ({ x: X(46 - d).toFixed(1), l: d === 0 ? 'Election Day' : d < 0 ? (-d) + ' days after' : d + ' days' }));
     const todayX = X(tIdx);
     const hits = Array.from({ length: n }, (_, i) => ({ x: (X(i) - (XR - 60) / (n - 1) / 2).toFixed(1), w: ((XR - 60) / (n - 1)).toFixed(1), enter: () => this.setState({ hi: i }) }));
@@ -170,7 +170,7 @@ class Home extends DCLogic {
       for (let i = 1; i < g.length; i++) if (g[i].y - g[i - 1].y < lgap) g[i].y = g[i - 1].y + lgap;
       const over = g[g.length - 1].y - CB; if (over > 0) { g[g.length - 1].y = CB; for (let i = g.length - 2; i >= 0; i--) if (g[i + 1].y - g[i].y < lgap) g[i].y = g[i + 1].y - lgap; } });
     ends.forEach((e2) => { e2.x = e2.x.toFixed(1); e2.y = e2.y.toFixed(1); });
-    const ch = { fadeCls: this.state.chTick % 2 ? 'fx-fa' : 'fx-fb', todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, hasToday: live, todayLbl: 'THROUGH ' + md(D.asOf).toUpperCase(), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
+    const ch = { revCls: this.state.chTick % 2 ? 'fx-ra' : 'fx-rb', fadeCls: this.state.chTick % 2 ? 'fx-fa' : 'fx-fb', todayY: narrow ? 28 : 12, ends, vb: '-20 0 1020 ' + (CB + 40), b: CB, b6: CB + 6, b26: CB + (narrow ? 40 : 26), b10: CB + 10, hasToday: live, todayLbl: 'THROUGH ' + md(D.asOf).toUpperCase(), lines, hasProj, proj, yt, xt, hits, anim: this.state.chTick % 2 ? 'fx-a' : 'fx-b',
       todayX: todayX.toFixed(1), todayLX: (win === 'today' ? todayX - 8 : todayX + 8).toFixed(1), todayAnchor: win === 'today' ? 'end' : 'start',
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
@@ -188,7 +188,7 @@ class Home extends DCLogic {
       toggle: () => { if (k !== EID) this.setState(Object.assign({ show: Object.assign({}, show, { [k]: !on }) }, bump)); } }; });
 
     // ballots by day (statewide); estimates skip the open-day check since some site is open most days
-    const { bd, barInfo } = VF.byDay({ ser: H[EID], live, endI, T: live ? tIdx : liveT, date: EDATE, reg: D.reg, label: D.label,
+    const { bd, barInfo } = VF.byDay({ place: 'Virginia', ser: H[EID], live, endI, T: live ? tIdx : liveT, date: EDATE, reg: D.reg, label: D.label,
       refs: ['2025', '2024', '2023', '2022', '2021'].filter((k) => H[k]).map((k) => ({ id: k, label: H[k].label, series: H[k] })),
       sched: null, gate: 'none', rowDaily: live ? D.rows : null, st: this.state, set: (x) => this.setState(x), tipAt: (ev, k, i) => this.tipAt(ev, k, i) });
 
@@ -237,7 +237,7 @@ class Home extends DCLogic {
 
     // maps (three small multiples)
     const mm = this.state.mapMeasure === 'v' ? 'v' : 'p';
-    const GR = ['#E6F6F0', '#B3E6D3', '#5CC9A3', '#00A37A', '#006B50'], PU = ['#F1ECFC', '#D6C7F5', '#A98BE8', '#7C4DDB', '#4E2A9E'];
+    const GR = ['#F0FAF6', '#D3F1E6', '#A8E3CC', '#6FCFAC', '#2FB58A', '#00895F', '#005A40'], PU = ['#F6F2FE', '#E4D9FA', '#C9B6F2', '#A98BE8', '#8B63DD', '#6A3FC4', '#4A2696'];
     const mdefs = [['all', 'All early votes', (o) => o.v, GR, '#D3D7DE'], ['e', 'In person', (o) => o.e, GR, '#D3D7DE'], ['m', 'By mail', (o) => o.m, GR, '#D3D7DE']];
     const mapSel = this.state.mapSel || 'all';
     const sBase = total ? last.e / total : 0.5;
@@ -248,12 +248,12 @@ class Home extends DCLogic {
     const maps = mapSel === 'lean' ? [leanMap] : mdefs.filter(([id]) => id === mapSel).map(([id, title, get, pal, border]) => {
       const mv = (o) => mm === 'p' ? get(o) / o.r * 100 : get(o);
       const vs = D.locs.map(mv).sort((a, b) => a - b);
-      const qs = [0.2, 0.4, 0.6, 0.8].map((q) => vs[Math.floor(q * (vs.length - 1))]);
-      const bin = (v) => { let i = 0; while (i < 4 && v > qs[i]) i++; return i; };
+      const qs = [1, 2, 3, 4, 5, 6].map((q) => vs[Math.floor(q / 7 * (vs.length - 1))]); // 7 steps
+      const bin = (v) => { let i = 0; while (i < 6 && v > qs[i]) i++; return i; };
       const fq = (v) => mm === 'p' ? v.toFixed(1) + '%' : short(v);
       const sum = D.locs.reduce((a, o) => a + get(o), 0);
       return { id, title, border, aria: title + ' by locality', total: mm === 'p' ? (sum / D.reg * 100).toFixed(1) + '% statewide' : f(sum) + ' statewide',
-        bins: pal.map((c, i) => ({ c, l: i === 0 ? '≤' + fq(qs[0]) : i === 4 ? '>' + fq(qs[3]) : fq(qs[i]) })),
+        bins: pal.map((c, i) => ({ c, l: i === 0 ? '≤' + fq(qs[0]) : i === 6 ? '>' + fq(qs[5]) : fq(qs[i]) })),
         paths: D.locs.map((o) => { const h = this.state.hover === o.id; return { d: o.d, fill: h ? '#FFD23F' : pal[bin(mv(o))], stroke: h ? '#121417' : '#FFFFFF', sw: h ? 2.5 : 0.8,
           delay: Math.round(parseFloat(o.d.slice(1)) * 0.9) + 'ms', move: (ev) => this.setState({ hover: o.id, tip: this.tipAt(ev, 'map', o.id) }) }; }) };
     });

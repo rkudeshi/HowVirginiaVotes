@@ -120,19 +120,32 @@ a{color:#00694F}a:hover{color:#121417}
 @media (max-width: 900px){.fx-side2{position:static !important}}
 section[id]{scroll-margin-top:16px}html{scroll-behavior:smooth}
 .vf-short{display:none}
-section[id]{scroll-margin-top:76px !important}
-@media (max-width: 700px){.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:21px !important}.vf-logomark{width:32px !important;height:32px !important}}
+section[id]{scroll-margin-top:62px !important}
+@media (max-width: 700px){.vf-long{display:none}.vf-short{display:inline}.vf-logotext{font-size:18px !important}.vf-logomark{width:28px !important;height:28px !important}}
 @media (max-width: 700px){.vf-head{justify-content:flex-start !important}}
 @keyframes fxFadeA{from{opacity:0}to{opacity:1}}@keyframes fxFadeB{from{opacity:0}to{opacity:1}}.fx-fa{animation:fxFadeA .6s ease both}.fx-fb{animation:fxFadeB .6s ease both}
+@keyframes vfGlow{0%,100%{stroke-opacity:1;stroke-width:5}50%{stroke-opacity:.35;stroke-width:13}}
+.fx-live2{animation:vfGlow 1.8s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(65,85,127,.85))}
+@keyframes vfSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.vf-spin{transform-box:view-box;transform-origin:60px 60px}
+.vf-daysbox:hover .vf-spin{animation:vfSpin .9s cubic-bezier(.3,1.1,.5,1)}
+.vf-elchip{transition:transform .18s cubic-bezier(.3,1.4,.5,1),box-shadow .18s}
+.vf-elchip:hover{transform:translateY(-3px);box-shadow:0 0 0 4px rgba(255,210,63,.6),0 12px 22px -14px rgba(18,20,23,.55)}
+*{scrollbar-width:thin;scrollbar-color:#9AA9C4 transparent}
+*::-webkit-scrollbar{width:10px;height:10px}*::-webkit-scrollbar-thumb{background:#9AA9C4;border-radius:999px;border:2px solid transparent;background-clip:padding-box}*::-webkit-scrollbar-track{background:transparent}
+/* the projection draws left to right, picking up where the line ends */
+@keyframes vfRevA{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes vfRevB{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fx-ra,.fx-rb{transform-box:fill-box;transform-origin:left center}.fx-ra{animation:vfRevA .9s cubic-bezier(.4,0,.3,1) 1.45s both}.fx-rb{animation:vfRevB .9s cubic-bezier(.4,0,.3,1) 1.45s both}
+.vf-heronums{--hg:76px}@media (max-width: 600px){.vf-heronums{--hg:22px}}
 </style>
 </helmet>
 <div class="fx-ground" style="min-height: 100vh; color: #121417; font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums">
 
   <div class="vf-band" style="position: sticky; top: 0; z-index: 80; background: #121417; color: #FFFFFF">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 8px 18px">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 6px 24px; display: flex; align-items: center; gap: 8px 18px">
       <a class="vf-logo" href="/" aria-label="VoteFlow Virginia home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF; flex-shrink: 0">
-        <span class="fx-bob vf-logomark" style="width: 38px; height: 38px; background: #FFD23F; border-radius: 9px; display: grid; place-items: center"><span style="font: 800 15px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
-        <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 25px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
+        <span class="vf-logomark" style="width: 30px; height: 30px; background: #FFD23F; border-radius: 7px; display: grid; place-items: center"><span style="font: 800 12.5px 'Unbounded', sans-serif; letter-spacing: -0.02em; color: #121417">VA</span></span>
+        <span class="vf-logotext" style="font-family: 'Unbounded', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.035em">VoteFlow</span>
       </a>
       <span class="vf-bandtxt" style="margin-left: auto; font: 500 13px 'Hanken Grotesk', sans-serif; color: #B7BCC6; text-align: right; line-height: 1.35"><span class="vf-long">Have an idea, a question, or something you'd like to see added that would be helpful for you? </span><span class="vf-short">Ideas or questions? </span><a href="mailto:voteflow@raviudeshi.com?subject=VoteFlow%20idea" style="color: #FFD23F; font-weight: 700; white-space: nowrap">Send me an email</a></span>
     </div>
@@ -180,24 +193,24 @@ section[id]{scroll-margin-top:76px !important}
         <span class="fx-live" style="width: 10px; height: 10px; border-radius: 50%; background: #7C4DDB"></span>
         {{hero.kicker}}
       </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 16px 44px; align-items: flex-end; margin: 40px 0 36px">
+      <div class="vf-heronums" style="display: flex; flex-wrap: wrap; gap: 16px var(--hg); align-items: flex-end; margin: 40px 0 36px">
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95">{{hero.pct}}%</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; padding: 0 .05em; background: linear-gradient(transparent 60%, #FFD23F 60%, #FFD23F 90%, transparent 90%)">{{hero.pct}}%</span>
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">{{hero.pctLbl}}</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #41557F">{{hero.votes}}</span>
+          <span class="fx-heronum" style="font-size: {{hero.fs}}; font-family: 'Unbounded', sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: .95; color: #E8590C">{{hero.votes}}</span>
           <span style="align-self: flex-start; font-size: 15px; font-weight: 700; background: #ECEEF2; color: #2A2F38; padding: 4px 12px; border-radius: 999px">early ballots cast</span>
         </div>
       </div>
       <p style="margin: 0 0 26px; font-size: 18px; color: #4A5260">Out of {{hero.reg}} registered voters ({{hero.active}} active).</p>
       <div style="display: flex; height: 22px; border-radius: 999px; overflow: hidden; background: #E6E8EC">
-        <div class="fx-meter" style="width: {{hero.ipW}}%; background: #00A37A"></div>
-        <div class="fx-meter" style="width: {{hero.mW}}%; background: #7C4DDB; animation-delay: .25s"></div>
+        <div class="fx-meter" style="width: {{hero.ipW}}%; background: #8FD9BD"></div>
+        <div class="fx-meter" style="width: {{hero.mW}}%; background: #C2AEF0; animation-delay: .25s"></div>
       </div>
       <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 16px; font-weight: 600">
-        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #00A37A; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
-        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #7C4DDB; border-radius: 3px"></span>By mail · {{hero.m}} · {{hero.mW}}%</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #8FD9BD; border-radius: 3px"></span>In person · {{hero.ip}} · {{hero.ipW}}%</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span style="width: 12px; height: 12px; background: #C2AEF0; border-radius: 3px"></span>By mail · {{hero.m}} · {{hero.mW}}%</span>
       </div>
       <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px">
         <sc-for list="{{paceChips}}" as="pc" hint-placeholder-count="4">
@@ -206,11 +219,11 @@ section[id]{scroll-margin-top:76px !important}
       </div>
     </section>
 
-    <section class="fx-card" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
+    <section class="fx-card vf-daysbox" style="grid-column: span 4; background: #FFFFFF; border: 2px solid #3A3F48; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; min-width: 240px">
       <div style="position: relative; width: 200px; height: 200px">
         <svg width="200" height="200" viewBox="0 0 120 120" aria-hidden="true">
           <circle cx="60" cy="60" r="54" fill="none" stroke="#ECEEF2" stroke-width="12"></circle>
-          <circle cx="60" cy="60" r="54" fill="none" stroke="#41557F" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{box.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle>
+          <g class="vf-spin"><circle cx="60" cy="60" r="54" fill="none" stroke="#41557F" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="{{box.offset}}" transform="rotate(-90 60 60)" style="transition: stroke-dashoffset 1s linear"></circle></g>
           
         </svg>
         <div style="position: absolute; inset: 0; display: grid; place-items: center; align-content: center">
@@ -399,7 +412,8 @@ section[id]{scroll-margin-top:76px !important}
             <text class="fx-axis {{ch.fadeCls}}" x="{{el.x}}" y="{{el.y}}" dy="0.35em" style="font-family: 'DM Mono', monospace; font-weight: {{el.fw}}; animation-delay: 1.2s" fill="{{el.color}}">{{el.t}}</text>
           </sc-for>
           <sc-if value="{{ch.hasProj}}" hint-placeholder-val="{{ false }}">
-            <path class="{{ch.fadeCls}}" d="{{ch.proj}}" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round" style="animation-delay: 1.9s"></path>
+            <clipPath id="vf-projclip"><rect class="{{ch.revCls}}" x="{{ch.todayX}}" y="0" width="1000" height="{{ch.b10}}"></rect></clipPath>
+            <path d="{{ch.proj}}" clip-path="url(#vf-projclip)" fill="none" stroke="#00A37A" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round"></path>
           </sc-if>
           <sc-if value="{{ch.hasHi}}" hint-placeholder-val="{{ false }}">
             <line x1="{{ch.hiX}}" y1="20" x2="{{ch.hiX}}" y2="{{ch.b}}" stroke="#121417" stroke-width="1.5"></line>
@@ -721,6 +735,7 @@ section[id]{scroll-margin-top:76px !important}
         </sc-for>
       </sc-if>
       <sc-if value="{{tip.hint}}"><div style="margin-top: 8px; font-size: 13px; font-weight: 700; color: #41557F">{{tip.hint}} →</div></sc-if>
+      <sc-if value="{{tip.note}}"><p style="margin: 10px 0 0; font-size: 13px; line-height: 1.45; color: #2A2F38; white-space: normal">{{tip.note}}</p></sc-if>
     </div>
   </sc-if>
 </div>
