@@ -32,3 +32,26 @@ class FairfaxHistoryTests(unittest.TestCase):
         result = build.series(history, '2026-11-03', 100)
         self.assertEqual(result['e'][22:24], [15, 13])
         self.assertEqual(result['m'][22:24], [10, 9])
+
+    def test_current_builder_input_preserves_source_observations(self):
+        import json
+        import build_voteflow as build
+        saved = json.loads((build.ROOT / 'region.json').read_text())
+        displayed = {l['id']: l for l in build.D['elections']['2026']['localities']}
+        for locality in saved['elections']['2026']['localities']:
+            expected = locality['history']
+            if locality['id'] == 'fairfax-county':
+                expected = merged_history(expected, saved['official']['2026'])
+            self.assertEqual(displayed[locality['id']]['history'], build.activity_dated(expected))
+
+    def test_current_statewide_rows_preserve_negative_daily_corrections(self):
+        from unittest.mock import patch
+        import build_voteflow as build
+        locality = {'registered': 100, 'history': [
+            {'date': '2026-10-10', 'early': 15, 'mail': 10},
+            {'date': '2026-10-11', 'early': 13, 'mail': 9},
+        ]}
+        with patch.object(build, 'NAMES', {'sample': {}}), patch.object(build, 'loc_hist', return_value=locality):
+            _, rows, _, _ = build.statewide('2026')
+        self.assertEqual((rows[-1]['e'], rows[-1]['m']), (13, 9))
+        self.assertEqual((rows[-1]['de'], rows[-1]['dm']), (-2, -1))
