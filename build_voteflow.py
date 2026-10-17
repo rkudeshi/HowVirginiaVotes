@@ -513,6 +513,17 @@ def main():
         vals = sorted(((((x['e'][i] or 0) + (x['m'][i] or 0)) / x['r'] if x and x['e'][i] is not None else 0, lid) for lid, x in s26.items()), reverse=True)
         return {lid: n + 1 for n, (_, lid) in enumerate(vals)}
     rank_now, rank_wk = rank_at(li26), rank_at(li26 - 7)
+    # Turnout and size rank for every election, so the locality page's rank chips follow the
+    # election being viewed.
+    ranks = {}
+    for eid in ORDER:
+        rows_e = [(lid, loc_hist(eid, lid)) for lid in NAMES]
+        rows_e = [(lid, h) for lid, h in rows_e if h and h.get('history') and h.get('registered')]
+        by_p = sorted(rows_e, key=lambda x: -tot(x[1]['history'][-1]) / x[1]['registered'])
+        by_r = sorted(rows_e, key=lambda x: -x[1]['registered'])
+        ranks[eid] = {lid: {'rankP': n + 1} for n, (lid, _) in enumerate(by_p)}
+        for n, (lid, _) in enumerate(by_r):
+            ranks[eid][lid]['rankR'] = n + 1
     geocoded = {x['name'].lower(): (x['lat'], x['lon']) for x in D.get('sites', [])}
     for l in e26['localities']:
         lid = l['id']
@@ -588,7 +599,7 @@ def main():
                               'reg': lh['registered'], 'early': last.get('early') or 0, 'mail': last.get('mail') or 0,
                               'total': tot(last), 'out': last.get('outstanding'), 'through': last['date'],
                               'atT': at_days_before(lh['history'], date(meta['date']), tdb),
-                              'final': eid != LIVE, 'series': series(lh['history'], meta['date'], lh['registered'])})
+                              'final': eid != LIVE, 'series': series(lh['history'], meta['date'], lh['registered']), **ranks.get(eid, {}).get(lid, {})})
         fx_mail = None
         if lid == 'fairfax-county':
             fx_mail = {}

@@ -69,7 +69,7 @@ class Locality extends DCLogic {
     const cmpId = eid !== '2025' ? '2025' : '2024';
     const COLORS = { va: '#41557F' }; EL.forEach((x) => { COLORS[x.id] = VF.elColor(x.id, eid, cmpId); });
     if (this.recorded !== D.id) { this.recorded = D.id; VF.addRecent(D.id); }
-    const L = { name: D.name, region: D.region, rankV: D.rankV, rankP: D.rankP, rankR: D.rankR };
+    const L = { name: D.name, region: D.region, rankV: D.rankV, rankP: cur.rankP || D.rankP, rankR: cur.rankR || D.rankR };
     const eDate = parse(cur.date);
     // Timelines end at the legal mail deadline; a past election also shows later days that added ballots.
     let curLast = -1; if (cur.series) { const S = cur.series; for (let i = 1; i < 53; i++) if ((S.e[i] || 0) > (S.e[i - 1] || 0) || (S.m[i] || 0) > (S.m[i - 1] || 0)) curLast = i; }
@@ -320,15 +320,15 @@ class Locality extends DCLogic {
     const maxDe = Math.max(1, ...drows.map((r) => r.de)), maxDm = Math.max(1, ...drows.map((r) => r.dm));
     const lvlOf = (v, m) => { const q = v / m; return !v ? 0 : q < 0.25 ? 1 : q < 0.5 ? 2 : q < 0.75 ? 3 : 4; };
     // Dark mode gets its own (lowercase, so not rewritten) shading that keeps light text readable.
-    const GSH = VF.dark ? ['transparent', '#2b4d42', '#2f604f', '#357a64', '#3e987c'] : ['transparent', '#E3F5ED', '#BDEBD6', '#86D9BA', '#4CC49B'],
-      PSH = VF.dark ? ['transparent', '#3d3658', '#4a4070', '#5a4c8a', '#6b59a6'] : ['transparent', '#F0EAFC', '#DCCEF7', '#BFA6F0', '#9E7DE6'],
-      TSH = VF.dark ? ['transparent', '#3b3f47', '#454a53', '#50565f', '#5d646e'] : ['transparent', '#EEF0F3', '#DDE1E7', '#C7CDD6', '#AAB2BF'];
+    const GSH = VF.dark ? ['transparent', '#2b4d42', '#2f604f', '#357a64', '#3e987c'] : ['transparent', '#EEF8F4', '#DDF2E9', '#C9EADD', '#B3E1CF'],
+      PSH = VF.dark ? ['transparent', '#3d3658', '#4a4070', '#5a4c8a', '#6b59a6'] : ['transparent', '#F6F2FD', '#ECE5FA', '#E0D5F7', '#D3C4F3'],
+      TSH = VF.dark ? ['transparent', '#3b3f47', '#454a53', '#50565f', '#5d646e'] : ['transparent', '#F4F5F7', '#ECEEF1', '#E3E6EA', '#D8DCE2'];
     const tRows = drows.slice().reverse().map((r) => {
       const sc = live ? D.sched[r.d] : null; const w = r.w;
       const heavy = !!(w && w.p >= 0.25), wetish = isWet(w), sunny = !!(w && !wetish && /clear|sun/i.test(w.l));
       const q = (r.de + r.dm) / maxDT; const lv = q < 0.02 ? 0 : q < 0.3 ? 1 : q < 0.55 ? 2 : q < 0.8 ? 3 : 4;
       const fl = VF.dayFlag(r.d, cur.date);
-      return { flag: fl === 'Election Day' ? 'Election Day' : fl ? (this.state.narrow ? 'Holiday' : fl) : '', flagFull: fl, date: dmd(r.d), dateS: DOW[parse(r.d).getDay()].slice(0, 2) + ' ' + (parse(r.d).getMonth() + 1) + '/' + parse(r.d).getDate(), wxS: w ? w.hi + '°' : '', de: fz(r.de), dm: fz(r.dm), pb: r.post != null ? fz(r.post) + ' · ' + fz(r.box) : '–', day: fz(r.de + r.dm), run: f(r.e + r.m),
+      return { flag: fl === 'Election Day' ? 'Election Day' : fl ? (this.state.narrow ? 'Holiday' : fl) : '', flagFull: fl, date: dmd(r.d), dateS: DOW[parse(r.d).getDay()] + ' ' + (parse(r.d).getMonth() + 1) + '/' + parse(r.d).getDate(), wxS: w ? w.hi + '°' : '', de: fz(r.de), dm: fz(r.dm), pb: r.post != null ? fz(r.post) + ' · ' + fz(r.box) : '–', day: fz(r.de + r.dm), run: f(r.e + r.m),
         pct: ((r.e + r.m) / cur.reg * 100).toFixed(2) + '%', out: fz(r.o), sites: sc ? String(sc.n) : '–', wx: w ? wxOf(w) : '',
         icoRain: wetish, icoSun: sunny, icoCloud: !!(w && !wetish && !sunny),
         wBg: heavy ? '#EEF0F3' : 'transparent', wFg: heavy ? '#121417' : '#8A93A3', wPad: '3px 10px', wW: heavy ? 700 : 500, bg: '#FFFFFF',
@@ -393,10 +393,15 @@ class Locality extends DCLogic {
         const b = tB(i), dA = rowA ? rowA.de + rowA.dm : a - (i ? tA(i - 1) || 0 : 0), dB = b == null ? null : b - (i && tB(i - 1) != null ? tB(i - 1) : 0);
         if (!dA && !dB) continue; // both closed
         const kA = VF.addDays(cur.date, i - 46), kB = VF.addDays(sdRefEl.date, i - 46), flA = VF.dayFlag(kA, cur.date), flB = VF.dayFlag(kB, sdRefEl.date);
-        sd.rows.unshift({ e: i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46), dA: dmd(kA), dAs: DOW[parse(kA).getDay()] + ' ' + (parse(kA).getMonth() + 1) + '/' + parse(kA).getDate(), dB: dmd(kB), vA: fz(dA), vB: dB == null ? '—' : fz(dB),
+        sd.rows.unshift({ nA: dA, nB: dB, e: i <= 46 ? 'E–' + (46 - i) : 'E+' + (i - 46), dA: dmd(kA), dAs: DOW[parse(kA).getDay()] + ' ' + (parse(kA).getMonth() + 1) + '/' + parse(kA).getDate(), dB: dmd(kB), vA: fz(dA), vB: dB == null ? '—' : fz(dB),
           flA: flA && flA !== 'Election Day' ? flA : '', flB: flB && flB !== 'Election Day' ? flB : '',
           diff: dB == null ? '—' : pctTxt(dA, dB), diffFg: tone(dA, dB || 0), runA: f(a), runB: b == null ? '—' : f(b), run: b ? pctTxt(a, b) : '—', runFg: tone(a, b || 0) });
       }
+      // Shade each day's ballots by volume (same muted scale as Daily numbers) so busy days stand out.
+      const SDS = VF.dark ? ['transparent', '#3b3f47', '#454a53', '#50565f', '#5d646e'] : ['transparent', '#F4F5F7', '#ECEEF1', '#E3E6EA', '#D8DCE2'];
+      const sdMax = Math.max(1, ...sd.rows.map((r) => Math.max(r.nA || 0, r.nB || 0)));
+      const sdLvl = (v) => !v ? 0 : 1 + Math.min(3, Math.floor(v / sdMax * 4));
+      sd.rows.forEach((r) => { r.bgA = SDS[sdLvl(r.nA)]; r.bgB = SDS[sdLvl(r.nB)]; });
       sd.note = 'Days line up by how many days remain before Election Day, so weekdays match. Days when neither election had any ballots are left out. Green is ahead of ' + sd.refLabel + ', red is behind.';
     }
     // Fairfax: in-person ballots by site — this election site by site, and one site across years.
@@ -407,29 +412,37 @@ class Locality extends DCLogic {
       const sum = (a) => a.reduce((t, v) => t + (v || 0), 0);
       const cumOf = (a) => { let c = 0, seen = false, end = -1; a.forEach((v, i) => { if (v != null) end = i; }); return a.map((v, i) => { if (v != null) { c += v; seen = true; } return seen && i <= end ? c : null; }); };
       const W = 1000, H = 300, L = 56, R = 18, T = 14, B = 34;
-      const chart = (series, from, to, hiKey) => {
+      const chart = (series, from, to, hiKey, shadeClosed) => {
         let top = 1; series.forEach((x) => x.vals.forEach((v, i) => { if (i >= from && i <= to && v != null) top = Math.max(top, v); }));
         const units = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000];
         top = Math.min(...units.map((u) => Math.ceil(top * 1.05 / (4 * u)) * 4 * u));
         const X = (i) => L + (i - from) / Math.max(1, to - from) * (W - L - R), Y = (v) => H - B - v / top * (H - B - T);
-        const path = (vals) => { let d = '', pen = false; for (let i = from; i <= to; i++) { const v = vals[i]; if (v == null) { pen = false; continue; } d += (pen ? ' L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); pen = true; } return d; };
+        // Lines run straight across closed days (weekends, holidays) rather than breaking.
+        const path = (vals) => { let d = '', pen = false; for (let i = from; i <= to; i++) { const v = vals[i]; if (v == null) continue; d += (pen ? ' L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); pen = true; } return d; };
+        const lastI = Math.max(-1, ...series.map((x) => { let k = -1; x.vals.forEach((v, i) => { if (v != null) k = i; }); return k; }));
+        const closed = []; if (shadeClosed) for (let i = from; i <= Math.min(to, lastI); i++) if (series.every((x) => x.vals[i] == null)) closed.push({ x: (X(i) - (W - L - R) / (to - from + 1) / 2).toFixed(1), w: ((W - L - R) / (to - from + 1)).toFixed(1) });
         const ticks = []; for (let i = from; i <= to; i++) { const k = 46 - i; if (k % 7 === 0 || i === from) ticks.push({ x: X(i).toFixed(1), l: k === 0 ? 'Election Day' : k + ' days' }); }
         const hiI = this.state[hiKey];
         const hits = []; for (let i = from; i <= to; i++) hits.push({ x: (X(i) - (W - L - R) / (to - from + 1) / 2).toFixed(1), w: ((W - L - R) / (to - from + 1)).toFixed(1), enter: () => this.setState({ [hiKey]: i }) });
-        return { lines: series.map((x) => ({ d: path(x.vals), c: x.c, w: x.w })), yt: [0, 1, 2, 3, 4].map((j) => ({ y: (H - B - j * (H - B - T) / 4).toFixed(1), ty: (H - B - j * (H - B - T) / 4 + 4).toFixed(1), l: short(top * j / 4) })),
+        return { closed, lines: series.map((x) => ({ d: path(x.vals), c: x.c, w: x.w })), yt: [0, 1, 2, 3, 4].map((j) => ({ y: (H - B - j * (H - B - T) / 4).toFixed(1), ty: (H - B - j * (H - B - T) / 4 + 4).toFixed(1), l: short(top * j / 4) })),
           xt: ticks, hits, hasHi: hiI != null && hiI >= from && hiI <= to, hiX: hiI != null ? X(Math.min(to, Math.max(from, hiI))).toFixed(1) : 0,
           dots: hiI != null ? series.filter((x) => x.vals[hiI] != null).map((x) => ({ y: Y(x.vals[hiI]).toFixed(1), c: x.c })) : [], vb: '0 0 ' + W + ' ' + H, base: H - B, leave: () => this.setState({ [hiKey]: null }) };
       };
       const dayLabel = (eDateStr, i) => { const d = parse(VF.addDays(eDateStr, i - 46)); return DOW[d.getDay()] + ' ' + MON[d.getMonth()] + ' ' + d.getDate(); };
       const bsView = this.state.bsView || 'daily', bsView2 = this.state.bsView2 || 'cum';
-      const viewOpts = (key, curV) => [['daily', 'Per day'], ['cum', 'Running total']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ [key]: v }) }, pill(curV, v)));
+      // Hours each site was open each day (this election's published schedule), for ballots per hour.
+      const hrs = {}; if (live) Object.keys(D.sched).forEach((d5) => { const i = VF.idxOf(cur.date, d5); D.sched[d5].open.forEach(([n5, sp, hh]) => { const k = keyFor(n5); if (k && hh) (hrs[k] = hrs[k] || [])[i] = hh; }); });
+      const hasHrs = Object.keys(hrs).length > 0;
+      const viewOpts = (key, curV, opts) => opts.map(([v, label]) => Object.assign({ label, pick: () => this.setState({ [key]: v }) }, pill(curV, v)));
       // 1) This election, site by site: the five busiest sites in color, the rest in light gray.
       const SC = ['#121417', '#00A37A', '#7C4DDB', '#D9792B', '#2F6FD6'];
       const now = D.fxMail[cur.id].sites, keys = Object.keys(now).sort((a, b) => sum(now[b]) - sum(now[a]));
       let first = 52, last = 0; keys.forEach((k) => now[k].forEach((v, i) => { if (v != null) { first = Math.min(first, i); last = Math.max(last, i); } }));
       const to1 = live ? 46 : Math.max(last, first + 1);
-      const s1 = keys.map((k, j) => ({ k, name: nm(k), c: j < 5 ? SC[j] : '#C9CDD4', w: j === 0 ? 3.5 : 2.5, raw: now[k], vals: bsView === 'cum' ? cumOf(now[k]) : now[k] }));
-      const ch1 = chart(s1.slice().reverse(), first, to1, 'bsHi1');
+      const v1 = bsView === 'hour' && !hasHrs ? 'daily' : bsView;
+      const perHour = (k) => now[k].map((v, i) => v != null && hrs[k] && hrs[k][i] ? Math.round(v / hrs[k][i]) : null);
+      const s1 = keys.map((k, j) => ({ k, name: nm(k), c: j < 5 ? SC[j] : '#C9CDD4', w: j === 0 ? 3.5 : 2.5, raw: now[k], vals: v1 === 'cum' ? cumOf(now[k]) : v1 === 'hour' ? perHour(k) : now[k] }));
+      const ch1 = chart(s1.slice().reverse(), first, to1, 'bsHi1', true);
       const h1 = this.state.bsHi1;
       // 2) One site across elections (Government Center by default).
       const allKeys = Array.from(new Set(FXS.flatMap((y) => Object.keys(D.fxMail[y].sites)))).sort((a, b) => (a === 'government_center' ? -1 : b === 'government_center' ? 1 : nm(a).localeCompare(nm(b))));
@@ -442,16 +455,16 @@ class Locality extends DCLogic {
       const h2 = this.state.bsHi2;
       const fmtv = (v) => v == null ? '—' : f(v);
       Object.assign(bs, {
-        on: true, viewOpts: viewOpts('bsView', bsView), viewOpts2: viewOpts('bsView2', bsView2), ch1, ch2,
+        on: true, viewOpts: viewOpts('bsView', v1, [['daily', 'Per day']].concat(hasHrs ? [['hour', 'Per hour']] : [], [['cum', 'Running total']])), viewOpts2: viewOpts('bsView2', bsView2, [['daily', 'Per day'], ['cum', 'Running total']]), ch1, ch2,
         legend1: s1.map((x) => ({ name: x.name, c: x.c, total: f(sum(x.raw)) })),
         legend2: s2.map((x) => ({ name: x.name.replace('November ', 'Nov ').replace('April 2026 special', 'Apr 2026'), c: x.c, total: f(sum(x.raw)) })),
-        read1: h1 != null ? dayLabel(cur.date, h1) + ' · ' + s1.filter((x) => x.raw[h1] != null).slice(0, 6).map((x) => x.name + ' ' + fmtv(x.vals[h1])).join(' · ') : 'Hover the chart to read each site for a day.',
-        read2: h2 != null ? (46 - h2 === 0 ? 'Election Day' : (46 - h2) + ' days before Election Day') + ' · ' + s2.filter((x) => x.vals[h2] != null).map((x) => x.name.replace('November ', 'Nov ') + ' ' + fmtv(x.vals[h2])).join(' · ') : 'Hover the chart to compare elections on the same day before Election Day.',
+        read1: h1 != null && s1.some((x) => x.raw[h1] != null) ? dayLabel(cur.date, h1) + ' · ' + s1.filter((x) => x.raw[h1] != null).slice(0, 6).map((x) => x.name + ' ' + fmtv(x.vals[h1]) + (v1 === 'hour' ? '/hr' : '')).join(' · ') : h1 != null ? dayLabel(cur.date, h1) + ' · no ballots reported' : 'Hover the chart to read each site for a day.',
+        read2: h2 != null && s2.some((x) => x.vals[h2] != null) ? (46 - h2 === 0 ? 'Election Day' : (46 - h2) + ' days before Election Day') + ' · ' + s2.filter((x) => x.vals[h2] != null).map((x) => x.name.replace('November ', 'Nov ') + ' ' + fmtv(x.vals[h2])).join(' · ') : 'Hover the chart to compare elections on the same day before Election Day.',
         siteOpts: allKeys.map((k) => ({ value: k, text: nm(k) })), site, pickSite: (v) => this.setState({ bsSite: v, bsHi2: null }), siteName: nm(site),
         take: (() => { const a = s2.find((x) => x.y === cur.id), b = s2.find((x) => x.y === cmpId); if (!live || !a || !b) return '';
           let li = -1; a.raw.forEach((v, i) => { if (v != null) li = i; }); const ta = sum(a.raw.slice(0, li + 1)), tb = sum(b.raw.slice(0, li + 1));
           return tb ? nm(site) + ' is ' + (ta >= tb ? Math.round((ta / tb - 1) * 100) + '% ahead of ' : Math.round((1 - ta / tb) * 100) + '% behind ') + b.name + ' at this point' : ''; })(),
-        through: 'From Fairfax County’s daily reports' + (live ? ', through ' + dmd(D.fxMail[cur.id].through) : '') + '. Lines break on days a site was closed.'
+        through: 'From Fairfax County’s daily reports' + (live ? ', through ' + dmd(D.fxMail[cur.id].through) : '') + '. Lines run across days the sites were closed (shaded).' + (hasHrs ? ' Per hour divides each day’s ballots by the hours that site was scheduled to be open.' : '')
       });
     }
     // Section headlines that state the finding.
