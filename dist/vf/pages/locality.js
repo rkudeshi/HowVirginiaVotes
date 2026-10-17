@@ -129,7 +129,7 @@ class Locality extends DCLogic {
     const undeliv = fx && fx.extras && fx.extras.undeliverable != null ? ' ' + f(fx.extras.undeliverable) + ' mail ballots were undeliverable.' : '';
     const vb = { rows: vrows, note: hasPBflow ? 'By mail vs. drop box and mail ballots sent come from Fairfax County’s own report through ' + dmd(fx.through) + '.' + undeliv : '' };
     const fcView = this.state.flowView || 'chart';
-    const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bars']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
+    const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bar chart']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
     const fcW = (a, b) => Math.max(1.5, Math.min(100, a / b * 100)).toFixed(1);
     const fcTot = ip + ret;
     const fcPB = hasPBflow ? fx.post + fx.box : 1;
@@ -191,7 +191,7 @@ class Locality extends DCLogic {
     const ends = [];
     visEl.map((x) => ({ k: x.id, label: x.label, color: COLORS[x.id], cur: x.id === eid, v: (i) => val(x, i) })).forEach((L0) => { let li = -1; for (let i = 0; i < n; i++) if (L0.v(i) != null) li = i;
       const pe = hasProj && L0.k === '2026' ? projVal(n - 1) : null; if (pe != null) li = n - 1;
-      if (li >= 0) ends.push({ x: X(li) + 10, y: Y(pe != null ? pe : L0.v(li)), t: L0.k === 'va' ? 'Virginia' : L0.label.replace('November ', 'Nov ').replace('April ', 'Apr ').replace(' special', ''), color: L0.color, fw: L0.cur || L0.k === 'va' ? 700 : 500 }); });
+      if (li >= 0) ends.push({ x: X(li) + 10, y: Y(pe != null ? pe : L0.v(li)), t: L0.k === 'va' ? 'Statewide' : L0.label.replace('November ', 'Nov ').replace('April ', 'Apr ').replace(' special', ''), color: L0.color, fw: L0.cur || L0.k === 'va' ? 700 : 500 }); });
     // Spread labels that end at the same x so they don't overlap.
     const lgap = narrow ? 32 : 15;
     const groups = {}; ends.forEach((e2) => { (groups[Math.round(e2.x / 40)] = groups[Math.round(e2.x / 40)] || []).push(e2); });
@@ -204,7 +204,7 @@ class Locality extends DCLogic {
       yTitle: measure === 'pct' ? 'Share of registered voters' : 'Early ballots (running total)',
       hasHi, hiX: hasHi ? X(hi).toFixed(1) : 0, hiRows, hiDots, hiTitle, tipLeft: hasHi ? ((X(hi) + 20) / 10.2).toFixed(1) : 0, tipShift: hasHi && X(hi) > 560 ? 'calc(-100% - 16px)' : '16px',
       leave: () => this.setState({ hi: null }),
-      note: 'Thick black line: ' + cur.label + '; gray: ' + (EL.find((x) => x.id === cmpId) || {}).label + '; light gray: other elections.' + (stEl && show.va !== false ? ' Shaded slate area (“Virginia”): statewide in 2026, scaled to this locality’s registered voters.' : '') + ' Tooltip’s right column: ' + cur.label + ' as a share of that election on the same day.' + (hasProj ? ' Dotted line: where 2026 lands if it follows 2025’s pace from today.' : '') };
+      note: 'Thick black line: ' + cur.label + '; gray: ' + (EL.find((x) => x.id === cmpId) || {}).label + '; light gray: other elections.' + (stEl && show.va !== false ? ' Shaded area (“Statewide”): Virginia statewide in 2026, scaled to this locality’s registered voters.' : '') + ' Tooltip’s right column: ' + cur.label + ' as a share of that election on the same day.' + (hasProj ? ' Dotted line: where 2026 lands if it follows 2025’s pace from today.' : '') };
     const bump = { hi: null, chTick: this.state.chTick + 1 };
     const opt = (label, key, cur2, list) => ({ label, opts: list.map(([v, l]) => Object.assign({ label: l, pick: () => this.setState(Object.assign({ [key]: v }, key.startsWith('p') ? {} : bump)) }, pill(cur2, v))) });
     const ctrls = [
@@ -231,7 +231,7 @@ class Locality extends DCLogic {
     }
     const byDate = {}; drows.forEach((r) => { byDate[r.d] = r; });
     const satOpens = {}; D.sites.forEach((s) => { if (s.satellite) satOpens[s.firstOpen] = (satOpens[s.firstOpen] || 0) + 1; });
-    const SITE_NAMES = { government_center: 'Government Center', north_county: 'North County', mt_vernon: 'Mount Vernon', burke: 'Burke Centre', centreville: 'Centreville', franconia: 'Franconia', great_falls: 'Great Falls', herndon_fortnightly: 'Herndon Fortnightly', jim_scott: 'Jim Scott', lorton: 'Lorton', mason: 'Mason', mclean: 'McLean', sully: 'Sully', thomas_jefferson: 'Thomas Jefferson', tysons_pimmit: 'Tysons-Pimmit', west_springfield: 'West Springfield' };
+    const SITE_NAMES = { government_center: 'Government Center', north_county: 'North County', mt_vernon: 'Mount Vernon', burke: 'Burke Centre', centreville: 'Centreville', franconia: 'Franconia', great_falls: 'Great Falls', herndon_fortnightly: 'Herndon Fortnightly', jim_scott: 'Jim Scott', lorton: 'Lorton', mason: 'Mason', mclean: 'McLean', sully: 'Sully', thomas_jefferson: 'Thomas Jefferson', tysons_pimmit: 'Tysons-Pimmit', west_springfield: 'West Springfield', laurel_hill: 'Laurel Hill', providence: 'Providence', gerry_hyland: 'Gerry Hyland' };
     const keyFor = (name) => { const low = name.toLowerCase(); if ((low.startsWith('registrar') || low.includes('government center')) && D.id === 'fairfax-county') return 'government_center'; const ks = Object.keys(SITE_NAMES).filter((kk) => kk !== 'government_center'); return ks.find((kk) => low.includes(SITE_NAMES[kk].toLowerCase())) || ks.find((kk) => low.startsWith(SITE_NAMES[kk].toLowerCase().split(/[ -]/)[0])); };
     const wxOf = (w) => w ? w.l + ', ' + w.hi + '°/' + w.lo + '°' + (w.p >= 0.01 ? ' · ' + w.p.toFixed(2) + '″' : '') : '—';
     const isWet = (w) => !!(w && (w.wet || w.p >= 0.25 || /rain|drizzle|shower|storm/i.test(w.l)));
@@ -303,7 +303,7 @@ class Locality extends DCLogic {
         chipBg: open ? '#D3F1E6' : '#E4D9FA', chipFg: open ? '#00694F' : '#4E2A9E', border: open ? '#00A37A' : '#ECEEF2', bg: open ? '#FFFFFF' : '#F8F9FB' };
     });
     const openNow = D.sites.filter((s) => parse(s.firstOpen) <= asOf).length;
-    const siteSummary = D.sites.length + ' locations: ' + openNow + ' open now' + (D.next && D.next !== 'open' ? ', ' + (D.sites.length - openNow) + ' more from ' + dmd(D.next) : '') + '. Tap a site for its hours.';
+    const siteSummary = D.sites.length + ' locations: ' + openNow + ' open now' + (D.next && D.next !== 'open' ? ', ' + (D.sites.length - openNow) + ' more from ' + dmd(D.next) : '') + '.';
     const heatKeys = Object.keys(siteTotals);
     const heatDates = D.rows.filter((r) => r.site !== undefined).map((r) => r.d);
     let heatMax = 1; D.rows.forEach((r) => { if (r.site) Object.values(r.site).forEach((v) => { heatMax = Math.max(heatMax, v); }); });
@@ -365,9 +365,10 @@ class Locality extends DCLogic {
       const url = URL.createObjectURL(new Blob([lines.join('\n') + '\n'], { type: 'text/csv' }));
       const a = document.createElement('a'); a.href = url; a.download = D.id + '-' + eid + '-daily.csv'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
     };
-    const tbl = { csv: downloadCsv, rows: tRows, hasPB, live, minW: narrowT ? '0' : '980px',
+    const fixCols = (g) => g.split(' ').map((x) => 'minmax(0, ' + x + ')').join(' '); // fixed tracks so every row lines up
+    const tbl = { csv: downloadCsv, rows: tRows, hasPB, live, minW: narrowT ? (live ? '600px' : '0') : '980px',
       shadePressed: shade ? 'true' : 'false', shadeBg: shade ? '#121417' : '#FFFFFF', shadeFg: shade ? '#FFFFFF' : '#121417', toggleShade: () => this.setState({ shade: !shade }),
-      grid: narrowT ? (live ? '1.1fr 1fr 1fr 1fr 0.95fr 0.75fr' : '1.1fr 1fr 1fr 1fr 0.95fr') : live ? (hasPB ? '1fr 0.8fr 0.8fr 1fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr' : '1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr') : '1.2fr 1fr 1fr 1fr 1fr 0.8fr' };
+      grid: fixCols(narrowT ? (live ? '1.05fr 1fr 1fr 1fr 0.95fr 2.1fr' : '1.1fr 1fr 1fr 1fr 0.95fr') : live ? (hasPB ? '1fr 0.8fr 0.8fr 1fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr' : '1fr 0.8fr 0.8fr 0.8fr 0.9fr 0.7fr 0.8fr 0.5fr 1.8fr') : '1.2fr 1fr 1fr 1fr 1fr 0.8fr') };
 
     // ---- ballots by day (+ planning)
     const { bd, barInfo } = VF.byDay({ place: D.name, ser: cur.series, live, endI, T, date: cur.date, reg: cur.reg, label: cur.label,
@@ -380,7 +381,7 @@ class Locality extends DCLogic {
     const sdId = sdOpts.some((x) => x.id === this.state.sdRef) ? this.state.sdRef : (sdOpts.find((x) => x.id === '2025') || sdOpts[0] || {}).id;
     const sdRefEl = sdOpts.find((x) => x.id === sdId);
     const sd = { on: !!(sdRefEl && cur.series), ref: sdId, refLabel: sdRefEl ? sdRefEl.label.replace('April 2026 special', 'April 2026') : '', curLabel: cur.label, rows: [],
-      opts: sdOpts.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })), pick: (v) => this.setState({ sdRef: v }) };
+      opts: sdOpts.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026'), text2: x.type })), pick: (v) => this.setState({ sdRef: v }) };
     if (sd.on) {
       const A = cur.series, B = sdRefEl.series, tA = (i) => A.e[i] == null ? null : A.e[i] + A.m[i], tB = (i) => B.e[i] == null ? null : B.e[i] + B.m[i];
       const rowByDate = {}; D.rows.forEach((r) => { rowByDate[r.d] = r; });
@@ -398,14 +399,69 @@ class Locality extends DCLogic {
       }
       sd.note = 'Days line up by how many days remain before Election Day, so weekdays match. Days when neither election had any ballots are left out. Green is ahead of ' + sd.refLabel + ', red is behind.';
     }
+    // Fairfax: in-person ballots by site — this election site by site, and one site across years.
+    const bs = { on: false };
+    const FXS = D.fxMail ? Object.keys(D.fxMail).filter((y) => D.fxMail[y].sites && Object.keys(D.fxMail[y].sites).length) : [];
+    if (FXS.length && D.fxMail[cur.id] && D.fxMail[cur.id].sites && Object.keys(D.fxMail[cur.id].sites).length) {
+      const nm = (k) => SITE_NAMES[k] || k.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+      const sum = (a) => a.reduce((t, v) => t + (v || 0), 0);
+      const cumOf = (a) => { let c = 0, seen = false, end = -1; a.forEach((v, i) => { if (v != null) end = i; }); return a.map((v, i) => { if (v != null) { c += v; seen = true; } return seen && i <= end ? c : null; }); };
+      const W = 1000, H = 300, L = 56, R = 18, T = 14, B = 34;
+      const chart = (series, from, to, hiKey) => {
+        let top = 1; series.forEach((x) => x.vals.forEach((v, i) => { if (i >= from && i <= to && v != null) top = Math.max(top, v); }));
+        const units = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000];
+        top = Math.min(...units.map((u) => Math.ceil(top * 1.05 / (4 * u)) * 4 * u));
+        const X = (i) => L + (i - from) / Math.max(1, to - from) * (W - L - R), Y = (v) => H - B - v / top * (H - B - T);
+        const path = (vals) => { let d = '', pen = false; for (let i = from; i <= to; i++) { const v = vals[i]; if (v == null) { pen = false; continue; } d += (pen ? ' L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1); pen = true; } return d; };
+        const ticks = []; for (let i = from; i <= to; i++) { const k = 46 - i; if (k % 7 === 0 || i === from) ticks.push({ x: X(i).toFixed(1), l: k === 0 ? 'Election Day' : k + ' days' }); }
+        const hiI = this.state[hiKey];
+        const hits = []; for (let i = from; i <= to; i++) hits.push({ x: (X(i) - (W - L - R) / (to - from + 1) / 2).toFixed(1), w: ((W - L - R) / (to - from + 1)).toFixed(1), enter: () => this.setState({ [hiKey]: i }) });
+        return { lines: series.map((x) => ({ d: path(x.vals), c: x.c, w: x.w })), yt: [0, 1, 2, 3, 4].map((j) => ({ y: (H - B - j * (H - B - T) / 4).toFixed(1), ty: (H - B - j * (H - B - T) / 4 + 4).toFixed(1), l: short(top * j / 4) })),
+          xt: ticks, hits, hasHi: hiI != null && hiI >= from && hiI <= to, hiX: hiI != null ? X(Math.min(to, Math.max(from, hiI))).toFixed(1) : 0,
+          dots: hiI != null ? series.filter((x) => x.vals[hiI] != null).map((x) => ({ y: Y(x.vals[hiI]).toFixed(1), c: x.c })) : [], vb: '0 0 ' + W + ' ' + H, base: H - B, leave: () => this.setState({ [hiKey]: null }) };
+      };
+      const dayLabel = (eDateStr, i) => { const d = parse(VF.addDays(eDateStr, i - 46)); return DOW[d.getDay()] + ' ' + MON[d.getMonth()] + ' ' + d.getDate(); };
+      const bsView = this.state.bsView || 'daily', bsView2 = this.state.bsView2 || 'cum';
+      const viewOpts = (key, curV) => [['daily', 'Per day'], ['cum', 'Running total']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ [key]: v }) }, pill(curV, v)));
+      // 1) This election, site by site: the five busiest sites in color, the rest in light gray.
+      const SC = ['#121417', '#00A37A', '#7C4DDB', '#D9792B', '#2F6FD6'];
+      const now = D.fxMail[cur.id].sites, keys = Object.keys(now).sort((a, b) => sum(now[b]) - sum(now[a]));
+      let first = 52, last = 0; keys.forEach((k) => now[k].forEach((v, i) => { if (v != null) { first = Math.min(first, i); last = Math.max(last, i); } }));
+      const to1 = live ? 46 : Math.max(last, first + 1);
+      const s1 = keys.map((k, j) => ({ k, name: nm(k), c: j < 5 ? SC[j] : '#C9CDD4', w: j === 0 ? 3.5 : 2.5, raw: now[k], vals: bsView === 'cum' ? cumOf(now[k]) : now[k] }));
+      const ch1 = chart(s1.slice().reverse(), first, to1, 'bsHi1');
+      const h1 = this.state.bsHi1;
+      // 2) One site across elections (Government Center by default).
+      const allKeys = Array.from(new Set(FXS.flatMap((y) => Object.keys(D.fxMail[y].sites)))).sort((a, b) => (a === 'government_center' ? -1 : b === 'government_center' ? 1 : nm(a).localeCompare(nm(b))));
+      const site = allKeys.includes(this.state.bsSite) ? this.state.bsSite : 'government_center';
+      const yrs = FXS.filter((y) => D.fxMail[y].sites[site]).sort().reverse();
+      const yLabel = (y) => (EL.find((x) => x.id === y) || {}).label || y;
+      const s2 = yrs.map((y) => ({ y, name: yLabel(y), c: VF.elColor(y, cur.id, cmpId), w: y === cur.id ? 4 : y === cmpId ? 3 : 2, raw: D.fxMail[y].sites[site], vals: bsView2 === 'cum' ? cumOf(D.fxMail[y].sites[site]) : D.fxMail[y].sites[site] }));
+      let f2 = 52; s2.forEach((x) => x.vals.forEach((v, i) => { if (v != null) f2 = Math.min(f2, i); }));
+      const ch2 = chart(s2.slice().reverse(), Math.min(f2, 46), 46, 'bsHi2');
+      const h2 = this.state.bsHi2;
+      const fmtv = (v) => v == null ? '—' : f(v);
+      Object.assign(bs, {
+        on: true, viewOpts: viewOpts('bsView', bsView), viewOpts2: viewOpts('bsView2', bsView2), ch1, ch2,
+        legend1: s1.map((x) => ({ name: x.name, c: x.c, total: f(sum(x.raw)) })),
+        legend2: s2.map((x) => ({ name: x.name.replace('November ', 'Nov ').replace('April 2026 special', 'Apr 2026'), c: x.c, total: f(sum(x.raw)) })),
+        read1: h1 != null ? dayLabel(cur.date, h1) + ' · ' + s1.filter((x) => x.raw[h1] != null).slice(0, 6).map((x) => x.name + ' ' + fmtv(x.vals[h1])).join(' · ') : 'Hover the chart to read each site for a day.',
+        read2: h2 != null ? (46 - h2 === 0 ? 'Election Day' : (46 - h2) + ' days before Election Day') + ' · ' + s2.filter((x) => x.vals[h2] != null).map((x) => x.name.replace('November ', 'Nov ') + ' ' + fmtv(x.vals[h2])).join(' · ') : 'Hover the chart to compare elections on the same day before Election Day.',
+        siteOpts: allKeys.map((k) => ({ value: k, text: nm(k) })), site, pickSite: (v) => this.setState({ bsSite: v, bsHi2: null }), siteName: nm(site),
+        take: (() => { const a = s2.find((x) => x.y === cur.id), b = s2.find((x) => x.y === cmpId); if (!live || !a || !b) return '';
+          let li = -1; a.raw.forEach((v, i) => { if (v != null) li = i; }); const ta = sum(a.raw.slice(0, li + 1)), tb = sum(b.raw.slice(0, li + 1));
+          return tb ? nm(site) + ' is ' + (ta >= tb ? Math.round((ta / tb - 1) * 100) + '% ahead of ' : Math.round((1 - ta / tb) * 100) + '% behind ') + b.name + ' at this point' : ''; })(),
+        through: 'From Fairfax County’s daily reports' + (live ? ', through ' + dmd(D.fxMail[cur.id].through) : '') + '. Lines break on days a site was closed.'
+      });
+    }
     // Section headlines that state the finding.
     const cmpEl = EL.find((x) => x.id === cmpId);
     const dayList = live ? D.rows.map((r) => ({ d: r.d, v: r.de + r.dm }))
       : cur.series ? cur.series.e.map((v, i) => v == null || i === 0 || cur.series.e[i - 1] == null ? null : { d: VF.addDays(cur.date, i - 46), v: v + cur.series.m[i] - cur.series.e[i - 1] - cur.series.m[i - 1] }).filter(Boolean) : [];
     const dl = VF.dayLines(dayList, live);
     const take = {
-      flow: req ? Math.round(ret / req * 100) + '% of requested mail ballots ' + (live ? 'have come back so far' : 'came back') : '',
-      compare: cmpEl ? VF.paceLine(live ? cur.atT / cmpEl.atT : cur.total / cmpEl.total, cmpEl.label.replace('April 2026 special', 'April 2026'), live) : '',
+      compare: live && cmpEl && cur.series && cmpEl.series ? (() => { const A = cur.series, B = cmpEl.series; let li = -1; for (let i = 0; i < 53; i++) if (A.e[i] != null) li = i;
+        const t = (S, i) => S.e[i] == null ? null : S.e[i] + S.m[i]; return li >= 7 ? VF.gapLine(t(A, li) / t(B, li), t(A, li - 7) / t(B, li - 7), cmpEl.label) : ''; })() : '',
       byday: dl.busiest, calendar: dl.rhythm,
       sameday: sd.on && sd.rows.length ? (() => { const last = sd.rows.slice(0, 10), up = last.filter((r) => r.diffFg === '#00694F').length; return 'Ahead of ' + sd.refLabel + ' on ' + up + ' of the last ' + last.length + ' voting days'; })() : ''
     };
@@ -560,9 +616,9 @@ class Locality extends DCLogic {
     ];
 
     return {
-      fc, fcOpts, vb, insight, sd, take,
+      fc, fcOpts, vb, insight, sd, take, bs,
       hdr: { eid, lid: D.id,
-        elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026') + ' · ' + x.type })),
+        elections: EL.map((x) => ({ value: x.id, text: x.label.replace('April 2026 special', 'April 2026'), text2: x.type })),
         locs: (() => { const all = D.names.map(([id, nm]) => ({ value: id, text: nm })); return [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(all, D.id), all); })(),
         pickE: (v) => { if (v === eid) return; this.setState({ eid: v, show: Object.assign({}, this.state.show, { [v]: true }), cal: null, hi: null, tip: null, calTick: this.state.calTick + 1, chTick: this.state.chTick + 1 }); },
         pickL: (v) => { v = VF.unRecent(v); if (v === D.id) return; location.href = v ? '/' + eid + '/' + v : (eid === '2026' ? '/' : '/' + eid); } },

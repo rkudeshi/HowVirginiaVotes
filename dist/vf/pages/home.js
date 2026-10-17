@@ -101,7 +101,7 @@ class Home extends DCLogic {
     ] };
 
     const fcView = this.state.flowView || 'chart';
-    const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bars']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
+    const fcOpts = [['chart', 'Flow chart'], ['bars', 'Bar chart']].map(([v, label]) => Object.assign({ label, pick: () => this.setState({ flowView: v }) }, pill(fcView, v)));
     const fcW = (a, b) => Math.max(1.5, Math.min(100, a / b * 100)).toFixed(1);
     const fcTot = ip + ret;
     const fcBig = !!this.state.fcBig;
@@ -294,8 +294,8 @@ class Home extends DCLogic {
     const dl = VF.dayLines(D.rows.map((r) => ({ d: r.d, v: r.de + r.dm })), live);
     const topLoc = D.locs.reduce((a, b) => (b.p > a.p ? b : a), D.locs[0]);
     const take = {
-      flow: req ? Math.round(ret / req * 100) + '% of requested mail ballots ' + (live ? 'have come back so far' : 'came back') : '',
-      compare: H[cmpId] ? VF.paceLine(live ? total / at(cmpId, tIdx) : total / finalOf(cmpId), H[cmpId].label, live) : '',
+      compare: live && H[cmpId] ? (() => { let li = -1; for (let i = 0; i < 53; i++) if (H[EID].e[i] != null) li = i;
+        return li >= 7 ? VF.gapLine(at(EID, li) / at(cmpId, li), at(EID, li - 7) / at(cmpId, li - 7), H[cmpId].label) : ''; })() : '',
       byday: dl.busiest, calendar: dl.rhythm,
       map: topLoc ? 'Highest turnout: ' + topLoc.n + ', at ' + topLoc.p.toFixed(1) + '%' : ''
     };
@@ -304,7 +304,7 @@ class Home extends DCLogic {
     return {
       eid: EID, label: D.label, box, find, bd, take,
       hdr: { eid: EID, lid: '',
-        elections: D.elections.map((o) => ({ value: o.id, text: o.label.replace('April 2026 special', 'April 2026') + ' · ' + o.type })),
+        elections: D.elections.map((o) => ({ value: o.id, text: o.label.replace('April 2026 special', 'April 2026'), text2: o.type })),
         locs: [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(allLocs), allLocs.map((o) => ({ value: o.value, text: o.text }))),
         pickE: (v) => { if (v !== EID) location.href = v === '2026' ? '/' : '/' + v; },
         pickL: (v) => { v = VF.unRecent(v); if (v) location.href = linkOf(v); } },

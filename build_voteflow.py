@@ -185,6 +185,21 @@ def fx_series(hist, edate):
     return out
 
 
+def fx_site_days(hist, edate):
+    """Fairfax's in-person ballots per site per day, by series index (None when the site was
+    closed or not reported). Only sites that took ballots that election are kept."""
+    E = date(edate)
+    out = {}
+    for h in hist:
+        i = 46 - (E - date(h['date'])).days
+        if not 0 <= i < 53:
+            continue
+        for key, v in (h.get('sites') or {}).items():
+            if v is not None:
+                out.setdefault(key, [None] * 53)[i] = v
+    return {k: v for k, v in out.items() if any(v)}
+
+
 def fx_extras(x):
     x = x or {}
     return {'switched': x.get('switchedTotal'), 'undeliverable': x.get('undeliverable')}
@@ -582,7 +597,8 @@ def main():
                 if hh:
                     c = hh[-1].get('cumulative') or {}
                     fx_mail[y] = {'through': hh[-1]['date'], 'sent': c.get('sent'), 'post': c.get('postal'), 'box': c.get('dropbox'), 'early': c.get('early'),
-                                  'ser': fx_series(hh, election_meta(y)['date']), 'extras': fx_extras(D['official'][y].get('extras'))}
+                                  'ser': fx_series(hh, election_meta(y)['date']), 'extras': fx_extras(D['official'][y].get('extras')),
+                                  'sites': fx_site_days(hh, election_meta(y)['date'])}
         n, nxt = sat_summary(lid, today)
         sat_dates = [date(x['firstOpen']) for x in D.get('satellites', {}).get(LIVE, {}).get(lid, {}).get('sites', []) if x['satellite']]
         ref25 = next((x['series'] for x in elections if x['id'] == '2025'), None)

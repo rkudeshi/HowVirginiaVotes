@@ -103,12 +103,12 @@
   const COMBO_CSS = `.vfc{position:relative;min-width:0}.vfc-btn{display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;min-height:46px;padding:0 40px 0 16px;background:#FFFFFF;border:2px solid #121417;border-radius:999px;font:700 15px 'Hanken Grotesk',sans-serif;color:#121417;cursor:pointer;text-align:left;position:relative}
 .vfc-btn input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;color:inherit;padding:0}
 .vfc-btn input::placeholder{color:#6B7380;font-weight:600}.vfc-btn:focus-within{box-shadow:0 0 0 3px #C9D2EC}
-.vfc-car{position:absolute;right:16px;top:50%;width:9px;height:9px;cursor:pointer;border-right:2.5px solid #121417;border-bottom:2.5px solid #121417;transform:translateY(-70%) rotate(45deg);transition:transform .15s}
+.vfc-car{position:absolute;right:16px;top:50%;width:9px;height:9px;cursor:pointer;color:#121417;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:translateY(-70%) rotate(45deg);transition:transform .15s}
 .vfc.open .vfc-car{transform:translateY(-25%) rotate(-135deg)}
 .vfc-list{position:absolute;top:calc(100% + 6px);left:0;right:0;min-width:240px;z-index:90;background:#FFFFFF;border:2px solid #121417;border-radius:16px;max-height:340px;overflow-y:auto;box-shadow:0 22px 40px -24px rgba(20,32,43,.6);padding:4px;scrollbar-width:thin;scrollbar-color:#9AA9C4 transparent}
 .vfc-list::-webkit-scrollbar{width:10px}.vfc-list::-webkit-scrollbar-thumb{background:#9AA9C4;border-radius:999px;border:3px solid #FFFFFF}.vfc-list::-webkit-scrollbar-track{background:transparent}
-.vfc-opt{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 12px;border-radius:10px;cursor:pointer;font:600 15px 'Hanken Grotesk',sans-serif;color:#121417}
-.vfc-opt small{font-size:12.5px;font-weight:500;color:#4A5260;text-align:right}.vfc-opt.hi{background:#EEF1F8}.vfc-opt.on{font-weight:800}.vfc-opt.on::before{content:"✓";margin-right:-4px;color:#41557F}
+.vfc-opt{display:flex;align-items:baseline;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;font:600 15px 'Hanken Grotesk',sans-serif;color:#121417}.vfc-opt>span{flex:1;min-width:0}
+.vfc-opt small{font-size:12.5px;font-weight:500;color:#4A5260;text-align:right}.vfc-opt.hi{background:#EEF1F8}.vfc-opt.on{font-weight:800;background:#F1F2F5}.vfc-opt.on.hi{background:#E6E8EC}.vfc-opt.on::after{content:"✓";font-weight:800;color:#121417}.vfc-t2{font-style:normal;font-weight:500;color:#4A5260}.vfc-opt.rec{padding:6px 12px;font-weight:500;font-size:14px;color:#2A2F38}.vfc-opt.rec small{font-style:italic}.vfc-opt.rec+.vfc-opt:not(.rec){margin-top:5px;box-shadow:0 -1px 0 #ECEEF2}
 .vfc-none{padding:12px;color:#4A5260;font:500 14px 'Hanken Grotesk',sans-serif}.vfc-big .vfc-btn{min-height:52px;font-size:17px}`;
   class Combo extends Component {
     constructor(p) { super(p); this.state = { open: false, q: '', idx: 0 }; this.root = null;
@@ -132,7 +132,7 @@
       const field = search
         ? h('input', { type: 'text', 'aria-label': p.label || p.placeholder, placeholder: cur && !st.open ? cur.text : p.placeholder, value: st.q, autocomplete: 'off',
             onFocus: open, onInput: (ev) => this.setState({ q: ev.target.value, open: true, idx: 0 }), onKeyDown: key })
-        : h('span', { style: 'flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis' }, cur ? cur.text : p.placeholder);
+        : h('span', { style: 'flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis' }, cur ? cur.text : p.placeholder, cur && cur.text2 ? h('em', { class: 'vfc-t2' }, ' · ' + cur.text2) : null);
       return h('div', { class: 'vfc' + (st.open ? ' open' : '') + (p.big === 'true' ? ' vfc-big' : ''), ref: (r) => { this.root = r; } },
         h('div', { class: 'vfc-btn', role: 'combobox', 'aria-expanded': st.open ? 'true' : 'false', 'aria-label': p.label || p.placeholder, tabIndex: search ? -1 : 0,
           // The whole box (arrow included) opens the list; the arrow closes it again.
@@ -144,8 +144,8 @@
           p.icon === 'search' ? h('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#4A5260', 'stroke-width': 2.6, 'stroke-linecap': 'round', 'aria-hidden': 'true' }, h('circle', { cx: 11, cy: 11, r: 7 }), h('path', { d: 'M20 20l-4-4' })) : null,
           field, h('span', { class: 'vfc-car', 'aria-hidden': 'true' })),
         st.open ? h('div', { class: 'vfc-list', role: 'listbox' },
-          items.length ? items.map((o, i) => h('div', { role: 'option', 'aria-selected': o.value === p.value ? 'true' : 'false', class: 'vfc-opt' + (i === idx ? ' hi' : '') + (o.value === p.value ? ' on' : ''),
-            onMouseDown: (ev) => { ev.preventDefault(); this.pick(o); }, onMouseEnter: () => this.setState({ idx: i }) }, h('span', null, o.text), o.sub ? h('small', null, o.sub) : null))
+          items.length ? items.map((o, i) => h('div', { role: 'option', 'aria-selected': o.value === p.value ? 'true' : 'false', class: 'vfc-opt' + (i === idx ? ' hi' : '') + (o.value === p.value ? ' on' : '') + (o.cls ? ' ' + o.cls : ''),
+            onMouseDown: (ev) => { ev.preventDefault(); this.pick(o); }, onMouseEnter: () => this.setState({ idx: i }) }, h('span', null, o.text, o.text2 ? h('em', { class: 'vfc-t2' }, ' · ' + o.text2) : null), o.sub ? h('small', null, o.sub) : null))
             : h('div', { class: 'vfc-none' }, 'No match')) : null);
     }
   }
@@ -255,7 +255,7 @@
     + 'html.vf-soft [role=group]>button{background:transparent !important;color:#586477 !important;border-radius:999px !important;min-height:36px !important}'
     + 'html.vf-soft [role=group]>button[aria-pressed=true]{background:#FFFFFF !important;color:#121417 !important;box-shadow:0 1px 3px rgba(18,20,23,.16),0 0 0 1px rgba(18,20,23,.04)}'
     + 'html.vf-soft [role=group]>button:not([aria-pressed=true]):hover{color:#121417 !important}'
-    + '.vf-band{position:fixed !important;top:0;left:0;right:0}body{padding-top:var(--vf-bandh,68px)}body.vf-full .vf-band,body.vf-full .vf-head>nav{display:none !important}';
+    + '.vf-band{position:fixed !important;top:0;left:0;right:0}body{padding-top:var(--vf-bandh,68px)}body.vf-full .vf-band{display:none !important}';
   { const st = document.createElement('style'); st.textContent = tc(BAND_CSS); document.head.appendChild(st); }
   const measureBand = () => {
     const b = document.querySelector('.vf-band');
@@ -277,7 +277,7 @@
     + 'html.vf-soft [role=group].vf-seg::before{background:#FFFFFF;box-shadow:0 1px 3px rgba(18,20,23,.16),0 0 0 1px rgba(18,20,23,.04)}'
     + 'html [role=group].vf-seg>button,html [role=group].vf-seg>button[aria-pressed]{background:transparent !important;box-shadow:none !important;transition:color .28s ease}'
     + '#byday svg rect,#compare svg rect,#where svg rect{transition:y .5s cubic-bezier(.3,.9,.3,1),height .5s cubic-bezier(.3,.9,.3,1),x .5s cubic-bezier(.3,.9,.3,1),width .5s cubic-bezier(.3,.9,.3,1),fill .3s}'
-    + '#byday svg path,#byday svg polyline,#compare svg path{transition:d .55s cubic-bezier(.3,.9,.3,1)}'
+    + '#byday svg path,#byday svg polyline,#compare svg path,#bysite svg path{transition:d .55s cubic-bezier(.3,.9,.3,1)}'
     + 'svg path[fill],svg circle{transition:fill .4s ease,stroke .3s ease}'
     + '.fx-cell,.fx-heat{transition:background-color .35s ease,color .35s ease,border-color .35s ease}'
     + '#daily [style*="background"],#sameday [style*="color"]{transition:background-color .35s ease,color .35s ease}'
@@ -311,7 +311,7 @@
   const spy = () => {
     spy.r = 0; trackBand();
     const links = Array.from(document.querySelectorAll('.vf-navlink[data-sec]')); if (!links.length) return;
-    const nav = document.querySelector('.vf-head > nav'), line = Math.max(nav ? nav.getBoundingClientRect().bottom : 0, 60) + 40;
+    const band = document.querySelector('.vf-band'), line = (band ? band.getBoundingClientRect().bottom : 60) + 40;
     let cur = links[0], best = -Infinity;
     links.forEach((a) => a.dataset.sec.split(' ').forEach((id) => { const el = document.getElementById(id); if (!el) return;
       const top = el.getBoundingClientRect().top; if (top <= line && top > best) { best = top; cur = a; } }));
@@ -334,8 +334,8 @@
     const el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
     ev.preventDefault();
     let top = 0; for (let n = el; n; n = n.offsetParent) top += n.offsetTop;
-    // Land below the slim brand bar (and the menu strip under it on narrow screens).
-    const off = 44 + (window.innerWidth < 980 && document.querySelector('.vf-head > nav') ? 44 : 0) + 16;
+    // Land below the brand bar at its slim, scrolled height (it slims as the page moves).
+    const band = document.querySelector('.vf-band'), off = (band ? band.offsetHeight - (document.body.classList.contains('vf-scrolled') ? 0 : 26) : 90) + 16;
     window.scrollTo({ top: Math.max(0, top - off), behavior: 'smooth' });
     history.replaceState(null, '', a.getAttribute('href'));
   });
@@ -359,7 +359,7 @@
   /* items: the full picker list ({ value: id, text }). Returns recent entries (value 'r:<id>') to
      put first; strip the prefix with VF.unRecent when one is picked. */
   const recentItems = (items, skip) => recentLocs().filter((id) => id !== skip).map((id) => items.find((o) => o.value === id)).filter(Boolean)
-    .map((o) => ({ value: 'r:' + o.value, text: o.text, sub: 'Recent' }));
+    .map((o) => ({ value: 'r:' + o.value, text: o.text, sub: 'Recently viewed', cls: 'rec' }));
   /* Days that run differently: Election Day and the state holidays inside the voting window
      (Indigenous Peoples' Day, the second Monday in October, and Veterans Day, Nov 11). */
   const dayFlag = (k, eDate) => {
@@ -382,6 +382,14 @@
       if (!r || !isFinite(r)) return '';
       return (r >= 1.95 && r <= 2.05 ? 'About twice ' + label : r >= 1.5 ? r.toFixed(1) + '× ' + label : r >= 1.03 ? Math.round((r - 1) * 100) + '% ahead of ' + label
         : r <= 0.97 ? Math.round((1 - r) * 100) + '% behind ' + label : 'About even with ' + label) + tail;
+    },
+    /* How the gap with a comparison election moved over the past week (ratios now and 7 days ago). */
+    gapLine: (rNow, rWeek, label) => {
+      if (!rNow || !rWeek || !isFinite(rNow) || !isFinite(rWeek)) return '';
+      const g = (r) => Math.round((r - 1) * 100), a = g(rNow), b = g(rWeek), side = (x) => Math.abs(x) + '% ' + (x >= 0 ? 'ahead of' : 'behind');
+      if (Math.abs(a - b) < 3) return 'Holding steady at ' + side(a) + ' ' + label + ' over the past week';
+      if (Math.sign(a) !== Math.sign(b) && a !== 0 && b !== 0) return 'Moved from ' + side(b) + ' to ' + side(a) + ' ' + label + ' this past week';
+      return (Math.abs(a) > Math.abs(b) ? 'The gap widened' : 'The gap narrowed') + ' this past week: now ' + side(a) + ' ' + label + ', from ' + Math.abs(b) + '%';
     },
     /* days: [{ d: 'YYYY-MM-DD', v: ballots that day }] → { busiest, rhythm } headline strings. */
     dayLines: (days, live) => {
