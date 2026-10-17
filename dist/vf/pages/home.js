@@ -300,9 +300,14 @@ class Home extends DCLogic {
       map: topLoc ? 'Highest turnout: ' + topLoc.n + ', at ' + topLoc.p.toFixed(1) + '%' : ''
     };
     const allLocs = D.locs.slice().sort((a, b) => a.n.localeCompare(b.n)).map((o) => ({ value: o.id, text: o.n, sub: o.rg }));
+    // Quick links under the pickers: the biggest locality and this election's turnout leaders.
+    const best = (fn) => D.locs.reduce((a, b) => (fn(b) > fn(a) ? b : a), D.locs[0]);
+    const pctOf = (o, k) => o[k] / o.r * 100;
+    const jumps = [['#1 in size', best((o) => o.r), null], ['#1 in turnout', best((o) => o.p), (o) => o.p], ['#1 in person', best((o) => pctOf(o, 'e')), (o) => pctOf(o, 'e')], ['#1 by mail', best((o) => pctOf(o, 'm')), (o) => pctOf(o, 'm')]]
+      .map(([k, o, v], i) => ({ k, name: o.n, v: v ? ' (' + v(o).toFixed(1) + '%)' : '', href: linkOf(o.id), sep: i > 0 }));
     const find = { items: VF.recentItems(allLocs).concat(allLocs), pick: (v) => { location.href = linkOf(VF.unRecent(v)); } };
     return {
-      eid: EID, label: D.label, box, find, bd, take,
+      eid: EID, label: D.label, box, find, bd, take, jumps,
       hdr: { eid: EID, lid: '',
         elections: D.elections.map((o) => ({ value: o.id, text: o.label.replace('April 2026 special', 'April 2026'), text2: o.type })),
         locs: [{ value: '', text: 'All of Virginia' }].concat(VF.recentItems(allLocs), allLocs.map((o) => ({ value: o.value, text: o.text }))),

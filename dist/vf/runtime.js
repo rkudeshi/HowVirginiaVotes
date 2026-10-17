@@ -331,6 +331,7 @@
   document.addEventListener('click', (ev) => {
     const a = ev.target.closest && ev.target.closest('a[href^="#"]');
     if (!a || ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey) return;
+    if (a.getAttribute('href') === '#settings') { ev.preventDefault(); openLook(); return; } // footer link to the look panel
     const el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
     ev.preventDefault();
     let top = 0; for (let n = el; n; n = n.offsetParent) top += n.offsetTop;
